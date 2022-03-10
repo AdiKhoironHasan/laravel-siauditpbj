@@ -17,7 +17,7 @@ class unitController extends Controller
     {
         return view('unit.index', [
             'title' => 'Data Unit',
-            'ketuaUnits' => User::all(),
+            'ketuaUnits' => User::where('level', 'Auditee')->get(),
             'datas' => Unit::all(),
         ]);
     }
@@ -40,7 +40,14 @@ class unitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required|unique:units',
+            'user_id' => 'required'
+        ]);
+
+        Unit::create($validatedData);
+
+        return redirect('/unit')->with('success', 'New post has been created');
     }
 
     /**
@@ -58,6 +65,7 @@ class unitController extends Controller
         return view('unit', [
             'title' => 'Data Unit',
             'datas' => $unit,
+            'ketuaUnits' => User::where('level', 'Auditee')->get(),
         ]);
     }
 
@@ -79,9 +87,18 @@ class unitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        // dd($request);
+
+        $validatedData = $request->validate([
+            'nama' => 'required|unique:units|min:3',
+            'user_id' => 'required'
+        ]);
+
+        Unit::where('id', $request->id)->update($validatedData);
+
+        return redirect('/unit')->with('success', 'Data Unit berhasil diupdate!');
     }
 
     /**

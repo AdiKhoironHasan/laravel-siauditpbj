@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
 
         User::create([
-            "name" => "Adi Khoiron Hasan",
+            "nama" => "Adi Khoiron Hasan",
             "username" => "eronman",
             "email" => "adieron97@gmail.com",
             // bcrypt untuk enkripsi password

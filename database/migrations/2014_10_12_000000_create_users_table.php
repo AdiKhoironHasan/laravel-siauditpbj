@@ -18,9 +18,13 @@ class CreateUsersTable extends Migration
             $table->string('nama');
             $table->string('username')->unique();
             $table->string('email')->unique();
-            // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            // $table->rememberToken();
+            $table->integer('npak')->nullable();
+            $table->enum('level', ['Ketua SPI', 'Anggota SPI', 'Auditee', 'Direktur']);
+            $table->integer('nohp')->nullable();
+            $table->string('foto')->nullable();
+            $table->string('ttd')->nullable();
+            $table->enum('status', ['Aktif', 'Tidak Aktif', 'Medaftar']);
             $table->timestamps();
         });
     }

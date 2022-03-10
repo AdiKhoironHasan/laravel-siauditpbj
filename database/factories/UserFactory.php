@@ -15,9 +15,13 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'nama' => $this->faker->name(),
             'username' => $this->faker->unique()->userName(),
             'email' => $this->faker->unique()->safeEmail(),
+            'level' => $this->faker->randomElement(['Ketua SPI', 'Anggota SPI', 'Auditee', 'Direktur']),
+            'nohp' => $this->faker->randomNumber(9, true),
+            'npak' => $this->faker->unique->randomNumber(9, true),
+            'status' => $this->faker->randomElement(['Aktif', 'Tidak Aktif', 'Medaftar']),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ];
     }

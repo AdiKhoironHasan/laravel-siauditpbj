@@ -1,8 +1,15 @@
-{{-- @dd($datas) --}}
+{{-- @dd($ketuaUnits) --}}
 
 @extends('layouts.main')
 
 @section('content')
+
+@if (session('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{ session('success') }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 
 <div class="card card-primary">
     <div class="card-header">
@@ -34,7 +41,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->nama }}</td>
-                    <td>{{ $data->user->name }}</td>
+                    <td>{{ $data->user->nama }}</td>
                     <td>
                         <div class="text-center">
                             <div class="row">
