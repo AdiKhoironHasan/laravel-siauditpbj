@@ -107,8 +107,10 @@ class unitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Unit $unit)
     {
-        //
+        Unit::destroy($unit->id);
+
+        return redirect('/unit')->with('success', 'Post deleted successfully');
     }
 }

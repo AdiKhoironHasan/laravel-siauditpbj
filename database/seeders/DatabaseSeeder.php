@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PaketBarang;
 use App\Models\RKA;
 use App\Models\Unit;
 use Illuminate\Database\Seeder;
@@ -31,6 +32,8 @@ class DatabaseSeeder extends Seeder
         //     "barang_id" => 1,
         //     "nama" => ""
         // ]);
+
+        PaketBarang::factory(10)->create();
     }
 }
 
