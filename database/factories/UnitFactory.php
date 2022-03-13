@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Faker\Provider\ar_EG\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -14,6 +15,8 @@ class UnitFactory extends Factory
      */
     public function definition()
     {
+        // $idUsers = User::where('level', 'Auditee')->get();
+
         return [
             "user_id" => mt_rand(1, 6),
             "nama" => $this->faker->unique()->jobTitle(),

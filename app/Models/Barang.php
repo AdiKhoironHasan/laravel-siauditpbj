@@ -15,4 +15,9 @@ class Barang extends Model
     {
         return $this->belongsTo(Unit::class);
     }
+
+    public function rencana()
+    {
+        return $this->belongsTo(Rencana::class);
+    }
 }

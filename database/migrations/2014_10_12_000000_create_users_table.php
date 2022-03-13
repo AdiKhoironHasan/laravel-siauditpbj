@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('npak')->nullable();
-            $table->enum('level', ['Ketua SPI', 'Anggota SPI', 'Auditee', 'Direktur']);
+            $table->enum('level', ['Ketua SPI', 'Auditor', 'Auditee', 'Direktur']);
             $table->integer('nohp')->nullable();
             $table->string('foto')->nullable();
             $table->string('ttd')->nullable();

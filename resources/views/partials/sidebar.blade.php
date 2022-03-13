@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/#" class="nav-link">
+                    <a href="/rencana" class="nav-link">
                         <i class="nav-icon fas fa-swatchbook"></i>
                         <p>
                             Rencana Kerja Audit

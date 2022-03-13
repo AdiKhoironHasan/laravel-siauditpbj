@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Barang;
-use App\Models\PaketBarang;
-use App\Models\RKA;
 use App\Models\Unit;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -18,21 +16,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
 
         User::create([
             "nama" => "Adi Khoiron Hasan",
             "username" => "eronman",
             "email" => "adieron97@gmail.com",
+            "level" => "Ketua SPi",
             // bcrypt untuk enkripsi password
             "password" => bcrypt('password')
         ]);
 
+        User::factory(10)->create();
+
         Unit::factory(5)->create();
-        // RKA::create([
-        //     "barang_id" => 1,
-        //     "nama" => ""
-        // ]);
 
         Barang::factory(10)->create();
     }

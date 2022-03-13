@@ -1,4 +1,3 @@
-<?php $page = 'RKA'; ?>
 <!DOCTYPE html>
 
 <head>

@@ -43,4 +43,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Unit::class);
     }
+
+    public function rencana()
+    {
+        return $this->hasMany(Rencana::class);
+    }
 }

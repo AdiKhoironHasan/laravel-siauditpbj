@@ -18,10 +18,10 @@ class UserFactory extends Factory
             'nama' => $this->faker->name(),
             'username' => $this->faker->unique()->userName(),
             'email' => $this->faker->unique()->safeEmail(),
-            'level' => $this->faker->randomElement(['Ketua SPI', 'Anggota SPI', 'Auditee', 'Direktur']),
+            'level' => $this->faker->randomElement(['Auditor', 'Auditee', 'Direktur']),
             'nohp' => $this->faker->randomNumber(9, true),
             'npak' => $this->faker->unique->randomNumber(9, true),
-            'status' => $this->faker->randomElement(['Aktif', 'Tidak Aktif', 'Medaftar']),
+            'status' => $this->faker->randomElement(['Aktif']),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ];
     }

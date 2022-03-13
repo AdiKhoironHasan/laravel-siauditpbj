@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RencanaController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,4 @@ Route::get('/dashboard', function () {
 
 Route::resource('/unit', UnitController::class)->middleware('auth');
 Route::resource('/barang', BarangController::class)->middleware('auth');
+Route::resource('/rencana', RencanaController::class)->middleware('auth');
