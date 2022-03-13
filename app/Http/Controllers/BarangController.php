@@ -92,7 +92,6 @@ class BarangController extends Controller
             'tahun_anggaran' => 'required'
         ];
 
-
         // $barang = Barang::where('id', $request->id);
 
         if ($request->no_kontrak != $barang->no_kontrak) {
@@ -115,6 +114,8 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
-        //
+        Barang::destroy($barang->id);
+
+        return redirect('/barang')->with('success', 'Paket Barang berhasil dihapus!');
     }
 }

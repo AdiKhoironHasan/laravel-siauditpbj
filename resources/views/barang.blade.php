@@ -10,11 +10,11 @@
     @if (count($errors) > 0)
         {{ $errors }}
     @endif
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#exampleModal').modal('show');
         });
-    </script>
+    </script> --}}
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Tabel {{ $title }}</h3>
@@ -48,13 +48,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{-- @dd($barangs) --}}
                     @foreach ($barangs as $barang)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $barang->unit->nama }}</td>
                             <td>{{ $barang->nama }}</td>
                             <td>{{ $barang->no_kontrak }}</td>
-                            <td>{{ $barang->tgl_kontrak }}</td>
+                            <td>{{ tanggal($barang->tgl_kontrak) }}</td>
                             <td>{{ $barang->nilai_kontrak }}</td>
                             <td>{{ $barang->tahun_anggaran }}</td>
                             <td>
@@ -65,7 +66,7 @@
                                                 style="color: limegreen;"><i class="far fa-edit"></i></a>
                                         </div>
                                         <div class="col">
-                                            <form action="/unit/{{ $barang->id }}" method="POST">
+                                            <form action="/barang/{{ $barang->id }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button class="border-0 bg-transparent"
@@ -84,7 +85,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -103,7 +104,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     @include('partials.modal-barang-tambah')
 @endsection
