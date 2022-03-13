@@ -9,7 +9,9 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-
+    @if (count($errors) > 0)
+        <h1>ERROR GAN</h1>
+    @endif
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">Daftar {{ $title }}</h3>

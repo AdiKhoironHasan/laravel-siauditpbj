@@ -1,12 +1,14 @@
-<?php $page = "RKA"; ?>
+<?php $page = 'RKA'; ?>
 <!DOCTYPE html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title }}</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
@@ -85,7 +87,6 @@
     $(document).ready(function() {
         $("#barang").chained("#unit");
     });
-
 </script>
 
 <script>
@@ -96,22 +97,21 @@
 
     $(function() {
         $("#example1").DataTable({
-            "responsive": true
-            , "lengthChange": false
-            , "autoWidth": false
-            , "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
-            "paging": true
-            , "lengthChange": false
-            , "searching": false
-            , "ordering": true
-            , "info": true
-            , "autoWidth": false
-            , "responsive": true
-        , });
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
     });
-
 </script>
 
 <script type="text/javascript">
@@ -122,15 +122,19 @@
                 $('#hasilCekTambah').text('');
             } else {
                 $.ajax({
-                    url: 'functions/cek_tambah_user.php'
-                    , type: 'POST'
-                    , data: 'username=' + uname
-                    , success: function(hasil) {
+                    url: 'functions/cek_tambah_user.php',
+                    type: 'POST',
+                    data: 'username=' + uname,
+                    success: function(hasil) {
                         if (hasil > 0) {
-                            $('#hasilCekTambah').html('<label class="col-form-label" for="inputSuccess"><i class="fas fa-times-circle"></i> Username Tidak Tersedia</label>');
+                            $('#hasilCekTambah').html(
+                                '<label class="col-form-label" for="inputSuccess"><i class="fas fa-times-circle"></i> Username Tidak Tersedia</label>'
+                            );
                             $('#tambah').attr('disabled', 'disabled');
                         } else if (hasil) {
-                            $('#hasilCekTambah').html('<label class="col-form-label" for="inputSuccess"><i class="fas fa-check-circle"></i> Username Tersedia</label>');
+                            $('#hasilCekTambah').html(
+                                '<label class="col-form-label" for="inputSuccess"><i class="fas fa-check-circle"></i> Username Tersedia</label>'
+                            );
                             $('#tambah').removeAttr('disabled');
                         }
                     }
@@ -146,15 +150,19 @@
                 $('#hasilCekEdit').text('');
             } else {
                 $.ajax({
-                    url: 'functions/cek_edit_user.php'
-                    , type: 'POST'
-                    , data: 'username=' + uname
-                    , success: function(hasil) {
+                    url: 'functions/cek_edit_user.php',
+                    type: 'POST',
+                    data: 'username=' + uname,
+                    success: function(hasil) {
                         if (hasil > 0) {
-                            $('#hasilCekEdit').html('<label class="col-form-label" for="inputSuccess"><i class="fas fa-times-circle"></i> Username Tidak Tersedia</label>');
+                            $('#hasilCekEdit').html(
+                                '<label class="col-form-label" for="inputSuccess"><i class="fas fa-times-circle"></i> Username Tidak Tersedia</label>'
+                            );
                             $('#edit').attr('disabled', 'disabled');
                         } else if (hasil) {
-                            $('#hasilCekEdit').html('<label class="col-form-label" for="inputSuccess"><i class="fas fa-check-circle"></i> Username Tersedia</label>');
+                            $('#hasilCekEdit').html(
+                                '<label class="col-form-label" for="inputSuccess"><i class="fas fa-check-circle"></i> Username Tersedia</label>'
+                            );
                             $('#edit').removeAttr('disabled');
                         }
                     }
@@ -170,15 +178,19 @@
                 $('#hasilCekUnit').text('');
             } else {
                 $.ajax({
-                    url: 'functions/cek_edit_unit.php'
-                    , type: 'POST'
-                    , data: 'namaUnit=' + namaUnit
-                    , success: function(hasil) {
+                    url: 'functions/cek_edit_unit.php',
+                    type: 'POST',
+                    data: 'namaUnit=' + namaUnit,
+                    success: function(hasil) {
                         if (hasil > 0) {
-                            $('#hasilCekUnit').html('<label class="col-form-label" for="inputSuccess"><i class="fas fa-times-circle"></i> Nama Unit Tidak Tersedia</label>');
+                            $('#hasilCekUnit').html(
+                                '<label class="col-form-label" for="inputSuccess"><i class="fas fa-times-circle"></i> Nama Unit Tidak Tersedia</label>'
+                            );
                             $('#editUnit').attr('disabled', 'disabled');
                         } else if (hasil) {
-                            $('#hasilCekUnit').html('<label class="col-form-label" for="inputSuccess"><i class="fas fa-check-circle"></i> Nama Unit Tersedia</label>');
+                            $('#hasilCekUnit').html(
+                                '<label class="col-form-label" for="inputSuccess"><i class="fas fa-check-circle"></i> Nama Unit Tersedia</label>'
+                            );
                             $('#editUnit').removeAttr('disabled');
                         }
                     }
@@ -194,15 +206,19 @@
                 $('#hasilUnitTambah').text('');
             } else {
                 $.ajax({
-                    url: 'functions/cek_edit_unit.php'
-                    , type: 'POST'
-                    , data: 'namaUnit=' + namaUnit
-                    , success: function(hasil) {
+                    url: 'functions/cek_edit_unit.php',
+                    type: 'POST',
+                    data: 'namaUnit=' + namaUnit,
+                    success: function(hasil) {
                         if (hasil > 0) {
-                            $('#hasilUnitTambah').html('<label class="col-form-label" for="inputSuccess"><i class="fas fa-times-circle"></i> Nama Unit Tidak Tersedia</label>');
+                            $('#hasilUnitTambah').html(
+                                '<label class="col-form-label" for="inputSuccess"><i class="fas fa-times-circle"></i> Nama Unit Tidak Tersedia</label>'
+                            );
                             $('#tambahUnit').attr('disabled', 'disabled');
                         } else if (hasil) {
-                            $('#hasilUnitTambah').html('<label class="col-form-label" for="inputSuccess"><i class="fas fa-check-circle"></i> Nama Unit Tersedia</label>');
+                            $('#hasilUnitTambah').html(
+                                '<label class="col-form-label" for="inputSuccess"><i class="fas fa-check-circle"></i> Nama Unit Tersedia</label>'
+                            );
                             $('#tambahUnit').removeAttr('disabled');
                         }
                     }
@@ -210,7 +226,6 @@
             }
         });
     });
-
 </script>
 
 </html>

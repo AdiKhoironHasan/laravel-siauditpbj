@@ -1,9 +1,23 @@
 @extends('layouts.main')
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session('success') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    @if (count($errors) > 0)
+        {{ $errors }}
+    @endif
+    <script>
+        $(document).ready(function() {
+            $('#exampleModal').modal('show');
+        });
+    </script>
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Tabel Data Barang</h3>
+            <h3 class="card-title">Tabel {{ $title }}</h3>
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -27,31 +41,69 @@
                         <th>Unit</th>
                         <th>Nama Barang</th>
                         <th>No Kontrak</th>
-                        <th>Tanggal</th>
+                        <th>Tanggal Kontrak</th>
                         <th>Nilai Kontrak</th>
                         <th>Tahun Anggaran</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{{ $barang }}</td>
-                        <td>
-                            <div class="text-center">
-                                <!-- <a href="timeline.php" style="color: deepskyblue"><i class="fas fa-info-circle"></i></a> -->
-                                <a href="#modal_barang_edit<?= $row['id_barang'] ?>" data-toggle="modal"
-                                    style="color: limegreen;"><i class="far fa-edit"></i></a>
-                                <a href="functions/barang_delete.php?id=<?= $row['id_barang'] ?>"
-                                    onclick="return confirm('Anda yakin mau menghapus item ini ?')"
-                                    style="color: crimson;"><i class="far fa-trash-alt"></i></a>
-                            </div>
-                        </td>
-                    </tr>
+                    @foreach ($barangs as $barang)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $barang->unit->nama }}</td>
+                            <td>{{ $barang->nama }}</td>
+                            <td>{{ $barang->no_kontrak }}</td>
+                            <td>{{ $barang->tgl_kontrak }}</td>
+                            <td>{{ $barang->nilai_kontrak }}</td>
+                            <td>{{ $barang->tahun_anggaran }}</td>
+                            <td>
+                                <div class="text-center">
+                                    <div class="row">
+                                        <div class="col">
+                                            <a href="#modal_barang_edit{{ $barang->id }}" data-toggle="modal"
+                                                style="color: limegreen;"><i class="far fa-edit"></i></a>
+                                        </div>
+                                        <div class="col">
+                                            <form action="/unit/{{ $barang->id }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="border-0 bg-transparent"
+                                                    onclick="return confirm('Anda yakin mau menghapus item ini ?')"
+                                                    style="color: crimson;"><i class="far fa-trash-alt"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        @include('partials.modal-barang-edit')
+                    @endforeach
                 </tbody>
             </table>
         </div>
-        <!-- /.card-body -->
-
-        <!-- /.card-footer-->
     </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @include('partials.modal-barang-tambah')
 @endsection

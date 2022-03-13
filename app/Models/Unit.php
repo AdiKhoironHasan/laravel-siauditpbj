@@ -16,8 +16,8 @@ class Unit extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function paket_barang()
+    public function barang()
     {
-        return $this->hasMany(PaketBarang::class);
+        return $this->hasMany(Barang::class);
     }
 }

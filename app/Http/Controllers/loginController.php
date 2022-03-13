@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class loginController extends Controller
+class LoginController extends Controller
 {
     public function index()
     {
@@ -25,6 +25,8 @@ class loginController extends Controller
             $request->session()->regenerate();
 
             return redirect()->intended('/dashboard');
+        } else {
+            return redirect()->intended('/login');
         }
     }
 

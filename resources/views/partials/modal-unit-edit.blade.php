@@ -1,28 +1,40 @@
-<div class="modal fade" id="modal_unit_edit{{ $data->id }}">
+<div class="modal fade" id="modal_unit_edit{{ $data->id }}" role="dialog">
+    @if (count($errors) > 0)
+        <script>
+            $(document).ready(function() {
+                $('#exampleModal').modal('show');
+            });
+        </script>
+    @endif
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="/unit/{{ $data->id }}" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Data Unit</h4>
+                    <h4 class="modal-title">Edit Data {{ $title }}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="id" value="{{ $data->id }}">
+                    <input type="hidden" name="id" id="id" value="{{ $data->id }}">
                     <div class="form-group">
                         <label>Nama Unit</label>
                         <input type="text" name="nama" id="nama" class="form-control" value="{{ $data->nama }}">
                         <div id="hasilCekUnit"></div>
+                        @error('nama')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>Ketua Unit</label>
                         <select type="text" name="user_id" id="user_id" class="form-control">
                             <option value="{{ $data->user->id }}" hidden selected>{{ $data->user->nama }}</option>
                             @foreach ($ketuaUnits as $ketuaUnit)
-                            <option value="{{ $ketuaUnit->id }}">{{ $ketuaUnit->nama }}</option>
+                                <option value="{{ $ketuaUnit->id }}">{{ $ketuaUnit->nama }}</option>
                             @endforeach
                         </select>
                     </div>

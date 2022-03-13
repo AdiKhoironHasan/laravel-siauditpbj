@@ -6,7 +6,7 @@ use App\Models\Unit;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class unitController extends Controller
+class UnitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -89,12 +89,12 @@ class unitController extends Controller
      */
     public function update(Request $request)
     {
-        // dd($request);
-
-        $validatedData = $request->validate([
+        $rules = [
             'nama' => 'required|unique:units|min:3',
             'user_id' => 'required'
-        ]);
+        ];
+
+        $validatedData = $request->validate($rules);
 
         Unit::where('id', $request->id)->update($validatedData);
 

@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\loginController;
-use App\Http\Controllers\RKAController;
-use App\Http\Controllers\unitController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [loginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [loginController::class, 'authenticate']);
-Route::post('/logout', [loginController::class, 'logout']);
+Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/dashboard', function () {
     return view('dashboard', [
@@ -27,5 +27,5 @@ Route::get('/dashboard', function () {
     ]);
 })->middleware('auth');
 
-Route::get('/rka', [RKAController::class, 'index'])->middleware('auth');
-Route::resource('/unit', unitController::class)->middleware('auth');
+Route::resource('/unit', UnitController::class)->middleware('auth');
+Route::resource('/barang', BarangController::class)->middleware('auth');
