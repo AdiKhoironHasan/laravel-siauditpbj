@@ -47,17 +47,38 @@
                 <tbody>
                     @foreach ($rencanas as $rencana)
                         <tr>
-                            <th>{{ $loop->iteration }}</th>
-                            <th>{{ $rencana->barang->unit->nama }}</th>
-                            <th>{{ $rencana->barang->nama }}</th>
-                            <th>{{ $rencana->auditor1->nama }}</th>
-                            <th>{{ $rencana->auditor2->nama }}</th>
-                            <th>{{ $rencana->auditor3->nama }}</th>
-                            <th>Status</th>
-                            <th>Tahun</th>
-                            <th>Tanggal</th>
-                            <th>Aksi</th>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $rencana->barang->unit->nama }}</td>
+                            <td>{{ $rencana->barang->nama }}</td>
+                            <td>{{ $rencana->auditor1->nama }}</td>
+                            <td>{{ $rencana->auditor2->nama }}</td>
+                            <td>{{ $rencana->auditor3->nama }}</td>
+                            <td>{{ $rencana->status }}</td>
+                            <td>{{ $rencana->tahun }}</td>
+                            <td>{{ tanggal($rencana->tanggal) }}</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="/timeline/{{ $rencana->id }}"><i class="fas fa-info-circle"
+                                                style="color: deepskyblue;"></i></a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="#modal_rencana_edit{{ $rencana->id }}" data-toggle="modal"
+                                            style="color: limegreen;"><i class="far fa-edit"></i></a>
+                                    </div>
+                                    <div class="col">
+                                        <form action="/rencana/{{ $rencana->id }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button class="border-0 bg-transparent"
+                                                onclick="return confirm('Anda yakin mau menghapus item ini ?')"
+                                                style="color: crimson;"><i class="far fa-trash-alt"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
+                        @include('partials.rencana.modal-rencana-edit')
                     @endforeach
                 </tbody>
             </table>

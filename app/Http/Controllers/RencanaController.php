@@ -90,7 +90,20 @@ class RencanaController extends Controller
      */
     public function update(Request $request, Rencana $rencana)
     {
-        //
+        $rules = [
+            'barang_id' => 'required',
+            'auditor1_id' => 'required',
+            'auditor2_id' => 'required',
+            'auditor3_id' => 'required',
+            'tahun' => 'required',
+            'tanggal' => 'required',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        Rencana::where('id', $rencana->id)->update($validatedData);
+
+        return redirect('/rencana')->with('success', 'Data Rencana Kerja Audit berhasil diubah!');
     }
 
     /**
@@ -101,6 +114,8 @@ class RencanaController extends Controller
      */
     public function destroy(Rencana $rencana)
     {
-        //
+        Rencana::destroy($rencana->id);
+
+        return redirect('/rencana')->with('success', 'Rencana Kerja Audit berhasil dihapus!');
     }
 }

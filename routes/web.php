@@ -4,6 +4,8 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RencanaController;
 use App\Http\Controllers\UnitController;
+use App\Models\Rencana;
+use App\Models\Timeline;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +33,12 @@ Route::get('/dashboard', function () {
 Route::resource('/unit', UnitController::class)->middleware('auth');
 Route::resource('/barang', BarangController::class)->middleware('auth');
 Route::resource('/rencana', RencanaController::class)->middleware('auth');
+
+
+Route::get('/timeline/{id}', function($id){
+    return view('timeline',[
+        'title' => 'Timeline',
+        'timeline' => Timeline::where('rencana_id', $id)->get(),
+        'rencana' => Rencana::where('id', $id)->get()
+    ]);
+});

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Barang;
+use App\Models\Rencana;
+use App\Models\Timeline;
 use App\Models\Unit;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -31,6 +33,20 @@ class DatabaseSeeder extends Seeder
         Unit::factory(5)->create();
 
         Barang::factory(10)->create();
+
+        Rencana::create([
+            'barang_id' => 1,
+            'auditor1_id' => 1,
+            'auditor2_id' => 2,
+            'auditor3_id' => 3,
+            'status' => 'Belum Terlaksana',
+            'tahun' => 2020,
+            'tanggal' => '2020-03-13'
+        ]);
+
+        Timeline::create([
+            'rencana_id' => 1,
+        ]);
     }
 }
 
