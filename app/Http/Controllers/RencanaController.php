@@ -6,7 +6,9 @@ use App\Models\Barang;
 use App\Models\Rencana;
 use App\Models\Unit;
 use App\Models\User;
+use App\Models\Timeline;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RencanaController extends Controller
 {
@@ -44,7 +46,7 @@ class RencanaController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'barang_id' => 'required',
+            'barang_id' => 'required|unique:rencanas',
             'auditor1_id' => 'required',
             'auditor2_id' => 'required',
             'auditor3_id' => 'required',
@@ -54,8 +56,12 @@ class RencanaController extends Controller
 
         $validatedData['status'] = 'Belum Terlaksana';
 
-        Rencana::create($validatedData);
-
+        DB::beginTransaction();
+        $rencana = Rencana::create($validatedData);
+        Timeline::create([
+            'rencana_id' => $rencana->id,
+        ]);
+        DB::commit();
         return redirect('/rencana')->with('success', 'Rencana Kerja Audit berhasil ditambahkan!');
     }
 
@@ -114,8 +120,11 @@ class RencanaController extends Controller
      */
     public function destroy(Rencana $rencana)
     {
+        DB::beginTransaction();
         Rencana::destroy($rencana->id);
-
+        Timeline::where('rencana_id', $rencana->id)->delete();
+        DB::commit();
+        
         return redirect('/rencana')->with('success', 'Rencana Kerja Audit berhasil dihapus!');
     }
 }
