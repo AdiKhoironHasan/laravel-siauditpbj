@@ -14,10 +14,14 @@
                     <div class="form-group">
                         <label>Paket Barang</label>
                         <select type="text" id="barang_id" name="barang_id" class="form-control" required>
+                            @if (count($barangs))
                             <option hidden selected value="">--Pilih Paket Barang--</option>
                             @foreach ($barangs as $barang)
                                 <option value="{{ $barang->id }}">{{ $barang->nama }}</option>
                             @endforeach
+                            @else
+                                <option selected value="">--Tidak Ada Data Barang--</option>
+                            @endif
                         </select>
                     </div>
                     <div class="form-group">

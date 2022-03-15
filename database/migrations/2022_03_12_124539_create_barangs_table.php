@@ -16,7 +16,7 @@ class CreateBarangsTable extends Migration
         Schema::create('barangs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('unit_id');
-            $table->string('nama');
+            $table->string('nama')->unique();
             $table->string('no_kontrak')->unique();
             $table->date('tgl_kontrak');
             $table->integer('nilai_kontrak');

@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
 
         Unit::factory(5)->create();
 
-        Barang::factory(10)->create();
+        Barang::factory(2)->create();
 
         Rencana::create([
             'barang_id' => 1,

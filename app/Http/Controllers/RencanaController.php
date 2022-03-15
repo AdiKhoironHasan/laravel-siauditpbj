@@ -19,10 +19,30 @@ class RencanaController extends Controller
      */
     public function index()
     {
+        $barang = DB::table('barangs')
+        ->whereNotExists(function($query){
+            $query->select(DB::raw(1))
+                  ->from('rencanas')
+                  ->whereColumn('rencanas.barang_id','=','barangs.id');
+        })
+        ->get();
+
+        // SELECT * FROM TableA a
+        // WHERE a.city NOT IN(SELECT city FROM TableB)
+
+        // $users = DB::table('users')
+        // ->whereExists(function ($query) {
+        //     $query->select(DB::raw(1))
+        //           ->from('orders')
+        //           ->whereColumn('orders.user_id', 'users.id');
+        // })
+        // ->get();
+        
+// dd($barang);
         return view('rencana', [
             'title' => 'Rencana Kerja Audit',
             'rencanas' => Rencana::all(),
-            'barangs' => Barang::all(),
+            'barangs' => $barang,
             'auditors' => User::where('level', 'Ketua SPI')->orWhere('level', 'Auditor')->get()
         ]);
     }
@@ -124,7 +144,7 @@ class RencanaController extends Controller
         Rencana::destroy($rencana->id);
         Timeline::where('rencana_id', $rencana->id)->delete();
         DB::commit();
-        
+
         return redirect('/rencana')->with('success', 'Rencana Kerja Audit berhasil dihapus!');
     }
 }
