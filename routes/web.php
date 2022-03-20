@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\DeskController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RencanaController;
 use App\Http\Controllers\UnitController;
+use App\Models\Desk;
 use App\Models\Rencana;
 use App\Models\Timeline;
 use Illuminate\Support\Facades\Route;
@@ -33,12 +35,38 @@ Route::get('/dashboard', function () {
 Route::resource('/unit', UnitController::class)->middleware('auth');
 Route::resource('/barang', BarangController::class)->middleware('auth');
 Route::resource('/rencana', RencanaController::class)->middleware('auth');
+Route::resource('/desk', DeskController::class);
 
+// Route::get('/desk/{desk}', function ($desk) {
+//     return view('desk.index', [
+//         'title' => 'Data Desk',
+//         'desk' => $desk
+//     ]);
+// });
 
-Route::get('/timeline/{id}', function($id){
-    return view('timeline',[
+Route::get('/timeline/{id}', function ($id) {
+    $rencana = Rencana::where('id', $id)->get();
+    $desk = Desk::where('rencana_id',$rencana[0]->id)->first();
+// dd($desk);
+    return view('timeline', [
         'title' => 'Timeline',
         'timeline' => Timeline::where('rencana_id', $id)->get(),
+        'rencana' => $rencana,
+        'desk' => $desk
+    ]);
+
+    // return view('desk.index', [
+    //     'title' => 'Data Desk',
+    //     'rencana' => $rencana,
+    //     'desk' => $desk
+    // ]);
+});
+
+Route::get('/timeline/desk/{id}', function ($id) {
+    return view('desk.index', [
+        'title' => 'Data Desk',
         'rencana' => Rencana::where('id', $id)->get()
     ]);
 });
+    
+// Route::resource('/desk', DeskController::class);

@@ -15,10 +15,10 @@ class CreateTimelinesTable extends Migration
     {
         Schema::create('timelines', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('rencana_id')->uniqid();
-            $table->foreignId('desk_id')->nullable();
-            $table->foreignId('visit_id')->nullable();
-            $table->foreignId('berita_id')->nullable();
+            $table->foreignId('rencana_id')->unique()->constrained()->cascadeOnDelete();
+            $table->foreignId('desk_id')->unique()->nullable();
+            $table->foreignId('visit_id')->unique()->nullable();
+            $table->foreignId('berita_id')->unique()->nullable();
             $table->timestamps();
         });
     }

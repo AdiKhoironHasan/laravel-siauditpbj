@@ -18,6 +18,6 @@ class Barang extends Model
 
     public function rencana()
     {
-        return $this->belongsTo(Rencana::class);
+        return $this->hasMany(Rencana::class);
     }
 }

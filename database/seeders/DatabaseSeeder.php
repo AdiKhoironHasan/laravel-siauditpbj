@@ -8,6 +8,7 @@ use App\Models\Timeline;
 use App\Models\Unit;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Desk;
 
 class DatabaseSeeder extends Seeder
 {
@@ -44,9 +45,42 @@ class DatabaseSeeder extends Seeder
             'tanggal' => '2020-03-13'
         ]);
 
+        Desk::create([
+            'rencana_id' => 1,
+            'tipe_monitoring' => 'sesuai',
+            'masa_monitoring_awal' => '2022-01-04',
+            'masa_monitoring_akhir' => '2022-02-01',
+            'tanggal_monitoring' => '2022-01-20',
+            'kontrak_1' => 'sesuai',
+            'kontrak_2' => 'sesuai',
+            'kontrak_3' => 'sesuai',
+            'kontrak_4' => 'sesuai',
+            'surat_pesanan_1' => 'sesuai',
+            'surat_pesanan_2' => 'sesuai',
+            'surat_pesanan_3' => 'sesuai',
+            'surat_pesanan_4' => 'sesuai',
+            'penyusunan_program_mutu' => 'sesuai',
+            'pemeriksaan_bersama' => 'sesuai',
+            'pembayaran_uang_muka_1' => 'sesuai',
+            'pembayaran_uang_muka_2' => 'sesuai',
+            'uji_coba_barang' => 'sesuai',
+            'serah_terima_barang_1' => 'sesuai',
+            'serah_terima_barang_2' => 'sesuai',
+            'catatan' => 'sesuai',
+            'kriteria' => 'sesuai',
+            'akar_penyebab' => 'sesuai',
+            'akibat' => 'sesuai',
+            'rekomendasi' => 'sesuai',
+            'tanggapan_auditee' => 'sesuai',
+            'rencana_perbaikan' => 'sesuai',
+        ]);
+
         Timeline::create([
             'rencana_id' => 1,
+            'desk_id' => 1
         ]);
+
+
     }
 }
 

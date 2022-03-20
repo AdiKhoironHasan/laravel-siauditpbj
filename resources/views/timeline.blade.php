@@ -1,6 +1,17 @@
 @extends('layouts.main')
 
 @section('content')
+
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session('success') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    @if (count($errors) > 0)
+        {{ $errors }}
+    @endif
+
     @if ($timeline)
         <div class="card card-primary">
             <div class="card-header">
@@ -41,15 +52,24 @@
                                         <div class="timeline-body">
                                             keterangan desk
                                         </div>
-                                        <div class="timeline-footer">
-                                            <a href="#"
-                                                class=" btn btn-primary btn-sm {{ $timeline[0]->desk_id != null ? 'disabled' : '' }}">Tambah</a>
-                                            <a href="#"
-                                                class="btn btn-info btn-sm {{ $timeline[0]->desk_id != null ? '' : 'disabled' }}">Ubah</a>
-                                            <a href="#" onclick="return confirm('Anda yakin mau menghapus data desk ini ?')"
-                                                class="btn btn-danger btn-sm {{ $timeline[0]->desk_id != null ? '' : 'disabled' }}">Hapus</a>
-                                            <a href="#"
-                                                class="btn btn-success btn-sm {{ $timeline[0]->desk_id != null ? '' : 'disabled' }}">Cetak</a>
+                                        <div class="timeline-footer ">
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a href="/timeline/desk/{{ $rencana[0]->id }}"
+                                                    class=" btn btn-primary btn-sm {{ $timeline[0]->desk_id != null ? 'disabled' : '' }}">Tambah</a>
+                                               {{-- @dd($desk) --}}
+                                                    <a href="/desk/{{ $desk != NULL ? $desk->id : '' }}/edit"
+                                                    class="btn btn-info btn-sm {{ $timeline[0]->desk_id != null ? '' : 'disabled' }}">Ubah</a>
+                                                <form action="/desk/{{ $desk != NULL ? $desk->id : '' }}" method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <input type="submit"
+                                                        onclick="return confirm('Anda yakin mau menghapus data desk ini ?')"
+                                                        class="btn btn-danger rounded-0 btn-sm {{ $timeline[0]->desk_id != null ? '' : 'disabled' }}"
+                                                        value="Hapus">
+                                                </form>
+                                                <a href="#"
+                                                    class="btn btn-success btn-sm {{ $timeline[0]->desk_id != null ? '' : 'disabled' }}">Cetak</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
