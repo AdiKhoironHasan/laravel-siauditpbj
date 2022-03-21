@@ -1,0 +1,57 @@
+th {
+    background-color: darkgrey;
+}
+
+td,
+th,
+.ctr {
+    text-align: center;
+    border: solid black;
+}
+
+.bdr {
+    border: solid black;
+}
+
+.bdr-none {
+    border: none;
+}
+
+.txt-lft-50 {
+    text-align: left;
+    padding-left: 50px;
+}
+
+.txt-lft-20 {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.txt-lft-50 {
+    text-align: left;
+    padding-left: 50px;
+}
+
+.txt-lft {
+    text-align: left;
+}
+
+.txt-up {
+    text-transform: uppercase;
+}
+
+.bdr-none-top {
+    border-top: none;
+}
+
+.bdr-none-bot {
+    border-bottom: none;
+}
+
+.bdr-none-lft {
+    border-left: none;
+}
+
+.bdr-none-rght {
+    border-right: none;
+}

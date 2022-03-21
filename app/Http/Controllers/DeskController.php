@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Desk;
 use App\Models\Rencana;
 use App\Models\Timeline;
+use \PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,45 +39,44 @@ class DeskController extends Controller
      */
     public function store(Request $request)
     {
-       $validatedData = $request->validate([
-        'rencana_id' => 'required',
-        'tipe_monitoring' => 'required',
-        'masa_monitoring_awal' => 'required',
-        'masa_monitoring_akhir' => 'required',
-        'tanggal_monitoring' => 'required',
-        'kontrak_1' => 'required',
-        'kontrak_2' => 'required',
-        'kontrak_3' => 'required',
-        'kontrak_4' => 'required',
-        'surat_pesanan_1' => 'required',
-        'surat_pesanan_2' => 'required',
-        'surat_pesanan_3' => 'required',
-        'surat_pesanan_4' => 'required',
-        'penyusunan_program_mutu' => 'required',
-        'pemeriksaan_bersama' => 'required',
-        'pembayaran_uang_muka_1' => 'required',
-        'pembayaran_uang_muka_2' => 'required',
-        'uji_coba_barang' => 'required',
-        'serah_terima_barang_1' => 'required',
-        'serah_terima_barang_2' => 'required',
-        'catatan' => 'required',
-        'kriteria' => 'required',
-        'akar_penyebab' => 'required',
-        'akibat' => 'required',
-        'rekomendasi' => 'required',
-        'tanggapan_auditee' => 'required',
-        'rencana_perbaikan' => 'required',
+        $validatedData = $request->validate([
+            'rencana_id' => 'required',
+            'tipe_monitoring' => 'required',
+            'masa_monitoring_awal' => 'required',
+            'masa_monitoring_akhir' => 'required',
+            'tanggal_monitoring' => 'required',
+            'kontrak_1' => 'required',
+            'kontrak_2' => 'required',
+            'kontrak_3' => 'required',
+            'kontrak_4' => 'required',
+            'surat_pesanan_1' => 'required',
+            'surat_pesanan_2' => 'required',
+            'surat_pesanan_3' => 'required',
+            'surat_pesanan_4' => 'required',
+            'penyusunan_program_mutu' => 'required',
+            'pemeriksaan_bersama' => 'required',
+            'pembayaran_uang_muka_1' => 'required',
+            'pembayaran_uang_muka_2' => 'required',
+            'uji_coba_barang' => 'required',
+            'serah_terima_barang_1' => 'required',
+            'serah_terima_barang_2' => 'required',
+            'catatan' => 'required',
+            'kriteria' => 'required',
+            'akar_penyebab' => 'required',
+            'akibat' => 'required',
+            'rekomendasi' => 'required',
+            'tanggapan_auditee' => 'required',
+            'rencana_perbaikan' => 'required',
 
-       ]);
+        ]);
 
-       DB::beginTransaction();
-       $desk = Desk::create($validatedData);
-       $validatedDataTimeline = ['desk_id' => $desk->id]; 
-       Timeline::where('rencana_id', $validatedData['rencana_id'])->update($validatedDataTimeline);
-       DB::commit();
+        DB::beginTransaction();
+        $desk = Desk::create($validatedData);
+        $validatedDataTimeline = ['desk_id' => $desk->id];
+        Timeline::where('rencana_id', $validatedData['rencana_id'])->update($validatedDataTimeline);
+        DB::commit();
 
-       return redirect('/timeline/'.$validatedData['rencana_id'])->with('success', 'Data Desk berhasil ditambahkan!');
-
+        return redirect('/timeline/' . $validatedData['rencana_id'])->with('success', 'Data Desk berhasil ditambahkan!');
     }
 
     /**
@@ -101,9 +101,9 @@ class DeskController extends Controller
      */
     public function edit(Desk $desk)
     {
-        return view('desk.edit',[
+        return view('desk.edit', [
             'title' => 'Data Desk',
-            'rencana' => Rencana::where('id', $desk->rencana_id)->get(),
+            'rencana' => Rencana::where('id', $desk->rencana_id)->first(),
             'desk' => $desk
         ]);
     }
@@ -155,7 +155,7 @@ class DeskController extends Controller
 
         Desk::where('id', $desk->id)->update($validatedData);
 
-        return redirect('/timeline/'.$request->rencana_id)->with('success', 'Data Desk berhasil diubah!');
+        return redirect('/timeline/' . $request->rencana_id)->with('success', 'Data Desk berhasil diubah!');
     }
 
     /**
@@ -170,9 +170,35 @@ class DeskController extends Controller
 
         DB::beginTransaction();
         Desk::destroy($desk->id);
-        Timeline::where('desk_id', $desk->id)->update(['desk_id'=>NULL]);
+        Timeline::where('desk_id', $desk->id)->update(['desk_id' => NULL]);
         DB::commit();
 
-        return redirect('/timeline/'.$rencana)->with('success', 'Data Desk berhasil dihapus!');
+        return redirect('/timeline/' . $rencana)->with('success', 'Data Desk berhasil dihapus!');
+    }
+
+    public function print($id)
+    {
+
+        $desk = Desk::where('id', $id)->first();
+        $rencana = Rencana::where('id', $desk->rencana_id)->first();
+
+        return view('desk.print', [
+            'title' => 'Data Desk',
+            'rencana' => $rencana,
+            'desk' => $desk
+        ]);
+
+        $paper_orientation = 'landscape';
+        $customPaper = array(0, 0, 950, 950);
+
+        $pdf = PDF::loadview('desk.print', [
+            'title' => 'Data Desk',
+            'rencana' => $rencana,
+            'desk' => $desk
+        ])
+            ->setOptions(['defaultFont' => 'sans-serif'])
+            ->setpaper($customPaper, $paper_orientation);
+
+        return $pdf->stream('contohprint.pdf');
     }
 }

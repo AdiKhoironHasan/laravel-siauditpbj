@@ -85,8 +85,8 @@
             <form action="/desk/{{ $desk->id }}" method="POST">
                 @method('PUT')
                 @csrf
-                {{-- @dd($rencana[0]) --}}
-                <input type="hidden" name="rencana_id" id="rencana_id" value="{{ $rencana[0]->id }}">
+                {{-- @dd($rencana) --}}
+                <input type="hidden" name="rencana_id" id="rencana_id" value="{{ $rencana->id }}">
                 <table style="width: 100%;">
                     <tr>
                         <td style="width: 20%" rowspan="3" class="bdr bdr-none-bot" style="padding-top: 30px"><img
@@ -120,13 +120,13 @@
                         <th style="width: 40%;">PAKET PEKERJAAN</th>
                     </tr>
                     <tr>
-                        <td class="text-uppercase">{{ $rencana[0]->barang->unit->nama }}</td>
+                        <td class="text-uppercase">{{ $rencana->barang->unit->nama }}</td>
                         <td style="background-color: lightblue;">
                             <input type=" text" name="tipe_monitoring"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
                                 placeholder="ketik di sini" value="{{ $desk->tipe_monitoring }}">
                         </td>
-                        <td class="text-uppercase">{{ $rencana[0]->barang->nama }}</td>
+                        <td class="text-uppercase">{{ $rencana->barang->nama }}</td>
                     </tr>
                     <tr>
                         <th>MASA MONITORING</th>
@@ -144,11 +144,11 @@
                                 class="forn-control form-control-lg border-0 text-center bg-transparent"
                                 placeholder="ketik di sini" onfocus="(this.type='date')" value="{{ $desk->tanggal_monitoring }}">
                         </td>
-                        <td class="bdr txt-lft-50">1. {{ $rencana[0]->auditor1->nama }}</td>
+                        <td class="bdr txt-lft-50">1. {{ $rencana->auditor1->nama }}</td>
                     </tr>
                     <tr>
                         <td>s/d.</td>
-                        <td class="bdr txt-lft-50">2. {{ $rencana[0]->auditor2->nama }}</td>
+                        <td class="bdr txt-lft-50">2. {{ $rencana->auditor2->nama }}</td>
                     </tr>
                     <tr>
                         <td style="background-color: lightblue;">
@@ -156,7 +156,7 @@
                                 class="forn-control form-control-lg border-0 text-center bg-transparent"
                                 placeholder="ketik di sini" onfocus="(this.type='date')" value="{{ $desk->masa_monitoring_akhir }}">
                         </td>
-                        <td class="bdr txt-lft-50">3. {{ $rencana[0]->auditor3->nama }}</td>
+                        <td class="bdr txt-lft-50">3. {{ $rencana->auditor3->nama }}</td>
                     </tr>
                 </table>
                 <br>
@@ -456,8 +456,8 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="bdr-none-rght text-capitalize">
-                            <b>{{ $rencana[0]->barang->unit->user->nama }}</b></td>
-                        <td colspan="2" class="bdr-none-lft text-capitalize"><b>{{ $rencana[0]->auditor1->nama }}</b></td>
+                            <b>{{ $rencana->barang->unit->user->nama }}</b></td>
+                        <td colspan="2" class="bdr-none-lft text-capitalize"><b>{{ $rencana->auditor1->nama }}</b></td>
                     </tr>
                     <tr>
                         <td colspan="4"><b>Direview Oleh</b></td>
@@ -473,7 +473,7 @@
                 </table>
                 <div class="row justify-content-center mt-3 rounded-sm mx-1" style="background-color: #ADD8E6;">
                     <div class="col-md-8 text-center d-grid gap-2 my-2">
-                        <a href="/timeline/{{ $rencana[0]->id }}" class="btn btn-primary btn-lg mx-2">Kembali</a>
+                        <a href="/timeline/{{ $rencana->id }}" class="btn btn-primary btn-lg mx-2">Kembali</a>
                         <input type="submit" class="btn btn-success btn-lg mx-2" value="Submit">
                     </div>
                 </div>

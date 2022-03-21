@@ -45,12 +45,12 @@ Route::resource('/desk', DeskController::class);
 // });
 
 Route::get('/timeline/{id}', function ($id) {
-    $rencana = Rencana::where('id', $id)->get();
-    $desk = Desk::where('rencana_id',$rencana[0]->id)->first();
+    $rencana = Rencana::where('id', $id)->first();
+    $desk = Desk::where('rencana_id',$rencana->id)->first();
 // dd($desk);
     return view('timeline', [
         'title' => 'Timeline',
-        'timeline' => Timeline::where('rencana_id', $id)->get(),
+        'timeline' => Timeline::where('rencana_id', $id)->first(),
         'rencana' => $rencana,
         'desk' => $desk
     ]);
@@ -69,4 +69,7 @@ Route::get('/timeline/desk/{id}', function ($id) {
     ]);
 });
     
+
+Route::get('/desk/print/{id}', [DeskController::class, 'print']);
+
 // Route::resource('/desk', DeskController::class);

@@ -31,7 +31,7 @@
                         <div class="col-md-8">
                             <div class="timeline">
                                 <div class="time-label">
-                                    <span class="bg-primary">{{ $rencana[0]->tanggal }}</span>
+                                    <span class="bg-primary">{{ $rencana->tanggal }}</span>
                                 </div>
                                 <div>
                                     <i class="fas fa-bookmark bg-success"></i>
@@ -39,7 +39,7 @@
                                         <h3 class="timeline-header"><b>Perencanaan RKA</b> <i
                                                 class="fas fa-check-circle text-success"></i></h3>
                                         <div class="timeline-body">
-                                            Rencana Kerja Audit dibuat pada {{ $rencana[0]->tanggal }}
+                                            Rencana Kerja Audit dibuat pada {{ $rencana->tanggal }}
                                         </div>
                                     </div>
                                 </div>
@@ -54,21 +54,21 @@
                                         </div>
                                         <div class="timeline-footer ">
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="/timeline/desk/{{ $rencana[0]->id }}"
-                                                    class=" btn btn-primary btn-sm {{ $timeline[0]->desk_id != null ? 'disabled' : '' }}">Tambah</a>
+                                                <a href="/timeline/desk/{{ $rencana->id }}"
+                                                    class=" btn btn-primary btn-sm {{ $timeline->desk_id != null ? 'disabled' : '' }}">Tambah</a>
                                                {{-- @dd($desk) --}}
                                                     <a href="/desk/{{ $desk != NULL ? $desk->id : '' }}/edit"
-                                                    class="btn btn-info btn-sm {{ $timeline[0]->desk_id != null ? '' : 'disabled' }}">Ubah</a>
+                                                    class="btn btn-info btn-sm {{ $timeline->desk_id != null ? '' : 'disabled' }}">Ubah</a>
                                                 <form action="/desk/{{ $desk != NULL ? $desk->id : '' }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                                     <input type="submit"
                                                         onclick="return confirm('Anda yakin mau menghapus data desk ini ?')"
-                                                        class="btn btn-danger rounded-0 btn-sm {{ $timeline[0]->desk_id != null ? '' : 'disabled' }}"
+                                                        class="btn btn-danger rounded-0 btn-sm {{ $timeline->desk_id != null ? '' : 'disabled' }}"
                                                         value="Hapus">
                                                 </form>
-                                                <a href="#"
-                                                    class="btn btn-success btn-sm {{ $timeline[0]->desk_id != null ? '' : 'disabled' }}">Cetak</a>
+                                                <a href="/desk/print/{{ $desk != NULL ? $desk->id : '' }}"
+                                                    class="btn btn-success btn-sm {{ $timeline->desk_id != null ? '' : 'disabled' }}">Cetak</a>
                                             </div>
                                         </div>
                                     </div>
@@ -83,13 +83,13 @@
                                             visit keterangan</div>
                                         <div class="timeline-footer">
                                             <a href="#"
-                                                class=" btn btn-primary btn-sm {{ $timeline[0]->visit_id != null ? 'disabled' : '' }}">Tambah</a>
+                                                class=" btn btn-primary btn-sm {{ $timeline->visit_id != null ? 'disabled' : '' }}">Tambah</a>
                                             <a href="#"
-                                                class="btn btn-info btn-sm {{ $timeline[0]->visit_id != null ? '' : 'disabled' }}">Ubah</a>
+                                                class="btn btn-info btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}">Ubah</a>
                                             <a href="#" onclick="return confirm('Anda yakin mau menghapus data desk ini ?')"
-                                                class="btn btn-danger btn-sm {{ $timeline[0]->visit_id != null ? '' : 'disabled' }}">Hapus</a>
+                                                class="btn btn-danger btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}">Hapus</a>
                                             <a href="#"
-                                                class="btn btn-success btn-sm {{ $timeline[0]->visit_id != null ? '' : 'disabled' }}">Cetak</a>
+                                                class="btn btn-success btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}">Cetak</a>
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                                             berita status</div>
                                         <div class="timeline-footer">
                                             <a href="#"
-                                                class="btn btn-success btn-sm {{ $timeline[0]->berita_id != null ? '' : 'disabled' }}">Lihat</a>
+                                                class="btn btn-success btn-sm {{ $timeline->berita_id != null ? '' : 'disabled' }}">Lihat</a>
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@
                                 </div>
                             </div> --}}
                                 <div class="time-label">
-                                    @if ($timeline[0]->berita_id != null)
+                                    @if ($timeline->berita_id != null)
                                         <span class="bg-danger">20 Agustus 2022</span>
                                     @else
                                         <span class="bg-danger">Proses audit belum selesai</span>
