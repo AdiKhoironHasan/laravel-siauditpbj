@@ -18,6 +18,7 @@ class CreateTimelinesTable extends Migration
             $table->foreignId('rencana_id')->unique()->constrained()->cascadeOnDelete();
             $table->foreignId('desk_id')->unique()->nullable();
             $table->foreignId('visit_id')->unique()->nullable();
+            $table->foreignId('status')->nullable();
             $table->foreignId('berita_id')->unique()->nullable();
             $table->timestamps();
         });

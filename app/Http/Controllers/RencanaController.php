@@ -140,7 +140,11 @@ class RencanaController extends Controller
      */
     public function destroy(Rencana $rencana)
     {
+        
+        DB::beginTransaction();
         Rencana::destroy($rencana->id);
+        Timeline::destroy('rencana_id', $rencana->id);
+        DB::commit();
 
         return redirect('/rencana')->with('success', 'Rencana Kerja Audit berhasil dihapus!');
     }

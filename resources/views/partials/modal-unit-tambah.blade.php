@@ -10,7 +10,7 @@
             <form action="/unit" method="POST">
                 @csrf
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="form-group">    
                         <label>Nama Unit</label>
                         <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Unit" required>
                         <div id="hasilUnitTambah"></div>

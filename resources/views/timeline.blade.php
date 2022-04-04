@@ -31,7 +31,7 @@
                         <div class="col-md-8">
                             <div class="timeline">
                                 <div class="time-label">
-                                    <span class="bg-primary">{{ $rencana->tanggal }}</span>
+                                    <span class="bg-primary">{{ $timeline->rencana->tanggal }}</span>
                                 </div>
                                 <div>
                                     <i class="fas fa-bookmark bg-success"></i>
@@ -39,7 +39,7 @@
                                         <h3 class="timeline-header"><b>Perencanaan RKA</b> <i
                                                 class="fas fa-check-circle text-success"></i></h3>
                                         <div class="timeline-body">
-                                            Rencana Kerja Audit dibuat pada {{ $rencana->tanggal }}
+                                            Rencana Kerja Audit dibuat pada {{ $timeline->rencana->tanggal }}
                                         </div>
                                     </div>
                                 </div>
@@ -54,12 +54,12 @@
                                         </div>
                                         <div class="timeline-footer ">
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="/timeline/desk/{{ $rencana->id }}"
+                                                <a href="/timeline/desk/{{ $timeline->rencana->id }}"
                                                     class=" btn btn-primary btn-sm {{ $timeline->desk_id != null ? 'disabled' : '' }}">Tambah</a>
-                                               {{-- @dd($desk) --}}
-                                                    <a href="/desk/{{ $desk != NULL ? $desk->id : '' }}/edit"
+                                                {{-- @dd($desk) --}}
+                                                <a href="/desk/{{ $desk != null ? $desk->id : '' }}/edit"
                                                     class="btn btn-info btn-sm {{ $timeline->desk_id != null ? '' : 'disabled' }}">Ubah</a>
-                                                <form action="/desk/{{ $desk != NULL ? $desk->id : '' }}" method="POST">
+                                                <form action="/desk/{{ $desk != null ? $desk->id : '' }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                                     <input type="submit"
@@ -67,7 +67,7 @@
                                                         class="btn btn-danger rounded-0 btn-sm {{ $timeline->desk_id != null ? '' : 'disabled' }}"
                                                         value="Hapus">
                                                 </form>
-                                                <a href="/desk/print/{{ $desk != NULL ? $desk->id : '' }}"
+                                                <a href="/desk/print/{{ $desk != null ? $desk->id : '' }}"
                                                     class="btn btn-success btn-sm {{ $timeline->desk_id != null ? '' : 'disabled' }}">Cetak</a>
                                             </div>
                                         </div>
@@ -82,14 +82,22 @@
                                         <div class="timeline-body">
                                             visit keterangan</div>
                                         <div class="timeline-footer">
-                                            <a href="#"
-                                                class=" btn btn-primary btn-sm {{ $timeline->visit_id != null ? 'disabled' : '' }}">Tambah</a>
-                                            <a href="#"
-                                                class="btn btn-info btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}">Ubah</a>
-                                            <a href="#" onclick="return confirm('Anda yakin mau menghapus data desk ini ?')"
-                                                class="btn btn-danger btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}">Hapus</a>
-                                            <a href="#"
-                                                class="btn btn-success btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}">Cetak</a>
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a href="/timeline/visit/{{ $timeline->rencana->id }}"
+                                                    class=" btn btn-primary btn-sm {{ $timeline->visit_id != null ? 'disabled' : '' }}">Tambah</a>
+                                                <a href="/visit/{{ $visit != null ? $visit->id : '' }}/edit"
+                                                    class="btn btn-info btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}">Ubah</a>
+                                                <form action="/visit/{{ $visit != null ? $visit->id : '' }}" method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <input type="submit"
+                                                        onclick="return confirm('Anda yakin mau menghapus data visit ini ?')"
+                                                        class="btn btn-danger rounded-0 btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}"
+                                                        value="Hapus">
+                                                </form>
+                                                <a href="/visit/print/{{ $visit != null ? $visit->id : '' }}"
+                                                    class="btn btn-success btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}">Cetak</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

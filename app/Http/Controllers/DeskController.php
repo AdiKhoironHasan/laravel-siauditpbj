@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Desk;
 use App\Models\Rencana;
 use App\Models\Timeline;
-use \PDF;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

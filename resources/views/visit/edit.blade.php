@@ -1,9 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-    @if (count($errors) > 0)
-        {{ $errors }}
-    @endif
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">Daftar Data Desk</h3>
@@ -17,15 +14,13 @@
             </div>
         </div>
         <div class="card-body">
-
-            <form action="/desk" method="POST">
+            <form action="/visit/{{ $visit->id }}" method="POST">
+                @method('PUT')
                 @csrf
-                {{-- @dd($rencana) --}}
-                <input type="hidden" name="rencana_id" id="rencana_id" value="{{ $rencana->id }}">
                 <table style="width: 100%;">
                     <tr>
                         <td style="width: 20%" rowspan="3" class="bdr bdr-none-bot" style="padding-top: 30px"><img
-                                src="../AdminLTE/dist/img/logo_pnc.png" style="width: 100px; height: 100px"></td>
+                                src="/dist/img/logo_pnc.png" style="width: 100px; height: 100px"></td>
                         <td style="width: 40%;" rowspan="2" class="bdr"><b>FORM</b></td>
                         <td style="width: 15%;" class="txt-lft-20 bdr-none">Kode Dokumen</td>
                         <td style="width: 25%;" class="txt-lft bdr-none">:</td>
@@ -59,7 +54,7 @@
                         <td style="background-color: lightblue;">
                             <input type=" text" name="tipe_monitoring"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
+                                placeholder="ketik disini" value="{{ $visit->tipe_monitoring }}">
                         </td>
                         <td class="text-uppercase">{{ $rencana->barang->nama }}</td>
                     </tr>
@@ -72,12 +67,12 @@
                         <td style="background-color: lightblue;">
                             <input type="text" name="masa_monitoring_awal"
                                 class="forn-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini" onfocus="(this.type='date')">
+                                value="{{ $visit->masa_monitoring_awal }}" onfocus="(this.type='date')">
                         </td>
                         <td rowspan="3" style="background-color: lightblue;">
                             <input type="text" name="tanggal_monitoring"
                                 class="forn-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini" onfocus="(this.type='date')">
+                                value="{{ $visit->tanggal_monitoring }}" onfocus="(this.type='date')">
                         </td>
                         <td class="bdr txt-lft-50">1. {{ $rencana->auditor1->nama }}</td>
                     </tr>
@@ -89,7 +84,7 @@
                         <td style="background-color: lightblue;">
                             <input type="text" name="masa_monitoring_akhir"
                                 class="forn-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini" onfocus="(this.type='date')">
+                                value="{{ $visit->masa_monitoring_akhir }}" onfocus="(this.type='date')">
                         </td>
                         <td class="bdr txt-lft-50">3. {{ $rencana->auditor3->nama }}</td>
                     </tr>
@@ -97,218 +92,179 @@
                 <br>
                 <table style="width: 100%;">
                     <tr>
-                        <th style="width: 5%;">NO</th>
-                        <th style="width: 35%;">ITEM</th>
-                        <th style="width: 45%;">URAIAN</th>
-                        <th style="width: 15%;">KODE TEMUAN</th>
+                        <td colspan="4"><b>PENYUSUNAN PROGRAM MUTU</b></td>
                     </tr>
                     <tr>
-                        <td colspan="4"><b>PENDANDATANGANAN KONTRAK</b></td>
+                        <td rowspan="2" style="vertical-align: text-top;"><b>1</b></td>
+                        <td colspan="3" class="txt-lft-20">KETERLIBATAN UNIT KERJA DALAM PENYUSUNAN MUTU</td>
                     </tr>
                     <tr>
-                        <td><b>1</b></td>
-                        <td colspan="3" class="txt-lft-20"><b>KONTRAK</b></td>
-                    </tr>
-                    <tr>
-                        <td>a</td>
-                        <td class="txt-lft-20">TGL SPPBJ</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="kontrak_1"
+                        <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue; ">
+                            <input type="text" name="penyusunan_mutu_1"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
+                                placeholder="ketik di sini" value="{{ $visit->penyusunan_mutu_1 }}">
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td>b</td>
-                        <td class="txt-lft-20">SUBSTANSI KONTRAK</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="kontrak_2"
+                        <td rowspan="2" style="vertical-align: text-top;"><b>2</b></td>
+                        <td colspan="3" class="txt-lft-20">REVISI PROGRAM MUTU</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                            <input type="text" name="penyusunan_mutu_2"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
+                                placeholder="ketik di sini" value="{{ $visit->penyusunan_mutu_2 }}">
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td>c</td>
-                        <td class="txt-lft-20">TTD KONTRAK OLEH PENYEDIA</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="kontrak_3"
+                        <td colspan="4"><b>PEMERIKSAAN BERSAMA</b></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" style="vertical-align: text-top;"><b>1</b></td>
+                        <td colspan="3" class="txt-lft-20">PEMERIKSAAN KONDISI LAPANGAN PADA TAHAP AWAL PERUBAHAN
+                            KONTRAK
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                            <input type="text" name="pemeriksaan_1"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
+                                placeholder="ketik di sini" value="{{ $visit->pemeriksaan_1 }}">
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td>d</td>
-                        <td class="txt-lft-20">PERTENTANGAN</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="kontrak_4"
+                        <td rowspan="2" style="vertical-align: text-top;"><b>2</b></td>
+                        <td colspan="3" class="txt-lft-20">PEMERIKSAAN BERSAMA MENGAKIBATKAN PERUBAHAN KONTRAK</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                            <input type="text" name="pemeriksaan_2"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
+                                placeholder="ketik di sini" value="{{ $visit->pemeriksaan_2 }}">
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td colspan="4" style="height: 50px;"></td>
+                        <td colspan="4"><b>PERUBAHAN KEGIATAN PERUBAHAN</b></td>
                     </tr>
                     <tr>
-                        <td colspan="4"><b>PELAKSANAAN KONTRAK PENGADAAN BARANG</b></td>
+                        <td rowspan="2" style="vertical-align: text-top;"><b>1</b></td>
+                        <td colspan="3" class="txt-lft-20">PERUBAHAN KEGIATAN</td>
                     </tr>
                     <tr>
-                        <td><b>1</b></td>
-                        <td colspan="3" class="txt-lft-20"><b>SURAT PESANAN</b></td>
-                    </tr>
-                    <tr>
-                        <td>a</td>
-                        <td class="txt-lft-20">TGL SURAT PESANAN</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="surat_pesanan_1"
+                        <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                            <input type="text" name="perubahan_kegiatan"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
+                                placeholder="ketik di sini" value="{{ $visit->perubahan_kegiatan }}">
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td>b</td>
-                        <td class="txt-lft-20">TTD PENYEDIA</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="surat_pesanan_2"
+                        <td colspan="4"><b>ASURANSI</b></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" style="vertical-align: text-top;"><b>1</b></td>
+                        <td colspan="3" class="txt-lft-20">UNIT KERJA MEMERIKSA BARANG YANG DIKIRIM OLEH PENYEDIA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                            <input type="text" name="asuransi_1"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
+                                placeholder="ketik di sini" value="{{ $visit->asuransi_1 }}">
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td>c</td>
-                        <td class="txt-lft-20">MATERAI 6000</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="surat_pesanan_3"
+                        <td rowspan="2" style="vertical-align: text-top;"><b>2</b></td>
+                        <td colspan="3" class="txt-lft-20">PENJELASAN MANFAAT SUDAH DI JELASKAN DI DALAM KONTRAK</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                            <input type="text" name="asuransi_2"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
+                                placeholder="ketik di sini" value="{{ $visit->asuransi_2 }}">
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td>d</td>
-                        <td class="txt-lft-20">TANGGAL DISETUJUI</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="surat_pesanan_4"
+                        <td colspan="4"><b>PENGIRIMAN BARANG OLEH PENYEDIA</b></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" style="vertical-align: text-top;"><b>1</b></td>
+                        <td colspan="3" class="txt-lft-20">PENGIRIMAN BARANG OLEH PENYEDIA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                            <input type="text" name="pengiriman"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
+                                placeholder="ketik di sini" value="{{ $visit->pengiriman }}">
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td colspan="4" style="height: 30px;"></td>
+                        <td colspan="4"><b>UJI COBA BARANG</b></td>
                     </tr>
                     <tr>
-                        <td><b>2</b></td>
-                        <td colspan="3" class="txt-lft-20"><b>PENYUSUNAN PROGRAM MUTU</b></td>
+                        <td rowspan="2" style="vertical-align: text-top;"><b>1</b></td>
+                        <td colspan="3" class="txt-lft-20">UJI COBA SETELAH DIKIRIM</td>
                     </tr>
                     <tr>
-                        <td>a</td>
-                        <td class="txt-lft-20">INFORMASI PENGADAAN BARANG</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="penyusunan_program_mutu"
+                        <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                            <input type="text" name="uji_coba"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
+                                placeholder="ketik di sini" value="{{ $visit->uji_coba }}">
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td colspan="4" style="height: 30px;"></td>
+                        <td colspan="4"><b>SERAH TERIMA BARANG</b></td>
                     </tr>
                     <tr>
-                        <td><b>3</b></td>
-                        <td colspan="3" class="txt-lft-20"><b>PEMERIKSAAN BERSAMA</b></td>
+                        <td rowspan="2" style="vertical-align: text-top;"><b>1</b></td>
+                        <td colspan="3" class="txt-lft-20">SERAH TERIMA BARANG</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td class="txt-lft-20">PEMERIKSAAN KONDISI LAPANGAN PADA TAHAP AWAL PELAKSANAAN KONTRAK</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="pemeriksaan_bersama"
+                        <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                            <input type="text" name="serah_terima"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
+                                placeholder="ketik di sini" value="{{ $visit->serah_terima }}">
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td colspan="4" style="height: 30px;"></td>
-                    </tr>
-
-                    <tr>
-                        <td><b>4</b></td>
-                        <td colspan="3" class="txt-lft-20"><b>PEMBAYARAN UANG MUKA</b></td>
+                        <td colspan="4"><b>DENDA DAN GANTI RUGI</b></td>
                     </tr>
                     <tr>
-                        <td>a</td>
-                        <td class="txt-lft-20">BESARAN UANG MUKA</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="pembayaran_uang_muka_1"
+                        <td rowspan="2" style="vertical-align: text-top;"><b>1</b></td>
+                        <td colspan="3" class="txt-lft-20">DENDA DAN GANTI RUGI</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                            <input type="text" name="denda"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
+                                placeholder="ketik di sini" value="{{ $visit->denda }}">
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td>b</td>
-                        <td class="txt-lft-20">JAMINAN UANG MUKA</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="pembayaran_uang_muka_2"
+                        <td colspan="4"><b>PERPANJANGAN WAKTU PELAKANAAN PEKERJAAN</b></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" style="vertical-align: text-top;"><b>1</b></td>
+                        <td colspan="3" class="txt-lft-20">PERPANJANGAN WAKTU PELAKANAAN PEKERJAAN</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                            <input type="text" name="perpanjangan"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
+                                placeholder="ketik di sini" value="{{ $visit->perpanjangan }}">
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td colspan="4" style="height: 30px;"></td>
-                    </tr>
-
-                    <tr>
-                        <td><b>5</b></td>
-                        <td colspan="3" class="txt-lft-20"><b>UJI COBA BARANG</b></td>
+                        <td colspan="4"><b>LAPORAN HASIL KEGIATAN</b></td>
                     </tr>
                     <tr>
-                        <td>a</td>
-                        <td class="txt-lft-20">UJI COBA YANG DILAKUKAN OLEH PENYEDIA</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="uji_coba_barang"
+                        <td rowspan="2" style="vertical-align: text-top;"><b>1</b></td>
+                        <td colspan="3" class="txt-lft-20">LAPORAN HASIL KEGIATAN</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                            <input type="text" name="laporan"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
+                                placeholder="ketik di sini" value="{{ $visit->laporan }}">
                         </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height: 30px;"></td>
-                    </tr>
-
-                    <tr>
-                        <td><b>6</b></td>
-                        <td colspan="3" class="txt-lft-20"><b>SERAH TERIMA BARANG</b></td>
-                    </tr>
-                    <tr>
-                        <td>a</td>
-                        <td class="txt-lft-20">BERITA ACARA SERAH</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="serah_terima_barang_1"
-                                class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>b</td>
-                        <td class="txt-lft-20">WAKTU PENERIMAAN</td>
-                        <td class="txt-up" style="background-color: lightblue;">
-                            <input type="text" name="serah_terima_barang_2"
-                                class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini">
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height: 30px;"></td>
                     </tr>
                     <tr>
                         <td colspan="4"><b>CATATAN</b></td>
@@ -316,7 +272,7 @@
                     <tr>
                         <td colspan="4" style="height: 100px; background-color: lightblue;">
                             <textarea name="catatan" class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini"></textarea>
+                                placeholder="ketik di sini">{{ $visit->catatan }}</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -325,7 +281,7 @@
                     <tr>
                         <td colspan="4" style="height: 100px; background-color: lightblue;">
                             <textarea name="kriteria" class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini"></textarea>
+                                placeholder="ketik di sini">{{ $visit->kriteria }}</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -334,7 +290,7 @@
                     <tr>
                         <td colspan="4" style="height: 100px; background-color: lightblue;">
                             <textarea name="akar_penyebab" class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini"></textarea>
+                                placeholder="ketik di sini">{{ $visit->akar_penyebab }}</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -343,7 +299,7 @@
                     <tr>
                         <td colspan="4" style="height: 100px; background-color: lightblue;">
                             <textarea name="akibat" class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini"></textarea>
+                                placeholder="ketik di sini">{{ $visit->akibat }}</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -352,7 +308,7 @@
                     <tr>
                         <td colspan="4" style="height: 100px; background-color: lightblue;">
                             <textarea name="rekomendasi" class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini"></textarea>
+                                placeholder="ketik di sini">{{ $visit->rekomendasi }}</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -361,7 +317,7 @@
                     <tr>
                         <td colspan="4" style="height: 100px; background-color: lightblue;">
                             <textarea name="tanggapan_auditee" class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini"></textarea>
+                                placeholder="ketik di sini">{{ $visit->tanggapan_auditee }}</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -370,7 +326,7 @@
                     <tr>
                         <td colspan="4" style="height: 100px; background-color: lightblue;">
                             <textarea name="rencana_perbaikan" class="form-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini"></textarea>
+                                placeholder="ketik di sini">{{ $visit->rencana_perbaikan }}</textarea>
                         </td>
                     </tr>
                 </table>
@@ -391,7 +347,8 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="bdr-none-rght text-capitalize">
-                            <b>{{ $rencana->barang->unit->user->nama }}</b></td>
+                            <b>{{ $rencana->barang->unit->user->nama }}</b>
+                        </td>
                         <td colspan="2" class="bdr-none-lft text-capitalize"><b>{{ $rencana->auditor1->nama }}</b></td>
                     </tr>
                     <tr>
@@ -414,6 +371,4 @@
                 </div>
             </form>
         </div>
-        <!-- /.card-body -->
-    </div>
-@endsection
+    @endsection

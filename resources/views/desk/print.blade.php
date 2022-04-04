@@ -60,7 +60,7 @@
         </tr>
         <tr>
             <td>
-                {{ $desk->masa_monitoring_akhir }}
+                {{ date('d F Y', strtotime($desk->masa_monitoring_akhir)) }}
             </td>
             <td class="bdr txt-lft-50">3. {{ $rencana->auditor3->nama }}</td>
         </tr>
@@ -356,7 +356,7 @@
         </tr>
     </table>
 
-    <script>
+    {{-- <script>
         window.print();
-    </script>
+    </script> --}}
 @endsection

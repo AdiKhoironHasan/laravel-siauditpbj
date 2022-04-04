@@ -5,9 +5,11 @@ use App\Http\Controllers\DeskController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RencanaController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\VisitController;
 use App\Models\Desk;
 use App\Models\Rencana;
 use App\Models\Timeline;
+use App\Models\Visit;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,12 +49,14 @@ Route::resource('/desk', DeskController::class);
 Route::get('/timeline/{id}', function ($id) {
     $rencana = Rencana::where('id', $id)->first();
     $desk = Desk::where('rencana_id',$rencana->id)->first();
-// dd($desk);
+    $visit = Visit::where('desk_id', $desk->id)->first();
+
     return view('timeline', [
         'title' => 'Timeline',
         'timeline' => Timeline::where('rencana_id', $id)->first(),
-        'rencana' => $rencana,
-        'desk' => $desk
+        // 'rencana' => $rencana,
+        'desk' => $desk,
+        'visit' => $visit
     ]);
 
     // return view('desk.index', [
@@ -65,11 +69,20 @@ Route::get('/timeline/{id}', function ($id) {
 Route::get('/timeline/desk/{id}', function ($id) {
     return view('desk.index', [
         'title' => 'Data Desk',
-        'rencana' => Rencana::where('id', $id)->get()
+        'rencana' => Rencana::where('id', $id)->first()
     ]);
 });
-    
+
+Route::get('/timeline/visit/{id}', function ($id) {
+    return view('visit.index', [
+        'title' => 'Data Visit',
+        'rencana' => Rencana::where('id', $id)->first(),
+    ]);
+});
 
 Route::get('/desk/print/{id}', [DeskController::class, 'print']);
 
-// Route::resource('/desk', DeskController::class);
+Route::resource('/visit', VisitController::class);
+
+Route::get('/visit/print/{id}', [VisitController::class, 'print']);
+

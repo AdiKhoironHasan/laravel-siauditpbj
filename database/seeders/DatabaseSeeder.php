@@ -9,6 +9,7 @@ use App\Models\Unit;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Desk;
+use App\Models\Visit;
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,7 +32,40 @@ class DatabaseSeeder extends Seeder
 
         User::factory(10)->create();
 
-        Unit::factory(5)->create();
+        Unit::insert([
+            [
+                'user_id' => 1,
+                'nama' => 'BAAK',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'user_id' => 2,
+                'nama' => 'Keuangan',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'user_id' => 3,
+                'nama' => 'Perpustakaan',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'user_id' => 4,
+                'nama' => 'Umum',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'user_id' => 5,
+                'nama' => 'UP3',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+        ]);
+
+        // Unit::factory(5)->create();
 
         Barang::factory(2)->create();
 
@@ -75,12 +109,39 @@ class DatabaseSeeder extends Seeder
             'rencana_perbaikan' => 'sesuai',
         ]);
 
-        Timeline::create([
-            'rencana_id' => 1,
-            'desk_id' => 1
+        Visit::create([
+            'desk_id' => 1,
+            'tipe_monitoring' => 'sesuai',
+            'masa_monitoring_awal' => '2022-05-04',
+            'masa_monitoring_akhir' => '2022-06-04',
+            'tanggal_monitoring' => '2022-05-10',
+            'penyusunan_mutu_1' => 'sesuai',
+            'penyusunan_mutu_2' => 'sesuai',
+            'pemeriksaan_1' => 'sesuai',
+            'pemeriksaan_2' => 'sesuai',
+            'perubahan_kegiatan' => 'sesuai',
+            'asuransi_1' => 'sesuai',
+            'asuransi_2' => 'sesuai',
+            'pengiriman' => 'sesuai',
+            'uji_coba' => 'sesuai',
+            'serah_terima' => 'sesuai',
+            'denda' => 'sesuai',
+            'perpanjangan' => 'sesuai',
+            'laporan' => 'sesuai',
+            'catatan' => 'sesuai',
+            'kriteria' => 'sesuai',
+            'akar_penyebab' => 'sesuai',
+            'akibat' => 'sesuai',
+            'rekomendasi' => 'sesuai',
+            'tanggapan_auditee' => 'sesuai',
+            'rencana_perbaikan' => 'sesuai'
         ]);
 
-
+        Timeline::create([
+            'rencana_id' => 1,
+            'desk_id' => 1,
+            'visit_id' => 1
+        ]);
     }
 }
 
