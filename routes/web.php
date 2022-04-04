@@ -1,16 +1,21 @@
 <?php
 
-use App\Http\Controllers\BarangController;
-use App\Http\Controllers\DeskController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RencanaController;
-use App\Http\Controllers\UnitController;
-use App\Http\Controllers\VisitController;
+use Carbon\Carbon;
 use App\Models\Desk;
+use App\Models\Visit;
+use App\Models\Berita;
 use App\Models\Rencana;
 use App\Models\Timeline;
-use App\Models\Visit;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DeskController;
+use App\Http\Controllers\UnitController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\VisitController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\RencanaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -85,4 +90,25 @@ Route::get('/desk/print/{id}', [DeskController::class, 'print']);
 Route::resource('/visit', VisitController::class);
 
 Route::get('/visit/print/{id}', [VisitController::class, 'print']);
+
+Route::post('/rencana/confirm/{id}', function($id, Request $request){
+
+    // dd($request);
+    $rules = [
+        'visit_id' => 'required',
+        'status' => 'required',
+    ];
+
+    $validatedData = $request->validate($rules);
+
+    $validatedData['tanggal'] = Carbon::now('Asia/Jakarta');
+
+    DB::beginTransaction();
+    $berita = Berita::create($validatedData);
+    Rencana::findOrFail($id)->update(['status' => 'Terlaksana']);
+    Timeline::where('rencana_id', $id)->update(['berita_id' => $berita->id]);
+    DB::commit();
+
+    return redirect('/timeline/' . $id)->with('success', 'Data Audit berhasil dikonfirmasi!');
+});
 

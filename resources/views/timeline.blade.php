@@ -87,7 +87,8 @@
                                                     class=" btn btn-primary btn-sm {{ $timeline->visit_id != null ? 'disabled' : '' }}">Tambah</a>
                                                 <a href="/visit/{{ $visit != null ? $visit->id : '' }}/edit"
                                                     class="btn btn-info btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}">Ubah</a>
-                                                <form action="/visit/{{ $visit != null ? $visit->id : '' }}" method="POST">
+                                                <form action="/visit/{{ $visit != null ? $visit->id : '' }}"
+                                                    method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                                     <input type="submit"
@@ -108,7 +109,17 @@
                                                 class="fas"></i>
                                         </h3>
                                         <div class="timeline-body">
-                                            konfirmasi status </div>
+                                            <form action="/rencana/confirm/{{ $timeline->rencana->id }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="visit_id" id="visit_id" value="{{ $visit != null ? $visit->id : '' }}">
+                                                <select type="text" name="status" class="form-control" required>
+                                                    <option selected hidden value="">--Pilih Aksi--</option>
+                                                    <option value="Disetujui">Terima</option>
+                                                    <option value="Tidak Disetujui">Tolak</option>
+                                                </select>
+                                                <button type="submit" class="btn btn-sm btn-primary mt-2 {{ $timeline->berita_id != null ? 'disabled' : '' }}">Submit</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
