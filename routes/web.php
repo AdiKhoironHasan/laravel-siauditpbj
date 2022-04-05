@@ -14,6 +14,7 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\VisitController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\RencanaController;
 
 
@@ -52,17 +53,19 @@ Route::resource('/desk', DeskController::class);
 // });
 
 Route::get('/timeline/{id}', function ($id) {
+    $data['title'] = 'Timeline';
     $rencana = Rencana::where('id', $id)->first();
-    $desk = Desk::where('rencana_id',$rencana->id)->first();
-    $visit = Visit::where('desk_id', $desk->id)->first();
+    $data['timeline'] =  Timeline::where('rencana_id', $id)->first();
+    $desk = Desk::where('rencana_id', $rencana->id)->first();
+    $data['desk'] = $desk;
+    $data['visit'] = '';
 
-    return view('timeline', [
-        'title' => 'Timeline',
-        'timeline' => Timeline::where('rencana_id', $id)->first(),
-        // 'rencana' => $rencana,
-        'desk' => $desk,
-        'visit' => $visit
-    ]);
+    if ($desk) {
+        $visit = Visit::where('desk_id', $desk->id)->first();
+        $data['visit'] = $visit;
+    }
+
+    return view('timeline', $data);
 
     // return view('desk.index', [
     //     'title' => 'Data Desk',
@@ -91,7 +94,7 @@ Route::resource('/visit', VisitController::class);
 
 Route::get('/visit/print/{id}', [VisitController::class, 'print']);
 
-Route::post('/rencana/confirm/{id}', function($id, Request $request){
+Route::post('/rencana/confirm/{id}', function ($id, Request $request) {
 
     // dd($request);
     $rules = [
@@ -112,3 +115,4 @@ Route::post('/rencana/confirm/{id}', function($id, Request $request){
     return redirect('/timeline/' . $id)->with('success', 'Data Audit berhasil dikonfirmasi!');
 });
 
+Route::get('/berita/{id}', [BeritaController::class, 'print']);

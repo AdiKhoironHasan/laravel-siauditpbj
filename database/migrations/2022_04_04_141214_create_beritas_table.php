@@ -15,7 +15,7 @@ class CreateBeritasTable extends Migration
     {
         Schema::create('beritas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('visit_id')->unique();
+            $table->foreignId('visit_id')->unique()->constrained()->cascadeOnDelete();
             $table->date('tanggal')->nullable();
             $table->enum('status', ['Disetujui', 'Tidak Disetujui']);
             $table->timestamps();

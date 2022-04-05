@@ -129,7 +129,7 @@
                                         <div class="timeline-body">
                                             berita status</div>
                                         <div class="timeline-footer">
-                                            <a href="#"
+                                            <a href="/berita/{{ $timeline->berita_id != null ? $timeline->berita_id : '' }}"
                                                 class="btn btn-success btn-sm {{ $timeline->berita_id != null ? '' : 'disabled' }}">Lihat</a>
                                         </div>
                                     </div>

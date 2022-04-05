@@ -1,2 +1,5 @@
 kurang with di controller (N+1 Problem)
 kurang cascade di migration
+
+sweetalert
+crud image
