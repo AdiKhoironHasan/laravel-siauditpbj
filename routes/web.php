@@ -2,21 +2,24 @@
 
 use Carbon\Carbon;
 use App\Models\Desk;
+use App\Models\User;
 use App\Models\Visit;
 use App\Models\Berita;
 use App\Models\Rencana;
 use App\Models\Timeline;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeskController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\VisitController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RencanaController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +35,8 @@ use App\Http\Controllers\RencanaController;
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::resource('/user', UserController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard', [
@@ -116,3 +121,7 @@ Route::post('/rencana/confirm/{id}', function ($id, Request $request) {
 });
 
 Route::get('/berita/{id}', [BeritaController::class, 'print']);
+
+Route::get('/profile', [DashboardController::class, 'index']);
+Route::put('/profile/update/{id}', [DashboardController::class, 'profileUpdate']);
+Route::put('/profile/passwordUpdate/{id}', [DashboardController::class, 'passwordUpdate']);

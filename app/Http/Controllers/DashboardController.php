@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Exception;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+class DashboardController extends Controller
+{
+    public function index()
+    {
+        return view('user.show', [
+            'title' => 'Profile',
+            'user' => Auth::user()
+        ]);
+    }
+
+    public function profileUpdate($id, Request $request)
+    {
+        $rules = [
+            'nama' => 'required',
+            'username' => 'required',
+            'nohp' => 'required',
+            'npak' => 'required'
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        User::where('id', $id)->update($validatedData);
+
+
+        return back()->with('success', 'User berhasil diupdate!');
+    }
+
+    public function passwordUpdate($id, Request $request)
+    {
+        $user = User::findOrFail($id);
+
+        $rules = [
+            'passwordLama' => 'required',
+            'password1' => 'required_with:password2|same:password2',
+            'password2' => 'required',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        if (Hash::check($validatedData['passwordLama'], $user->password)) {
+            $user->fill([
+                'password' => Hash::make($validatedData['password1'])
+            ])->save();
+
+            return back()->with('success', 'change password successfully');
+        } else {
+            return back()->with('success', 'old password is wrong');
+        }
+    }
+}
