@@ -68,6 +68,10 @@ Route::get('/timeline/{id}', function ($id) {
     if ($desk) {
         $visit = Visit::where('desk_id', $desk->id)->first();
         $data['visit'] = $visit;
+        if($visit){
+            $berita = Berita::where('visit_id', $visit->id)->first();
+            $data['berita'] = $berita;
+        }
     }
 
     return view('timeline', $data);
@@ -125,3 +129,5 @@ Route::get('/berita/{id}', [BeritaController::class, 'print']);
 Route::get('/profile', [DashboardController::class, 'index']);
 Route::put('/profile/update/{id}', [DashboardController::class, 'profileUpdate']);
 Route::put('/profile/passwordUpdate/{id}', [DashboardController::class, 'passwordUpdate']);
+Route::put('/profile/photoUpdate/{id}', [DashboardController::class, 'photoUpdate']);
+Route::put('/profile/ttdUpdate/{id}', [DashboardController::class, 'ttdUpdate']);

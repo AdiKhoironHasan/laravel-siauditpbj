@@ -40,8 +40,8 @@
                             <td>
                                 <div class="row">
                                     <div class="col">
-                                        <a href="#modal_user" data-toggle="modal" style="color: deepskyblue"><i
-                                                class="fas fa-info-circle"></i></a>
+                                        <a href="#modal_user_info{{ $user->id }}" data-toggle="modal"
+                                            style="color: deepskyblue"><i class="fas fa-info-circle"></i></a>
                                     </div>
                                     <div class="col-0">
                                         <a href="#modal_user_edit{{ $user->id }}" data-toggle="modal"
@@ -60,6 +60,7 @@
                             </td>
                         </tr>
                         @include('partials.user.modal-user-edit')
+                        @include('partials.user.modal-user-info')
                     @endforeach
                 </tbody>
             </table>

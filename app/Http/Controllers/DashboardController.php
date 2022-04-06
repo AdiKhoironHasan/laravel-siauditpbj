@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        return view('user.show', [
+        return view('user.profile', [
             'title' => 'Profile',
             'user' => Auth::user()
         ]);
@@ -56,5 +58,36 @@ class DashboardController extends Controller
         } else {
             return back()->with('success', 'old password is wrong');
         }
+    }
+
+    public function photoUpdate($id, Request $request)
+    {
+        $request->validate([
+            'foto' => 'required|image',
+        ]);
+
+        $path = $request->file('foto')->storePublicly('foto', 'public_upload');
+        $user = User::findOrFail($id);
+        $user->update([
+            'foto' => $path
+        ]);
+
+        return back()->with('success', 'update foto berhasil!');
+    }
+
+    public function ttdUpdate($id, Request $request)
+    {
+        $request->validate([
+            'ttd' => 'required|image',
+        ]);
+
+        $path = $request->file('ttd')->storePublicly('ttd', 'public_upload');
+        $user = User::findOrFail($id);
+        Storage::disk('public_upload')->delete($user->ttd);
+        $user->update([
+            'ttd' => $path
+        ]);
+
+        return back()->with('success', 'update tanda tangan berhasil!');
     }
 }

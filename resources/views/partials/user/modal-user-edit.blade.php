@@ -20,7 +20,7 @@
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="text" class="form-control" name="password">
+                        <input type="password" class="form-control" name="password" value="{{ Str::substr($user->password, 0, 8) }}">
                     </div>
                     <div class="form-group">
                         <label>Status User</label>

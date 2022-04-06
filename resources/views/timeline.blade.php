@@ -1,17 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{ session('success') }}</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-    @if (count($errors) > 0)
-        {{ $errors }}
-    @endif
-
     @if ($timeline)
         <div class="card card-primary">
             <div class="card-header">
@@ -31,7 +20,7 @@
                         <div class="col-md-8">
                             <div class="timeline">
                                 <div class="time-label">
-                                    <span class="bg-primary">{{ $timeline->rencana->tanggal }}</span>
+                                    <span class="bg-primary">{{ date('d F Y', strtotime($timeline->rencana->tanggal)) }}</span>
                                 </div>
                                 <div>
                                     <i class="fas fa-bookmark bg-success"></i>
@@ -39,7 +28,7 @@
                                         <h3 class="timeline-header"><b>Perencanaan RKA</b> <i
                                                 class="fas fa-check-circle text-success"></i></h3>
                                         <div class="timeline-body">
-                                            Rencana Kerja Audit dibuat pada {{ $timeline->rencana->tanggal }}
+                                            Rencana Kerja Audit dibuat pada <strong>{{ date('d F Y', strtotime($timeline->rencana->tanggal)) }}</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -147,7 +136,7 @@
                             </div> --}}
                                 <div class="time-label">
                                     @if ($timeline->berita_id != null)
-                                        <span class="bg-danger">20 Agustus 2022</span>
+                                        <span class="bg-danger">{{ date('d F Y', strtotime($berita->tanggal)) }}</span>
                                     @else
                                         <span class="bg-danger">Proses audit belum selesai</span>
                                     @endif
