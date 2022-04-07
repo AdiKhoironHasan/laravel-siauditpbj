@@ -23,6 +23,8 @@ class UserFactory extends Factory
             'npak' => $this->faker->unique->randomNumber(9, true),
             'status' => $this->faker->randomElement(['Aktif']),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'foto' => 'default/empty-foto.png',
+            'ttd' => 'default/empty-ttd.png'
         ];
     }
 

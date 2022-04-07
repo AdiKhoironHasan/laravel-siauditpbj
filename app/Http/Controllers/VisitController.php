@@ -160,13 +160,17 @@ class VisitController extends Controller
 
         DB::beginTransaction();
         Visit::destroy($visit->id);
-        Timeline::where('visit_id', $visit->id)->update(['visit_id' => NULL]);
+        Timeline::where('visit_id', $visit->id)->update([
+            'visit_id' => NULL,
+            'berita_id' => NULL
+        ]);
         DB::commit();
 
         return redirect('/timeline/' . $rencana)->with('success', 'Data Visit berhasil dihapus!');
     }
 
-    public function print($id){
+    public function print($id)
+    {
         $visit = Visit::where('id', $id)->first();
         $rencana = Rencana::where('id', $visit->desk->rencana_id)->first();
 
@@ -175,7 +179,5 @@ class VisitController extends Controller
             'rencana' => $rencana,
             'visit' => $visit
         ]);
-
     }
-
 }

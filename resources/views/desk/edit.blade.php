@@ -1,73 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-    <style>
-        th {
-            background-color: darkgrey;
-        }
-
-        td,
-        th,
-        .ctr {
-            text-align: center;
-            border: solid black;
-        }
-
-        .bdr {
-            border: solid black;
-        }
-
-        .bdr-none {
-            border: none;
-        }
-
-        .txt-lft-50 {
-            text-align: left;
-            padding-left: 50px;
-        }
-
-        .txt-lft-20 {
-            text-align: left;
-            padding-left: 20px;
-        }
-
-        .txt-lft-50 {
-            text-align: left;
-            padding-left: 50px;
-        }
-
-        .txt-lft {
-            text-align: left;
-        }
-
-        .txt-up {
-            text-transform: uppercase;
-        }
-
-        .txt-cap {
-            text-transform: capitalize;
-        }
-
-        .bdr-none-top {
-            border-top: none;
-        }
-
-        .bdr-none-bot {
-            border-bottom: none;
-        }
-
-        .bdr-none-lft {
-            border-left: none;
-        }
-
-        .bdr-none-rght {
-            border-right: none;
-        }
-
-    </style>
-    @if (count($errors) > 0)
-        {{ $errors }}
-    @endif
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">Daftar Data Desk {{ date('d F Y', strtotime($desk->tanggal_monitoring)) }}</h3>
@@ -90,7 +23,7 @@
                 <table style="width: 100%;">
                     <tr>
                         <td style="width: 20%" rowspan="3" class="bdr bdr-none-bot" style="padding-top: 30px"><img
-                                src="../AdminLTE/dist/img/logo_pnc.png" style="width: 100px; height: 100px"></td>
+                                src="/uploads/default/logo_pnc.png" style="width: 100px; height: 100px"></td>
                         <td style="width: 40%;" rowspan="2" class="bdr"><b>FORM</b></td>
                         <td style="width: 15%;" class="txt-lft-20 bdr-none">Kode Dokumen</td>
                         <td style="width: 25%;" class="txt-lft bdr-none">:</td>
@@ -137,12 +70,14 @@
                         <td style="background-color: lightblue;">
                             <input type="text" name="masa_monitoring_awal"
                                 class="forn-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini" onfocus="(this.type='date')" value="{{ $desk->masa_monitoring_awal }}">
+                                placeholder="ketik di sini" onfocus="(this.type='date')"
+                                value="{{ $desk->masa_monitoring_awal }}">
                         </td>
                         <td rowspan="3" style="background-color: lightblue;">
                             <input type="text" name="tanggal_monitoring"
                                 class="forn-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini" onfocus="(this.type='date')" value="{{ $desk->tanggal_monitoring }}">
+                                placeholder="ketik di sini" onfocus="(this.type='date')"
+                                value="{{ $desk->tanggal_monitoring }}">
                         </td>
                         <td class="bdr txt-lft-50">1. {{ $rencana->auditor1->nama }}</td>
                     </tr>
@@ -154,7 +89,8 @@
                         <td style="background-color: lightblue;">
                             <input type="text" name="masa_monitoring_akhir"
                                 class="forn-control form-control-lg border-0 text-center bg-transparent"
-                                placeholder="ketik di sini" onfocus="(this.type='date')" value="{{ $desk->masa_monitoring_akhir }}">
+                                placeholder="ketik di sini" onfocus="(this.type='date')"
+                                value="{{ $desk->masa_monitoring_akhir }}">
                         </td>
                         <td class="bdr txt-lft-50">3. {{ $rencana->auditor3->nama }}</td>
                     </tr>
@@ -447,16 +383,17 @@
                     <tr>
                         <div style="width: 100%;">
                             <td colspan="2" style="height: 100px;" class="bdr-none-rght">
-                                <img src="../AdminLTE/dist/img/ttd/#" height="100" width="100">
+                                <img src="/uploads/{{ $rencana->barang->unit->user->ttd }}" height="100" width="100">
                             </td>
                             <td colspan="2" style="height: 100px;" class="bdr-none-lft">
-                                <img src="../AdminLTE/dist/img/ttd/" height="100" width="100">
+                                <img src="/uploads/{{ $rencana->auditor1->ttd }}" height="100" width="100">
                             </td>
                         </div>
                     </tr>
                     <tr>
                         <td colspan="2" class="bdr-none-rght text-capitalize">
-                            <b>{{ $rencana->barang->unit->user->nama }}</b></td>
+                            <b>{{ $rencana->barang->unit->user->nama }}</b>
+                        </td>
                         <td colspan="2" class="bdr-none-lft text-capitalize"><b>{{ $rencana->auditor1->nama }}</b></td>
                     </tr>
                     <tr>
@@ -464,7 +401,7 @@
                     </tr>
                     <tr>
                         <td colspan="4" style="height: 100px;">
-                            <img src="../AdminLTE/dist/img/ttd/#" height="100" width="100">
+                            <img src="/uploads/{{ $ketua->ttd }}" height="100" width="100">
                         </td>
                     </tr>
                     <tr>

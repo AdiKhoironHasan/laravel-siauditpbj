@@ -20,7 +20,8 @@
                         <div class="col-md-8">
                             <div class="timeline">
                                 <div class="time-label">
-                                    <span class="bg-primary">{{ date('d F Y', strtotime($timeline->rencana->tanggal)) }}</span>
+                                    <span
+                                        class="bg-primary">{{ date('d F Y', strtotime($timeline->rencana->tanggal)) }}</span>
                                 </div>
                                 <div>
                                     <i class="fas fa-bookmark bg-success"></i>
@@ -28,12 +29,14 @@
                                         <h3 class="timeline-header"><b>Perencanaan RKA</b> <i
                                                 class="fas fa-check-circle text-success"></i></h3>
                                         <div class="timeline-body">
-                                            Rencana Kerja Audit dibuat pada <strong>{{ date('d F Y', strtotime($timeline->rencana->tanggal)) }}</strong>
+                                            Rencana Kerja Audit dibuat pada
+                                            <strong>{{ date('d F Y', strtotime($timeline->rencana->tanggal)) }}</strong>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
-                                    <i class="fas fa-file-alt"></i>
+                                    <i
+                                        class="fas fa-file-alt {{ $timeline->desk_id != null ? 'bg-success' : 'bg-danger' }}"></i>
                                     <div class="timeline-item">
                                         <h3 class="timeline-header"><b>Pengisian Data Desk</b> <i
                                                 class="fas"></i>
@@ -63,7 +66,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <i class="fas fa-file-alt"></i>
+                                    <i
+                                        class="fas fa-file-alt {{ $timeline->visit_id != null ? 'bg-success' : 'bg-danger' }}"></i>
                                     <div class="timeline-item">
                                         <h3 class="timeline-header"><b>Pengisian Data Visit</b> <i
                                                 class="fas"></i>
@@ -92,7 +96,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <i class="fas fa-check-double"></i>
+                                    <i
+                                        class="fas fa-check-double {{ $timeline->rencana->status === 'Belum Terlaksana' ? 'bg-danger' : 'bg-success' }}"></i>
                                     <div class="timeline-item">
                                         <h3 class="timeline-header"><b>Konfirmasi Data Audit</b> <i
                                                 class="fas"></i>
@@ -100,19 +105,22 @@
                                         <div class="timeline-body">
                                             <form action="/rencana/confirm/{{ $timeline->rencana->id }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="visit_id" id="visit_id" value="{{ $visit != null ? $visit->id : '' }}">
-                                                <select type="text" name="status" class="form-control" required>
+                                                <input type="hidden" name="visit_id" id="visit_id"
+                                                    value="{{ $visit != null ? $visit->id : '' }}">
+                                                <select type="text" name="status" class="form-control" required {{ $timeline->visit_id === null || $timeline->berita_id != null ? 'disabled' : '' }}>
                                                     <option selected hidden value="">--Pilih Aksi--</option>
                                                     <option value="Disetujui">Terima</option>
                                                     <option value="Tidak Disetujui">Tolak</option>
                                                 </select>
-                                                <button type="submit" class="btn btn-sm btn-primary mt-2 {{ $timeline->berita_id != null ? 'disabled' : '' }}">Submit</button>
+                                                <button type="submit"
+                                                    class="btn btn-sm btn-primary mt-2 {{ $timeline->visit_id === null || $timeline->berita_id != null ? 'disabled' : '' }}">Submit</button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
-                                    <i class="fas fa-newspaper"></i>
+                                    <i
+                                        class="fas fa-newspaper {{ $timeline->berita_id != null ? 'bg-success' : 'bg-danger' }}"></i>
                                     <div class="timeline-item">
                                         <h3 class="timeline-header"><b>Berita Acara</b> <i class="fas"></i></h3>
                                         <div class="timeline-body">
@@ -136,7 +144,8 @@
                             </div> --}}
                                 <div class="time-label">
                                     @if ($timeline->berita_id != null)
-                                        <span class="bg-danger">{{ date('d F Y', strtotime($berita->tanggal)) }}</span>
+                                        <span
+                                            class="bg-danger">{{ date('d F Y', strtotime($berita->tanggal)) }}</span>
                                     @else
                                         <span class="bg-danger">Proses audit belum selesai</span>
                                     @endif

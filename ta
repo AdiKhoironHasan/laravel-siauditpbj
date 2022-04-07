@@ -1,0 +1,95 @@
+[33mcommit 3f79f7b241ee25f7ab16ac7b948488c6c63a5aae[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Thu Apr 7 05:35:19 2022 +0700
+
+    upload foto ttd
+
+[33mcommit 9649b45cb89f5b113d250fe3b3f8975ecbb98ce7[m[33m ([m[1;32mprofile[m[33m)[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Wed Apr 6 22:56:15 2022 +0700
+
+    done user update
+
+[33mcommit 0b38d0a067cc247ad5275342bced787b32105b4f[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Tue Apr 5 21:18:16 2022 +0700
+
+    berita done
+
+[33mcommit 2cb5f4f14f6f346445c70e82a96f0a823669f205[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Mon Apr 4 22:03:15 2022 +0700
+
+    berita done
+
+[33mcommit f1c45f5efa9eb6e1231bf63c27e0d60e631d43fb[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Mon Apr 4 21:08:01 2022 +0700
+
+    crud visit done
+
+[33mcommit ace2d8583687bd1e37c497f59e9e735836d48fd0[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Mon Mar 21 16:33:52 2022 +0700
+
+    print desk dengan print js
+
+[33mcommit b7ffd9c96d5669b609fc619c1f5ee154bcc06fe0[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Sun Mar 20 10:43:04 2022 +0700
+
+    done crud rencana and desk
+
+[33mcommit e857a5307864ab5c84711de23bb06f69764ef0f4[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Tue Mar 15 21:15:05 2022 +0700
+
+    data barang only where not in rencana table
+
+[33mcommit 0da096d9a359235a20a31dcf00d35da1f50f74d7[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Mon Mar 14 22:54:35 2022 +0700
+
+    insert, delete rencana and timeline with db transaction
+
+[33mcommit 63a7b22276fea4606757ff9954dae152bb065275[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Mon Mar 14 21:09:50 2022 +0700
+
+    CRUD Rencaa done, timeline ui done, timeline table done
+
+[33mcommit 5d853d731d68c72470dad5acf81f4b55c236e88f[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Sun Mar 13 22:32:06 2022 +0700
+
+    insert Rencana done, 1 table 3 entity done
+
+[33mcommit dde340bce9a2b1bb808aeab1ba8d863d761d08d1[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Sun Mar 13 09:31:04 2022 +0700
+
+    CRUD barang done, add tanggal in  helper function
+
+[33mcommit 169e7605ecb0fca847a3ef15752c8050e4f4afe4[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Sun Mar 13 08:37:43 2022 +0700
+
+    insert and edit data barang done
+
+[33mcommit 6fbd180394be7255037dcbfe2f1266abf5865f41[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Sat Mar 12 19:44:38 2022 +0700
+
+    CRUD unit done
+
+[33mcommit 2c7b86e433a27801d435d1e80831f535877f26c3[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Thu Mar 10 16:17:11 2022 +0700
+
+    insert dan update data unit
+
+[33mcommit ed15833b012eed18dd9f5f7437022ec8024ee453[m
+Author: AdiKhoironHasan <adieron97@gmail.com>
+Date:   Fri Mar 4 20:37:37 2022 +0700
+
+    membuat login dan tampil data unit

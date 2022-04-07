@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Models\Desk;
+use App\Models\User;
 use App\Models\Rencana;
 use App\Models\Timeline;
-use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -104,7 +105,8 @@ class DeskController extends Controller
         return view('desk.edit', [
             'title' => 'Data Desk',
             'rencana' => Rencana::where('id', $desk->rencana_id)->first(),
-            'desk' => $desk
+            'desk' => $desk,
+            'ketua' => User::firstWhere('level', 'Ketua SPI')
         ]);
     }
 
@@ -170,7 +172,10 @@ class DeskController extends Controller
 
         DB::beginTransaction();
         Desk::destroy($desk->id);
-        Timeline::where('desk_id', $desk->id)->update(['desk_id' => NULL]);
+        Timeline::where('desk_id', $desk->id)->update([
+            'desk_id' => NULL,
+            'visit_id' => NULL
+        ]);
         DB::commit();
 
         return redirect('/timeline/' . $rencana)->with('success', 'Data Desk berhasil dihapus!');
@@ -185,7 +190,8 @@ class DeskController extends Controller
         return view('desk.print', [
             'title' => 'Data Desk',
             'rencana' => $rencana,
-            'desk' => $desk
+            'desk' => $desk,
+            'ketua' => User::where('level', 'Ketua SPI')->first()
         ]);
 
         $paper_orientation = 'landscape';

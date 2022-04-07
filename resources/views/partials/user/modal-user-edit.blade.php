@@ -43,8 +43,7 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"
-                        onClick="window.location.reload();">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" id="edit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>

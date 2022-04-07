@@ -22,12 +22,15 @@ class DatabaseSeeder extends Seeder
     {
 
         User::create([
-            "nama" => "Adi Khoiron Hasan",
-            "username" => "eronman",
-            "email" => "adieron97@gmail.com",
-            "level" => "Ketua SPi",
-            // bcrypt untuk enkripsi password
-            "password" => bcrypt('password')
+            'nama' => 'Adi Khoiron Hasan',
+            'username' => 'eronman',
+            'email' => 'adieron97@gmail.com',
+            'level' => 'Ketua SPi',
+            'npak' => '8442087087768889',
+            'nohp' => '081906707879',
+            'password' => bcrypt('password'),
+            'foto' => 'default/empty-foto.png',
+            'ttd' => 'default/empty-ttd.png'
         ]);
 
         User::factory(10)->create();

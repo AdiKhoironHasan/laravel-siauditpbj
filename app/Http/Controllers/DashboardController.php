@@ -68,6 +68,10 @@ class DashboardController extends Controller
 
         $path = $request->file('foto')->storePublicly('foto', 'public_upload');
         $user = User::findOrFail($id);
+        $default = Str::substr($user->foto, 0, 7);
+        if (!($default === 'default')) {
+            Storage::disk('public_upload')->delete($user->ttd);
+        }
         $user->update([
             'foto' => $path
         ]);
@@ -83,7 +87,10 @@ class DashboardController extends Controller
 
         $path = $request->file('ttd')->storePublicly('ttd', 'public_upload');
         $user = User::findOrFail($id);
-        Storage::disk('public_upload')->delete($user->ttd);
+        $default = Str::substr($user->ttd, 0, 7);
+        if (!($default === 'default')) {
+            Storage::disk('public_upload')->delete($user->ttd);
+        }
         $user->update([
             'ttd' => $path
         ]);

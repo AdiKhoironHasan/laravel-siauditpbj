@@ -19,9 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->bigInteger('npak')->nullable();
+            $table->string('npak')->nullable();
             $table->enum('level', ['Ketua SPI', 'Auditor', 'Auditee', 'Direktur']);
-            $table->bigInteger('nohp')->nullable();
+            $table->string('nohp')->nullable();
             $table->string('foto')->nullable();
             $table->string('ttd')->nullable();
             $table->enum('status', ['Aktif', 'Tidak Aktif', 'Medaftar']);

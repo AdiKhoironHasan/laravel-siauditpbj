@@ -64,11 +64,12 @@ Route::get('/timeline/{id}', function ($id) {
     $desk = Desk::where('rencana_id', $rencana->id)->first();
     $data['desk'] = $desk;
     $data['visit'] = '';
+    $data['ketua'] = User::firstWhere('level', 'Ketua SPI');
 
     if ($desk) {
         $visit = Visit::where('desk_id', $desk->id)->first();
         $data['visit'] = $visit;
-        if($visit){
+        if ($visit) {
             $berita = Berita::where('visit_id', $visit->id)->first();
             $data['berita'] = $berita;
         }
@@ -86,7 +87,8 @@ Route::get('/timeline/{id}', function ($id) {
 Route::get('/timeline/desk/{id}', function ($id) {
     return view('desk.index', [
         'title' => 'Data Desk',
-        'rencana' => Rencana::where('id', $id)->first()
+        'rencana' => Rencana::where('id', $id)->first(),
+        'ketua' => User::where('level', 'Ketua SPI')->first()
     ]);
 });
 

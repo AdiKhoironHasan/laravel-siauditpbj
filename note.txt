@@ -5,3 +5,18 @@ sweetalert
 crud image
 
 notify pake pusher
+ketua spi hanya 1
+beri try catch untuk setiap operasi
+grouping route
+
+PROFILE:
+    - profile card
+
+USERS:
+    -
+
+TIMELINE:
+    - fix print visit
+
+SIDEBAR:
+    - fix active menu

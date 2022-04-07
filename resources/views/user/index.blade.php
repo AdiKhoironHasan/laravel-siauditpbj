@@ -23,8 +23,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Username</th>
-                        <th>Level</th>
+                        <th>Jabatan</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -34,7 +33,6 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->nama }}</td>
-                            <td>{{ $user->username }}</td>
                             <td>{{ $user->level }}</td>
                             <td>{{ $user->status }}</td>
                             <td>

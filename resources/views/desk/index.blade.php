@@ -1,9 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-    @if (count($errors) > 0)
-        {{ $errors }}
-    @endif
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">Daftar Data Desk</h3>
@@ -25,7 +22,7 @@
                 <table style="width: 100%;">
                     <tr>
                         <td style="width: 20%" rowspan="3" class="bdr bdr-none-bot" style="padding-top: 30px"><img
-                                src="../AdminLTE/dist/img/logo_pnc.png" style="width: 100px; height: 100px"></td>
+                                src="/uploads/default/logo_pnc.png" style="width: 100px; height: 100px"></td>
                         <td style="width: 40%;" rowspan="2" class="bdr"><b>FORM</b></td>
                         <td style="width: 15%;" class="txt-lft-20 bdr-none">Kode Dokumen</td>
                         <td style="width: 25%;" class="txt-lft bdr-none">:</td>
@@ -382,16 +379,17 @@
                     <tr>
                         <div style="width: 100%;">
                             <td colspan="2" style="height: 100px;" class="bdr-none-rght">
-                                <img src="../AdminLTE/dist/img/ttd/#" height="100" width="100">
+                                <img src="/uploads/{{ $rencana->barang->unit->user->ttd }}" height="100" width="100">
                             </td>
                             <td colspan="2" style="height: 100px;" class="bdr-none-lft">
-                                <img src="../AdminLTE/dist/img/ttd/" height="100" width="100">
+                                <img src="/uploads/{{ $rencana->auditor1->ttd }}" height="100" width="100">
                             </td>
                         </div>
                     </tr>
                     <tr>
                         <td colspan="2" class="bdr-none-rght text-capitalize">
-                            <b>{{ $rencana->barang->unit->user->nama }}</b></td>
+                            <b>{{ $rencana->barang->unit->user->nama }}</b>
+                        </td>
                         <td colspan="2" class="bdr-none-lft text-capitalize"><b>{{ $rencana->auditor1->nama }}</b></td>
                     </tr>
                     <tr>
@@ -399,7 +397,7 @@
                     </tr>
                     <tr>
                         <td colspan="4" style="height: 100px;">
-                            <img src="../AdminLTE/dist/img/ttd/#" height="100" width="100">
+                            <img src="/uploads/{{ $ketua->ttd }}" height="100" width="100">
                         </td>
                     </tr>
                     <tr>

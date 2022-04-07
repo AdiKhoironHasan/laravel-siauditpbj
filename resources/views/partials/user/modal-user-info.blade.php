@@ -30,8 +30,6 @@
                             <b>Nomor HP</b> <a class="float-right">{{ $user->nohp }}</a>
                         </li>
                     </ul>
-
-                    <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
                 </div>
             </div>
             <div class="modal-footer justify-content-between">

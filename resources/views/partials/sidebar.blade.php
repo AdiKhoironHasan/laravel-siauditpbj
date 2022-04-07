@@ -8,11 +8,10 @@
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="https://akcdn.detik.net.id/community/media/visual/2020/03/05/bc9b1419-1610-418e-bfd0-48dcf6706e9e_169.jpeg"
-                    class="img-circle elevation-2" alt="User Image">
+                <img src="/uploads/{{ Auth::user()->foto }}" class="img-circle elevation-2" alt="foto profil">
             </div>
             <div class="info">
-                <a class="d-block">USER</a>
+                <a class="d-block">{{ Auth::user()->nama }}</a>
             </div>
         </div>
 
@@ -69,11 +68,9 @@
                 <li class="nav-item">
                     <form action="/logout" method="POST">
                         @csrf
-                        <div class="nav-link">
-                            <i class="nav-icon fas fa-sign-out-alt"></i>
-                            <button class="btn bg-transparent p-0 text-light">
-                                Logout
-                            </button>
+                        <div class="nav-link bg-secondary text-center">
+                            <button type="submit" class="btn btn-lg p-0 text-light"><i
+                                    class="nav-icon fas fa-sign-out-alt"></i>logout</button>
                         </div>
                     </form>
                 </li>
