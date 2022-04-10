@@ -8,6 +8,7 @@ notify pake pusher
 ketua spi hanya 1
 beri try catch untuk setiap operasi
 grouping route
+verifikasi ketersediaan username, nama unit, dll
 
 PROFILE:
     - profile card

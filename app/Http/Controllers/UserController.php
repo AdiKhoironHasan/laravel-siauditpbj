@@ -41,7 +41,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'username' => 'required',
+            'email' => 'required|email',
+            'level' => 'required',
+            'password1' => 'required_with:password2|same:password2',
+            'password2' => 'required'
+        ]);
+
+        $validatedData = [
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'email' => $request->email,
+            'level' => $request->level,
+            'password' => $request->password1
+        ];
+
+        User::firstOrCreate($validatedData);
+
+        return back()->with('success', 'User berhasil ditambah!');
     }
 
     /**
@@ -83,7 +102,6 @@ class UserController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        // dd($user);
         $user->update($validatedData);
 
         return redirect('/user')->with('success', 'User berhasil diupdate!');

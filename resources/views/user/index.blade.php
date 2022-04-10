@@ -64,4 +64,5 @@
             </table>
         </div>
     </div>
+    @include('partials.user.modal-user-tambah')
 @endsection
