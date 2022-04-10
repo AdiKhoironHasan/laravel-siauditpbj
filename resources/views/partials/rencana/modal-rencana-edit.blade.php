@@ -14,10 +14,10 @@
                     <div class="form-group">
                         <label>Paket Barang</label>
                         <select type="text" id="barang_id" name="barang_id" class="form-control" required>
-                            <option hidden selected value="{{ $rencana->barang_id }}">{{ $rencana->barang->nama }}
+                            <option hidden selected value="{{ $rencana->barang_id }}">{{ $rencana->barang->name }}
                             </option>
                             @foreach ($barangs as $barang)
-                                <option value="{{ $barang->id }}">{{ $barang->nama }}</option>
+                                <option value="{{ $barang->id }}">{{ $barang->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -25,9 +25,9 @@
                         <label>Auditor 1</label>
                         <select type="text" name="auditor1_id" id="auditor1_id" class="form-control" required>
                             <option hidden selected value="{{ $rencana->auditor1_id }}">
-                                {{ $rencana->auditor1->nama }}</option>
+                                {{ $rencana->auditor1->name }}</option>
                             @foreach ($auditors as $auditor)
-                                <option value="{{ $auditor->id }}">{{ $auditor->nama }}</option>
+                                <option value="{{ $auditor->id }}">{{ $auditor->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -35,9 +35,9 @@
                         <label>Auditor 2</label>
                         <select type="text" name="auditor2_id" id="auditor2_id" class="form-control" required>\
                             <option hidden selected value="{{ $rencana->auditor2_id }}">
-                                {{ $rencana->auditor2->nama }}</option>
+                                {{ $rencana->auditor2->name }}</option>
                             @foreach ($auditors as $auditor)
-                                <option value="{{ $auditor->id }}">{{ $auditor->nama }}</option>
+                                <option value="{{ $auditor->id }}">{{ $auditor->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -45,9 +45,9 @@
                         <label>Auditor 3</label>
                         <select type="text" name="auditor3_id" id="auditor3_id" class="form-control" required>
                             <option hidden selected value="{{ $rencana->auditor3_id }}">
-                                {{ $rencana->auditor3->nama }}</option>
+                                {{ $rencana->auditor3->name }}</option>
                             @foreach ($auditors as $auditor)
-                                <option value="{{ $auditor->id }}">{{ $auditor->nama }}</option>
+                                <option value="{{ $auditor->id }}">{{ $auditor->name }}</option>
                             @endforeach
                         </select>
                     </div>

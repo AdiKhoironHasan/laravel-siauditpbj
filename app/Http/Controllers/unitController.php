@@ -41,13 +41,13 @@ class UnitController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nama' => 'required|unique:units',
+            'name' => 'required|unique:units',
             'user_id' => 'required'
         ]);
 
         Unit::create($validatedData);
 
-        return redirect('/unit')->with('success', 'New post has been created');
+        return redirect('/unit')->with('success', 'Data unit berhasil ditambah');
     }
 
     /**
@@ -90,7 +90,7 @@ class UnitController extends Controller
     public function update(Request $request)
     {
         $rules = [
-            'nama' => 'required|unique:units|min:3',
+            'name' => 'required|unique:units|min:3',
             'user_id' => 'required'
         ];
 
@@ -98,7 +98,7 @@ class UnitController extends Controller
 
         Unit::where('id', $request->id)->update($validatedData);
 
-        return redirect('/unit')->with('success', 'Data Unit berhasil diupdate!');
+        return redirect('/unit')->with('success', 'Data unit berhasil diupdate!');
     }
 
     /**
@@ -111,6 +111,6 @@ class UnitController extends Controller
     {
         Unit::destroy($unit->id);
 
-        return redirect('/unit')->with('success', 'Post deleted successfully');
+        return redirect('/unit')->with('success', 'Data unit berhasil ditambah');
     }
 }

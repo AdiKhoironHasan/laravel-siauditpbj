@@ -15,7 +15,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama Barang</label>
-                        <input type="text" name="nama" class="form-control" placeholder="Nama Barang" required
+                        <input type="text" name="name" class="form-control" placeholder="Nama Barang" required
                             autofocus>
                     </div>
                     <div class="form-group">

@@ -15,7 +15,7 @@ class BarangFactory extends Factory
     {
         return [
             'unit_id' => mt_rand(1, 5),
-            'nama' => $this->faker->colorName(),
+            'name' => $this->faker->colorName(),
             'no_kontrak' => $this->faker->numerify($this->faker->colorName() . '-#####'),
             'tgl_kontrak' => $this->faker->date(),
             'nilai_kontrak' => $this->faker->randomNumber(6, true),

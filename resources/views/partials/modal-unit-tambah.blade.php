@@ -10,9 +10,9 @@
             <form action="/unit" method="POST">
                 @csrf
                 <div class="modal-body">
-                    <div class="form-group">    
+                    <div class="form-group">
                         <label>Nama Unit</label>
-                        <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Unit" required>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Nama Unit" required>
                         <div id="hasilUnitTambah"></div>
                     </div>
                     <div class="form-group">
@@ -20,7 +20,7 @@
                         <select type="text" name="user_id" id="user_id" class="form-control" required>
                             <option hidden selected value="">--Pilih Ketua Unit--</option>
                             @foreach ($ketuaUnits as $ketuaUnit)
-                            <option value="{{ $ketuaUnit->id }}">{{ $ketuaUnit->nama }}</option>
+                            <option value="{{ $ketuaUnit->id }}">{{ $ketuaUnit->name }}</option>
                             @endforeach
                         </select>
                     </div>

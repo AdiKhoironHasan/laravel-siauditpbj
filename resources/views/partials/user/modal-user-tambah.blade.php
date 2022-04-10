@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama Lengkap</label>
-                        <input type="text" name="nama" class="form-control" placeholder="Nama Lengkap" required>
+                        <input type="text" name="name" class="form-control" placeholder="Nama Lengkap" required>
                     </div>
                     <div class="form-group">
                         <label>Username</label>
@@ -37,8 +37,8 @@
                         <label>Jabatan</label>
                         <select type="text" name="level" class="form-control" required>
                             <option hidden selected value="">--Pilih Jabatan--</option>
-                            <option value="Anggota SPI">Anggota SPI</option>
-                            <option value="Ketua Unit">Ketua Unit</option>
+                            <option value="Auditor">Auditor</option>
+                            <option value="Auditee">Auditee</option>
                             <option value="Direktur">Direktur</option>
                         </select>
                     </div>

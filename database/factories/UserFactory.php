@@ -15,7 +15,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'nama' => $this->faker->name(),
+            'name' => $this->faker->name(),
             'username' => $this->faker->unique()->userName(),
             'email' => $this->faker->unique()->safeEmail(),
             'level' => $this->faker->randomElement(['Auditor', 'Auditee', 'Direktur']),

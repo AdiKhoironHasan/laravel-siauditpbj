@@ -11,7 +11,7 @@
                 <img src="/uploads/{{ Auth::user()->foto }}" class="img-circle elevation-2" alt="foto profil">
             </div>
             <div class="info">
-                <a class="d-block">{{ Auth::user()->nama }}</a>
+                <a class="d-block">{{ Auth::user()->name }}</a>
             </div>
         </div>
 
@@ -68,7 +68,7 @@
                 <li class="nav-item">
                     <form action="/logout" method="POST">
                         @csrf
-                        <div class="nav-link bg-secondary text-center">
+                        <div class="nav-link bg-secondary text-center align-bottom">
                             <button type="submit" class="btn btn-lg p-0 text-light"><i
                                     class="nav-icon fas fa-sign-out-alt"></i>logout</button>
                         </div>

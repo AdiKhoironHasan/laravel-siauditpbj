@@ -19,7 +19,7 @@ class UnitFactory extends Factory
 
         return [
             "user_id" => mt_rand(1, 6),
-            "nama" => $this->faker->unique()->jobTitle(),
+            "name" => $this->faker->unique()->jobTitle(),
         ];
     }
 }

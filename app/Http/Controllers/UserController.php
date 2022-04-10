@@ -42,7 +42,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required',
+            'name' => 'required',
             'username' => 'required',
             'email' => 'required|email',
             'level' => 'required',
@@ -51,11 +51,13 @@ class UserController extends Controller
         ]);
 
         $validatedData = [
-            'nama' => $request->nama,
+            'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
             'level' => $request->level,
-            'password' => $request->password1
+            'password' => $request->password1,
+            'foto' => 'default/empty-foto.png',
+            'ttd' => 'default/empty-ttd.png'
         ];
 
         User::firstOrCreate($validatedData);
@@ -121,6 +123,6 @@ class UserController extends Controller
             return 'gagal' . $th;
         }
 
-        return redirect('/user')->with('success', 'User berhasil diupdate!');
+        return redirect('/user')->with('success', 'User berhasil dihapus!');
     }
 }

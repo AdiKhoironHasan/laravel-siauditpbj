@@ -2,13 +2,14 @@ kurang with di controller (N+1 Problem)
 kurang cascade di migration
 
 sweetalert
-crud image
+<!-- crud image -->
 
 notify pake pusher
 ketua spi hanya 1
 beri try catch untuk setiap operasi
 grouping route
 verifikasi ketersediaan username, nama unit, dll
+link folder belom fix
 
 PROFILE:
     - profile card

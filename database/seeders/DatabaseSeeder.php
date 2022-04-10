@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
     {
 
         User::create([
-            'nama' => 'Adi Khoiron Hasan',
-            'username' => 'eronman',
-            'email' => 'adieron97@gmail.com',
+            'name' => 'Rostika Listyaningrum',
+            'username' => 'rostika',
+            'email' => 'rostika@gmail.com',
             'level' => 'Ketua SPi',
             'npak' => '8442087087768889',
             'nohp' => '081906707879',
@@ -38,31 +38,31 @@ class DatabaseSeeder extends Seeder
         Unit::insert([
             [
                 'user_id' => 1,
-                'nama' => 'BAAK',
+                'name' => 'BAAK',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'user_id' => 2,
-                'nama' => 'Keuangan',
+                'name' => 'Keuangan',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'user_id' => 3,
-                'nama' => 'Perpustakaan',
+                'name' => 'Perpustakaan',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'user_id' => 4,
-                'nama' => 'Umum',
+                'name' => 'Umum',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'user_id' => 5,
-                'nama' => 'UP3',
+                'name' => 'UP3',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]
@@ -150,7 +150,7 @@ class DatabaseSeeder extends Seeder
 
 
 // $table->integer('barang_id');
-// $table->string('nama');
+// $table->string('name');
 // $table->string('no_kontrak');
 // $table->date('tanggal_kontrak');
 // $table->integer('nilai_kontrak');

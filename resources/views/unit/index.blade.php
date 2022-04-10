@@ -33,8 +33,8 @@
                     @foreach ($datas as $data)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $data->nama }}</td>
-                            <td>{{ $data->user->nama }}</td>
+                            <td>{{ $data->name }}</td>
+                            <td>{{ $data->user->name }}</td>
                             <td>
                                 <div class="text-center">
                                     <div class="row">

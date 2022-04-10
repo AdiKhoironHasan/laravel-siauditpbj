@@ -9,10 +9,10 @@
                     <div class="card-body box-profile">
                         <div class="text-center">
                             <img class="profile-user-img img-fluid img-circle h-25 w-25" src="/uploads/{{ $user->foto }}"
-                                alt="{{ $user->nama }}">
+                                alt="{{ $user->name }}">
                         </div>
 
-                        <h3 class="profile-username text-center">{{ $user->nama }}</h3>
+                        <h3 class="profile-username text-center">{{ $user->name }}</h3>
 
                         <p class="text-muted text-center">{{ $user->level }}</p>
 
@@ -71,8 +71,8 @@
                                                 <label class="col-sm-2 col-form-label">Nama
                                                     Lengkap</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" name="nama" id="nama"
-                                                        value="{{ $user->nama }}" required>
+                                                    <input type="text" class="form-control" name="name" id="name"
+                                                        value="{{ $user->name }}" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

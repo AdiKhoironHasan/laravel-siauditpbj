@@ -17,7 +17,7 @@
                             @if (count($barangs))
                             <option hidden selected value="">--Pilih Paket Barang--</option>
                             @foreach ($barangs as $barang)
-                                <option value="{{ $barang->id }}">{{ $barang->nama }}</option>
+                                <option value="{{ $barang->id }}">{{ $barang->name }}</option>
                             @endforeach
                             @else
                                 <option selected value="">--Tidak Ada Data Barang--</option>
@@ -29,7 +29,7 @@
                         <select type="text" name="auditor1_id" id="auditor1_id" class="form-control" required>
                             <option hidden selected value="">--Pilih Auditor 1--</option>
                             @foreach ($auditors as $auditor)
-                                <option value="{{ $auditor->id }}">{{ $auditor->nama }}</option>
+                                <option value="{{ $auditor->id }}">{{ $auditor->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -38,7 +38,7 @@
                         <select type="text" name="auditor2_id" id="auditor2_id" class="form-control" required>\
                             <option hidden selected value="">--Pilih Auditor 2--</option>
                             @foreach ($auditors as $auditor)
-                                <option value="{{ $auditor->id }}">{{ $auditor->nama }}</option>
+                                <option value="{{ $auditor->id }}">{{ $auditor->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -47,7 +47,7 @@
                         <select type="text" name="auditor3_id" id="auditor3_id" class="form-control" required>
                             <option hidden selected value="">--Pilih Auditor 3--</option>
                             @foreach ($auditors as $auditor)
-                                <option value="{{ $auditor->id }}">{{ $auditor->nama }}</option>
+                                <option value="{{ $auditor->id }}">{{ $auditor->name }}</option>
                             @endforeach
                         </select>
                     </div>

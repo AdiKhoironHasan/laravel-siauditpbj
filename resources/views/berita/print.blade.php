@@ -34,9 +34,9 @@
     <p>Dengan ini kami dari pihak Auditor Internal :</p>
     <table style="width: 100%;">
         <tr>
-            <td style="width: 8%;" class="bdr-none txt-lft">Nama</td>
+            <td style="width: 8%;" class="bdr-none txt-lft">name</td>
             <td class="bdr-none">:</td>
-            <td class="txt-lft bdr-none">{{ $berita->visit->desk->rencana->auditor1->nama }}</td>
+            <td class="txt-lft bdr-none">{{ $berita->visit->desk->rencana->auditor1->name }}</td>
         </tr>
         <tr>
             <td class="bdr-none txt-lft">Jabatan</td>
@@ -63,15 +63,15 @@
         </tr>
         <tr>
             <td class="bdr-none">
-                <img src="../../AdminLTE/dist/img/ttd/#" height="100" width="100">
+                <img src="/uploads/{{ $berita->visit->desk->rencana->barang->unit->user->ttd }}" height="100" width="100">
             </td>
             <td class="bdr-none">
-                <img src="../../AdminLTE/dist/img/ttd/#" height="100" width="100">
+                <img src="/uploads/{{ $berita->visit->desk->rencana->auditor1->ttd }}" height="100" width="100">
             </td>
         </tr>
         <tr>
-            <td class="bdr-none">{{ $berita->visit->desk->rencana->barang->unit->user->nama }}</td>
-            <td class="bdr-none">{{ $berita->visit->desk->rencana->auditor1->nama }}</td>
+            <td class="bdr-none">{{ $berita->visit->desk->rencana->barang->unit->user->name }}</td>
+            <td class="bdr-none">{{ $berita->visit->desk->rencana->auditor1->name }}</td>
         </tr>
     </table>
 @endsection

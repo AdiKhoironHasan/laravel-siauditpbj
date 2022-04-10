@@ -96,6 +96,7 @@ Route::get('/timeline/visit/{id}', function ($id) {
     return view('visit.index', [
         'title' => 'Data Visit',
         'rencana' => Rencana::where('id', $id)->first(),
+        'ketua' => User::where('level', 'Ketua SPI')->first()
     ]);
 });
 

@@ -20,7 +20,8 @@
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control" name="password" value="{{ Str::substr($user->password, 0, 8) }}">
+                        <input type="password" class="form-control" name="password"
+                            value="{{ Str::substr($user->password, 0, 8) }}">
                     </div>
                     <div class="form-group">
                         <label>Status User</label>
@@ -35,10 +36,9 @@
                         <label>Jabatan</label>
                         <select type="text" name="level" class="form-control">
                             <option hidden selected>{{ $user->level }}</option>
-                            <option>Ketua SPI</option>
-                            <option>Anggota SPI</option>
-                            <option>Ketua Unit</option>
-                            <option>Direktur</option>
+                            <option value="Auditor">Auditor</option>
+                            <option value="Auditee">Auditee</option>
+                            <option value="Direktur">Direktur</option>
                         </select>
                     </div>
                 </div>

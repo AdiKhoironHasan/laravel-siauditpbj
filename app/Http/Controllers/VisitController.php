@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Berita;
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Visit;
+use App\Models\Berita;
 use App\Models\Rencana;
 use App\Models\Timeline;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -102,7 +103,8 @@ class VisitController extends Controller
         return view('visit.edit', [
             'title' => 'Data Visit',
             'visit' => $visit,
-            'rencana' => Rencana::where('id', $visit->desk->rencana_id)->first()
+            'rencana' => Rencana::where('id', $visit->desk->rencana_id)->first(),
+            'ketua' => User::where('level', 'Ketua SPI')->first()
         ]);
     }
 
@@ -177,7 +179,8 @@ class VisitController extends Controller
         return view('visit.print', [
             'title' => 'Data Visit',
             'rencana' => $rencana,
-            'visit' => $visit
+            'visit' => $visit,
+            'ketua' => User::where('level', 'Ketua SPI')->first()
         ]);
     }
 }

@@ -21,9 +21,9 @@
                     <input type="hidden" name="id" id="id" value="{{ $data->id }}">
                     <div class="form-group">
                         <label>Nama Unit</label>
-                        <input type="text" name="nama" id="nama" class="form-control" value="{{ $data->nama }}">
+                        <input type="text" name="name" id="name" class="form-control" value="{{ $data->name }}">
                         <div id="hasilCekUnit"></div>
-                        @error('nama')
+                        @error('name')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -32,9 +32,9 @@
                     <div class="form-group">
                         <label>Ketua Unit</label>
                         <select type="text" name="user_id" id="user_id" class="form-control">
-                            <option value="{{ $data->user->id }}" hidden selected>{{ $data->user->nama }}</option>
+                            <option value="{{ $data->user->id }}" hidden selected>{{ $data->user->name }}</option>
                             @foreach ($ketuaUnits as $ketuaUnit)
-                                <option value="{{ $ketuaUnit->id }}">{{ $ketuaUnit->nama }}</option>
+                                <option value="{{ $ketuaUnit->id }}">{{ $ketuaUnit->name }}</option>
                             @endforeach
                         </select>
                     </div>

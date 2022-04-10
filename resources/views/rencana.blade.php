@@ -38,11 +38,11 @@
                     @foreach ($rencanas as $rencana)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $rencana->barang->unit->nama }}</td>
-                            <td>{{ $rencana->barang->nama }}</td>
-                            <td>{{ $rencana->auditor1->nama }}</td>
-                            <td>{{ $rencana->auditor2->nama }}</td>
-                            <td>{{ $rencana->auditor3->nama }}</td>
+                            <td>{{ $rencana->barang->unit->name }}</td>
+                            <td>{{ $rencana->barang->name }}</td>
+                            <td>{{ $rencana->auditor1->name }}</td>
+                            <td>{{ $rencana->auditor2->name }}</td>
+                            <td>{{ $rencana->auditor3->name }}</td>
                             <td>{{ $rencana->status }}</td>
                             <td>{{ $rencana->tahun }}</td>
                             <td>{{ tanggal($rencana->tanggal) }}</td>

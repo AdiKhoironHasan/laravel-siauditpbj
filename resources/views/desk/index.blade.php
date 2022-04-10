@@ -52,13 +52,13 @@
                         <th style="width: 40%;">PAKET PEKERJAAN</th>
                     </tr>
                     <tr>
-                        <td class="text-uppercase">{{ $rencana->barang->unit->nama }}</td>
+                        <td class="text-uppercase">{{ $rencana->barang->unit->name }}</td>
                         <td style="background-color: lightblue;">
                             <input type=" text" name="tipe_monitoring"
                                 class="form-control form-control-lg border-0 text-center bg-transparent"
                                 placeholder="ketik di sini">
                         </td>
-                        <td class="text-uppercase">{{ $rencana->barang->nama }}</td>
+                        <td class="text-uppercase">{{ $rencana->barang->name }}</td>
                     </tr>
                     <tr>
                         <th>MASA MONITORING</th>
@@ -76,11 +76,11 @@
                                 class="forn-control form-control-lg border-0 text-center bg-transparent"
                                 placeholder="ketik di sini" onfocus="(this.type='date')">
                         </td>
-                        <td class="bdr txt-lft-50">1. {{ $rencana->auditor1->nama }}</td>
+                        <td class="bdr txt-lft-50">1. {{ $rencana->auditor1->name }}</td>
                     </tr>
                     <tr>
                         <td>s/d.</td>
-                        <td class="bdr txt-lft-50">2. {{ $rencana->auditor2->nama }}</td>
+                        <td class="bdr txt-lft-50">2. {{ $rencana->auditor2->name }}</td>
                     </tr>
                     <tr>
                         <td style="background-color: lightblue;">
@@ -88,7 +88,7 @@
                                 class="forn-control form-control-lg border-0 text-center bg-transparent"
                                 placeholder="ketik di sini" onfocus="(this.type='date')">
                         </td>
-                        <td class="bdr txt-lft-50">3. {{ $rencana->auditor3->nama }}</td>
+                        <td class="bdr txt-lft-50">3. {{ $rencana->auditor3->name }}</td>
                     </tr>
                 </table>
                 <br>
@@ -388,9 +388,9 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="bdr-none-rght text-capitalize">
-                            <b>{{ $rencana->barang->unit->user->nama }}</b>
+                            <b>{{ $rencana->barang->unit->user->name }}</b>
                         </td>
-                        <td colspan="2" class="bdr-none-lft text-capitalize"><b>{{ $rencana->auditor1->nama }}</b></td>
+                        <td colspan="2" class="bdr-none-lft text-capitalize"><b>{{ $rencana->auditor1->name }}</b></td>
                     </tr>
                     <tr>
                         <td colspan="4"><b>Direview Oleh</b></td>
@@ -401,7 +401,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-capitalize"><b>Ketua SPI</b></td>
+                        <td colspan="4" class="text-capitalize"><b>{{ $ketua->name }}</b></td>
                     </tr>
                 </table>
                 <div class="row justify-content-center mt-3 rounded-sm mx-1" style="background-color: #ADD8E6;">

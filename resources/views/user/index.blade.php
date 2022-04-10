@@ -32,7 +32,7 @@
                     @foreach ($users as $user)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $user->nama }}</td>
+                            <td>{{ $user->name }}</td>
                             <td>{{ $user->level }}</td>
                             <td>{{ $user->status }}</td>
                             <td>

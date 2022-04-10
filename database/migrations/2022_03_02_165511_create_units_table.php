@@ -15,8 +15,8 @@ class CreateUnitsTable extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();;
-            $table->string('nama')->unique();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();;
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }

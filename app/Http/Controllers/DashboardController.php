@@ -23,7 +23,7 @@ class DashboardController extends Controller
     public function profileUpdate($id, Request $request)
     {
         $rules = [
-            'nama' => 'required',
+            'name' => 'required',
             'username' => 'required',
             'nohp' => 'required',
             'npak' => 'required'

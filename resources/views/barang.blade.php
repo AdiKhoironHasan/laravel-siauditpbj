@@ -38,8 +38,8 @@
                     @foreach ($barangs as $barang)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $barang->unit->nama }}</td>
-                            <td>{{ $barang->nama }}</td>
+                            <td>{{ $barang->unit->name }}</td>
+                            <td>{{ $barang->name }}</td>
                             <td>{{ $barang->no_kontrak }}</td>
                             <td>{{ tanggal($barang->tgl_kontrak) }}</td>
                             <td>{{ $barang->nilai_kontrak }}</td>

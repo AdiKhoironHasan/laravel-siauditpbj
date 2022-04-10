@@ -40,7 +40,7 @@ class BarangController extends Controller
     {
         $validatedData = $request->validate([
             'unit_id' => 'required',
-            'nama' => 'required',
+            'name' => 'required',
             'no_kontrak' => 'required|unique:barangs',
             'tgl_kontrak' => 'required',
             'nilai_kontrak' => 'required|min:3',
@@ -86,7 +86,7 @@ class BarangController extends Controller
         // dd($request);
         $rules = [
             'unit_id' => 'required',
-            'nama' => 'required|min:2',
+            'name' => 'required|min:2',
             'tgl_kontrak' => 'required',
             'nilai_kontrak' => 'required|min:3',
             'tahun_anggaran' => 'required'

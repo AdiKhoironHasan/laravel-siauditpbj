@@ -15,8 +15,8 @@
                     <input type="hidden" name="unit_id" id="unit_id" value="{{ $barang->unit_id }}">
                     <div class="form-group">
                         <label>Nama Barang</label>
-                        <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Barang"
-                            value="{{ $barang->nama }}" required autofocus>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Nama Barang"
+                            value="{{ $barang->name }}" required autofocus>
                     </div>
                     <div class="form-group">
                         <label>Nomor Kontrak</label>
