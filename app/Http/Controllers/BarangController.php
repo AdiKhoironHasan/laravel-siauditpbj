@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BarangController extends Controller
 {
@@ -14,9 +15,11 @@ class BarangController extends Controller
      */
     public function index()
     {
+        $unit_id = Auth::user()->unit->first()->id;
         return view('barang', [
             'title' => 'Paket Barang',
-            'barangs' => Barang::all(),
+            'barangs' => Barang::where('unit_id', $unit_id)->get(),
+            'unit_id' => $unit_id
         ]);
     }
 

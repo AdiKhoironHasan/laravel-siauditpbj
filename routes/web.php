@@ -50,7 +50,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile/photoUpdate/{id}', [DashboardController::class, 'photoUpdate']);
     Route::put('/profile/ttdUpdate/{id}', [DashboardController::class, 'ttdUpdate']);
 
-    Route::resource('/user', UserController::class);
+    Route::middleware('admin')->group(function () {
+        Route::resource('/user', UserController::class);
+    });
+
     Route::resource('/unit', UnitController::class);
     Route::resource('/barang', BarangController::class);
     Route::resource('/rencana', RencanaController::class);

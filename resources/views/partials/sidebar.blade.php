@@ -33,38 +33,44 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/user" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>
-                            Data User
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/unit" class="nav-link {{ Request::is('unit') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-university"></i>
-                        <p>
-                            Data Unit
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/barang" class="nav-link {{ Request::is('barang') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-box-open"></i>
-                        <p>
-                            Paket Barang
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/rencana" class="nav-link">
-                        <i class="nav-icon fas fa-swatchbook"></i>
-                        <p>
-                            Rencana Kerja Audit
-                        </p>
-                    </a>
-                </li>
+                @if (Auth::user()->level == 'Ketua SPI')
+                    <li class="nav-item">
+                        <a href="/user" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Data User
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/unit" class="nav-link {{ Request::is('unit') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-university"></i>
+                            <p>
+                                Data Unit
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                @if (Auth::user()->level == 'Ketua SPI' || Auth::user()->level == 'Auditor')
+                    <li class="nav-item">
+                        <a href="/rencana" class="nav-link">
+                            <i class="nav-icon fas fa-swatchbook"></i>
+                            <p>
+                                Rencana Kerja Audit
+                            </p>
+                        </a>
+                    </li>
+                @endif
+                @if (Auth::user()->level == 'Auditee')
+                    <li class="nav-item">
+                        <a href="/barang" class="nav-link {{ Request::is('barang') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-box-open"></i>
+                            <p>
+                                Paket Barang
+                            </p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <form action="/logout" method="POST">
                         @csrf

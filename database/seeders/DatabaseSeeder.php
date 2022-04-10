@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'Rostika Listyaningrum',
-            'username' => 'rostika',
+            'username' => 'admin',
             'email' => 'rostika@gmail.com',
-            'level' => 'Ketua SPi',
+            'level' => 'Ketua SPI',
             'npak' => '8442087087768889',
             'nohp' => '081906707879',
             'password' => bcrypt('password'),
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
 
         Unit::insert([
             [
-                'user_id' => 1,
+                'user_id' => 6,
                 'name' => 'BAAK',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')

@@ -12,9 +12,18 @@ use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
+
     public function index()
     {
-        return view('dashboard', [
+        if (Auth::user()->level == 'Ketua SPI' || Auth::user()->level == 'Auditor') {
+            $dashboard = 'auditor-dashboard';
+        } else if (Auth::user()->level == 'Auditee') {
+            $dashboard = 'auditee-dashboard';
+        } else if (Auth::user()->level == 'Direktur') {
+            $dashboard = 'direktur-dashboard';
+        }
+
+        return view($dashboard, [
             'title' => 'Dashboard',
             'part' => 'Rencana Kerja Audit'
         ]);

@@ -4,8 +4,7 @@
         <div class="modal-content">
             <form action="/barang" method="POST">
                 @csrf
-                HARUS DIGANTI UNIT YANG LOGIN
-                <input type="hidden" name="unit_id" id="unit_id" value="1">
+                <input type="hidden" name="unit_id" id="unit_id" value="{{ $unit_id }}">
                 <div class="modal-header">
                     <h4 class="modal-title">Tambah Data</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

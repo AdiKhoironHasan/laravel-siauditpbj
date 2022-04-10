@@ -1,5 +1,7 @@
 kurang with di controller (N+1 Problem)
 kurang cascade di migration
+buat seeder
+buat notification di navbar
 
 sweetalert
 <!-- crud image -->
