@@ -12,13 +12,13 @@ verifikasi ketersediaan username, nama unit, dll
 link folder belom fix
 
 PROFILE:
-    - profile card
+    <!-- - profile card -->
 
 USERS:
     -
 
 TIMELINE:
-    - fix print visit
+    <!-- - fix print visit -->
 
 SIDEBAR:
     - fix active menu

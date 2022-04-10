@@ -14,12 +14,24 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        return view('dashboard', [
+            'title' => 'Dashboard',
+            'part' => 'Rencana Kerja Audit'
+        ]);
+    }
+
+    public function profile()
+    {
         return view('user.profile', [
             'title' => 'Profile',
             'user' => Auth::user()
         ]);
     }
 
+    public function home()
+    {
+        return redirect('/dashboard');
+    }
     public function profileUpdate($id, Request $request)
     {
         $rules = [

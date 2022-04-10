@@ -50,18 +50,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/rencana" class="nav-link">
-                        <i class="nav-icon fas fa-swatchbook"></i>
-                        <p>
-                            Rencana Kerja Audit
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="/barang" class="nav-link {{ Request::is('barang') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-box-open"></i>
                         <p>
                             Paket Barang
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/rencana" class="nav-link">
+                        <i class="nav-icon fas fa-swatchbook"></i>
+                        <p>
+                            Rencana Kerja Audit
                         </p>
                     </a>
                 </li>

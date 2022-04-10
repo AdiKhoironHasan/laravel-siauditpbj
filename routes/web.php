@@ -20,6 +20,8 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RencanaController;
+use App\Http\Controllers\TimelineController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,105 +34,36 @@ use App\Http\Controllers\RencanaController;
 |
 */
 
-Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
-
-Route::resource('/user', UserController::class);
-
-Route::get('/dashboard', function () {
-    return view('dashboard', [
-        'title' => 'Dashboard',
-        'part' => 'Rencana Kerja Audit'
-    ]);
-})->middleware('auth');
-
-Route::resource('/unit', UnitController::class)->middleware('auth');
-Route::resource('/barang', BarangController::class)->middleware('auth');
-Route::resource('/rencana', RencanaController::class)->middleware('auth');
-Route::resource('/desk', DeskController::class);
-
-// Route::get('/desk/{desk}', function ($desk) {
-//     return view('desk.index', [
-//         'title' => 'Data Desk',
-//         'desk' => $desk
-//     ]);
-// });
-
-Route::get('/timeline/{id}', function ($id) {
-    $data['title'] = 'Timeline';
-    $rencana = Rencana::where('id', $id)->first();
-    $data['timeline'] =  Timeline::where('rencana_id', $id)->first();
-    $desk = Desk::where('rencana_id', $rencana->id)->first();
-    $data['desk'] = $desk;
-    $data['visit'] = '';
-    $data['ketua'] = User::firstWhere('level', 'Ketua SPI');
-
-    if ($desk) {
-        $visit = Visit::where('desk_id', $desk->id)->first();
-        $data['visit'] = $visit;
-        if ($visit) {
-            $berita = Berita::where('visit_id', $visit->id)->first();
-            $data['berita'] = $berita;
-        }
-    }
-
-    return view('timeline', $data);
-
-    // return view('desk.index', [
-    //     'title' => 'Data Desk',
-    //     'rencana' => $rencana,
-    //     'desk' => $desk
-    // ]);
+Route::middleware('guest')->group(function () {
+    Route::get('/', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'authenticate']);
 });
 
-Route::get('/timeline/desk/{id}', function ($id) {
-    return view('desk.index', [
-        'title' => 'Data Desk',
-        'rencana' => Rencana::where('id', $id)->first(),
-        'ketua' => User::where('level', 'Ketua SPI')->first()
-    ]);
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [DashboardController::class, 'home']);
+    Route::post('/logout', [LoginController::class, 'logout']);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+
+    Route::get('/profile', [DashboardController::class, 'profile']);
+    Route::put('/profile/update/{id}', [DashboardController::class, 'profileUpdate']);
+    Route::put('/profile/passwordUpdate/{id}', [DashboardController::class, 'passwordUpdate']);
+    Route::put('/profile/photoUpdate/{id}', [DashboardController::class, 'photoUpdate']);
+    Route::put('/profile/ttdUpdate/{id}', [DashboardController::class, 'ttdUpdate']);
+
+    Route::resource('/user', UserController::class);
+    Route::resource('/unit', UnitController::class);
+    Route::resource('/barang', BarangController::class);
+    Route::resource('/rencana', RencanaController::class);
+    Route::resource('/desk', DeskController::class);
+    Route::get('/desk/print/{id}', [DeskController::class, 'print']);
+
+    Route::resource('/visit', VisitController::class);
+    Route::get('/visit/print/{id}', [VisitController::class, 'print']);
+    Route::get('/berita/{id}', [BeritaController::class, 'print']);
+
+    Route::post('/rencana/confirm/{id}', [TimelineController::class, 'confirm']);
+
+    Route::get('/timeline/{id}', [TimelineController::class, 'show']);
+    Route::get('/timeline/desk/{id}', [TimelineController::class, 'desk']);
+    Route::get('/timeline/visit/{id}', [TimelineController::class, 'visit']);
 });
-
-Route::get('/timeline/visit/{id}', function ($id) {
-    return view('visit.index', [
-        'title' => 'Data Visit',
-        'rencana' => Rencana::where('id', $id)->first(),
-        'ketua' => User::where('level', 'Ketua SPI')->first()
-    ]);
-});
-
-Route::get('/desk/print/{id}', [DeskController::class, 'print']);
-
-Route::resource('/visit', VisitController::class);
-
-Route::get('/visit/print/{id}', [VisitController::class, 'print']);
-
-Route::post('/rencana/confirm/{id}', function ($id, Request $request) {
-
-    // dd($request);
-    $rules = [
-        'visit_id' => 'required',
-        'status' => 'required',
-    ];
-
-    $validatedData = $request->validate($rules);
-
-    $validatedData['tanggal'] = Carbon::now('Asia/Jakarta');
-
-    DB::beginTransaction();
-    $berita = Berita::create($validatedData);
-    Rencana::findOrFail($id)->update(['status' => 'Terlaksana']);
-    Timeline::where('rencana_id', $id)->update(['berita_id' => $berita->id]);
-    DB::commit();
-
-    return redirect('/timeline/' . $id)->with('success', 'Data Audit berhasil dikonfirmasi!');
-});
-
-Route::get('/berita/{id}', [BeritaController::class, 'print']);
-
-Route::get('/profile', [DashboardController::class, 'index']);
-Route::put('/profile/update/{id}', [DashboardController::class, 'profileUpdate']);
-Route::put('/profile/passwordUpdate/{id}', [DashboardController::class, 'passwordUpdate']);
-Route::put('/profile/photoUpdate/{id}', [DashboardController::class, 'photoUpdate']);
-Route::put('/profile/ttdUpdate/{id}', [DashboardController::class, 'ttdUpdate']);
