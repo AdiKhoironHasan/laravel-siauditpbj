@@ -30,7 +30,7 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        return abort(403);
     }
 
     /**
@@ -63,7 +63,7 @@ class BarangController extends Controller
      */
     public function show(Barang $barang)
     {
-        //
+        return abort(403);
     }
 
     /**
@@ -74,7 +74,7 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        //
+        return abort(403);
     }
 
     /**
@@ -86,7 +86,6 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        // dd($request);
         $rules = [
             'unit_id' => 'required',
             'name' => 'required|min:2',

@@ -2,7 +2,7 @@ kurang with di controller (N+1 Problem)
 kurang cascade di migration
 buat seeder
 buat notification di navbar
-
+tampilan rka auditee
 sweetalert
 <!-- crud image -->
 
@@ -18,6 +18,12 @@ PROFILE:
 
 USERS:
     -
+
+BARANGS:
+    - barang unit itu saja
+
+RENCANAS:
+    - rencana unit itu saja
 
 TIMELINE:
     <!-- - fix print visit -->

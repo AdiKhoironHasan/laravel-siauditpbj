@@ -29,7 +29,7 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+        return abort(403);
     }
 
     /**
@@ -77,7 +77,7 @@ class UnitController extends Controller
      */
     public function edit($id)
     {
-        //
+        return abort(403);
     }
 
     /**

@@ -19,7 +19,7 @@ class DeskController extends Controller
      */
     public function index()
     {
-        //
+        return abort(403);
     }
 
     /**
@@ -29,7 +29,7 @@ class DeskController extends Controller
      */
     public function create(Request $request)
     {
-        //
+        return abort(403);
     }
 
     /**
@@ -88,6 +88,8 @@ class DeskController extends Controller
      */
     public function show(Desk $desk)
     {
+        return abort(403);
+
         // return view('desk.index',[
         //     'title' => 'Data Desk',
         //     'desk' => $desk

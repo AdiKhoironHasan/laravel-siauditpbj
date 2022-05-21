@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class EnsureAdminRole
+class EnsureAuditorRole
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class EnsureAdminRole
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user()->level != 'Ketua SPI') {
+        if ($request->user()->level != 'Auditor') {
             return back();
         }
 

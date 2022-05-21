@@ -20,53 +20,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-        User::create([
-            'name' => 'Rostika Listyaningrum',
-            'username' => 'admin',
-            'email' => 'rostika@gmail.com',
-            'level' => 'Ketua SPI',
-            'npak' => '8442087087768889',
-            'nohp' => '081906707879',
-            'password' => bcrypt('password'),
-            'foto' => 'default/empty-foto.png',
-            'ttd' => 'default/empty-ttd.png'
-        ]);
-
-        User::factory(10)->create();
-
-        Unit::insert([
-            [
-                'user_id' => 6,
-                'name' => 'BAAK',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
-            [
-                'user_id' => 2,
-                'name' => 'Keuangan',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
-            [
-                'user_id' => 3,
-                'name' => 'Perpustakaan',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
-            [
-                'user_id' => 4,
-                'name' => 'Umum',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
-            [
-                'user_id' => 5,
-                'name' => 'UP3',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ]
-        ]);
+        $this->call(Userseeder::class);
+        $this->call(Unitseeder::class);
 
         // Unit::factory(5)->create();
 

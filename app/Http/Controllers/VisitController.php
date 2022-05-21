@@ -20,7 +20,7 @@ class VisitController extends Controller
      */
     public function index()
     {
-        //
+        return abort(403);
     }
 
     /**
@@ -30,7 +30,7 @@ class VisitController extends Controller
      */
     public function create()
     {
-        //
+        return abort(403);
     }
 
     /**
@@ -89,7 +89,7 @@ class VisitController extends Controller
      */
     public function show(Visit $visit)
     {
-        //
+        return abort(403);
     }
 
     /**

@@ -1,15 +1,5 @@
 <?php
 
-use Carbon\Carbon;
-use App\Models\Desk;
-use App\Models\User;
-use App\Models\Visit;
-use App\Models\Berita;
-use App\Models\Rencana;
-use App\Models\Timeline;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeskController;
 use App\Http\Controllers\UnitController;
@@ -52,21 +42,21 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('admin')->group(function () {
         Route::resource('/user', UserController::class);
+        Route::resource('/unit', UnitController::class);
     });
 
-    Route::resource('/unit', UnitController::class);
-    Route::resource('/barang', BarangController::class);
     Route::resource('/rencana', RencanaController::class);
     Route::resource('/desk', DeskController::class);
     Route::get('/desk/print/{id}', [DeskController::class, 'print']);
-
     Route::resource('/visit', VisitController::class);
     Route::get('/visit/print/{id}', [VisitController::class, 'print']);
     Route::get('/berita/{id}', [BeritaController::class, 'print']);
-
     Route::post('/rencana/confirm/{id}', [TimelineController::class, 'confirm']);
-
     Route::get('/timeline/{id}', [TimelineController::class, 'show']);
     Route::get('/timeline/desk/{id}', [TimelineController::class, 'desk']);
     Route::get('/timeline/visit/{id}', [TimelineController::class, 'visit']);
+
+    Route::middleware('auditee')->group(function () {
+        Route::resource('/barang', BarangController::class);
+    });
 });

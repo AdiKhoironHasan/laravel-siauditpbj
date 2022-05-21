@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
-use App\Models\Rencana;
 use App\Models\Unit;
 use App\Models\User;
+use App\Models\Barang;
+use App\Models\Rencana;
 use App\Models\Timeline;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Database\Eloquent\Builder;
 
 class RencanaController extends Controller
 {
@@ -19,29 +22,32 @@ class RencanaController extends Controller
      */
     public function index()
     {
-        $barang = DB::table('barangs')
-        ->whereNotExists(function($query){
-            $query->select(DB::raw(1))
-                  ->from('rencanas')
-                  ->whereColumn('rencanas.barang_id','=','barangs.id');
-        })
-        ->get();
+        if (Gate::denies('auditee')) {
+            $barang = DB::table('barangs')
+                ->whereNotExists(function ($query) {
+                    $query->select(DB::raw(1))
+                        ->from('rencanas')
+                        ->whereColumn('rencanas.barang_id', '=', 'barangs.id');
+                })
+                ->get();
+            $rencana = Rencana::all();
+        } else {
+            $barang = DB::table('barangs')
+                ->whereNotExists(function ($query) {
+                    $query->select(DB::raw(1))
+                        ->from('rencanas')
+                        ->whereColumn('rencanas.barang_id', '=', 'barangs.id');
+                })
+                ->where('unit_id', Auth::user()->unit->first()->id)
+                ->get();
+            $rencana = Rencana::whereHas('barang', function (Builder $qr) {
+                $qr->where('unit_id', Auth::user()->unit->first()->id);
+            })->get();
+        }
 
-        // SELECT * FROM TableA a
-        // WHERE a.city NOT IN(SELECT city FROM TableB)
-
-        // $users = DB::table('users')
-        // ->whereExists(function ($query) {
-        //     $query->select(DB::raw(1))
-        //           ->from('orders')
-        //           ->whereColumn('orders.user_id', 'users.id');
-        // })
-        // ->get();
-        
-// dd($barang);
         return view('rencana', [
             'title' => 'Rencana Kerja Audit',
-            'rencanas' => Rencana::all(),
+            'rencanas' => $rencana,
             'barangs' => $barang,
             'auditors' => User::where('level', 'Ketua SPI')->orWhere('level', 'Auditor')->get()
         ]);
@@ -54,7 +60,7 @@ class RencanaController extends Controller
      */
     public function create()
     {
-        //
+        return abort(403);
     }
 
     /**
@@ -65,6 +71,8 @@ class RencanaController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('admin');
+
         $validatedData = $request->validate([
             'barang_id' => 'required|unique:rencanas',
             'auditor1_id' => 'required',
@@ -93,7 +101,7 @@ class RencanaController extends Controller
      */
     public function show(Rencana $rencana)
     {
-        //
+        return abort(403);
     }
 
     /**
@@ -104,7 +112,7 @@ class RencanaController extends Controller
      */
     public function edit(Rencana $rencana)
     {
-        //
+        return abort(403);
     }
 
     /**
@@ -116,20 +124,23 @@ class RencanaController extends Controller
      */
     public function update(Request $request, Rencana $rencana)
     {
-        $rules = [
-            'barang_id' => 'required',
-            'auditor1_id' => 'required',
-            'auditor2_id' => 'required',
-            'auditor3_id' => 'required',
-            'tahun' => 'required',
-            'tanggal' => 'required',
-        ];
+        if (Gate::any(['admin', 'auditor'])) {
 
-        $validatedData = $request->validate($rules);
+            $rules = [
+                'barang_id' => 'required',
+                'auditor1_id' => 'required',
+                'auditor2_id' => 'required',
+                'auditor3_id' => 'required',
+                'tahun' => 'required',
+                'tanggal' => 'required',
+            ];
 
-        Rencana::where('id', $rencana->id)->update($validatedData);
+            $validatedData = $request->validate($rules);
 
-        return redirect('/rencana')->with('success', 'Data Rencana Kerja Audit berhasil diubah!');
+            Rencana::where('id', $rencana->id)->update($validatedData);
+
+            return redirect('/rencana')->with('success', 'Data Rencana Kerja Audit berhasil diubah!');
+        }
     }
 
     /**
@@ -140,7 +151,6 @@ class RencanaController extends Controller
      */
     public function destroy(Rencana $rencana)
     {
-        
         DB::beginTransaction();
         Rencana::destroy($rencana->id);
         Timeline::destroy('rencana_id', $rencana->id);
