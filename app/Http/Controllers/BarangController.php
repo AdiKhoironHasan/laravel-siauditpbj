@@ -44,9 +44,9 @@ class BarangController extends Controller
         $validatedData = $request->validate([
             'unit_id' => 'required',
             'name' => 'required',
-            'no_kontrak' => 'required|unique:barangs',
+            'no_kontrak' => 'required|unique:barangs|numeric',
             'tgl_kontrak' => 'required',
-            'nilai_kontrak' => 'required|min:3',
+            'nilai_kontrak' => 'required|min:3|numeric',
             'tahun_anggaran' => 'required'
         ]);
 

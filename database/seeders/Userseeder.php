@@ -14,11 +14,6 @@ class Userseeder extends Seeder
      */
     public function run()
     {
-        // $levels = [
-        //         ['name' => `Prih Diantoro Abda'u`, 'username' => 'abdau', 'level' => 'Auditor'],
-        //         ['name' => 'Luthfi Prananda', 'username' => 'abdau', 'level' => 'Auditor'],
-        // ];
-
         User::create([
             'name' => 'Rostika Listyaningrum',
             'username' => 'eronman',
@@ -31,6 +26,42 @@ class Userseeder extends Seeder
             'ttd' => 'default/empty-ttd.png'
         ]);
 
-        User::factory(50)->create();
+        User::create([
+            'name' => 'Prih Diantoro Abda`u',
+            'username' => 'abdau',
+            'email' => 'abdau@gmail.com',
+            'level' => 'Auditor',
+            'npak' => '84420887698789790',
+            'nohp' => '0819087756877',
+            'password' => bcrypt('password'),
+            'foto' => 'default/empty-foto.png',
+            'ttd' => 'default/empty-ttd.png'
+        ]);
+
+        User::create([
+            'name' => 'Dwi Novia Prasetyanti, S.Kom., M.Cs.',
+            'username' => 'novia',
+            'email' => 'novia@gmail.com',
+            'level' => 'Auditee',
+            'npak' => '84420887698789790',
+            'nohp' => '0819087756877',
+            'password' => bcrypt('password'),
+            'foto' => 'default/empty-foto.png',
+            'ttd' => 'default/empty-ttd.png'
+        ]);
+
+        User::create([
+            'name' => 'Eka Dyah Puspitasari, S.Pd., M.Hum.',
+            'username' => 'dyah',
+            'email' => 'dyah@gmail.com',
+            'level' => 'Auditee',
+            'npak' => '84420887698789790',
+            'nohp' => '08190877 56877',
+            'password' => bcrypt('password'),
+            'foto' => 'default/empty-foto.png',
+            'ttd' => 'default/empty-ttd.png'
+        ]);
+
+        User::factory(10)->create();
     }
 }

@@ -43,20 +43,30 @@ Route::middleware('auth')->group(function () {
     Route::middleware('admin')->group(function () {
         Route::resource('/user', UserController::class);
         Route::resource('/unit', UnitController::class);
+        Route::get('/rencana/timeline/desk/create/{id}', [TimelineController::class, 'desk']);
+        Route::get('/rencana/timeline/visit/create/{id}', [TimelineController::class, 'visit']);
     });
 
-    Route::resource('/rencana', RencanaController::class);
-    Route::resource('/desk', DeskController::class);
-    Route::get('/desk/print/{id}', [DeskController::class, 'print']);
-    Route::resource('/visit', VisitController::class);
-    Route::get('/visit/print/{id}', [VisitController::class, 'print']);
-    Route::get('/berita/{id}', [BeritaController::class, 'print']);
-    Route::post('/rencana/confirm/{id}', [TimelineController::class, 'confirm']);
-    Route::get('/timeline/{id}', [TimelineController::class, 'show']);
-    Route::get('/timeline/desk/{id}', [TimelineController::class, 'desk']);
-    Route::get('/timeline/visit/{id}', [TimelineController::class, 'visit']);
+    Route::middleware('auditor')->group(function () {
+        Route::get('/rencana/timeline/desk/create/{id}', [TimelineController::class, 'desk']);
+        Route::get('/rencana/timeline/visit/create/{id}', [TimelineController::class, 'visit']);
+    });
 
     Route::middleware('auditee')->group(function () {
         Route::resource('/barang', BarangController::class);
     });
+
+    Route::resource('/rencana', RencanaController::class);
+    Route::get('/rencana/timeline/{id}', [TimelineController::class, 'show']);
+
+    Route::resource('/rencana/timeline/desk', DeskController::class); //update hanya auditor
+    Route::get('/rencana/timeline/desk/print/{id}', [DeskController::class, 'print']);
+
+    Route::resource('/rencana/timeline/visit', VisitController::class);
+    Route::get('/rencana/timeline/visit/print/{id}', [VisitController::class, 'print']);
+
+    Route::get('/rencana/timeline/berita/{id}', [BeritaController::class, 'print']);
+
+    // hanya auditee
+    Route::post('/rencana/timeline/confirm/{id}', [TimelineController::class, 'confirm']);
 });

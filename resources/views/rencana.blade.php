@@ -51,7 +51,8 @@
                     <td>
                         <div class="d-flex justify-content-around">
                             <a href="#"><i class="fas fa-info-circle" style="color: deepskyblue;"></i></a>
-                            <a href="/timeline/{{ $rencana->id }}" style="color:coral"><i class="fas fa-stream"></i></a>
+                            <a href="/rencana/timeline/{{ $rencana->id }}" style="color:coral"><i
+                                    class="fas fa-stream"></i></a>
                             <a href="#modal_rencana_edit{{ $rencana->id }}" data-toggle="modal"
                                 style="color: limegreen;"><i class="far fa-edit"></i></a>
                             <form action="/rencana/{{ $rencana->id }}" method="POST">

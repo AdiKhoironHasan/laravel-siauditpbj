@@ -71,6 +71,6 @@ class TimelineController extends Controller
         Timeline::where('rencana_id', $id)->update(['berita_id' => $berita->id]);
         DB::commit();
 
-        return redirect('/timeline/' . $id)->with('success', 'Data Audit berhasil dikonfirmasi!');
+        return redirect('/rencana/timeline/' . $id)->with('success', 'Data Audit berhasil dikonfirmasi!');
     }
 }

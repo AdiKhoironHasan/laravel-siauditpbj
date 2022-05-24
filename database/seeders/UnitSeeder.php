@@ -19,23 +19,23 @@ class UnitSeeder extends Seeder
 
         Unit::insert([
             [
-                'user_id' => 2,
+                'user_id' => 3,
                 'name' => 'BAAK',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'user_id' => 3,
+                'user_id' => 4,
                 'name' => 'Keuangan',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
-            [
-                'user_id' => 3,
-                'name' => 'Perpustakaan',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
+            // [
+            //     'user_id' => 3,
+            //     'name' => 'Perpustakaan',
+            //     'created_at' => date('Y-m-d H:i:s'),
+            //     'updated_at' => date('Y-m-d H:i:s')
+            // ],
             // [
             //     'user_id' => 4,
             //     'name' => 'Umum',

@@ -66,8 +66,7 @@
 
                 {{-- @canany(['admin', 'auditor']) --}}
                 <li class="nav-item">
-                    <a href="/rencana"
-                        class="nav-link {{ Request::is('rencana*') ? 'active' : '' }} {{ Request::is('timeline*') ? 'active' : '' }}">
+                    <a href="/rencana" class="nav-link {{ Request::is('rencana*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-swatchbook"></i>
                         <p>
                             Rencana Kerja Audit

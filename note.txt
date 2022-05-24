@@ -6,6 +6,8 @@ tampilan rka auditee
 sweetalert
 <!-- crud image -->
 
+alert gagal login
+
 notify pake pusher
 ketua spi hanya 1
 beri try catch untuk setiap operasi
@@ -20,13 +22,13 @@ USERS:
     -
 
 BARANGS:
-    - barang unit itu saja
+    // - barang unit itu saja
 
 RENCANAS:
-    - rencana unit itu saja
+    // - rencana unit itu saja
 
 TIMELINE:
     <!-- - fix print visit -->
 
 SIDEBAR:
-    - fix active menu
+    // - fix active menu

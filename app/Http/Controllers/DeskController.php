@@ -77,7 +77,7 @@ class DeskController extends Controller
         Timeline::where('rencana_id', $validatedData['rencana_id'])->update($validatedDataTimeline);
         DB::commit();
 
-        return redirect('/timeline/' . $validatedData['rencana_id'])->with('success', 'Data Desk berhasil ditambahkan!');
+        return redirect('/rencana/timeline/' . $validatedData['rencana_id'])->with('success', 'Data Desk berhasil ditambahkan!');
     }
 
     /**
@@ -159,7 +159,7 @@ class DeskController extends Controller
 
         Desk::where('id', $desk->id)->update($validatedData);
 
-        return redirect('/timeline/' . $request->rencana_id)->with('success', 'Data Desk berhasil diubah!');
+        return redirect('/rencana/timeline/' . $request->rencana_id)->with('success', 'Data Desk berhasil diubah!');
     }
 
     /**
@@ -180,7 +180,7 @@ class DeskController extends Controller
         ]);
         DB::commit();
 
-        return redirect('/timeline/' . $rencana)->with('success', 'Data Desk berhasil dihapus!');
+        return redirect('/rencana/timeline/' . $rencana)->with('success', 'Data Desk berhasil dihapus!');
     }
 
     public function print($id)

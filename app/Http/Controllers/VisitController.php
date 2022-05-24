@@ -78,7 +78,7 @@ class VisitController extends Controller
         Timeline::where('rencana_id', $validatedData['rencana_id'])->update($validatedDataTimeline);
         DB::commit();
 
-        return redirect('/timeline/' . $validatedData['rencana_id'])->with('success', 'Data Visit berhasil ditambahkan!');
+        return redirect('/rencana/timeline/' . $validatedData['rencana_id'])->with('success', 'Data Visit berhasil ditambahkan!');
     }
 
     /**
@@ -147,7 +147,7 @@ class VisitController extends Controller
         $validatedData = $request->validate($rules);
         Visit::where('id', $visit->id)->update($validatedData);
 
-        return redirect('/timeline/' . $visit->desk->rencana_id)->with('success', 'Data Visit berhasil diubah!');
+        return redirect('/rencana/timeline/' . $visit->desk->rencana_id)->with('success', 'Data Visit berhasil diubah!');
     }
 
     /**
@@ -168,7 +168,7 @@ class VisitController extends Controller
         ]);
         DB::commit();
 
-        return redirect('/timeline/' . $rencana)->with('success', 'Data Visit berhasil dihapus!');
+        return redirect('/rencana/timeline/' . $rencana)->with('success', 'Data Visit berhasil dihapus!');
     }
 
     public function print($id)
