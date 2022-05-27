@@ -7,31 +7,16 @@
 
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
-                    <div class="text-center">
-                        <img class="profile-user-img img-fluid img-circle h-25 w-25" src="/uploads/{{ $user->foto }}"
-                            alt="{{ $user->name }}">
-                    </div>
-
-                    <h3 class="profile-username text-center mb-3">{{ $user->name }}</h3>
-
-                    <p class="text-muted text-center">{{ $user->level }}</p>
-
-                    <ul class="list-group list-group-unbordered mb-3">
+                    <img class="card-img-top" {{--
+                        src="https://img5.goodfon.com/wallpaper/nbig/c/5c/by-oretsuu-liod-i-plamia-liod-ogon-paren-boku-no-hero-academ.jpg"
+                        --}} src="/uploads/{{ $user->foto }}" alt="Card image cap"
+                        style="height: 270px; object-fit:cover">
+                    <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
-                            <b>Jabatan</b> <a class="float-right">1,322</a>
+                            <h3 class="profile-username text-center mb-0">{{ $user->name }}</h3>
                         </li>
-                        <li class="list-group-item">
-                            <b>Unit Kerja</b> <a class="float-right">543</a>
-                        </li>
-                        <li class="list-group-item">
-                            <b>Status</b> <a class="float-right">13,287</a>
-                        </li>
-                        <li class="list-group-item">
-                            <b>Friends</b> <a class="float-right">13,287</a>
-                        </li>
+                        <h5 class="text-muted text-center">{{ $user->level }}</h5>
                     </ul>
-
-                    <a href="/profile#Keamanan" class="btn btn-primary btn-block"><b>Follow</b></a>
                 </div>
             </div>
         </div>

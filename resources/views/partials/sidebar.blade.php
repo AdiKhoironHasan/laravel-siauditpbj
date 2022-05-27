@@ -8,10 +8,11 @@
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="/uploads/{{ Auth::user()->foto }}" class="img-circle elevation-2" alt="foto profil">
+                <img src="/uploads/{{ Auth::user()->foto }}" class="img-circle elevation-2" alt="foto profil"
+                    style="object-fit:cover; width:46px; height:46px">
             </div>
-            <div class="info">
-                <a class="d-block">{{ Auth::user()->name }}</a>
+            <div class="info d-flex align-items-center text-truncate col-8">
+                <b>{{ strtok(Auth::user()->name, " ") }}</b>
             </div>
         </div>
 
