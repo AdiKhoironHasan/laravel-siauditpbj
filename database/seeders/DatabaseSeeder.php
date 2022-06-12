@@ -25,13 +25,22 @@ class DatabaseSeeder extends Seeder
 
         // Unit::factory(5)->create();
 
-        Barang::factory(5)->create();
+        Barang::factory(20)->create();
+
+        // Barang::create([
+        //     'unit_id' => mt_rand(1, 2),
+        //     'name' => $this->faker->colorName(),
+        //     'no_kontrak' => $this->faker->numerify($this->faker->colorName() . '-#####'),
+        //     'tgl_kontrak' => $this->faker->date(),
+        //     'nilai_kontrak' => $this->faker->randomNumber(6, true),
+        //     'tahun_anggaran' => $this->faker->year(),
+        // ]);
 
         Rencana::create([
             'barang_id' => 1,
-            'auditor1_id' => 1,
-            'auditor2_id' => 2,
-            'auditor3_id' => 3,
+            'auditor1_id' => 2,
+            'auditor2_id' => 3,
+            'auditor3_id' => 4,
             'status' => 'Belum Terlaksana',
             'tahun' => 2020,
             'tanggal' => '2020-03-13'

@@ -32,3 +32,20 @@ TIMELINE:
 
 SIDEBAR:
     // - fix active menu
+
+
+PERTANYAAN?
+- antarmuka jaringan local
+- modal pake apa nggak
+
+- bagaimana audit pbj secara konvensional
+- kendala saat audit konvensional
+- konsep data kertas k
+- minta data unit lengkap
+
+Catatan Laporan:
+- Diagram:
+    // - use case
+    - sequence
+    - erd / class
+    // - flowchart

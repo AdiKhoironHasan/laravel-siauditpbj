@@ -21,7 +21,13 @@
     <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <script src="/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+
+    <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
+
+    {{--
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    --}}
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -109,11 +115,28 @@
 <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="/plugins/jquery-chained/jquery.chained.min.js"></script>
+<script src="/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+
+{{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 <script>
     // $("#barang").chained("#unit");
     $(document).ready(function() {
         $("#barang").chained("#unit");
     });
+
+    $('input[name="daterange"]').daterangepicker({
+        format: 'YYYY-MM-DD'
+    });
+//     $(function() {
+//   $('input[name="daterange"]').daterangepicker({
+//     opens: 'right'
+//   }, function(start, end, label) {
+//     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+//   });
+// });
 </script>
 
 <script>

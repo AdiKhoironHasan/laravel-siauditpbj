@@ -63,5 +63,18 @@
     </div>
     <!-- ./col -->
 </div>
+<div class="form-group">
+    <label>Date range:</label>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="far fa-calendar-alt"></i>
+            </span>
+        </div>
+        <input type="text" name="daterange" value="01/01/2022 - 01/15/2022" class="form-control float-right"
+            id="reservation">
+        {{-- <input type="text" name="daterange" value="01/01/2022 - 01/15/2022" /> --}}
+    </div>
+</div>
 
 @endsection
