@@ -44,6 +44,9 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+
+                {{-- @canany(['auditee', 'auditor', 'direktur']) --}}
                 <li class="nav-item">
                     <a href="/unit" class="nav-link {{ Request::is('unit') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-university"></i>
@@ -52,7 +55,7 @@
                         </p>
                     </a>
                 </li>
-                @endcan
+                {{-- @endcanany --}}
 
                 @can('auditee')
                 <li class="nav-item">

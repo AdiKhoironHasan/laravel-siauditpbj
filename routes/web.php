@@ -42,10 +42,11 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('admin')->group(function () {
         Route::resource('/user', UserController::class);
-        Route::resource('/unit', UnitController::class);
-        Route::get('/rencana/timeline/desk/create/{id}', [TimelineController::class, 'desk']);
-        Route::get('/rencana/timeline/visit/create/{id}', [TimelineController::class, 'visit']);
+        // Route::get('/rencana/timeline/desk/create/{id}', [TimelineController::class, 'desk']);
+        // Route::get('/rencana/timeline/visit/create/{id}', [TimelineController::class, 'visit']);
     });
+
+    Route::resource('/unit', UnitController::class);
 
     Route::middleware('auditor')->group(function () {
         Route::get('/rencana/timeline/desk/create/{id}', [TimelineController::class, 'desk']);
@@ -54,6 +55,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('auditee')->group(function () {
         Route::resource('/barang', BarangController::class);
+        Route::post('/rencana/timeline/confirm/{id}', [TimelineController::class, 'confirm']);
     });
 
     Route::resource('/rencana', RencanaController::class);
@@ -68,5 +70,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/rencana/timeline/berita/{id}', [BeritaController::class, 'print']);
 
     // hanya auditee
-    Route::post('/rencana/timeline/confirm/{id}', [TimelineController::class, 'confirm']);
 });

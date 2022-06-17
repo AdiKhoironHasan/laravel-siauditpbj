@@ -7,7 +7,8 @@
     <title>{{ $title }}</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <!-- icheck bootstrap -->
@@ -30,7 +31,8 @@
                 <form action="/login" method="POST">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" name="username" id="username" class="form-control" placeholder="Username" autofocus required>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Username"
+                            autofocus required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -38,7 +40,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password"
+                            required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -49,13 +52,13 @@
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </div>
                 </form>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-sm-7">
                         <a href="register.php">Mendaftar user baru</a>
                     </div>
                     <div class="col">
                         <a href="forgot-password.html">Lupa Password?</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

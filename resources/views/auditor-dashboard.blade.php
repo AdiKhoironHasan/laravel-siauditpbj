@@ -63,7 +63,7 @@
     </div>
     <!-- ./col -->
 </div>
-<div class="form-group">
+{{-- <div class="form-group">
     <label>Date range:</label>
     <div class="input-group">
         <div class="input-group-prepend">
@@ -72,9 +72,10 @@
             </span>
         </div>
         <input type="text" name="daterange" value="01/01/2022 - 01/15/2022" class="form-control float-right"
-            id="reservation">
+            id="reservation"> --}}
         {{-- <input type="text" name="daterange" value="01/01/2022 - 01/15/2022" /> --}}
+        {{--
     </div>
-</div>
+</div> --}}
 
 @endsection

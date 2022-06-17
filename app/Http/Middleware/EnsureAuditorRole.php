@@ -16,10 +16,10 @@ class EnsureAuditorRole
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user()->level != 'Auditor') {
-            return back();
+        if ($request->user()->level === 'Auditor' || $request->user()->level === 'Ketua SPI') {
+            return $next($request);
         }
 
-        return $next($request);
+        return back();
     }
 }

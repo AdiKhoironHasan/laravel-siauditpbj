@@ -40,10 +40,11 @@
                                 <h3 class="timeline-header"><b>Pengisian Data Desk</b> <i class="fas"></i>
                                 </h3>
                                 <div class="timeline-body">
-                                    keterangan desk
+                                    {{ $timeline->desk_id != null ? 'Data Desk sudah diisi' : 'Data Desk belum diisi' }}
                                 </div>
                                 <div class="timeline-footer ">
                                     <div class="btn-group" role="group" aria-label="Basic example">
+                                        @canany(['admin', 'auditor'])
                                         <a href="/rencana/timeline/desk/create/{{ $timeline->rencana->id }}"
                                             class=" btn btn-primary btn-sm {{ $timeline->desk_id != null ? 'disabled' : '' }}">Tambah</a>
                                         {{-- @dd($desk) --}}
@@ -58,6 +59,7 @@
                                                 class="btn btn-danger rounded-0 btn-sm {{ $timeline->desk_id != null ? '' : 'disabled' }}"
                                                 value="Hapus">
                                         </form>
+                                        @endcanany
                                         <a href="/rencana/timeline/desk/print/{{ $desk != null ? $desk->id : '' }}"
                                             class="btn btn-success btn-sm {{ $timeline->desk_id != null ? '' : 'disabled' }}">Cetak</a>
                                     </div>
@@ -71,9 +73,12 @@
                                 <h3 class="timeline-header"><b>Pengisian Data Visit</b> <i class="fas"></i>
                                 </h3>
                                 <div class="timeline-body">
-                                    visit keterangan</div>
+                                    {{ $timeline->visit_id != null ? 'Data Visit sudah diisi' : 'Data Visit belum diisi'
+                                    }}
+                                </div>
                                 <div class="timeline-footer">
                                     <div class="btn-group" role="group" aria-label="Basic example">
+                                        @canany(['admin', 'auditor'])
                                         <a href="/rencana/timeline/visit/create/{{ $timeline->rencana->id }}"
                                             class=" btn btn-primary btn-sm {{ $timeline->visit_id != null ? 'disabled' : '' }}">Tambah</a>
                                         <a href="/rencana/timeline/visit/{{ $visit != null ? $visit->id : '' }}/edit"
@@ -87,6 +92,7 @@
                                                 class="btn btn-danger rounded-0 btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}"
                                                 value="Hapus">
                                         </form>
+                                        @endcanany
                                         <a href="/rencana/timeline/visit/print/{{ $visit != null ? $visit->id : '' }}"
                                             class="btn btn-success btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}">Cetak</a>
                                     </div>
@@ -99,6 +105,7 @@
                             <div class="timeline-item">
                                 <h3 class="timeline-header"><b>Konfirmasi Data Audit</b> <i class="fas"></i>
                                 </h3>
+                                @if (Auth::user()->level == "Auditee" )
                                 <div class="timeline-body">
                                     <form action="/rencana/timeline/confirm/{{ $timeline->rencana->id }}" method="POST">
                                         @csrf
@@ -115,6 +122,12 @@
                                             class="btn btn-sm btn-primary mt-2 {{ $timeline->visit_id === null || $timeline->berita_id != null ? 'disabled' : '' }}">Submit</button>
                                     </form>
                                 </div>
+                                @else
+                                <div class="timeline-body">
+                                    {{$timeline->berita_id != null ? 'Data sudah dikonfirmasi' : 'Data belum
+                                    dikonfirmasi'}}
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div>

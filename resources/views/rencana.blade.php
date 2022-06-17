@@ -53,6 +53,7 @@
                             <a href="#"><i class="fas fa-info-circle" style="color: deepskyblue;"></i></a>
                             <a href="/rencana/timeline/{{ $rencana->id }}" style="color:coral"><i
                                     class="fas fa-stream"></i></a>
+                            @if (Auth::user()->level === "Ketua SPI" || Auth::user()->level === "Auditor")
                             <a href="#modal_rencana_edit{{ $rencana->id }}" data-toggle="modal"
                                 style="color: limegreen;"><i class="far fa-edit"></i></a>
                             <form action="/rencana/{{ $rencana->id }}" method="POST">
@@ -62,6 +63,7 @@
                                     onclick="return confirm('Anda yakin mau menghapus item ini ?')"
                                     style="color: crimson;"><i class="far fa-trash-alt"></i></button>
                             </form>
+                            @endif
                         </div>
                     </td>
                 </tr>

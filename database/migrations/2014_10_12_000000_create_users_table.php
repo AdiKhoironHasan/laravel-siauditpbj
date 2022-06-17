@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('nohp')->nullable();
             $table->string('foto')->nullable();
             $table->string('ttd')->nullable();
-            $table->enum('status', ['Aktif', 'Tidak Aktif', 'Mendaftar']);
+            $table->enum('status', ['Aktif', 'Tidak Aktif']);
             $table->timestamps();
         });
     }
