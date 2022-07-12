@@ -71,3 +71,9 @@ Route::middleware('auth')->group(function () {
 
     // hanya auditee
 });
+
+Route::get('/rencana/timeline/kerjadesk/create/', function () {
+    return view('kerja_desk.index', [
+        'title' => 'title'
+    ]);
+});

@@ -20,7 +20,9 @@
                 <div class="col-md-8">
                     <div class="timeline">
                         <div class="time-label">
-                            <span class="bg-primary">{{ date('d F Y', strtotime($timeline->rencana->tanggal)) }}</span>
+                            <a href="/rencana/timeline/kerjadesk/create/"> <span class="bg-primary">{{ date('d F Y',
+                                    strtotime($timeline->rencana->tanggal)) }}</span>
+                            </a>
                         </div>
                         <div>
                             <i class="fas fa-bookmark bg-success"></i>
