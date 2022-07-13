@@ -1,5 +1,30 @@
 @extends('layouts.main')
 
+@push('script')
+<script>
+    $(document).on("change", "#A", function () {
+        if ($(this).prop("checked")) {
+            $("#B").attr("disabled", false);
+        } else {
+            $("#B").attr("disabled", true);
+            $("#B").prop("checked", false);
+            $("#C").attr("disabled", true);
+            $("#C").prop("checked", false);
+        }
+    });
+
+    $(document).on("change", "#B", function () {
+        if ($(this).prop("checked")) {
+            $("#C").attr("disabled", false);
+        } else {
+            $("#C").attr("disabled", true);
+            $("#C").prop("checked", false);
+        }
+    });
+
+</script>
+@endpush
+
 @section('content')
 <div class="card card-primary">
     <div class="card-header">
@@ -14,13 +39,17 @@
         </div>
     </div>
     <div class="card-body">
-
-        <form action="/rencana/timeline/desk" method="POST">
+        <form action="/kerjadesk/hasil" method="POST">
             @csrf
             <input type="hidden" name="rencana_id" id="rencana_id" value="#">
+
+            <input type="checkbox" name="A" id="A" value="1">A
             <br>
-            <table class="table">
-                <tr cla>
+            <input type="checkbox" name="B" id="B" class="B" value="1" disabled>B
+            <br>
+            <input type="checkbox" name="C" id="C" class="C" value="1" disabled>C
+            <table class="table border border-primary">
+                <tr style="border-top:3px solid #000">
                     <td style="width: 30%;" class="align-middle" rowspan="2">
                         <img src="/uploads/default/logo_pnc.png" style="width: 100px; height: 100px">
                         <br><strong>SPI</strong>
@@ -123,11 +152,15 @@
             </table>
             <table class="table table-borderless">
                 <tr>
-                    <td style="width: 10%">V</td>
+                    <td style="width: 10%">
+                        V
+                    </td>
                     <td style="text-align: left">BAHASA DAN REDAKSIONAL</td>
                 </tr>
                 <tr>
-                    <td style="width: 10%">V</td>
+                    <td style="width: 10%">
+                        V
+                    </td>
                     <td style="text-align: left">ANGKA DAN HURUF</td>
                 </tr>
                 <tr>
@@ -149,9 +182,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 10%">V</td>
+                    <td style="width: 10%">
+                        <input type="checkbox" name="substansi_kontrak_6" id="substansi_kontrak_6" value="1">
+                    </td>
                     <td style="width: 40%; text-align:left">TERDAPAT PERTENTANGAN ANTAR BAGIAN KONTRAK</td>
-                    <td style="width: 10%">V</td>
+                    <td style="width: 10%">
+                        <input type="checkbox" name="substansi_kontrak_6_1" id="substansi_kontrak_6_1" value="1">
+                    </td>
                     <td style="width: 40%; text-align:left">KESESUAIAN HIARARKI ACUAN</td>
                 </tr>
             </table>
@@ -159,37 +196,51 @@
             <table class="table table-borderless">
                 <tr>
                     <td style="width: 55%"></td>
-                    <td>V</td>
+                    <td>
+                        <input type="checkbox" name="substansi_kontrak_6_1_1" id="substansi_kontrak_6_1_1" value="1">
+                    </td>
                     <td style="text-align: left">1. Adendum Surat Perjanjian</td>
                 </tr>
                 <tr>
                     <td style="width: 55%"></td>
-                    <td>V</td>
+                    <td>
+                        <input type="checkbox" name="substansi_kontrak_6_1_2" id="substansi_kontrak_6_1_2" value="1">
+                    </td>
                     <td style="text-align: left">2. Pokok Perjanjian</td>
                 </tr>
                 <tr>
                     <td style="width: 55%"></td>
-                    <td>V</td>
+                    <td>
+                        <input type="checkbox" name="substansi_kontrak_6_1_3" id="substansi_kontrak_6_1_3" value="1">
+                    </td>
                     <td style="text-align: left">3. Surat Penawaran, beserta rincian penawaran biaya</td>
                 </tr>
                 <tr>
                     <td style="width: 55%"></td>
-                    <td>V</td>
+                    <td>
+                        <input type="checkbox" name="substansi_kontrak_6_1_4" id="substansi_kontrak_6_1_4" value="1">
+                    </td>
                     <td style="text-align: left">4. Syarat-syarat khusus kontrak</td>
                 </tr>
                 <tr>
                     <td style="width: 55%"></td>
-                    <td>V</td>
+                    <td>
+                        <input type="checkbox" name="substansi_kontrak_6_1_5" id="substansi_kontrak_6_1_5" value="1">
+                    </td>
                     <td style="text-align: left">5. Syarat-syarat Umum Kontrak</td>
                 </tr>
                 <tr>
                     <td style="width: 55%"></td>
-                    <td>V</td>
+                    <td>
+                        <input type="checkbox" name="substansi_kontrak_6_1_6" id="substansi_kontrak_6_1_6" value="1">
+                    </td>
                     <td style="text-align: left">6. Kerangka acuan Kerja</td>
                 </tr>
                 <tr>
                     <td style="width: 55%"></td>
-                    <td>V</td>
+                    <td>
+                        <input type="checkbox" name="substansi_kontrak_6_1_7" id="substansi_kontrak_6_1_7" value="1">
+                    </td>
                     <td style="text-align: left">7. Dokumen lainnya; Data Teknis lainnya, Gambar, SPPBJ, BAHS, BAPP
                     </td>
                 </tr>
@@ -569,8 +620,27 @@
                     </td>
                 </tr>
             </table>
+            <div class="row justify-content-center mt-3 rounded-sm mx-1" style="background-color: #ADD8E6;">
+                <div class="col-md-8 text-center d-grid gap-2 my-2">
+                    <a href="/rencana/timeline/" class="btn btn-primary btn-lg mx-2">Kembali</a>
+                    <input type="submit" class="btn btn-success btn-lg mx-2" value="Submit">
+                </div>
+            </div>
         </form>
     </div>
     <!-- /.card-body -->
 </div>
+
+<script>
+    $(document).ready(function(){
+    $('#substansi_kontrak_6').change(function () {
+        if ($(this).attr("checked")) {
+            $('#substansi_kontrak_6_1').attr('disabled', true);
+        } else {
+            $('#substansi_kontrak_6_1').attr('disabled', false);
+        }
+    });
+});
+</script>
+
 @endsection

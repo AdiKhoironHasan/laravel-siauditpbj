@@ -11,6 +11,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RencanaController;
 use App\Http\Controllers\TimelineController;
+use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -72,8 +73,12 @@ Route::middleware('auth')->group(function () {
     // hanya auditee
 });
 
-Route::get('/rencana/timeline/kerjadesk/create/', function () {
+Route::get('/rencana/timeline/kerjadesk/create', function () {
     return view('kerja_desk.index', [
         'title' => 'title'
     ]);
+});
+
+Route::post('/kerjadesk/hasil', function (Request $request) {
+    dd($request->all());
 });

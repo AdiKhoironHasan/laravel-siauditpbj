@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
-
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
     {{--
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     --}}
@@ -116,7 +118,7 @@
 <script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="/plugins/jquery-chained/jquery.chained.min.js"></script>
 <script src="/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-
+@stack('script')
 {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -162,11 +164,10 @@
             "responsive": true,
         });
     });
-</script>
+</>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#usernameTambah').keyup(function() {
+            $('#usernameTambah').keyup(function() {
             var uname = $('#usernameTambah').val();
             if (uname == 0) {
                 $('#hasilCekTambah').text('');
