@@ -11,6 +11,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RencanaController;
 use App\Http\Controllers\TimelineController;
+use App\Models\KerjaDesk;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -80,5 +81,8 @@ Route::get('/rencana/timeline/kerjadesk/create', function () {
 });
 
 Route::post('/kerjadesk/hasil', function (Request $request) {
-    dd($request->all());
+
+    // dd($request->all());
+    // $data = $request->validate();
+    KerjaDesk::create($request->except(['rencana_id', '_token']));
 });

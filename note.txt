@@ -52,8 +52,8 @@ Catatan Laporan:
 
 
 KKA DESK:
-table kriteria ganti enum
-table penerbit jaminan uang muka ganti enum
-table keterangan jaminan uang muka ganti enum
-tambah field nama unit
+// table kriteria ganti enum
+// table penerbit jaminan uang muka ganti enum
+// table keterangan jaminan uang muka ganti enum
+// tambah field nama unit
 tambah auto rp

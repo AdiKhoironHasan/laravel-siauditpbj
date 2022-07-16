@@ -15,8 +15,9 @@ class CreateKerjaDesksTable extends Migration
     {
         Schema::create('kerja_desks', function (Blueprint $table) {
             $table->id();
+            $table->string('unit_kerja');
             $table->string('nama_paket');
-            $table->string('tahun');
+            $table->integer('tahun');
             $table->string('no_kontrak');
             $table->string('nilai_kontrak');
             $table->date('tanggal_kontrak');
@@ -52,8 +53,8 @@ class CreateKerjaDesksTable extends Migration
             $table->date('tanggal_surat');
             $table->integer('durasi_penerimaan');
             $table->date('tanggal_disetujui');
-            $table->integer('surat_pesanan_1');
-            $table->integer('surat_pesanan_2');
+            $table->integer('surat_pesanan_1')->default(0);
+            $table->integer('surat_pesanan_2')->default(0);
             $table->integer('penyusunan_program_mutu_1')->default(0);
             $table->integer('penyusunan_program_mutu_2')->default(0);
             $table->integer('penyusunan_program_mutu_3')->default(0);
@@ -66,9 +67,9 @@ class CreateKerjaDesksTable extends Migration
             $table->integer('pemeriksaan_bersama_2_1')->default(0);
             $table->string('uang_muka');
             $table->string('jaminan_uang_muka');
-            $table->string('penerbit_jaminan_uang_muka');
-            $table->string('kriteria');
-            $table->string('keterangan_jaminan_uang_muka');
+            $table->enum('penerbit_jaminan_uang_muka', ['Bank Umum', 'Perusahaan Penjaminan', 'Perusahaan Asuransi']);
+            $table->enum('kriteria', ['Usaha Kecil', 'Usaha Non Kecil', 'Kontrak Tahun Jamak']);
+            $table->enum('keterangan_jaminan_uang_muka', ['Sesuai', 'Tidak Sesuai']);
             $table->string('nama_bank_penerbit');
             $table->integer('pembayaran_uang_muka_1')->default(0);
             $table->integer('pembayaran_uang_muka_2')->default(0);
@@ -110,6 +111,7 @@ class CreateKerjaDesksTable extends Migration
             $table->integer('perpanjangan_waktu_1_1')->default(0);
             $table->integer('laporan_hasil_1')->default(0);
             $table->integer('laporan_hasil_2')->default(0);
+            $table->timestamps();
         });
     }
 

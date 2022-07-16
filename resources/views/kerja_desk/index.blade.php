@@ -235,7 +235,7 @@
                 <tr>
                     <td style="width: 40%;text-align:left">TAHNUN ANGGARAN</td>
                     <td class="align-bottom">
-                        <input type="text" id="tahun" name="tahun" required>
+                        <input type="number" id="tahun" name="tahun" required>
                     </td>
                 </tr>
                 <tr>
@@ -507,7 +507,7 @@
                 <tr>
                     <td style="width: 40%;text-align:left">DURASI PENERIMAAN BARANG</td>
                     <td>
-                        <input type="text" id="durasi_penerimaan" name="durasi_penerimaan" required>
+                        <input type="number" id="durasi_penerimaan" name="durasi_penerimaan" required>
                     </td>
                 </tr>
                 <tr>
@@ -779,7 +779,7 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="pengiriman_2" id="pengiriman_12 value=" 1">
+                        <input type="checkbox" name="pengiriman_2" id="pengiriman_2" value=" 1">
                     </td>
                     <td style="text-align: left">
                         PENYEDIA MEMBERIKAN DOKUMEN PENGIRIMAN BARANG KEPADA PPK
