@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/unit', UnitController::class);
 
+
     Route::middleware('auditor')->group(function () {
         Route::get('/rencana/timeline/kerjadesk/create/{id}', [TimelineController::class, 'kerjaDesk']);
         Route::get('/rencana/timeline/desk/create/{id}', [TimelineController::class, 'desk']);
@@ -82,9 +83,9 @@ Route::middleware('auth')->group(function () {
 
 // });
 
-Route::post('/kerjadesk/hasil', function (Request $request) {
+// Route::post('/kerjadesk/hasil', function (Request $request) {
 
-    // dd($request->all());
-    // $data = $request->validate();
-    KerjaDesk::create($request->except(['rencana_id', '_token']));
-});
+//     // dd($request->all());
+//     // $data = $request->validate();
+//     KerjaDesk::create($request->except(['rencana_id', '_token']));
+// });

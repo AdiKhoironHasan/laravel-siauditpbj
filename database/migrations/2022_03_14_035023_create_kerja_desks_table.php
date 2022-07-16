@@ -43,6 +43,7 @@ class CreateKerjaDesksTable extends Migration
             $table->integer('substansi_kontrak_4')->default(0);
             $table->integer('substansi_kontrak_5')->default(0);
             $table->integer('substansi_kontrak_5_1')->default(0);
+            $table->integer('substansi_kontrak_6')->default(0);
             $table->integer('substansi_kontrak_6_1')->default(0);
             $table->integer('substansi_kontrak_6_1_1')->default(0);
             $table->integer('substansi_kontrak_6_1_2')->default(0);
@@ -98,12 +99,12 @@ class CreateKerjaDesksTable extends Migration
             $table->integer('serah_terima_barang_1')->default(0);
             $table->integer('serah_terima_barang_1_1')->default(0);
             $table->integer('serah_terima_barang_2')->default(0);
+            $table->integer('serah_terima_barang_2_1')->default(0);
             $table->integer('serah_terima_barang_3')->default(0);
-            $table->integer('serah_terima_barang_3_1')->default(0);
             $table->integer('pembayaran_1')->default(0);
             $table->integer('pembayaran_2')->default(0);
-            $table->integer('pembayaran_2_1')->default(0);
             $table->integer('pembayaran_3')->default(0);
+            $table->integer('pembayaran_3_1')->default(0);
             $table->integer('denda_1')->default(0);
             $table->integer('denda_1_1')->default(0);
             $table->integer('penyesuaian_harga_1')->default(0);

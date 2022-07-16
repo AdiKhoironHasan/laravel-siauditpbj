@@ -32,9 +32,8 @@ class Rencana extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function desk()
+    public function kerjaDesk()
     {
-        return $this->hasOne(Desk::class);
+        return $this->hasOne(KerjaDesk::class);
     }
 }

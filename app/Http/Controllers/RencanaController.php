@@ -23,23 +23,23 @@ class RencanaController extends Controller
     public function index()
     {
         if (Gate::denies('auditee')) {
-            $barang = DB::table('barangs')
-                ->whereNotExists(function ($query) {
-                    $query->select(DB::raw(1))
-                        ->from('rencanas')
-                        ->whereColumn('rencanas.barang_id', '=', 'barangs.id');
-                })
-                ->get();
+            // $barang = DB::table('barangs')
+            //     ->whereNotExists(function ($query) {
+            //         $query->select(DB::raw(1))
+            //             ->from('rencanas')
+            //             ->whereColumn('rencanas.barang_id', '=', 'barangs.id');
+            //     })
+            //     ->get();
             $rencana = Rencana::all();
         } else {
-            $barang = DB::table('barangs')
-                ->whereNotExists(function ($query) {
-                    $query->select(DB::raw(1))
-                        ->from('rencanas')
-                        ->whereColumn('rencanas.barang_id', '=', 'barangs.id');
-                })
-                ->where('unit_id', Auth::user()->unit->first()->id)
-                ->get();
+            // $barang = DB::table('barangs')
+            //     ->whereNotExists(function ($query) {
+            //         $query->select(DB::raw(1))
+            //             ->from('rencanas')
+            //             ->whereColumn('rencanas.barang_id', '=', 'barangs.id');
+            //     })
+            //     ->where('unit_id', Auth::user()->unit->first()->id)
+            //     ->get();
             $rencana = Rencana::whereHas('barang', function (Builder $qr) {
                 $qr->where('unit_id', Auth::user()->unit->first()->id);
             })->get();
@@ -48,7 +48,7 @@ class RencanaController extends Controller
         return view('rencana', [
             'title' => 'Rencana Kerja Audit',
             'rencanas' => $rencana,
-            'barangs' => $barang,
+            // 'barangs' => $barang,
             'auditors' => User::where('level', 'Ketua SPI')->orWhere('level', 'Auditor')->get()
         ]);
     }

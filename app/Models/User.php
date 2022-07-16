@@ -52,10 +52,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function unit()
-    {
-        return $this->hasMany(Unit::class);
-    }
+    // public function unit()
+    // {
+    //     return $this->hasMany(Unit::class);
+    // }
 
     public function rencana()
     {

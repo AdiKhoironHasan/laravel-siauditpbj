@@ -6,6 +6,7 @@ use App\Models\Desk;
 use App\Models\User;
 use App\Models\Visit;
 use App\Models\Berita;
+use App\Models\KerjaDesk;
 use App\Models\Rencana;
 use App\Models\Timeline;
 use Illuminate\Http\Request;
@@ -19,27 +20,32 @@ class TimelineController extends Controller
         $data['title'] = 'Timeline';
         $rencana = Rencana::where('id', $id)->first();
         $data['timeline'] =  Timeline::where('rencana_id', $id)->first();
-        $desk = Desk::where('rencana_id', $rencana->id)->first();
-        $data['desk'] = $desk;
-        $data['visit'] = '';
-        $data['ketua'] = User::firstWhere('level', 'Ketua SPI');
+        $data['kerja_desk'] = KerjaDesk::where('rencana_id', $rencana->id)->first();
 
-        if ($desk) {
-            $visit = Visit::where('desk_id', $desk->id)->first();
-            $data['visit'] = $visit;
-            if ($visit) {
-                $berita = Berita::where('visit_id', $visit->id)->first();
-                $data['berita'] = $berita;
+
+        if ($data['kerja_desk']) {
+            $desk = Desk::where('kerja_desk_id', $data['kerja_desk']->id)->first();
+            $data['desk'] = $desk;
+            $data['visit'] = '';
+            $data['ketua'] = User::firstWhere('level', 'Ketua SPI');
+            if ($desk) {
+                $visit = Visit::where('desk_id', $desk->id)->first();
+                $data['visit'] = $visit;
+                if ($visit) {
+                    $berita = Berita::where('visit_id', $visit->id)->first();
+                    $data['berita'] = $berita;
+                }
             }
         }
 
         return view('timeline', $data);
     }
 
-    public function kerjaDesk()
+    public function kerjaDesk($id)
     {
         return view('kerja_desk.index', [
-            'title' => 'title'
+            'title' => 'KKA Desk',
+            'rencana' => Rencana::where('id', $id)->first(),
         ]);
     }
 

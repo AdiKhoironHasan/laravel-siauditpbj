@@ -25,8 +25,8 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Unit</th>
-                    <th>Paket Barang</th>
+                    {{-- <th>Unit</th> --}}
+                    {{-- <th>Paket Barang</th> --}}
                     {{-- <th>Auditor 1</th>
                     <th>Auditor 2</th>
                     <th>Auditor 3</th> --}}
@@ -40,8 +40,8 @@
                 @foreach ($rencanas as $rencana)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $rencana->barang->unit->name }}</td>
-                    <td>{{ $rencana->barang->name }}</td>
+                    {{-- <td>{{ $rencana->barang->unit->name }}</td> --}}
+                    {{-- <td>{{ $rencana->barang->name }}</td> --}}
                     {{-- <td>{{ $rencana->auditor1->name }}</td>
                     <td>{{ $rencana->auditor2->name }}</td>
                     <td>{{ $rencana->auditor3->name }}</td> --}}
@@ -67,11 +67,11 @@
                         </div>
                     </td>
                 </tr>
-                @include('partials.rencana.modal-rencana-edit')
+                {{-- @include('partials.rencana.modal-rencana-edit') --}}
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
-@include('partials.rencana.modal-rencana-tambah')
+{{-- @include('partials.rencana.modal-rencana-tambah') --}}
 @endsection
