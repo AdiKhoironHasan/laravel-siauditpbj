@@ -36,6 +36,13 @@ class TimelineController extends Controller
         return view('timeline', $data);
     }
 
+    public function kerjaDesk()
+    {
+        return view('kerja_desk.index', [
+            'title' => 'title'
+        ]);
+    }
+
     public function desk($id)
     {
         return view('desk.index', [

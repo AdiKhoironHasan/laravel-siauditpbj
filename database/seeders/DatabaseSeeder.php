@@ -106,6 +106,7 @@ class DatabaseSeeder extends Seeder
 
         Timeline::create([
             'rencana_id' => 1,
+            'kerja_desk_id' => 1,
             'desk_id' => 1,
             'visit_id' => 1
         ]);

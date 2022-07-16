@@ -13,7 +13,6 @@ class KerjaDeskController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**

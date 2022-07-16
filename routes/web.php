@@ -11,6 +11,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RencanaController;
 use App\Http\Controllers\TimelineController;
+use App\Http\Controllers\KerjaDeskController;
 use App\Models\KerjaDesk;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -51,6 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/unit', UnitController::class);
 
     Route::middleware('auditor')->group(function () {
+        Route::get('/rencana/timeline/kerjadesk/create/{id}', [TimelineController::class, 'kerjaDesk']);
         Route::get('/rencana/timeline/desk/create/{id}', [TimelineController::class, 'desk']);
         Route::get('/rencana/timeline/visit/create/{id}', [TimelineController::class, 'visit']);
     });
@@ -63,6 +65,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/rencana', RencanaController::class);
     Route::get('/rencana/timeline/{id}', [TimelineController::class, 'show']);
 
+    Route::resource('/rencana/timeline/kerjadesk', KerjaDeskController::class);
+
     Route::resource('/rencana/timeline/desk', DeskController::class); //update hanya auditor
     Route::get('/rencana/timeline/desk/print/{id}', [DeskController::class, 'print']);
 
@@ -74,11 +78,9 @@ Route::middleware('auth')->group(function () {
     // hanya auditee
 });
 
-Route::get('/rencana/timeline/kerjadesk/create', function () {
-    return view('kerja_desk.index', [
-        'title' => 'title'
-    ]);
-});
+// Route::get('/rencana/timeline/kerjadesk/create', function () {
+
+// });
 
 Route::post('/kerjadesk/hasil', function (Request $request) {
 

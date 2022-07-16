@@ -14,8 +14,8 @@ class CreateDesksTable extends Migration
     public function up()
     {
         Schema::create('desks', function (Blueprint $table) {
-            $table-> id();
-            $table->foreignId('rencana_id')->unique()->constrained()->cascadeOnDelete();
+            $table->id();
+            $table->foreignId('kerja_desk_id')->unique()->constrained()->cascadeOnDelete();
             $table->string('tipe_monitoring');
             $table->date('masa_monitoring_awal');
             $table->date('masa_monitoring_akhir');

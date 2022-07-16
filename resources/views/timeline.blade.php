@@ -20,9 +20,8 @@
                 <div class="col-md-8">
                     <div class="timeline">
                         <div class="time-label">
-                            <a href="/rencana/timeline/kerjadesk/create/"> <span class="bg-primary">{{ date('d F Y',
-                                    strtotime($timeline->rencana->tanggal)) }}</span>
-                            </a>
+                            <span class="bg-primary">{{ date('d F Y',
+                                strtotime($timeline->rencana->tanggal)) }}</span>
                         </div>
                         <div>
                             <i class="fas fa-bookmark bg-success"></i>
@@ -32,6 +31,39 @@
                                 <div class="timeline-body">
                                     Rencana Kerja Audit dibuat pada
                                     <strong>{{ date('d F Y', strtotime($timeline->rencana->tanggal)) }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <i
+                                class="fas fa-file-alt {{ $timeline->desk_id != null ? 'bg-success' : 'bg-danger' }}"></i>
+                            <div class="timeline-item">
+                                <h3 class="timeline-header"><b>Pengisian Kertas Kerja Audit Desk</b> <i class="fas"></i>
+                                </h3>
+                                <div class="timeline-body">
+                                    {{ $timeline->desk_id != null ? 'Data Desk sudah diisi' : 'Data Desk belum diisi' }}
+                                </div>
+                                <div class="timeline-footer ">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        @canany(['admin', 'auditor'])
+                                        <a href="/rencana/timeline/kerjadesk/create/{{ $timeline->rencana->id }}"
+                                            class=" btn btn-primary btn-sm ">Tambah</a>
+                                        {{-- @dd($desk) --}}
+                                        <a href="/rencana/timeline/desk/{{ $desk != null ? $desk->id : '' }}/edit"
+                                            class="btn btn-info btn-sm {{ $timeline->desk_id != null ? '' : 'disabled' }}">Ubah</a>
+                                        <form action="/rencana/timeline/desk/{{ $desk != null ? $desk->id : '' }}"
+                                            method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <input type="submit"
+                                                onclick="return confirm('Anda yakin mau menghapus data desk ini ?')"
+                                                class="btn btn-danger rounded-0 btn-sm {{ $timeline->desk_id != null ? '' : 'disabled' }}"
+                                                value="Hapus">
+                                        </form>
+                                        @endcanany
+                                        <a href="/rencana/timeline/desk/print/{{ $desk != null ? $desk->id : '' }}"
+                                            class="btn btn-success btn-sm {{ $timeline->desk_id != null ? '' : 'disabled' }}">Cetak</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

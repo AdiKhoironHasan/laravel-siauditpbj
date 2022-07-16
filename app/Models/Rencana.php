@@ -11,10 +11,10 @@ class Rencana extends Model
 
     protected $guarded = ['id'];
 
-    public function barang()
-    {
-        return $this->belongsTo(Barang::class);
-    }
+    // public function barang()
+    // {
+    //     return $this->belongsTo(Barang::class);
+    // }
 
     public function auditor1()
     {
@@ -28,8 +28,13 @@ class Rencana extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function auditee()
+    {
+        return $this->belongsTo(User::class);
+    }
 
-    public function desk(){
+    public function desk()
+    {
         return $this->hasOne(Desk::class);
     }
 }
