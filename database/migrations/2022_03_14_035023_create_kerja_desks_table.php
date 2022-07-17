@@ -37,7 +37,7 @@ class CreateKerjaDesksTable extends Migration
             $table->date('tanggal_sp2d');
             $table->string('no_adendum');
             $table->date('tanggal_sppbj');
-            $table->string('substansi_kontrak_1')->default(0);
+            $table->integer('substansi_kontrak_1')->default(0);
             $table->integer('substansi_kontrak_2')->default(0);
             $table->integer('substansi_kontrak_3')->default(0);
             $table->integer('substansi_kontrak_4')->default(0);

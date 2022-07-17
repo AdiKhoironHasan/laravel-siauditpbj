@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Visit;
 use App\Models\Berita;
 use App\Models\KerjaDesk;
+use App\Models\KerjaVisit;
 use App\Models\Rencana;
 use App\Models\Timeline;
 use Illuminate\Http\Request;
@@ -21,9 +22,11 @@ class TimelineController extends Controller
         $rencana = Rencana::where('id', $id)->first();
         $data['timeline'] =  Timeline::where('rencana_id', $id)->first();
         $data['kerja_desk'] = KerjaDesk::where('rencana_id', $rencana->id)->first();
-
+        $data['kerja_visit'] = '';
 
         if ($data['kerja_desk']) {
+            $data['kerja_visit'] = KerjaVisit::where('kerja_desk_id', $data['kerja_desk']->id)->first();
+
             $desk = Desk::where('kerja_desk_id', $data['kerja_desk']->id)->first();
             $data['desk'] = $desk;
             $data['visit'] = '';
@@ -45,6 +48,14 @@ class TimelineController extends Controller
     {
         return view('kerja_desk.index', [
             'title' => 'KKA Desk',
+            'rencana' => Rencana::where('id', $id)->first(),
+        ]);
+    }
+
+    public function kerjaVisit($id)
+    {
+        return view('kerja_visit.index', [
+            'title' => 'KKA Visit',
             'rencana' => Rencana::where('id', $id)->first(),
         ]);
     }

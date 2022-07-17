@@ -2,15 +2,16 @@
 
 namespace Database\Seeders;
 
+use App\Models\Desk;
+use App\Models\Unit;
+use App\Models\User;
+use App\Models\Visit;
 use App\Models\Barang;
 use App\Models\Rencana;
 use App\Models\Timeline;
-use App\Models\Unit;
-use Illuminate\Database\Seeder;
-use App\Models\User;
-use App\Models\Desk;
 use App\Models\KerjaDesk;
-use App\Models\Visit;
+use App\Models\KerjaVisit;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -50,6 +51,7 @@ class DatabaseSeeder extends Seeder
         Timeline::create([
             'rencana_id' => 1,
             'kerja_desk_id' => 1,
+            'kerja_visit_id' => 1,
             // 'desk_id' => 1,
             // 'visit_id' => 1
         ]);
@@ -143,6 +145,7 @@ class DatabaseSeeder extends Seeder
             "serah_terima_barang_2_1" => 1,
             "serah_terima_barang_3" => 1,
             "pembayaran_1" => 1,
+            "pembayaran_2" => 1,
             "pembayaran_3" => 1,
             "pembayaran_3_1" => 1,
             "denda_1" => 1,
@@ -153,6 +156,72 @@ class DatabaseSeeder extends Seeder
             "perpanjangan_waktu_1_1" => 1,
             "laporan_hasil_1" => 1,
             "laporan_hasil_2" => 1,
+        ]);
+
+        KerjaVisit::create([
+            "kerja_desk_id" => 1,
+            "unit_kerja" => "Dolores enim eveniet",
+            "tahun" => "2022",
+            "nama_paket" => "Et commodo deleniti",
+            "no_kontrak" => "Est sed consequatur",
+            "nilai_kontrak" => "Cupidatat do proiden",
+            "penyusunan_mutu_1" => 1,
+            "penyusunan_mutu_2" => 1,
+            "penyusunan_mutu_3" => 1,
+            "penyusunan_mutu_4" => 1,
+            "penyusunan_mutu_4_1" => 1,
+            "penyusunan_mutu_4_2" => 1,
+            "penyusunan_mutu_5" => "Modi sed eius labori",
+            "penyusunan_mutu_6" => 1,
+            "penyusunan_mutu_6_1" => 1,
+            "penyusunan_mutu_7" => "Velit aut elit nost",
+            "pemeriksaan_bersama_1" => 1,
+            "pemeriksaan_bersama_1_1" => 1,
+            "pemeriksaan_bersama_2" => "Laborum consequatur",
+            "pemeriksaan_bersama_3" => 1,
+            "pemeriksaan_bersama_3_1" => 1,
+            "pemeriksaan_bersama_4" => "Corporis doloremque",
+            "perubahan_kegiatan_1" => 1,
+            "perubahan_kegiatan_1_1" => 1,
+            "perubahan_kegiatan_1_2" => 1,
+            "perubahan_kegiatan_3" => "Odit cum est neque s",
+            "asuransi_1" => 1,
+            "asuransi_1_1" => 1,
+            "asuransi_2" => "Quibusdam aliquam fu",
+            "asuransi_3" => 1,
+            "asuransi_4" => "Excepteur obcaecati",
+            "pengiriman_1" => 1,
+            "pengiriman_2" => 1,
+            "pengiriman_3" => 1,
+            "pengiriman_3_1" => 1,
+            "pengiriman_4" => 1,
+            "pengiriman_4_1" => 1,
+            "pengiriman_5" => "Et optio voluptates",
+            "uji_coba_1" => 1,
+            "uji_coba_1_1" => 1,
+            "uji_coba_1_2" => 1,
+            "uji_coba_2" => 1,
+            "uji_coba_2_1" => 1,
+            "uji_coba_2_2" => 1,
+            "uji_coba_3" => 1,
+            "uji_coba_3_1" => 1,
+            "uji_coba_3_2" => 1,
+            "uji_coba_4" => "Odit quos proident",
+            "serah_terima_1" => 1,
+            "serah_terima_2" => 1,
+            "serah_terima_3" => 1,
+            "serah_terima_3_1" => 1,
+            "serah_terima_4" => "Et dolorum eveniet",
+            "denda_1" => 1,
+            "denda_1_1" => 1,
+            "denda_1_2" => 1,
+            "denda_3" => "Tempore totam natus",
+            "perpanjangan_1" => 1,
+            "perpanjangan_1_1" => 1,
+            "perpanjangan_2" => "Sint nostrud repell",
+            "laporan_1" => 1,
+            "laporan_2" => 1,
+            "laporan_3" => "Sint exercitation es",
         ]);
 
         // Desk::create([

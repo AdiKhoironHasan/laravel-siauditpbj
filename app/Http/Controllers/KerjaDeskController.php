@@ -186,6 +186,7 @@ class KerjaDeskController extends Controller
         Timeline::where('kerja_desk_id', $id)->update([
             'kerja_desk_id' => NULL,
             'desk_id' => NULL,
+            'kerja_visit_id' => NULL,
             'visit_id' => NULL
         ]);
         DB::commit();

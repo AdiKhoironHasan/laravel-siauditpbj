@@ -925,7 +925,7 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="pembayaran_3" id="pembayaran_3" value="1">
+                        <input type="checkbox" name="pembayaran_2" id="pembayaran_2" value="1">
                     </td>
                     <td style="width: 40%; text-align:left">DILENGKAPI BERITA ACARA HASIL UJI COBA</td>
                     <td colspan="2"></td>
@@ -1027,17 +1027,5 @@
     </div>
     <!-- /.card-body -->
 </div>
-
-<script>
-    $(document).ready(function(){
-    $('#substansi_kontrak_6').change(function () {
-        if ($(this).attr("checked")) {
-            $('#substansi_kontrak_6_1').attr('disabled', true);
-        } else {
-            $('#substansi_kontrak_6_1').attr('disabled', false);
-        }
-    });
-});
-</script>
 
 @endsection
