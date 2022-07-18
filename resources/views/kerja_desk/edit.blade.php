@@ -438,7 +438,7 @@
                     <td style="width: 40%; text-align:left">KONTRAK DITANDATANGANI PIHAK DIREKSI PENYEDIA</td>
                     <td style="width: 10%">
                         @if ($kerja_desk->substansi_kontrak_5_1 == 0)
-                        @if ($substansi_kontrak_5_1)
+                        @if ($substansi_kontrak_5)
                         <input type="checkbox" name="substansi_kontrak_5_1" id="substansi_kontrak_5_1" value="1">
                         @else
                         <input type="checkbox" name="substansi_kontrak_5_1" id="substansi_kontrak_5_1" value="1"

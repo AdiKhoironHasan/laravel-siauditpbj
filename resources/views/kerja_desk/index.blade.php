@@ -411,7 +411,7 @@
                     <td style="width: 10%">
                         <input type="checkbox" name="substansi_kontrak_5" id="substansi_kontrak_5" value="1">
                     </td>
-                    <td style="width: 40%; text-align:left">KONTRAK DITANDATANGANI PIHAK DIREKSI PENYEDIA</td>
+                    <td style="width: 40%; text-align:left">KONTRAK TIDAK DITANDATANGANI PIHAK DIREKSI PENYEDIA</td>
                     <td style="width: 10%">
                         <input type="checkbox" name="substansi_kontrak_5_1" id="substansi_kontrak_5_1" value="1"
                             disabled>
@@ -428,7 +428,7 @@
                         <input type="checkbox" name="substansi_kontrak_6_1" id="substansi_kontrak_6_1" value="1"
                             disabled>
                     </td>
-                    <td style="width: 40%; text-align:left">KESESUAIAN HIARARKI ACUAN</td>
+                    <td style="width: 40%; text-align:left">KETIDAKSESUAIAN HIARARKI ACUAN</td>
                 </tr>
             </table>
 

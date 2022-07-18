@@ -182,7 +182,7 @@ class KerjaDeskController extends Controller
         $rencana = $kerja_desk->rencana->id;
 
         DB::beginTransaction();
-        Desk::destroy($id);
+        KerjaDesk::destroy($id);
         Timeline::where('kerja_desk_id', $id)->update([
             'kerja_desk_id' => NULL,
             'desk_id' => NULL,

@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        {{-- <div>
                             <i
                                 class="fas fa-file-alt {{ $timeline->desk_id != null ? 'bg-success' : 'bg-danger' }}"></i>
                             <div class="timeline-item">
@@ -80,9 +80,12 @@
                                 <div class="timeline-footer ">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @canany(['admin', 'auditor'])
-                                        <a href="/rencana/timeline/desk/create/{{ $timeline->rencana->id }}"
+                                        <a href="/rencana/timeline/desk/create/{{ $timeline->kerja_desk_id }}"
+                                            class=" btn btn-primary btn-sm {{ $timeline->desk_id != null ? 'disabled' : '' }}">Create</a>
+                                        {{-- <a href="/rencana/timeline/desk/create/{{ $timeline->rencana->id }}"
                                             class=" btn btn-primary btn-sm {{ $timeline->desk_id != null ? 'disabled' : '' }}">Tambah</a>
-                                        <a href="/rencana/timeline/desk/{{ $desk != null ? $desk->id : '' }}/edit"
+                                        --}}
+                                        {{-- <a href="/rencana/timeline/desk/{{ $desk != null ? $desk->id : '' }}/edit"
                                             class="btn btn-info btn-sm {{ $timeline->desk_id != null ? '' : 'disabled' }}">Ubah</a>
                                         <form action="/rencana/timeline/desk/{{ $desk != null ? $desk->id : '' }}"
                                             method="POST">
@@ -99,7 +102,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div>
                             <i
                                 class="fas fa-file-alt {{ $timeline->kerja_visit_id != null ? 'bg-success' : 'bg-danger' }}"></i>
@@ -111,7 +114,7 @@
                                     {{ $timeline->kerja_visit_id != null ? 'Data Desk sudah diisi' : 'Data Desk belum
                                     diisi' }}
                                 </div>
-                                <div class="timeline-footer ">
+                                <div class="timeline-footer">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @canany(['admin', 'auditor'])
                                         <a href="/rencana/timeline/kerjavisit/create/{{ $timeline->rencana->id }}"

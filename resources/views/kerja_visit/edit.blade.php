@@ -154,6 +154,10 @@
     input {
         padding-left: 20px;
     }
+
+    textarea {
+        padding: 10px;
+    }
 </style>
 <div class="card card-primary">
     <div class="card-header">
@@ -168,7 +172,8 @@
         </div>
     </div>
     <div class="card-body">
-        <form action="/rencana/timeline/kerjavisit" method="POST">
+        <form action="/rencana/timeline/kerjavisit/{{ $kerja_visit->id }}" method="POST">
+            @method('PUT')
             @csrf
             <input type="hidden" name="rencana_id" id="rencana_id" value="{{ $rencana->id }}">
             <input type="hidden" name="kerja_desk_id" id="kerja_desk_id" value="{{ $rencana->kerja_desk->id }}">
@@ -237,7 +242,8 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="penyusunan_mutu_1" id="penyusunan_mutu_1" value="1">
+                        <input type="checkbox" name="penyusunan_mutu_1" id="penyusunan_mutu_1" value="1" {{
+                            $kerja_visit->penyusunan_mutu_1 != 0 ? 'checked':'' }}>
                     </td>
                     <td style="text-align: left">UNIT KERJA TERLIBAT AKTIF DALAM PENYUSUNAN MUTU YANG DISUSUN OLEH
                         PENYEDIA
@@ -249,14 +255,16 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="penyusunan_mutu_2" id="penyusunan_mutu_2" value="1">
+                        <input type="checkbox" name="penyusunan_mutu_2" id="penyusunan_mutu_2" value="1" {{
+                            $kerja_visit->penyusunan_mutu_2 != 0 ? 'checked':'' }}>
                     </td>
                     <td style="text-align: left">JADWAL PELAKSANAAN PEKERJAAN
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="penyusunan_mutu_3" id="penyusunan_mutu_3" value="1">
+                        <input type="checkbox" name="penyusunan_mutu_3" id="penyusunan_mutu_3" value="1" {{
+                            $kerja_visit->penyusunan_mutu_3 != 0 ? 'checked':'' }}>
                     </td>
                     <td style="text-align: left">PELAKSANAAN KERJA
                     </td>
@@ -265,11 +273,20 @@
             <table class="table table-borderless">
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="penyusunan_mutu_4" id="penyusunan_mutu_4" value="1">
+                        <input type="checkbox" name="penyusunan_mutu_4" id="penyusunan_mutu_4" value="1" {{
+                            $kerja_visit->penyusunan_mutu_4 != 0 ? 'checked':'' }}>
                     </td>
                     <td style="width: 40%; text-align:left">VERIFIKASI TERHADAP ORGANISASI PENYEDIA</td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->penyusunan_mutu_4_1 == 0)
+                        @if ($penyusunan_mutu_4)
+                        <input type="checkbox" name="penyusunan_mutu_4_1" id="penyusunan_mutu_4_1" value="1">
+                        @else
                         <input type="checkbox" name="penyusunan_mutu_4_1" id="penyusunan_mutu_4_1" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="penyusunan_mutu_4_1" id="penyusunan_mutu_4_1" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">ALAMAT
                     </td>
@@ -277,7 +294,15 @@
                 <tr>
                     <td colspan="2"></td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->penyusunan_mutu_4_2 == 0)
+                        @if ($penyusunan_mutu_4)
+                        <input type="checkbox" name="penyusunan_mutu_4_2" id="penyusunan_mutu_4_2" value="1">
+                        @else
                         <input type="checkbox" name="penyusunan_mutu_4_2" id="penyusunan_mutu_4_2" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="penyusunan_mutu_4_2" id="penyusunan_mutu_4_2" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">IDENTITAS PENYEDIA</td>
                 </tr>
@@ -286,18 +311,27 @@
                         KOMENTAR
                     </td>
                     <td colspan="3" style="text-align: left">
-                        <input type="textarea" style="height: 100px;width:100%" name="penyusunan_mutu_5"
-                            id="penyusunan_mutu_5">
+                        <textarea type="text" style="height: 100px;width:100%" name="penyusunan_mutu_5"
+                            id="penyusunan_mutu_5">{{ $kerja_visit->penyusunan_mutu_5 }}</textarea>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="penyusunan_mutu_6" id="penyusunan_mutu_6" value="1">
+                        <input type="checkbox" name="penyusunan_mutu_6" id="penyusunan_mutu_6" value="1" {{
+                            $penyusunan_mutu_6 !=0 ? 'checked' :'' }}>
                     </td>
                     <td style="width: 40%; text-align:left">ADA REVISI PROGRAM MUTU
                     </td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->penyusunan_mutu_6_1 == 0)
+                        @if ($penyusunan_mutu_6)
+                        <input type="checkbox" name="penyusunan_mutu_6_1" id="penyusunan_mutu_6_1" value="1">
+                        @else
                         <input type="checkbox" name="penyusunan_mutu_6_1" id="penyusunan_mutu_6_1" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="penyusunan_mutu_6_1" id="penyusunan_mutu_6_1" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">UNIT KERJA MENGETAHUI ADA REVISI PROGRAM MUTU
                     </td>
@@ -306,8 +340,9 @@
                     <td style="width: 10%" class="align-middle">
                         KOMENTAR
                     </td>
-                    <td colspan="3" style="text-align: left"><input type="textarea" style="height: 100px;width:100%"
-                            name="penyusunan_mutu_7" id="penyusunan_mutu_7">
+                    <td colspan="3" style="text-align: left">
+                        <textarea type="text" style="height: 100px;width:100%" name="penyusunan_mutu_7"
+                            id="penyusunan_mutu_7">{{ $kerja_visit->penyusunan_mutu_7 }}</textarea>
                     </td>
                 </tr>
 
@@ -316,14 +351,24 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="pemeriksaan_bersama_1" id="pemeriksaan_bersama_1" value="1">
+                        <input type="checkbox" name="pemeriksaan_bersama_1" id="pemeriksaan_bersama_1" value="1" {{
+                            $pemeriksaan_bersama_1 !=0 ? 'checked' :'' }}>
                     </td>
                     <td style="width: 40%; text-align:left">PPK BERSAMA PENYEDIA MELAKUKAN PEMERIKSAAN KONDISI LAPANGAN
                         PADA TAHAP AWAL PELAKSANAAN KONTRAK
                     </td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->pemeriksaan_bersama_1_1 == 0)
+                        @if ($pemeriksaan_bersama_1)
+                        <input type="checkbox" name="pemeriksaan_bersama_1_1" id="pemeriksaan_bersama_1_1" value="1">
+                        @else
                         <input type="checkbox" name="pemeriksaan_bersama_1_1" id="pemeriksaan_bersama_1_1" value="1"
                             disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="pemeriksaan_bersama_1_1" id="pemeriksaan_bersama_1_1" value="1"
+                            checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">MELIBATKAN UNIT KERJA
                     </td>
@@ -332,19 +377,30 @@
                     <td style="width: 10%" class="align-middle">
                         KOMENTAR
                     </td>
-                    <td colspan="3" style="text-align: left"><input type="textarea" style="height: 100px;width:100%"
-                            name="pemeriksaan_bersama_2" id="pemeriksaan_bersama_2">
+                    <td colspan="3" style="text-align: left">
+                        <textarea type="text" style="height: 100px;width:100%" name="pemeriksaan_bersama_2"
+                            id="pemeriksaan_bersama_2">{{ $kerja_visit->pemeriksaan_bersama_2 }}</textarea>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="pemeriksaan_bersama_3" id="pemeriksaan_bersama_3" value="1">
+                        <input type="checkbox" name="pemeriksaan_bersama_3" id="pemeriksaan_bersama_3" value="1" {{
+                            $pemeriksaan_bersama_3 !=0 ? 'checked' :'' }}>
                     </td>
                     <td style="width: 40%; text-align:left">PEMERIKSAAN BERSAMA MENGAKIBATKAN PERUBAHAN KONTRAK
                     </td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->pemeriksaan_bersama_3_1 == 0)
+                        @if ($pemeriksaan_bersama_3)
+                        <input type="checkbox" name="pemeriksaan_bersama_3_1" id="pemeriksaan_bersama_3_1" value="1">
+                        @else
                         <input type="checkbox" name="pemeriksaan_bersama_3_1" id="pemeriksaan_bersama_3_1" value="1"
                             disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="pemeriksaan_bersama_3_1" id="pemeriksaan_bersama_3_1" value="1"
+                            checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">UNIT KERJA MENGETAHUI ISI ADENDUM KONTRAK
                     </td>
@@ -353,8 +409,9 @@
                     <td style="width: 10%" class="align-middle">
                         KOMENTAR
                     </td>
-                    <td colspan="3" style="text-align: left"><input type="textarea" style="height: 100px;width:100%"
-                            name="pemeriksaan_bersama_4" id="pemeriksaan_bersama_4">
+                    <td colspan="3" style="text-align: left">
+                        <textarea type="text" style="height: 100px;width:100%" name="pemeriksaan_bersama_4"
+                            id="pemeriksaan_bersama_4">{{ $kerja_visit->pemeriksaan_bersama_4 }}</textarea>
                     </td>
                 </tr>
                 </tr>
@@ -363,13 +420,23 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="perubahan_kegiatan_1" id="perubahan_kegiatan_1" value="1">
+                        <input type="checkbox" name="perubahan_kegiatan_1" id="perubahan_kegiatan_1" value="1" {{
+                            $perubahan_kegiatan_1 !=0 ? 'checked' :'' }}>
                     </td>
                     <td style="width: 40%; text-align:left">ADA PERUBAHAN PEKERJAAN
                     </td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->perubahan_kegiatan_1_1 == 0)
+                        @if ($perubahan_kegiatan_1)
+                        <input type="checkbox" name="perubahan_kegiatan_1_1" id="perubahan_kegiatan_1_1" value="1">
+                        @else
                         <input type="checkbox" name="perubahan_kegiatan_1_1" id="perubahan_kegiatan_1_1" value="1"
                             disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="perubahan_kegiatan_1_1" id="perubahan_kegiatan_1_1" value="1"
+                            checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">UNIT KERJA MENGETAHUI ADANYA PERUBAHAN
                     </td>
@@ -377,8 +444,17 @@
                 <tr>
                     <td colspan="2"></td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->perubahan_kegiatan_1_2 == 0)
+                        @if ($perubahan_kegiatan_1)
+                        <input type="checkbox" name="perubahan_kegiatan_1_2" id="perubahan_kegiatan_1_2" value="1">
+                        @else
                         <input type="checkbox" name="perubahan_kegiatan_1_2" id="perubahan_kegiatan_1_2" value="1"
                             disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="perubahan_kegiatan_1_2" id="perubahan_kegiatan_1_2" value="1"
+                            checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">PERUBAHAN MENGACU PADA KETENTUAN YANG TERCANTUM DALAM
                         KONTRAK AWAL
@@ -388,8 +464,9 @@
                     <td style="width: 10%" class="align-middle">
                         KOMENTAR
                     </td>
-                    <td colspan="3" style="text-align: left"><input type="textarea" style="height: 100px;width:100%"
-                            name="perubahan_kegiatan_3" id="perubahan_kegiatan_3">
+                    <td colspan="3" style="text-align: left">
+                        <textarea type="text" style="height: 100px;width:100%" name="perubahan_kegiatan_3"
+                            id="perubahan_kegiatan_3">{{ $kerja_visit->perubahan_kegiatan_3 }}</textarea>
                     </td>
                 </tr>
                 </tr>
@@ -398,13 +475,22 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="asuransi_1" id="asuransi_1" value="1">
+                        <input type="checkbox" name="asuransi_1" id="asuransi_1" value="1" {{ $asuransi_1 !=0
+                            ? 'checked' :'' }}>
                     </td>
                     <td style="width: 40%; text-align:left">UNIT KERJA PERNAH MEMERIKSA BARANG-BARANG YANG DIKIRIMKAN
                         OLEH PENYEDIA TELAH DIASURANSIKAN
                     </td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->asuransi_1_1 == 0)
+                        @if ($asuransi_1)
+                        <input type="checkbox" name="asuransi_1_1" id="asuransi_1_1" value="1">
+                        @else
                         <input type="checkbox" name="asuransi_1_1" id="asuransi_1_1" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="asuransi_1_1" id="asuransi_1_1" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">ASURANSI SESUAI DENGAN KETENTUAN PERUNDANG-UNDANGAN YANG
                         BERLAKU YANG TERCANTUM DALAM KONTRAK AWAL
@@ -414,13 +500,16 @@
                     <td style="width: 10%" class="align-middle">
                         KOMENTAR
                     </td>
-                    <td colspan="3" style="text-align: left"><input type="textarea" style="height: 100px;width:100%"
-                            name="asuransi_2" id="asuransi_2">
+                    <td colspan="3" style="text-align: left">
+                        <textarea type="text" style="height: 100px;width:100%" name="asuransi_2"
+                            id="asuransi_2">{{ $kerja_visit->asuransi_2 }}</textarea>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="asuransi_3" id="asuransi_3" value="1">
+                        <input type="checkbox" name="asuransi_3" id="asuransi_3" value="1" {{ $kerja_visit->asuransi_3
+                        !=0
+                        ? 'checked' :'' }}>
                     </td>
                     <td colspan="3" style="width: 40%; text-align:left">UNIT KERJA SEBAGAI PENERIMA MANFAAT TELAH
                         DIJELASKAN DALAM DOKUMEN ASURANSI YANG DISESUAIKAN DENGAN KETENTUAN KONTRAK
@@ -430,8 +519,9 @@
                     <td style="width: 10%" class="align-middle">
                         KOMENTAR
                     </td>
-                    <td colspan="3" style="text-align: left"><input type="textarea" style="height: 100px;width:100%"
-                            name="asuransi_4" id="asuransi_4">
+                    <td colspan="3" style="text-align: left">
+                        <textarea type="text" style="height: 100px;width:100%" name="asuransi_4"
+                            id="asuransi_4">{{ $kerja_visit->asuransi_4 }}</textarea>
                     </td>
                 </tr>
                 <tr>
@@ -439,7 +529,8 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="pengiriman_1" id="pengiriman_1" value="1">
+                        <input type="checkbox" name="pengiriman_1" id="pengiriman_1" value="1" {{
+                            $kerja_visit->pengiriman_1 != 0 ? 'checked':'' }}>
                     </td>
                     <td colspan="3" style="width: 40%; text-align:left">PPK MEMBERIKAN INFORMASI KEPADA PPHP MENGENAI
                         JADWAL PENGIRIMAN BARANG
@@ -447,7 +538,8 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="pengiriman_2" id="pengiriman_2" value="1">
+                        <input type="checkbox" name="pengiriman_2" id="pengiriman_2" value="1" {{
+                            $kerja_visit->pengiriman_2 != 0 ? 'checked':'' }}>
                     </td>
                     <td colspan="3" style="width: 40%; text-align:left">PPHP MENGETAHUI SARANATRANSPORTASI YANG DIPAKAI
                         SESUAI DOKUMEN KONTRAK
@@ -455,12 +547,21 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="pengiriman_3" id="pengiriman_3" value="1">
+                        <input type="checkbox" name="pengiriman_3" id="pengiriman_3" value="1" {{ $pengiriman_3 !=0
+                            ? 'checked' :'' }}>
                     </td>
                     <td style="width: 40%; text-align:left">BARANG YANG DIKIRIM MUDAH RUSAK ATAU BERISIKO TINGGI
                     </td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->pengiriman_3_1 == 0)
+                        @if ($pengiriman_3)
+                        <input type="checkbox" name="pengiriman_3_1" id="pengiriman_3_1" value="1">
+                        @else
                         <input type="checkbox" name="pengiriman_3_1" id="pengiriman_3_1" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="pengiriman_3_1" id="pengiriman_3_1" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">PENYEDIA BARANG MEMBERIKAN INFORMASI KEPADA PPHP SECARA
                         RINCI TENTANG CARA PENANGANANNYA
@@ -468,12 +569,21 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="pengiriman_4" id="pengiriman_4" value="1">
+                        <input type="checkbox" name="pengiriman_4" id="pengiriman_4" value="1" {{ $pengiriman_4 !=0
+                            ? 'checked' :'' }}>
                     </td>
                     <td style="width: 40%; text-align:left">BARANG YANG DIKIRIM VERTEKNOLOGI TINGGI
                     </td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->pengiriman_4_1 == 0)
+                        @if ($pengiriman_4)
+                        <input type="checkbox" name="pengiriman_4_1" id="pengiriman_4_1" value="1">
+                        @else
                         <input type="checkbox" name="pengiriman_4_1" id="pengiriman_4_1" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="pengiriman_4_1" id="pengiriman_4_1" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">PENYEDIA BARANG MEMBERIKAN INFORMASI KEPADA PPHP SECARA
                         RINCI TENTANG CARA PEMAKAIANNYA
@@ -483,8 +593,9 @@
                     <td style="width: 10%" class="align-middle">
                         KOMENTAR
                     </td>
-                    <td colspan="3" style="text-align: left"><input type="textarea" style="height: 100px;width:100%"
-                            name="pengiriman_5" id="pengiriman_5">
+                    <td colspan="3" style="text-align: left">
+                        <textarea type="text" style="height: 100px;width:100%" name="pengiriman_5"
+                            id="pengiriman_5">{{ $kerja_visit->pengiriman_5 }}</textarea>
                     </td>
                 </tr>
                 <tr>
@@ -492,12 +603,21 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="uji_coba_1" id="uji_coba_1" value="1">
+                        <input type="checkbox" name="uji_coba_1" id="uji_coba_1" value="1" {{ $uji_coba_1 !=0
+                            ? 'checked' :'' }}>
                     </td>
                     <td style="width: 40%; text-align:left">SETELAH DIKIRIM, BARANG DIUJI-COBA OLEH PENYEDIA BARANG
                     </td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->uji_coba_1_1 == 0)
+                        @if ($uji_coba_1)
+                        <input type="checkbox" name="uji_coba_1_1" id="uji_coba_1_1" value="1">
+                        @else
                         <input type="checkbox" name="uji_coba_1_1" id="uji_coba_1_1" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="uji_coba_1_1" id="uji_coba_1_1" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">UJI COBA DISAKSIKAN PPHP
                     </td>
@@ -505,19 +625,36 @@
                 <tr>
                     <td colspan="2"></td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->uji_coba_1_2 == 0)
+                        @if ($uji_coba_1)
+                        <input type="checkbox" name="uji_coba_1_2" id="uji_coba_1_2" value="1">
+                        @else
                         <input type="checkbox" name="uji_coba_1_2" id="uji_coba_1_2" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="uji_coba_1_2" id="uji_coba_1_2" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">UJI COBA DITUANGKAN DALAM BERITA ACARA
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="uji_coba_2" id="uji_coba_2" value="1">
+                        <input type="checkbox" name="uji_coba_2" id="uji_coba_2" value="1" {{ $uji_coba_2 !=0
+                            ? 'checked' :'' }}>
                     </td>
                     <td style="width: 40%; text-align:left">UJI COBA PENGOPERASIAN BARANG MEMERLUKAN KEAHLIAN KHUSUS
                     </td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->uji_coba_2_1 == 0)
+                        @if ($uji_coba_2)
+                        <input type="checkbox" name="uji_coba_2_1" id="uji_coba_2_1" value="1">
+                        @else
                         <input type="checkbox" name="uji_coba_2_1" id="uji_coba_2_1" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="uji_coba_2_1" id="uji_coba_2_1" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">ADA PELATIHAN KEPADA PPHP
                     </td>
@@ -525,21 +662,37 @@
                 <tr>
                     <td colspan="2"></td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->uji_coba_2_2 == 0)
+                        @if ($uji_coba_2)
+                        <input type="checkbox" name="uji_coba_2_2" id="uji_coba_2_2" value="1">
+                        @else
                         <input type="checkbox" name="uji_coba_2_2" id="uji_coba_2_2" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="uji_coba_2_2" id="uji_coba_2_2" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">BIAYA PELATIHAN TERMASUK DALAM HARGA BARANG
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="uji_coba_3" id="uji_coba_3" value="1">
+                        <input type="checkbox" name="uji_coba_3" id="uji_coba_3" value="1" {{ $uji_coba_3 !=0
+                            ? 'checked' :'' }}>
                     </td>
                     <td style="width: 40%; text-align:left">HASIL UJI COBA TIDAK SESUAI DENGAN SPESIFIKASI YANG
-                        DITENTUKAN DI
-                        DALAM KONTRAK
+                        DITENTUKAN DI DALAM KONTRAK
                     </td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->uji_coba_3_1 == 0)
+                        @if ($uji_coba_3)
+                        <input type="checkbox" name="uji_coba_3_1" id="uji_coba_3_1" value="1">
+                        @else
                         <input type="checkbox" name="uji_coba_3_1" id="uji_coba_3_1" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="uji_coba_3_1" id="uji_coba_3_1" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">PPHP MEMERINTAHKAN PENYEDIA BARANG UNTUK
                         MEMPERBAIKI/MENGGANTI BARANG
@@ -548,7 +701,15 @@
                 <tr>
                     <td colspan="2"></td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->uji_coba_3_2 == 0)
+                        @if ($uji_coba_3)
+                        <input type="checkbox" name="uji_coba_3_2" id="uji_coba_3_2" value="1">
+                        @else
                         <input type="checkbox" name="uji_coba_3_2" id="uji_coba_3_2" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="uji_coba_3_2" id="uji_coba_3_2" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">BIAYA PERBAIKAN ATAU PENGGANTIAN SEPENUHNYA DITANGGUNG
                         PENYEDIA BARANG
@@ -558,8 +719,9 @@
                     <td style="width: 10%" class="align-middle">
                         KOMENTAR
                     </td>
-                    <td colspan="3" style="text-align: left"><input type="textarea" style="height: 100px;width:100%"
-                            name="uji_coba_4" id="uji_coba_4">
+                    <td colspan="3" style="text-align: left">
+                        <textarea type="text" style="height: 100px;width:100%" name="uji_coba_4"
+                            id="uji_coba_4">{{ $kerja_visit->uji_coba_4 }}</textarea>
                     </td>
                 </tr>
                 <tr>
@@ -567,7 +729,8 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="serah_terima_1" id="serah_terima_1" value="1">
+                        <input type="checkbox" name="serah_terima_1" id="serah_terima_1" value="1" {{
+                            $kerja_visit->serah_terima_1 != 0 ? 'checked':'' }}>
                     </td>
                     <td colspan="3" style="width: 40%; text-align:left">PPHP MENERIMA DAN MEMERIKSA BAST (BERITA ACARA
                         SERAH TERIMA) TERHADAP HASIL PEKERJAAN YANG TELAH DISELESAIKAN PENYEDIA
@@ -575,7 +738,8 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="serah_terima_2" id="serah_terima_2" value="1">
+                        <input type="checkbox" name="serah_terima_2" id="serah_terima_2" value="1" {{
+                            $kerja_visit->serah_terima_2 != 0 ? 'checked':'' }}>
                     </td>
                     <td colspan="3" style="width: 40%; text-align:left">WAKTU PENERIMAAN BARANG SESUAI DENGAN YANG
                         TERTERA DI KONTRAK YANG TERHITUNG SEJAK PENANDATANGANAN SP
@@ -583,12 +747,21 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="serah_terima_3" id="serah_terima_3" value="1">
+                        <input type="checkbox" name="serah_terima_3" id="serah_terima_3" value="1" {{ $serah_terima_3
+                            !=0 ? 'checked' :'' }}>
                     </td>
                     <td style="width: 40%; text-align:left">TERDAPAT CACAT / KEKURANGAN-KEKURANGAN HASIL PEKERJAAN
                     </td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->serah_terima_3_1 == 0)
+                        @if ($serah_terima_3)
+                        <input type="checkbox" name="serah_terima_3_1" id="serah_terima_3_1" value="1">
+                        @else
                         <input type="checkbox" name="serah_terima_3_1" id="serah_terima_3_1" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="serah_terima_3_1" id="serah_terima_3_1" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">PPHP MEMERINTAHKAN PENYEDIA BARANG UNTUK
                         MEMPERBAIKI/MENYELESAIKAN
@@ -598,8 +771,9 @@
                     <td style="width: 10%" class="align-middle">
                         KOMENTAR
                     </td>
-                    <td colspan="3" style="text-align: left"><input type="textarea" style="height: 100px;width:100%"
-                            name="serah_terima_4" id="serah_terima_4">
+                    <td colspan="3" style="text-align: left">
+                        <textarea type="text" style="height: 100px;width:100%" name="serah_terima_4"
+                            id="serah_terima_4">{{ $kerja_visit->serah_terima_4 }}</textarea>
                     </td>
                 </tr>
                 <tr>
@@ -607,12 +781,20 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="denda_1" id="denda_1" value="1">
+                        <input type="checkbox" name="denda_1" id="denda_1" value="1" {{ $denda_1 !=0 ? 'checked' :'' }}>
                     </td>
                     <td style="width: 40%; text-align:left">ADA KETERLAMBATAN PENYERAHAN BARANG
                     </td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->denda_1_1 == 0)
+                        @if ($denda_1)
+                        <input type="checkbox" name="denda_1_1" id="denda_1_1" value="1">
+                        @else
                         <input type="checkbox" name="denda_1_1" id="denda_1_1" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="denda_1_1" id="denda_1_1" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">PPHP MENGETAHUI ADA KETERLAMBATAN PENYERAHAN BARANG OLEH
                         PENYEDIA BARANG
@@ -621,7 +803,15 @@
                 <tr>
                     <td colspan="2"></td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->denda_1_2 == 0)
+                        @if ($denda_1)
+                        <input type="checkbox" name="denda_1_2" id="denda_1_2" value="1">
+                        @else
                         <input type="checkbox" name="denda_1_2" id="denda_1_2" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="denda_1_2" id="denda_1_2" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">PPHP MENGETAHUI BAHWA PENYEDIA BARANG WAJIB DIKENAKAN DENDA
                         SESUAI KETENTUAN YAG BERLAKU
@@ -631,8 +821,9 @@
                     <td style="width: 10%" class="align-middle">
                         KOMENTAR
                     </td>
-                    <td colspan="3" style="text-align: left"><input type="textarea" style="height: 100px;width:100%"
-                            name="denda_3" id="denda_3">
+                    <td colspan="3" style="text-align: left">
+                        <textarea type="text" style="height: 100px;width:100%" name="denda_3"
+                            id="denda_3">{{ $kerja_visit->denda_3 }}</textarea>
                     </td>
                 </tr>
                 <tr>
@@ -640,12 +831,21 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="perpanjangan_1" id="perpanjangan_1" value="1">
+                        <input type="checkbox" name="perpanjangan_1" id="perpanjangan_1" value="1" {{ $perpanjangan_1
+                            !=0 ? 'checked' :'' }}>
                     </td>
                     <td style="width: 40%; text-align:left">TERDAPAT PERPANJANGAN WAKTU PELAKSANAAN PEKERJAAN
                     </td>
                     <td style="width: 10%">
+                        @if ($kerja_visit->perpanjangan_1_1 == 0)
+                        @if ($perpanjangan_1)
+                        <input type="checkbox" name="perpanjangan_1_1" id="perpanjangan_1_1" value="1">
+                        @else
                         <input type="checkbox" name="perpanjangan_1_1" id="perpanjangan_1_1" value="1" disabled>
+                        @endif
+                        @else
+                        <input type="checkbox" name="perpanjangan_1_1" id="perpanjangan_1_1" value="1" checked>
+                        @endif
                     </td>
                     <td style="width: 40%; text-align:left">PPHP MENGETAHUI TERDAPAT PERSETUJUAN PERPANJANGAN WAKTU
                         PELAKSANAAN YANG DITUANGKAN DALAM KONTRAK
@@ -655,8 +855,9 @@
                     <td style="width: 10%" class="align-middle">
                         KOMENTAR
                     </td>
-                    <td colspan="3" style="text-align: left"><input type="textarea" style="height: 100px;width:100%"
-                            name="perpanjangan_2" id="perpanjangan_2">
+                    <td colspan="3" style="text-align: left">
+                        <textarea type="text" style="height: 100px;width:100%" name="perpanjangan_2"
+                            id="perpanjangan_2">{{ $kerja_visit->perpanjangan_2 }}</textarea>
                     </td>
                 </tr>
                 <tr>
@@ -664,7 +865,8 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="laporan_1" id="laporan_1" value="1">
+                        <input type="checkbox" name="laporan_1" id="laporan_1" value="1" {{ $kerja_visit->laporan_1 != 0
+                        ? 'checked':'' }}>
                     </td>
                     <td colspan="3" style="width: 40%; text-align:left">UNIT KERJA ATAU PPHP DIBERIKAN LAPORAN REALISASI
                         MENGENAI SELURUH AKTIVITAS PEKERJAAN OLEH PPK ATAU PENYEDIA BARANG
@@ -672,7 +874,8 @@
                 </tr>
                 <tr>
                     <td style="width: 10%">
-                        <input type="checkbox" name="laporan_2" id="laporan_2" value="1">
+                        <input type="checkbox" name="laporan_2" id="laporan_2" value="1" {{ $kerja_visit->laporan_2 != 0
+                        ? 'checked':'' }}>
                     </td>
                     <td colspan="3" style="width: 40%; text-align:left">UNIT KERJA MEMBUAT FOTO-FOTO ATAU DOKUMENTASI
                         TENTANG PELAKSANAAN PEKERJAAN, TERUTAMA PEKERJAAN YAG TIDAK SESUAI DENGAN PERENCANAAN
@@ -682,8 +885,9 @@
                     <td style="width: 10%" class="align-middle">
                         KOMENTAR
                     </td>
-                    <td colspan="3" style="text-align: left"><input type="textarea" style="height: 100px;width:100%"
-                            name="laporan_3" id="laporan_3">
+                    <td colspan="3" style="text-align: left">
+                        <textarea type="text" style="height: 100px;width:100%" name="laporan_3"
+                            id="laporan_3">{{ $kerja_visit->laporan_3 }}</textarea>
                     </td>
                 </tr>
             </table>

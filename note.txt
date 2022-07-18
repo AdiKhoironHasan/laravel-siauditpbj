@@ -43,6 +43,13 @@ PERTANYAAN?
 - konsep data kertas k
 - minta data unit lengkap
 
+RKA:
+auditor 123
+masa mon tgl awal sd tgl akhir
+tgl desk
+tgl visit
+
+
 Catatan Laporan:
 - Diagram:
     // - use case
@@ -57,3 +64,96 @@ KKA DESK:
 // table keterangan jaminan uang muka ganti enum
 // tambah field nama unit
 tambah auto rp
+
+unit -- (kka)
+tipe mon
+nama paket -- (kka)
+masa mon -- (rka)
+tanggal mon (rka)
+auditor 123 (rka)
+
+true = SUDAH SESUAI DENGAN PERATURAN
+
+1. Kontrak
+
+a. tgl sppbj >(14 hr) tgl kontrak = false
+b. BAHASA DAN REDAKSI TIDAK SESUAI,  ANGKA DAN HURUF TIDAK SESUAI,  TDK ADA PARAF SETIAP LEMBAR DOKUMEN KONTRAK,  TIDAK ADA MATERAI
+c. TIDAK ADA SURAT KUASA DARI DIREKSI
+d. ...
+
+1. surat pesanan
+a. tgl pesanan <(14 hr) tgl kontrak = false
+b. BELUM DI TTD PENYEDIA
+c. BELUM ADA MATERAI
+d. tgl disetujui >(7hr) tgl pesanan	LEBIH DARI 7 HARI SETELAH TGL SP
+
+2. penyusunan program mutu
+a.TIDAK ADA INFORMASI PENGADAAN BARANG, TIDAK ADA ORGANISASI KERJA PENYEDIA, TIDAK ADA JADWAL PELAKSANAAN PEKERJAAN, TIDAK ADA PROSEDUR PELAKSANAAN KEGIATAN, TIDAK ADA PROSEDUR INSTRUKSI KERJA, TIDAK ADA PELAKSANAAN KERJA
+
+3. pemeriksaan bersama
+a. TIDAK DILAKUKAN  ATAU TIDAK ADA BERITA ACARA
+
+4. pembayaran uang muka
+a. jaminan uang muka >5% dari uang muka = true
+b. keterangan jaminan uang muka->get(), false = BESARAN JAMINAN UANG MUKA TIDAK SESUAI
+
+
+5. uji coba barang
+a.  PENYEDIA TIDAK MELAKUKAN UJI COBA BARANG,
+
+6. serah terima barang
+a. BAST HASIL PEKERJAAN TIDAK ADA
+b. WAKTU PENERIMAAN BARAG MELEBIHI WAKTU YANG TERTERA DI KONTRAK
+
+kriteria
+persyaratan
+akar penyebab
+akibat
+rekomendasi
+tanggapan auditee
+rencana perbaikan
+
+kka desk -> kda desk -> (generate->simpan data) -> konfirmasi auditee + beri tanggapan -> kka visit -> kda visit -> (generate->simpan data) -> konfirmasi auditee oleh auditor + beri tanggapan -> berita acara
+
+
+KKA VISIT:
+penyusunan mutu
+1. komentar
+2. komentar
+
+pemeriksaan bersama
+1. komentar
+2. komentar
+
+perubahan KEGIATAN
+1.
+
+asuransi
+1.
+2.
+
+pengiriman
+1.
+
+uji coba
+1.
+
+serah terima
+1.
+
+denda
+1.
+
+perpanjangan
+1.
+
+Laporan
+1.
+
+kriteria
+persyaratan
+akar penyebab
+akibat
+rekomendasi
+tanggapan auditee
+rencana perbaikan
