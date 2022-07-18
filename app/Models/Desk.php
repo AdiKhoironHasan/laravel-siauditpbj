@@ -11,7 +11,7 @@ class Desk extends Model
 
     protected $guarded = ['id'];
 
-    public function kerjaDesk()
+    public function kerja_desk()
     {
         return $this->belongsTo(KerjaDesk::class);
     }

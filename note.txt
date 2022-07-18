@@ -94,7 +94,7 @@ a.TIDAK ADA INFORMASI PENGADAAN BARANG, TIDAK ADA ORGANISASI KERJA PENYEDIA, TID
 a. TIDAK DILAKUKAN  ATAU TIDAK ADA BERITA ACARA
 
 4. pembayaran uang muka
-a. jaminan uang muka >5% dari uang muka = true
+a. jaminan uang muka <5% dari uang muka = true
 b. keterangan jaminan uang muka->get(), false = BESARAN JAMINAN UANG MUKA TIDAK SESUAI
 
 

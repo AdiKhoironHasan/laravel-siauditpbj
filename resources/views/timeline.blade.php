@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div>
+                        <div>
                             <i
                                 class="fas fa-file-alt {{ $timeline->desk_id != null ? 'bg-success' : 'bg-danger' }}"></i>
                             <div class="timeline-item">
@@ -85,7 +85,7 @@
                                         {{-- <a href="/rencana/timeline/desk/create/{{ $timeline->rencana->id }}"
                                             class=" btn btn-primary btn-sm {{ $timeline->desk_id != null ? 'disabled' : '' }}">Tambah</a>
                                         --}}
-                                        {{-- <a href="/rencana/timeline/desk/{{ $desk != null ? $desk->id : '' }}/edit"
+                                        <a href="/rencana/timeline/desk/{{ $desk != null ? $desk->id : '' }}/edit"
                                             class="btn btn-info btn-sm {{ $timeline->desk_id != null ? '' : 'disabled' }}">Ubah</a>
                                         <form action="/rencana/timeline/desk/{{ $desk != null ? $desk->id : '' }}"
                                             method="POST">
@@ -102,7 +102,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                         <div>
                             <i
                                 class="fas fa-file-alt {{ $timeline->kerja_visit_id != null ? 'bg-success' : 'bg-danger' }}"></i>

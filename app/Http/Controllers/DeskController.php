@@ -42,7 +42,7 @@ class DeskController extends Controller
      */
     public function store(Request $request)
     {
-        return 0;
+        return abort(403);
         // $validatedData = $request->validate([
         //     'rencana_id' => 'required',
         //     'tipe_monitoring' => 'required',
@@ -109,7 +109,7 @@ class DeskController extends Controller
     {
         return view('desk.edit', [
             'title' => 'Data Desk',
-            'rencana' => Rencana::where('id', $desk->rencana_id)->first(),
+            'rencana' => Rencana::where('id', $desk->kerja_desk->rencana_id)->first(),
             'desk' => $desk,
             'ketua' => User::firstWhere('level', 'Ketua SPI')
         ]);
@@ -152,8 +152,6 @@ class DeskController extends Controller
             'akar_penyebab' => 'required',
             'akibat' => 'required',
             'rekomendasi' => 'required',
-            'tanggapan_auditee' => 'required',
-            'rencana_perbaikan' => 'required',
         ];
 
         $validatedData = $request->validate($rules);
@@ -217,17 +215,37 @@ class DeskController extends Controller
     {
         $kerja_desk = KerjaDesk::where('id', $id)->first();
 
+        $data_desk['kerja_desk_id'] = $kerja_desk->id;
+        $data_desk['masa_monitoring_awal'] = $kerja_desk->rencana->monitoring_awal;
+        $data_desk['masa_monitoring_akhir'] = $kerja_desk->rencana->monitoring_akhir;
+        $data_desk['tanggal_monitoring'] = $kerja_desk->rencana->tanggal_desk;
+
         $data_desk['kontrak_1'] = 'SUDAH SESUAI DENGAN PERATURAN';
         $data_desk['kontrak_2'] = 'SUDAH SESUAI DENGAN PERATURAN';
         $data_desk['kontrak_3'] = 'SUDAH SESUAI DENGAN PERATURAN';
         $data_desk['kontrak_4'] = 'SUDAH SESUAI DENGAN PERATURAN';
         $data_desk['surat_pesanan_1'] = 'SUDAH SESUAI DENGAN PERATURAN';
+        $data_desk['surat_pesanan_2'] = 'SUDAH SESUAI DENGAN PERATURAN';
+        $data_desk['surat_pesanan_3'] = 'SUDAH SESUAI DENGAN PERATURAN';
+        $data_desk['surat_pesanan_4'] = 'SUDAH SESUAI DENGAN PERATURAN';
+        $data_desk['penyusunan_program_mutu'] = 'SUDAH SESUAI DENGAN PERATURAN';
+        $data_desk['pemeriksaan_bersama'] = 'SUDAH SESUAI DENGAN PERATURAN';
+        $data_desk['pembayaran_uang_muka_1'] = 'SUDAH SESUAI DENGAN PERATURAN';
+        $data_desk['pembayaran_uang_muka_2'] = 'SUDAH SESUAI DENGAN PERATURAN';
+        $data_desk['uji_coba_barang'] = 'SUDAH SESUAI DENGAN PERATURAN';
+        $data_desk['serah_terima_barang_1'] = 'SUDAH SESUAI DENGAN PERATURAN';
+        $data_desk['serah_terima_barang_2'] = 'SUDAH SESUAI DENGAN PERATURAN';
 
         if ((Carbon::parse($kerja_desk->tanggal_kontrak)->diffInDays(Carbon::parse($kerja_desk->tanggal_sppbj))) > 14) {
             $data_desk['kontrak_1'] = 'LEBIH DARI 14 HARI SEJAK PENANDATANGANAN KONTRAK';
         }
 
-        if ($kerja_desk->substansi_kontrak_1 != 0 || $kerja_desk->substansi_kontrak_2 != 0 || $kerja_desk->substansi_kontrak_3 != 0 || $kerja_desk->substansi_kontrak_4 != 0) {
+        if (
+            $kerja_desk->substansi_kontrak_1 != 0 ||
+            $kerja_desk->substansi_kontrak_2 != 0 ||
+            $kerja_desk->substansi_kontrak_3 != 0 ||
+            $kerja_desk->substansi_kontrak_4 != 0
+        ) {
             $data_desk['kontrak_2'] = '';
             // dd('mun');
             if ($kerja_desk->substansi_kontrak_1 != 0) {
@@ -237,10 +255,10 @@ class DeskController extends Controller
                 $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'ANGKA DAN HURUF TIDAK SESUAI, ';
             }
             if ($kerja_desk->substansi_kontrak_3 != 0) {
-                $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'TDK ADA PARAF SETIAP LEMBAR DOKUMEN KONTRAK, ';
+                $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'TIDAK ADA PARAF SETIAP LEMBAR DOKUMEN KONTRAK, ';
             }
             if ($kerja_desk->substansi_kontrak_4 != 0) {
-                $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'TIDAK ADA MATERAI, ';
+                $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'TIDAK ADA MATERAI ';
             }
         }
 
@@ -255,45 +273,77 @@ class DeskController extends Controller
         if ((Carbon::parse($kerja_desk->tanggal_surat)->diffInDays(Carbon::parse($kerja_desk->tanggal_kontrak))) > 14) {
             $data_desk['surat_pesanan_1'] = 'TANGGAL TIDAK DIISI/LEBIH DARI 14 HARI SETELAH TANGGAL KONTRAK';
         }
-        // dd(Carbon::parse($kerja_desk->tanggal_surat)->diffInDays(Carbon::parse($kerja_desk->tanggal_kontrak)));
-        dd($data_desk['kontrak_2']);
 
+        if ($kerja_desk->surat_pesanan_1 != 0) {
+            $data_desk['surat_pesanan_2'] = 'BELUM DI TTD PENYEDIA';
+        }
 
-        $a = 'A, ';
-        $a = $a . 'B, ';
+        if ($kerja_desk->surat_pesanan_2 != 0) {
+            $data_desk['surat_pesanan_3'] = 'BELUM ADA MATERAI';
+        }
 
-        dd($a);
+        if ((Carbon::parse($kerja_desk->tanggal_surat)->diffInDays(Carbon::parse($kerja_desk->tanggal_disetujui))) > 7) {
+            $data_desk['surat_pesanan_4'] = 'LEBIH DARI 7 HARI SETELAH TANGGAL SURAT PESANAN';
+        }
 
+        if (
+            $kerja_desk->penyusunan_program_mutu_1 != 1 ||
+            $kerja_desk->penyusunan_program_mutu_2 != 1 ||
+            $kerja_desk->penyusunan_program_mutu_3 != 1 ||
+            $kerja_desk->penyusunan_program_mutu_4 != 1 ||
+            $kerja_desk->penyusunan_program_mutu_5 != 1 ||
+            $kerja_desk->penyusunan_program_mutu_6 != 1
+        ) {
+            $data_desk['penyusunan_program_mutu'] = '';
 
-        $data_desk = [
-            'kerja_desk_id' => 'required',
-            'tipe_monitoring' => 'required',
-            'masa_monitoring_awal' => 'required',
-            'masa_monitoring_akhir' => 'required',
-            'tanggal_monitoring' => 'required',
-            'kontrak_1' => 'required',
-            'kontrak_2' => 'required',
-            'kontrak_3' => 'required',
-            'kontrak_4' => 'required',
-            'surat_pesanan_1' => 'required',
-            'surat_pesanan_2' => 'required',
-            'surat_pesanan_3' => 'required',
-            'surat_pesanan_4' => 'required',
-            'penyusunan_program_mutu' => 'required',
-            'pemeriksaan_bersama' => 'required',
-            'pembayaran_uang_muka_1' => 'required',
-            'pembayaran_uang_muka_2' => 'required',
-            'uji_coba_barang' => 'required',
-            'serah_terima_barang_1' => 'required',
-            'serah_terima_barang_2' => 'required',
-            'catatan' => 'required',
-            'kriteria' => 'required',
-            'akar_penyebab' => 'required',
-            'akibat' => 'required',
-            'rekomendasi' => 'required',
-            'tanggapan_auditee' => 'required',
-            'rencana_perbaikan' => 'required',
-        ];
+            if ($kerja_desk->penyusunan_program_mutu_1 != 1) {
+                $data_desk['penyusunan_program_mutu'] = $data_desk['penyusunan_program_mutu'] . 'TIDAK ADA INFORMASI PENGADAAN BARANG, ';
+            }
+            if ($kerja_desk->penyusunan_program_mutu_2 != 1) {
+                $data_desk['penyusunan_program_mutu'] = $data_desk['penyusunan_program_mutu'] . 'TIDAK ADA ORGANISASI KERJA PENYEDIA, ';
+            }
+            if ($kerja_desk->penyusunan_program_mutu_3 != 1) {
+                $data_desk['penyusunan_program_mutu'] = $data_desk['penyusunan_program_mutu'] . 'TIDAK ADA JADWAL PELAKSANAAN PEKERJAAN, ';
+            }
+            if ($kerja_desk->penyusunan_program_mutu_4 != 1) {
+                $data_desk['penyusunan_program_mutu'] = $data_desk['penyusunan_program_mutu'] . 'TIDAK ADA PROSEDUR PELAKSANAAN KEGIATAN, ';
+            }
+            if ($kerja_desk->penyusunan_program_mutu_5 != 1) {
+                $data_desk['penyusunan_program_mutu'] = $data_desk['penyusunan_program_mutu'] . 'TIDAK ADA PROSEDUR INSTRUKSI KERJA, ';
+            }
+            if ($kerja_desk->penyusunan_program_mutu_6 != 1) {
+                $data_desk['penyusunan_program_mutu'] = $data_desk['penyusunan_program_mutu'] . 'TIDAK ADA PELAKSANAAN KERJA';
+            }
+        }
+
+        if ($kerja_desk->pemeriksaan_bersama_1 != 1) {
+            $data_desk['pemeriksaan_bersama'] = 'TIDAK DILAKUKAN  ATAU TIDAK ADA BERITA ACARA';
+        }
+
+        if ((($kerja_desk->jaminan_uang_muka / $kerja_desk->uang_muka) * 100) < 5) {
+            $data_desk['pembayaran_uang_muka_1'] = 'BESARAN UANG MUKA TIDAK SESUAI';
+        }
+
+        if ($kerja_desk->keterangan_jaminan_uang_muka) {
+            $data_desk['pembayaran_uang_muka_2'] = 'BESARAN JAMINAN UANG MUKA TIDAK SESUAI';
+        }
+
+        if ($kerja_desk->uji_coba_barang_1 != 1) {
+            $data_desk['uji_coba_barang'] = 'PENYEDIA TIDAK MELAKUKAN UJI COBA BARANG';
+        }
+
+        if ($kerja_desk->serah_terima_barang_1_1 != 1) {
+            $data_desk['serah_terima_barang_1'] = 'BAST HASIL PEKERJAAN TIDAK ADA';
+        }
+
+        if ($kerja_desk->serah_terima_barang_3 != 1) {
+            $data_desk['serah_terima_barang_2'] = 'WAKTU PENERIMAAN BARAG MELEBIHI WAKTU YANG TERTERA DI KONTRAK';
+        }
+
+        $desk = Desk::create($data_desk);
+        Timeline::where('kerja_desk_id', $id)->update([
+            'desk_id' => $desk->id,
+        ]);
 
         return $id;
     }

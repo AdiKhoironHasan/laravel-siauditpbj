@@ -16,7 +16,7 @@ class CreateDesksTable extends Migration
         Schema::create('desks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kerja_desk_id')->unique()->constrained()->cascadeOnDelete();
-            $table->string('tipe_monitoring');
+            $table->string('tipe_monitoring')->nullable();
             $table->date('masa_monitoring_awal');
             $table->date('masa_monitoring_akhir');
             $table->date('tanggal_monitoring');
@@ -35,13 +35,13 @@ class CreateDesksTable extends Migration
             $table->string('uji_coba_barang');
             $table->string('serah_terima_barang_1');
             $table->string('serah_terima_barang_2');
-            $table->string('catatan');
-            $table->string('kriteria');
-            $table->string('akar_penyebab');
-            $table->string('akibat');
-            $table->string('rekomendasi');
-            $table->string('tanggapan_auditee');
-            $table->string('rencana_perbaikan');
+            $table->string('catatan')->nullable();
+            $table->string('kriteria')->nullable();
+            $table->string('akar_penyebab')->nullable();
+            $table->string('akibat')->nullable();
+            $table->string('rekomendasi')->nullable();
+            $table->string('tanggapan_auditee')->nullable();
+            $table->string('rencana_perbaikan')->nullable();
             $table->timestamps();
         });
     }
