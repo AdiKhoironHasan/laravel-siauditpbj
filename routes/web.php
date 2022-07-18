@@ -60,6 +60,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/rencana/timeline/visit/create/{id}', [TimelineController::class, 'visit']);
     });
 
+    Route::post('/rencana/timeline/desk/confirm/{id}', [TimelineController::class, 'confirmDesk']);
+
     Route::middleware('auditee')->group(function () {
         Route::resource('/barang', BarangController::class);
         Route::post('/rencana/timeline/confirm/{id}', [TimelineController::class, 'confirm']);

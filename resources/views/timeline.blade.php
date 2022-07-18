@@ -105,6 +105,40 @@
                         </div>
                         <div>
                             <i
+                                class="fas fa-check-double {{ $timeline->rencana->status === 'Belum Terlaksana' ? 'bg-danger' : 'bg-success' }}"></i>
+                            <div class="timeline-item">
+                                <h3 class="timeline-header"><b>Konfirmasi Data Audit</b> <i class="fas"></i>
+                                </h3>
+                                {{-- @if (Auth::user()->level == "Auditee" ) --}}
+                                <div class="timeline-body">
+                                    {{-- <form action="/rencana/timeline/confirm/{{ $timeline->rencana->id }}"
+                                        method="POST">
+                                        @csrf
+                                        <input type="hidden" name="visit_id" id="visit_id"
+                                            value="{{ $visit != null ? $visit->id : '' }}">
+                                        <select type="text" name="status" class="form-control" required {{
+                                            $timeline->visit_id === null || $timeline->berita_id != null ? 'disabled' :
+                                            '' }}>
+                                            <option selected hidden value="">--Pilih Aksi--</option>
+                                            <option value="Disetujui">Terima</option>
+                                            <option value="Tidak Disetujui">Tolak</option>
+                                        </select> --}}
+                                        <button type="submit" class="btn btn-sm btn-primary mt-2" data-toggle="modal"
+                                            data-target="#modal-konfirmasi-desk" {{ ($timeline->konfirmasi_desk != 0 ||
+                                            $timeline->desk_id == null) ? 'disabled' : '' }}>Konfirmasi</button>
+                                        {{--
+                                    </form> --}}
+                                </div>
+                                {{-- @else
+                                <div class="timeline-body">
+                                    {{$timeline->berita_id != null ? 'Data sudah dikonfirmasi' : 'Data belum
+                                    dikonfirmasi'}}
+                                </div>
+                                @endif --}}
+                            </div>
+                        </div>
+                        <div>
+                            <i
                                 class="fas fa-file-alt {{ $timeline->kerja_visit_id != null ? 'bg-success' : 'bg-danger' }}"></i>
                             <div class="timeline-item">
                                 <h3 class="timeline-header"><b>Pengisian Kertas Kerja Audit Visit</b> <i
@@ -239,6 +273,7 @@
         </div>
     </div>
 </div>
+@include('partials.modal-konfirmasi-desk')
 @else
 Tidak ada data
 @endif

@@ -11,6 +11,7 @@ use App\Models\KerjaVisit;
 use App\Models\Rencana;
 use App\Models\Timeline;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -78,8 +79,33 @@ class TimelineController extends Controller
         ]);
     }
 
+    public function confirmDesk($id, Request $request)
+    {
+        $rules = [
+            'desk_id' => 'required',
+            'status' => 'required',
+            'rencana_perbaikan' => 'required',
+            'tanggapan_auditee' => 'required'
+        ];
+        // Arr::except($array, ['price']);
+
+        $rules = Arr::except($rules, ['desk_id', 'status']);
+
+        $validatedData = $request->validate($rules);
+
+        Desk::where('id', $request->desk_id)->update($validatedData);
+
+        Timeline::where('rencana_id', $id)->update([
+            'konfirmasi_desk' => 1
+        ]);
+
+        return redirect('/rencana/timeline/' . $id)->with('success', 'Data Audit berhasil dikonfirmasi!');
+    }
+
     public function confirm($id, Request $request)
     {
+        return ($request->visit_id);
+
         $rules = [
             'visit_id' => 'required',
             'status' => 'required',

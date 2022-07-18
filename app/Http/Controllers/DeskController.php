@@ -156,9 +156,10 @@ class DeskController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        // dd($desk);
-
         Desk::where('id', $desk->id)->update($validatedData);
+        Timeline::where('rencana_id', $desk->kerja_desk->rencana_id)->update([
+            'desk_id' => $desk->id,
+        ]);
 
         return redirect('/rencana/timeline/' . $request->rencana_id)->with('success', 'Data Desk berhasil diubah!');
     }
@@ -171,7 +172,7 @@ class DeskController extends Controller
      */
     public function destroy(Desk $desk)
     {
-        $rencana = $desk->rencana->id;
+        $rencana = $desk->kerja_desk->rencana->id;
 
         DB::beginTransaction();
         Desk::destroy($desk->id);
@@ -341,10 +342,15 @@ class DeskController extends Controller
         }
 
         $desk = Desk::create($data_desk);
-        Timeline::where('kerja_desk_id', $id)->update([
-            'desk_id' => $desk->id,
-        ]);
+        // Timeline::where('kerja_desk_id', $id)->update([
+        //     'desk_id' => $desk->id,
+        // ]);
 
-        return $id;
+        return view('desk.generate', [
+            'title' => 'Data Desk',
+            'rencana' => Rencana::where('id', $desk->kerja_desk->rencana_id)->first(),
+            'ketua' => User::firstWhere('level', 'Ketua SPI'),
+            'desk' => $desk,
+        ]);
     }
 }
