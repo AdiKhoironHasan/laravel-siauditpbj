@@ -43,9 +43,12 @@ class DatabaseSeeder extends Seeder
             'auditor2_id' => 3,
             'auditor3_id' => 4,
             'auditee_id' => 5,
+            'monitoring_awal' => '2020-03-13',
+            'monitoring_akhir' => '2020-03-13',
+            'tanggal_desk' => '2020-03-13',
+            'tanggal_visit' => '2020-03-13',
             'status' => 'Belum Terlaksana',
             'tahun' => 2020,
-            'tanggal' => '2020-03-13'
         ]);
 
         Timeline::create([
@@ -165,7 +168,7 @@ class DatabaseSeeder extends Seeder
             "nama_paket" => "Et commodo deleniti",
             "no_kontrak" => "Est sed consequatur",
             "nilai_kontrak" => "Cupidatat do proiden",
-            "tanggal_kontrak" => "2022-08-02",
+            "tanggal_kontrak" => "2022-02-12",
             "nama_penyedia" => "In consequatur volu",
             "nilai_hps" => "Aut perferendis volu",
             "nilai_penawaran" => "Nobis facere quisqua",
@@ -180,7 +183,7 @@ class DatabaseSeeder extends Seeder
             "masa_jaminan_2" => "1985-12-23",
             "tanggal_sp2d" => "1982-02-14",
             "no_adendum" => "Minima enim nostrud",
-            "tanggal_sppbj" => "1979-09-15",
+            "tanggal_sppbj" => "2022-08-15",
             "substansi_kontrak_1" => 1,
             "substansi_kontrak_2" => 1,
             "substansi_kontrak_3" => 1,
@@ -196,7 +199,7 @@ class DatabaseSeeder extends Seeder
             "substansi_kontrak_6_1_5" => 1,
             "substansi_kontrak_6_1_6" => 1,
             "substansi_kontrak_6_1_7" => 1,
-            "tanggal_surat" => "1989-07-27",
+            "tanggal_surat" => "2022-02-10",
             "durasi_penerimaan" => 20,
             "tanggal_disetujui" => "1989-07-27",
             "surat_pesanan_1" => 1,

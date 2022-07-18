@@ -67,11 +67,11 @@
                         </div>
                     </td>
                 </tr>
-                {{-- @include('partials.rencana.modal-rencana-edit') --}}
+                @include('partials.rencana.modal-rencana-edit')
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
-{{-- @include('partials.rencana.modal-rencana-tambah') --}}
+@include('partials.rencana.modal-rencana-tambah')
 @endsection

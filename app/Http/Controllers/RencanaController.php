@@ -22,33 +22,33 @@ class RencanaController extends Controller
      */
     public function index()
     {
-        if (Gate::denies('auditee')) {
-            // $barang = DB::table('barangs')
-            //     ->whereNotExists(function ($query) {
-            //         $query->select(DB::raw(1))
-            //             ->from('rencanas')
-            //             ->whereColumn('rencanas.barang_id', '=', 'barangs.id');
-            //     })
-            //     ->get();
-            $rencana = Rencana::all();
-        } else {
-            // $barang = DB::table('barangs')
-            //     ->whereNotExists(function ($query) {
-            //         $query->select(DB::raw(1))
-            //             ->from('rencanas')
-            //             ->whereColumn('rencanas.barang_id', '=', 'barangs.id');
-            //     })
-            //     ->where('unit_id', Auth::user()->unit->first()->id)
-            //     ->get();
-            $rencana = Rencana::whereHas('barang', function (Builder $qr) {
-                $qr->where('unit_id', Auth::user()->unit->first()->id);
-            })->get();
-        }
+        // if (Gate::denies('auditee')) {
+        // $barang = DB::table('barangs')
+        //     ->whereNotExists(function ($query) {
+        //         $query->select(DB::raw(1))
+        //             ->from('rencanas')
+        //             ->whereColumn('rencanas.barang_id', '=', 'barangs.id');
+        //     })
+        //     ->get();
+        $rencana = Rencana::all();
+        // } else {
+        // $barang = DB::table('barangs')
+        //     ->whereNotExists(function ($query) {
+        //         $query->select(DB::raw(1))
+        //             ->from('rencanas')
+        //             ->whereColumn('rencanas.barang_id', '=', 'barangs.id');
+        //     })
+        //     ->where('unit_id', Auth::user()->unit->first()->id)
+        //     ->get();
+        // $rencana = Rencana::whereHas('barang', function (Builder $qr) {
+        //     $qr->where('unit_id', Auth::user()->unit->first()->id);
+        // })->get();
+        // }
 
         return view('rencana', [
             'title' => 'Rencana Kerja Audit',
             'rencanas' => $rencana,
-            // 'barangs' => $barang,
+            'auditees' => User::where('level', 'Auditee')->get(),
             'auditors' => User::where('level', 'Ketua SPI')->orWhere('level', 'Auditor')->get()
         ]);
     }
@@ -74,12 +74,15 @@ class RencanaController extends Controller
         $this->authorize('admin');
 
         $validatedData = $request->validate([
-            'barang_id' => 'required|unique:rencanas',
             'auditor1_id' => 'required',
             'auditor2_id' => 'required',
             'auditor3_id' => 'required',
+            'auditee_id' => 'required',
+            'monitoring_awal' => 'required',
+            'monitoring_akhir' => 'required',
+            'tanggal_desk' => 'required',
+            'tanggal_visit' => 'required',
             'tahun' => 'required',
-            'tanggal' => 'required',
         ]);
 
         $validatedData['status'] = 'Belum Terlaksana';
@@ -127,12 +130,15 @@ class RencanaController extends Controller
         if (Gate::any(['admin', 'auditor'])) {
 
             $rules = [
-                'barang_id' => 'required',
                 'auditor1_id' => 'required',
                 'auditor2_id' => 'required',
                 'auditor3_id' => 'required',
+                'auditee_id' => 'required',
+                'monitoring_awal' => 'required',
+                'monitoring_akhir' => 'required',
+                'tanggal_desk' => 'required',
+                'tanggal_visit' => 'required',
                 'tahun' => 'required',
-                'tanggal' => 'required',
             ];
 
             $validatedData = $request->validate($rules);

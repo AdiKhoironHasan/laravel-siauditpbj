@@ -8,6 +8,7 @@ use App\Models\KerjaDesk;
 use App\Models\User;
 use App\Models\Rencana;
 use App\Models\Timeline;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -216,6 +217,52 @@ class DeskController extends Controller
     {
         $kerja_desk = KerjaDesk::where('id', $id)->first();
 
+        $data_desk['kontrak_1'] = 'SUDAH SESUAI DENGAN PERATURAN';
+        $data_desk['kontrak_2'] = 'SUDAH SESUAI DENGAN PERATURAN';
+        $data_desk['kontrak_3'] = 'SUDAH SESUAI DENGAN PERATURAN';
+        $data_desk['kontrak_4'] = 'SUDAH SESUAI DENGAN PERATURAN';
+        $data_desk['surat_pesanan_1'] = 'SUDAH SESUAI DENGAN PERATURAN';
+
+        if ((Carbon::parse($kerja_desk->tanggal_kontrak)->diffInDays(Carbon::parse($kerja_desk->tanggal_sppbj))) > 14) {
+            $data_desk['kontrak_1'] = 'LEBIH DARI 14 HARI SEJAK PENANDATANGANAN KONTRAK';
+        }
+
+        if ($kerja_desk->substansi_kontrak_1 != 0 || $kerja_desk->substansi_kontrak_2 != 0 || $kerja_desk->substansi_kontrak_3 != 0 || $kerja_desk->substansi_kontrak_4 != 0) {
+            $data_desk['kontrak_2'] = '';
+            // dd('mun');
+            if ($kerja_desk->substansi_kontrak_1 != 0) {
+                $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'BAHASA DAN REDAKSI TIDAK SESUAI, ';
+            }
+            if ($kerja_desk->substansi_kontrak_2 != 0) {
+                $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'ANGKA DAN HURUF TIDAK SESUAI, ';
+            }
+            if ($kerja_desk->substansi_kontrak_3 != 0) {
+                $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'TDK ADA PARAF SETIAP LEMBAR DOKUMEN KONTRAK, ';
+            }
+            if ($kerja_desk->substansi_kontrak_4 != 0) {
+                $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'TIDAK ADA MATERAI, ';
+            }
+        }
+
+        if ($kerja_desk->kontrak_5_1 != 0) {
+            $data_desk['kontrak_3'] = 'TIDAK ADA SURAT KUASA DARI DIREKSI';
+        }
+
+        if ($kerja_desk->kontrak_6_1 != 0) {
+            $data_desk['kontrak_4'] = 'ADA KETIDAKSESUAIAN HIERARKI ACUAN';
+        }
+
+        if ((Carbon::parse($kerja_desk->tanggal_surat)->diffInDays(Carbon::parse($kerja_desk->tanggal_kontrak))) > 14) {
+            $data_desk['surat_pesanan_1'] = 'TANGGAL TIDAK DIISI/LEBIH DARI 14 HARI SETELAH TANGGAL KONTRAK';
+        }
+        // dd(Carbon::parse($kerja_desk->tanggal_surat)->diffInDays(Carbon::parse($kerja_desk->tanggal_kontrak)));
+        dd($data_desk['kontrak_2']);
+
+
+        $a = 'A, ';
+        $a = $a . 'B, ';
+
+        dd($a);
 
 
         $data_desk = [
