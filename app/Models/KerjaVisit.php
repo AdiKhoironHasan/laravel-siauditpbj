@@ -15,6 +15,11 @@ class KerjaVisit extends Model
         return $this->hasOne(Visit::class);
     }
 
+    public function berita()
+    {
+        return $this->hasOne(Berita::class);
+    }
+
     public function kerja_desk()
     {
         return $this->belongsTo(KerjaDesk::class);

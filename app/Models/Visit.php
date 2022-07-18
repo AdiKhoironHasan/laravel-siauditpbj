@@ -11,8 +11,8 @@ class Visit extends Model
 
     protected $guarded = ['id'];
 
-    public function  desk()
+    public function  kerja_visit()
     {
-        return $this->belongsTo(Desk::class);
+        return $this->belongsTo(KerjaVisit::class);
     }
 }

@@ -11,8 +11,8 @@ class Berita extends Model
 
     protected $guarded = ['id'];
 
-    public function  visit()
+    public function  kerja_visit()
     {
-        return $this->belongsTo(Visit::class);
+        return $this->belongsTo(KerjaVisit::class);
     }
 }

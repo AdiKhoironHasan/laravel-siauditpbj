@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Visit;
 use App\Models\Berita;
+use App\Models\KerjaVisit;
 use App\Models\Rencana;
 use App\Models\Timeline;
 use Illuminate\Http\Request;
@@ -103,7 +104,7 @@ class VisitController extends Controller
         return view('visit.edit', [
             'title' => 'Data Visit',
             'visit' => $visit,
-            'rencana' => Rencana::where('id', $visit->desk->rencana_id)->first(),
+            'rencana' => Rencana::where('id', $visit->kerja_visit->kerja_desk->rencana_id)->first(),
             'ketua' => User::where('level', 'Ketua SPI')->first()
         ]);
     }
@@ -140,14 +141,15 @@ class VisitController extends Controller
             'akar_penyebab' => 'required',
             'akibat' => 'required',
             'rekomendasi' => 'required',
-            'tanggapan_auditee' => 'required',
-            'rencana_perbaikan' => 'required',
         ];
 
         $validatedData = $request->validate($rules);
         Visit::where('id', $visit->id)->update($validatedData);
+        Timeline::where('rencana_id', $visit->kerja_visit->kerja_desk->rencana_id)->update([
+            'visit_id' => $visit->id,
+        ]);
 
-        return redirect('/rencana/timeline/' . $visit->desk->rencana_id)->with('success', 'Data Visit berhasil diubah!');
+        return redirect('/rencana/timeline/' . $visit->kerja_visit->kerja_desk->rencana_id)->with('success', 'Data Visit berhasil diubah!');
     }
 
     /**
@@ -158,14 +160,16 @@ class VisitController extends Controller
      */
     public function destroy(Visit $visit)
     {
-        $rencana = $visit->desk->rencana_id;
+        $rencana = $visit->kerja_visit->kerja_desk->rencana_id;
 
         DB::beginTransaction();
         Visit::destroy($visit->id);
         Timeline::where('visit_id', $visit->id)->update([
             'visit_id' => NULL,
+            'konfirmasi_visit' => 0,
             'berita_id' => NULL
         ]);
+        Berita::destroy('kerja_visit_id', $visit->kerja_visit_id);
         DB::commit();
 
         return redirect('/rencana/timeline/' . $rencana)->with('success', 'Data Visit berhasil dihapus!');
@@ -181,6 +185,41 @@ class VisitController extends Controller
             'rencana' => $rencana,
             'visit' => $visit,
             'ketua' => User::where('level', 'Ketua SPI')->first()
+        ]);
+    }
+
+
+    public function generate($id)
+    {
+        $kerja_visit = KerjaVisit::where('id', $id)->first();
+
+        $data_visit['kerja_visit_id'] = $kerja_visit->id;
+        $data_visit['masa_monitoring_awal'] = $kerja_visit->kerja_desk->rencana->monitoring_awal;
+        $data_visit['masa_monitoring_akhir'] = $kerja_visit->kerja_desk->rencana->monitoring_akhir;
+        $data_visit['tanggal_monitoring'] = $kerja_visit->kerja_desk->rencana->tanggal_desk;
+
+        $data_visit['penyusunan_mutu_1'] = $kerja_visit->penyusunan_mutu_5;
+        $data_visit['penyusunan_mutu_2'] = $kerja_visit->penyusunan_mutu_7;
+        $data_visit['pemeriksaan_1'] = $kerja_visit->pemeriksaan_bersama_2;
+        $data_visit['pemeriksaan_2'] = $kerja_visit->pemeriksaan_bersama_4;
+        $data_visit['perubahan_kegiatan'] = $kerja_visit->perubahan_kegiatan_3;
+        $data_visit['asuransi_1'] = $kerja_visit->asuransi_2;
+        $data_visit['asuransi_2'] = $kerja_visit->asuransi_4;
+        $data_visit['pengiriman'] = $kerja_visit->pengiriman_5;
+        $data_visit['uji_coba'] = $kerja_visit->uji_coba_4;
+        $data_visit['serah_terima'] = $kerja_visit->serah_terima_4;
+        $data_visit['denda'] = $kerja_visit->denda_3;
+        $data_visit['perpanjangan'] = $kerja_visit->perpanjangan_2;
+        $data_visit['laporan'] = $kerja_visit->laporan_3;
+
+        $visit = Visit::create($data_visit);
+        // $visit = Visit::where('kerja_visit_id', $id)->first(); //DUMYYYYYYYYYYYYYyy
+
+        return view('visit.generate', [
+            'title' => 'Data Desk',
+            'rencana' => Rencana::where('id', $visit->kerja_visit->kerja_desk->rencana_id)->first(),
+            'ketua' => User::firstWhere('level', 'Ketua SPI'),
+            'visit' => $visit,
         ]);
     }
 }

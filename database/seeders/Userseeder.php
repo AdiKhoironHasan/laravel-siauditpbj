@@ -66,9 +66,9 @@ class Userseeder extends Seeder
 
         // AUDITEE
         User::create([
-            'name' => 'Galih Mustiko Aji, S.T., M.T.',
-            'username' => 'galih',
-            'email' => 'galih@gmail.com',
+            'name' => 'Tri Tarwoco S.E., M.Si.',
+            'username' => 'tarwoco',
+            'email' => 'tritarwoco@gmail.com',
             'level' => 'Auditee',
             'npak' => '198509172019031005',
             'nohp' => '0819087756877',

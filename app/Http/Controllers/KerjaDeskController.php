@@ -39,8 +39,11 @@ class KerjaDeskController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        KerjaDesk::create($request->except(['rencana_id', '_token']));
+        $kerja_desk = KerjaDesk::create($request->except(['rencana_id', '_token']));
+        Timeline::where('rencana_id', $request->rencana_id)->update([
+            'kerja_desk_id' => $kerja_desk->id,
+        ]);
+        return redirect('/rencana/timeline/' . $request->rencana_id)->with('success', 'Data  KKA Desk berhasil diupdate!');
     }
 
     /**
@@ -63,9 +66,9 @@ class KerjaDeskController extends Controller
     public function edit($id)
     {
         $title = 'Data Desk';
-        $rencana = Rencana::where('id', $id)->first();
         $ketua = User::firstWhere('level', 'Ketua SPI');
         $kerja_desk = KerjaDesk::where('id', $id)->first();
+        $rencana = Rencana::where('id', $kerja_desk->rencana_id)->first();
 
         $substansi_kontrak_5 = false;
         $substansi_kontrak_6 = false;

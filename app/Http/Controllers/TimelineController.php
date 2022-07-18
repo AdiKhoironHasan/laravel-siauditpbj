@@ -23,21 +23,18 @@ class TimelineController extends Controller
         $rencana = Rencana::where('id', $id)->first();
         $data['timeline'] =  Timeline::where('rencana_id', $id)->first();
         $data['kerja_desk'] = KerjaDesk::where('rencana_id', $rencana->id)->first();
-        $data['kerja_visit'] = '';
+        // $data['kerja_visit'] = '';
+        $data['ketua'] = User::firstWhere('level', 'Ketua SPI');
 
         if ($data['kerja_desk']) {
+            $data['desk'] = Desk::where('kerja_desk_id', $data['kerja_desk']->id)->first();
             $data['kerja_visit'] = KerjaVisit::where('kerja_desk_id', $data['kerja_desk']->id)->first();
 
-            $desk = Desk::where('kerja_desk_id', $data['kerja_desk']->id)->first();
-            $data['desk'] = $desk;
             $data['visit'] = '';
-            $data['ketua'] = User::firstWhere('level', 'Ketua SPI');
-            if ($desk) {
-                $visit = Visit::where('desk_id', $desk->id)->first();
-                $data['visit'] = $visit;
-                if ($visit) {
-                    $berita = Berita::where('visit_id', $visit->id)->first();
-                    $data['berita'] = $berita;
+            if ($data['kerja_visit']) {
+                $data['visit'] = Visit::where('kerja_visit_id', $data['kerja_visit']->id)->first();
+                if ($data['visit']) {
+                    $data['berita'] = Berita::where('kerja_visit_id', $data['kerja_visit']->id)->first();
                 }
             }
         }
@@ -98,6 +95,38 @@ class TimelineController extends Controller
         Timeline::where('rencana_id', $id)->update([
             'konfirmasi_desk' => 1
         ]);
+
+        return redirect('/rencana/timeline/' . $id)->with('success', 'Data Audit berhasil dikonfirmasi!');
+    }
+
+    public function confirmVisit($id, Request $request)
+    {
+        $rules = [
+            'visit_id' => 'required',
+            'status' => 'required',
+            'rencana_perbaikan' => 'required',
+            'tanggapan_auditee' => 'required'
+        ];
+        // Arr::except($array, ['price']);
+
+        $rules = Arr::except($rules, ['visit_id', 'status']);
+
+        $validatedData = $request->validate($rules);
+
+        DB::beginTransaction();
+
+        $visit = Visit::where('id', $request->visit_id)->first();
+        $visit->update($validatedData);
+        Timeline::where('rencana_id', $id)->update([
+            'konfirmasi_visit' => 1
+        ]);
+        $validatedData['tanggal'] = Carbon::now('Asia/Jakarta');
+        $validatedData['kerja_visit_id'] = $visit->kerja_visit_id;
+        $berita = Berita::create($validatedData);
+        Rencana::findOrFail($id)->update(['status' => 'Terlaksana']);
+        Timeline::where('rencana_id', $id)->update(['berita_id' => $berita->id]);
+
+        DB::commit();
 
         return redirect('/rencana/timeline/' . $id)->with('success', 'Data Audit berhasil dikonfirmasi!');
     }

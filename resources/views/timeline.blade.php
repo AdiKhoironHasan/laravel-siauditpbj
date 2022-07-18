@@ -172,7 +172,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div>
+                        <div>
                             <i
                                 class="fas fa-file-alt {{ $timeline->visit_id != null ? 'bg-success' : 'bg-danger' }}"></i>
                             <div class="timeline-item">
@@ -185,8 +185,11 @@
                                 <div class="timeline-footer">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @canany(['admin', 'auditor'])
-                                        <a href="/rencana/timeline/visit/create/{{ $timeline->rencana->id }}"
+                                        <a href="/rencana/timeline/visit/create/{{ $timeline->kerja_visit_id }}"
+                                            class=" btn btn-primary btn-sm {{ $timeline->visit_id != null ? 'disabled' : '' }}">Create</a>
+                                        {{-- <a href="/rencana/timeline/visit/create/{{ $timeline->rencana->id }}"
                                             class=" btn btn-primary btn-sm {{ $timeline->visit_id != null ? 'disabled' : '' }}">Tambah</a>
+                                        --}}
                                         <a href="/rencana/timeline/visit/{{ $visit != null ? $visit->id : '' }}/edit"
                                             class="btn btn-info btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}">Ubah</a>
                                         <form action="/rencana/timeline/visit/{{ $visit != null ? $visit->id : '' }}"
@@ -206,6 +209,41 @@
                             </div>
                         </div>
                         <div>
+                            <i
+                                class="fas fa-check-double {{ $timeline->rencana->status === 'Belum Terlaksana' ? 'bg-danger' : 'bg-success' }}"></i>
+                            <div class="timeline-item">
+                                <h3 class="timeline-header"><b>Konfirmasi Data Audit Visit</b> <i class="fas"></i>
+                                </h3>
+                                {{-- @if (Auth::user()->level == "Auditee" ) --}}
+                                <div class="timeline-body">
+                                    {{-- <form action="/rencana/timeline/confirm/{{ $timeline->rencana->id }}"
+                                        method="POST">
+                                        @csrf
+                                        <input type="hidden" name="visit_id" id="visit_id"
+                                            value="{{ $visit != null ? $visit->id : '' }}">
+                                        <select type="text" name="status" class="form-control" required {{
+                                            $timeline->visit_id === null || $timeline->berita_id != null ? 'disabled' :
+                                            '' }}>
+                                            <option selected hidden value="">--Pilih Aksi--</option>
+                                            <option value="Disetujui">Terima</option>
+                                            <option value="Tidak Disetujui">Tolak</option>
+                                        </select> --}}
+                                        <button type="submit" class="btn btn-sm btn-primary mt-2" data-toggle="modal"
+                                            data-target="#modal-konfirmasi-visit" {{ ($timeline->konfirmasi_visit != 0
+                                            ||
+                                            $timeline->visit_id == null) ? 'disabled' : '' }}>Konfirmasi</button>
+                                        {{--
+                                    </form> --}}
+                                </div>
+                                {{-- @else
+                                <div class="timeline-body">
+                                    {{$timeline->berita_id != null ? 'Data sudah dikonfirmasi' : 'Data belum
+                                    dikonfirmasi'}}
+                                </div>
+                                @endif --}}
+                            </div>
+                        </div>
+                        {{-- <div>
                             <i
                                 class="fas fa-check-double {{ $timeline->rencana->status === 'Belum Terlaksana' ? 'bg-danger' : 'bg-success' }}"></i>
                             <div class="timeline-item">
@@ -235,7 +273,7 @@
                                 </div>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
                         <div>
                             <i
                                 class="fas fa-newspaper {{ $timeline->berita_id != null ? 'bg-success' : 'bg-danger' }}"></i>
@@ -274,6 +312,7 @@
     </div>
 </div>
 @include('partials.modal-konfirmasi-desk')
+@include('partials.modal-konfirmasi-visit')
 @else
 Tidak ada data
 @endif

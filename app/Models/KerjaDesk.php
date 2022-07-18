@@ -11,7 +11,7 @@ class KerjaDesk extends Model
 
     protected $guarded = ['id'];
 
-    public function kerja_desk()
+    public function kerja_visit()
     {
         return $this->hasOne(KerjaVisit::class);
     }

@@ -39,8 +39,11 @@ class KerjaVisitController extends Controller
      */
     public function store(Request $request)
     {
-        return KerjaVisit::create($request->except(['rencana_id', '_token']));
-        // dd($request->all());
+        $kerja_visit = KerjaVisit::create($request->except(['rencana_id', '_token']));
+        Timeline::where('rencana_id', $request->rencana_id)->update([
+            'kerja_visit_id' => $kerja_visit->id,
+        ]);
+        return redirect('/rencana/timeline/' . $request->rencana_id)->with('success', 'Data  KKA Visit berhasil diupdate!');
     }
 
     /**
@@ -63,9 +66,9 @@ class KerjaVisitController extends Controller
     public function edit($id)
     {
         $title = 'KKA Visit';
-        $rencana = Rencana::where('id', $id)->first();
         $ketua = User::firstWhere('level', 'Ketua SPI');
         $kerja_visit = KerjaVisit::where('id', $id)->first();
+        $rencana = Rencana::where('id', $kerja_visit->kerja_desk->rencana_id)->first();
 
         $penyusunan_mutu_4 = false;
         $penyusunan_mutu_6 = false;
