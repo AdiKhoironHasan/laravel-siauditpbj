@@ -23,7 +23,10 @@ class TimelineController extends Controller
         $rencana = Rencana::where('id', $id)->first();
         $data['timeline'] =  Timeline::where('rencana_id', $id)->first();
         $data['kerja_desk'] = KerjaDesk::where('rencana_id', $rencana->id)->first();
-        // $data['kerja_visit'] = '';
+        $data['desk'] = '';
+        $data['kerja_visit'] = '';
+        $data['visit'] = '';
+        $data['berita'] = '';
         $data['ketua'] = User::firstWhere('level', 'Ketua SPI');
 
         if ($data['kerja_desk']) {

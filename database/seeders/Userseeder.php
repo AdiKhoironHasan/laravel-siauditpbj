@@ -63,6 +63,17 @@ class Userseeder extends Seeder
             'ttd' => 'default/empty-ttd.png'
         ]);
 
+        User::create([
+            'name' => 'Riyadi S.E., M.Si.',
+            'username' => 'riyadi',
+            'email' => 'riyadi@gmail.com',
+            'level' => 'Direktur',
+            'npak' => '198509172019031005',
+            'nohp' => '0819087756877',
+            'password' => bcrypt('password'),
+            'foto' => 'default/empty-foto.png',
+            'ttd' => 'default/empty-ttd.png'
+        ]);
 
         // AUDITEE
         User::create([

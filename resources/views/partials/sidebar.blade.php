@@ -46,17 +46,6 @@
                 </li>
                 @endcan
 
-                @can('auditee')
-                <li class="nav-item">
-                    <a href="/barang" class="nav-link {{ Request::is('barang') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-box-open"></i>
-                        <p>
-                            Paket Barang
-                        </p>
-                    </a>
-                </li>
-                @endcan
-
                 {{-- @canany(['admin', 'auditor']) --}}
                 <li class="nav-item">
                     <a href="/rencana" class="nav-link {{ Request::is('rencana*') ? 'active' : '' }}">
