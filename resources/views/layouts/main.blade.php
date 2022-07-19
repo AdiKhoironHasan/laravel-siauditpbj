@@ -164,7 +164,7 @@
             "responsive": true,
         });
     });
-</>
+/>
 
 <script type="text/javascript">
             $('#usernameTambah').keyup(function() {

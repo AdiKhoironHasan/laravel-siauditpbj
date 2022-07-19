@@ -30,6 +30,8 @@
                     {{-- <th>Auditor 1</th>
                     <th>Auditor 2</th>
                     <th>Auditor 3</th> --}}
+                    <th>Tanggal Desk</th>
+                    <th>Tanggal Visit</th>
                     <th>Status</th>
                     <th>Tahun</th>
                     {{-- <th>Tanggal</th> --}}
@@ -45,12 +47,14 @@
                     {{-- <td>{{ $rencana->auditor1->name }}</td>
                     <td>{{ $rencana->auditor2->name }}</td>
                     <td>{{ $rencana->auditor3->name }}</td> --}}
+                    <td>{{ $rencana->tanggal_desk }}</td>
+                    <td>{{ $rencana->tanggal_visit }}</td>
                     <td>{{ $rencana->status }}</td>
                     <td>{{ $rencana->tahun }}</td>
                     {{-- <td>{{ tanggal($rencana->tanggal) }}</td> --}}
                     <td>
                         <div class="d-flex justify-content-around">
-                            <a href="#"><i class="fas fa-info-circle" style="color: deepskyblue;"></i></a>
+                            {{-- <a href="#"><i class="fas fa-info-circle" style="color: deepskyblue;"></i></a> --}}
                             <a href="/rencana/timeline/{{ $rencana->id }}" style="color:coral"><i
                                     class="fas fa-stream"></i></a>
                             @if (Auth::user()->level === "Ketua SPI" || Auth::user()->level === "Auditor")

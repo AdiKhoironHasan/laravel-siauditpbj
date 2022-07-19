@@ -39,7 +39,7 @@ class KerjaDeskController extends Controller
      */
     public function store(Request $request)
     {
-        $kerja_desk = KerjaDesk::create($request->except(['rencana_id', '_token']));
+        $kerja_desk = KerjaDesk::create($request->except(['_token']));
         Timeline::where('rencana_id', $request->rencana_id)->update([
             'kerja_desk_id' => $kerja_desk->id,
         ]);
@@ -189,8 +189,11 @@ class KerjaDeskController extends Controller
         Timeline::where('kerja_desk_id', $id)->update([
             'kerja_desk_id' => NULL,
             'desk_id' => NULL,
+            'konfirmasi_desk' => 0,
             'kerja_visit_id' => NULL,
-            'visit_id' => NULL
+            'visit_id' => NULL,
+            'konfirmasi_visit' => 0,
+            'berita_id' => NULL
         ]);
         DB::commit();
 

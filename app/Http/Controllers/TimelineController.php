@@ -83,7 +83,7 @@ class TimelineController extends Controller
     {
         $rules = [
             'desk_id' => 'required',
-            'status' => 'required',
+            // 'status' => 'required',
             'rencana_perbaikan' => 'required',
             'tanggapan_auditee' => 'required'
         ];

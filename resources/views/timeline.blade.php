@@ -41,8 +41,8 @@
                                 <h3 class="timeline-header"><b>Pengisian Kertas Kerja Audit Desk</b> <i class="fas"></i>
                                 </h3>
                                 <div class="timeline-body">
-                                    {{ $timeline->kerja_desk_id != null ? 'Data Desk sudah diisi' : 'Data Desk belum
-                                    diisi' }}
+                                    {{ $timeline->kerja_desk_id != null ? 'Kertas Kerja Audit Desk sudah diisi' :
+                                    'Kertas Kerja Audit Desk belum diisi' }}
                                 </div>
                                 <div class="timeline-footer ">
                                     <div class="btn-group" role="group" aria-label="Basic example">
@@ -72,16 +72,26 @@
                             <i
                                 class="fas fa-file-alt {{ $timeline->desk_id != null ? 'bg-success' : 'bg-danger' }}"></i>
                             <div class="timeline-item">
-                                <h3 class="timeline-header"><b>Pengisian Data Desk</b> <i class="fas"></i>
+                                <h3 class="timeline-header"><b>Pengisian Kertas Data Audit Desk</b> <i class="fas"></i>
                                 </h3>
                                 <div class="timeline-body">
-                                    {{ $timeline->desk_id != null ? 'Data Desk sudah diisi' : 'Data Desk belum diisi' }}
+                                    {{ $timeline->desk_id != null ? 'Kertas Data Audit Desk sudah diisi sudah diisi' :
+                                    'Kertas Data Audit Desk sudah diisi belum diisi' }}
                                 </div>
                                 <div class="timeline-footer ">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @canany(['admin', 'auditor'])
-                                        <a href="/rencana/timeline/desk/create/{{ $timeline->kerja_desk_id }}"
-                                            class=" btn btn-primary btn-sm {{ $timeline->desk_id != null ? 'disabled' : '' }}">Create</a>
+                                        {{-- <a href="/rencana/timeline/desk/create/{{ $timeline->kerja_desk_id }}"
+                                            class="btn btn-primary btn-sm {{ ($timeline->desk_id != null ||
+                                            $timeline->kerja_desk_id == null) ? 'disabled'
+                                            : '' }}">Create</a> --}}
+                                        <form action="/rencana/timeline/desk/create/{{ $timeline->kerja_desk_id }}"
+                                            method="POST">
+                                            @csrf
+                                            <input type="submit" class="btn btn-primary btn-sm {{ ($timeline->desk_id != null ||
+                                                $timeline->kerja_desk_id == null) ? 'disabled'
+                                                : '' }}" value="Create">
+                                        </form>
                                         {{-- <a href="/rencana/timeline/desk/create/{{ $timeline->rencana->id }}"
                                             class=" btn btn-primary btn-sm {{ $timeline->desk_id != null ? 'disabled' : '' }}">Tambah</a>
                                         --}}
@@ -145,14 +155,17 @@
                                         class="fas"></i>
                                 </h3>
                                 <div class="timeline-body">
-                                    {{ $timeline->kerja_visit_id != null ? 'Data Desk sudah diisi' : 'Data Desk belum
+                                    {{ $timeline->kerja_visit_id != null ? 'Kertas Kerja Audit Visit sudah diisi sudah
+                                    diisi' : 'Kertas Kerja Audit Visit sudah diisi belum
                                     diisi' }}
                                 </div>
                                 <div class="timeline-footer">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @canany(['admin', 'auditor'])
                                         <a href="/rencana/timeline/kerjavisit/create/{{ $timeline->rencana->id }}"
-                                            class=" btn btn-primary btn-sm {{ $timeline->kerja_visit_id != null ? 'disabled' : '' }}">Tambah</a>
+                                            class=" btn btn-primary btn-sm {{ ($timeline->kerja_visit_id != null ||
+                                                $timeline->kerja_desk_id == null || $timeline->konfirmasi_desk == null) ? 'disabled'
+                                                : '' }}">Tambah</a>
                                         <a href="/rencana/timeline/kerjavisit/{{ $kerja_visit != null ? $kerja_visit->id : '' }}/edit"
                                             class="btn btn-info btn-sm {{ $timeline->kerja_visit_id != null ? '' : 'disabled' }}">Ubah</a>
                                         <form
@@ -176,17 +189,27 @@
                             <i
                                 class="fas fa-file-alt {{ $timeline->visit_id != null ? 'bg-success' : 'bg-danger' }}"></i>
                             <div class="timeline-item">
-                                <h3 class="timeline-header"><b>Pengisian Data Visit</b> <i class="fas"></i>
+                                <h3 class="timeline-header"><b>Pengisian Kertas Data Audit Visit</b> <i class="fas"></i>
                                 </h3>
                                 <div class="timeline-body">
-                                    {{ $timeline->visit_id != null ? 'Data Visit sudah diisi' : 'Data Visit belum diisi'
+                                    {{ $timeline->visit_id != null ? 'Kertas Data Audit Visit sudah diisi sudah diisi' :
+                                    'Kertas Data Audit Visit sudah diisi belum diisi'
                                     }}
                                 </div>
                                 <div class="timeline-footer">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @canany(['admin', 'auditor'])
-                                        <a href="/rencana/timeline/visit/create/{{ $timeline->kerja_visit_id }}"
-                                            class=" btn btn-primary btn-sm {{ $timeline->visit_id != null ? 'disabled' : '' }}">Create</a>
+                                        <form action="/rencana/timeline/visit/create/{{ $timeline->kerja_visit_id }}"
+                                            method="POST">
+                                            @csrf
+                                            <input type="submit"
+                                                class=" btn btn-primary btn-sm {{ ($timeline->visit_id != null || $timeline->kerja_visit_id == null) ? 'disabled' : '' }}"
+                                                value="Create">
+                                        </form>
+                                        {{-- <a href="/rencana/timeline/visit/create/{{ $timeline->kerja_visit_id }}"
+                                            class=" btn btn-primary btn-sm {{ ($timeline->visit_id != null ||
+                                                $timeline->kerja_visit_id == null) ? 'disabled'
+                                                : '' }}">Create</a> --}}
                                         {{-- <a href="/rencana/timeline/visit/create/{{ $timeline->rencana->id }}"
                                             class=" btn btn-primary btn-sm {{ $timeline->visit_id != null ? 'disabled' : '' }}">Tambah</a>
                                         --}}

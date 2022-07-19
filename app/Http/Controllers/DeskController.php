@@ -177,8 +177,7 @@ class DeskController extends Controller
         DB::beginTransaction();
         Desk::destroy($desk->id);
         Timeline::where('desk_id', $desk->id)->update([
-            'desk_id' => NULL,
-            'visit_id' => NULL
+            'desk_id' => NULL
         ]);
         DB::commit();
 
@@ -341,7 +340,11 @@ class DeskController extends Controller
             $data_desk['serah_terima_barang_2'] = 'WAKTU PENERIMAAN BARAG MELEBIHI WAKTU YANG TERTERA DI KONTRAK';
         }
 
-        $desk = Desk::create($data_desk);
+        $desk = Desk::where('kerja_desk_id', $id)->first();
+
+        if ($desk == null) {
+            $desk = Desk::create($data_desk);
+        }
         // Timeline::where('kerja_desk_id', $id)->update([
         //     'desk_id' => $desk->id,
         // ]);

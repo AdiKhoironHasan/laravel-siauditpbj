@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class RencanaController extends Controller
 {
+
+    // public $coba = 1;
     /**
      * Display a listing of the resource.
      *

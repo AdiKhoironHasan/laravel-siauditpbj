@@ -184,7 +184,9 @@ class KerjaVisitController extends Controller
         KerjaVisit::destroy($id);
         Timeline::where('kerja_visit_id', $id)->update([
             'kerja_visit_id' => NULL,
-            'visit_id' => NULL
+            'visit_id' => NULL,
+            'konfirmasi_visit' => 0,
+            'berita_id' => NULL
         ]);
         DB::commit();
 

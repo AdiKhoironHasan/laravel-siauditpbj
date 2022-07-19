@@ -212,8 +212,10 @@ class VisitController extends Controller
         $data_visit['perpanjangan'] = $kerja_visit->perpanjangan_2;
         $data_visit['laporan'] = $kerja_visit->laporan_3;
 
-        $visit = Visit::create($data_visit);
-        // $visit = Visit::where('kerja_visit_id', $id)->first(); //DUMYYYYYYYYYYYYYyy
+        $visit = Visit::where('kerja_visit_id', $id)->first();
+        if ($visit == null) {
+            $visit = Visit::create($data_visit);
+        }
 
         return view('visit.generate', [
             'title' => 'Data Desk',

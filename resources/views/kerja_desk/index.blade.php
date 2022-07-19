@@ -626,13 +626,14 @@
                 <tr>
                     <td style="width: 40%;text-align:left">UANG MUKA (Rp)</td>
                     <td class="align-bottom">
-                        <input style="width: 80%" type="text" id="uang_muka" name="uang_muka" required>
+                        <input style="width: 80%" type="number" id="uang_muka" name="uang_muka" required>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 40%;text-align:left">JAMINAN UANG MUKA (Rp)</td>
                     <td class="align-bottom">
-                        <input type="text" style="width: 80%" id="jaminan_uang_muka" name="jaminan_uang_muka" required>
+                        <input type="number" style="width: 80%" id="jaminan_uang_muka" name="jaminan_uang_muka"
+                            required>
                     </td>
                 </tr>
                 <tr>

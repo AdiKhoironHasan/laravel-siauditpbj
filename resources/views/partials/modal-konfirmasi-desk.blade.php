@@ -11,14 +11,14 @@
                 <div class="modal-body">
                     @csrf
                     <input type="hidden" name="desk_id" id="desk_id" value="{{ $timeline->desk_id }}">
-                    <div class="form-group">
-                        <label>Status Konfirmasi</label>
+                    {{-- <div class="form-group"> --}}
+                        {{-- <label>Status Konfirmasi</label>
                         <select type="text" name="status" class="form-control" required>
                             <option selected hidden value="">--Pilih Aksi--</option>
                             <option value="Disetujui">Terima</option>
                             <option value="Tidak Disetujui">Tolak</option>
                         </select>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label>Tanggapan</label>
                         <textarea class="form-control" name="tanggapan_auditee" id="tanggapan_auditee" rows="3"
