@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Default Modal</h4>
+                <h4 class="modal-title">Konfirmasi Data Visit</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -22,12 +22,12 @@
                     <div class="form-group">
                         <label>Tanggapan</label>
                         <textarea class="form-control" name="tanggapan_auditee" id="tanggapan_auditee" rows="3"
-                            placeholder="Ketik disini ..." required></textarea>
+                            placeholder="Ketik disini ..."></textarea>
                     </div>
                     <div class="form-group">
                         <label>Rencana Perbaikan</label>
                         <textarea class="form-control" name="rencana_perbaikan" id="rencana_perbaikan" rows="3"
-                            placeholder="Ketik disini ..." required></textarea>
+                            placeholder="Ketik disini ..."></textarea>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">

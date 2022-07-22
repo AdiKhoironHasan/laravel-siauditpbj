@@ -44,7 +44,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" id="edit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" id="edit" class="btn btn-secondary">Simpan</button>
                 </div>
             </form>
         </div>

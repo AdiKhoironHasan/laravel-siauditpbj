@@ -11,6 +11,7 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
@@ -18,9 +19,35 @@
 </head>
 
 <body class="hold-transition login-page">
+    {{-- @include('sweetalert::alert') --}}
+    @if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    {{-- <script>
+        $(function() {
+        var Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+
+        $('.swalDefaultError').click(function() {
+          Toast.fire({
+            icon: 'error',
+            title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+          })
+        });
+    });
+    </script> --}}
     <div class="login-box">
         <!-- /.login-logo -->
-        <div class="card card-outline card-primary">
+        <div class="card card-outline card-orange">
             <div class="text-center">
                 <img src="dist/img/logo1.png" style="width:300px;height:225px;">
                 <!-- <a href="../index.php" class="h1">Audit<b>PBJ</b></a> -->
@@ -49,9 +76,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        <button type="submit" class="btn btn-primary btn-block"
+                            style="background-color: #FF8364; border-color:transparent">Login</button>
                     </div>
                 </form>
+
+                {{-- <button type="button" class="btn btn-danger swalDefaultError">
+                    Launch Error Toast
+                </button> --}}
                 {{-- <div class="row">
                     <div class="col-sm-7">
                         <a href="register.php">Mendaftar user baru</a>
@@ -70,6 +102,7 @@
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.min.js"></script>
+    <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 </body>
 
 </html>

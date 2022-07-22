@@ -36,4 +36,8 @@ class Rencana extends Model
     {
         return $this->hasOne(KerjaDesk::class);
     }
+    public function timeline()
+    {
+        return $this->hasOne(Timeline::class);
+    }
 }

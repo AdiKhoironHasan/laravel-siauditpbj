@@ -159,9 +159,9 @@
         padding: 10px;
     }
 </style>
-<div class="card card-primary">
-    <div class="card-header">
-        <h3 class="card-title">Daftar Data Desk</h3>
+<div class="card card-orange">
+    <div class="card-header" style="color: white; border-color:transparent">
+        <h3 class="card-title">Edit {{ $title }}</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                 <i class="fas fa-minus"></i>

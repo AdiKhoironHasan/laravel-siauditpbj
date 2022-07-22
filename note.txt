@@ -94,8 +94,8 @@ a.TIDAK ADA INFORMASI PENGADAAN BARANG, TIDAK ADA ORGANISASI KERJA PENYEDIA, TID
 a. TIDAK DILAKUKAN  ATAU TIDAK ADA BERITA ACARA
 
 4. pembayaran uang muka
-a. jaminan uang muka <5% dari uang muka = true
-b. keterangan jaminan uang muka->get(), false = BESARAN JAMINAN UANG MUKA TIDAK SESUAI
+/// a. jaminan uang muka <5% dari uang muka = true
+/// b. keterangan jaminan uang muka->get(), false = BESARAN JAMINAN UANG MUKA TIDAK SESUAI
 
 
 5. uji coba barang
@@ -157,3 +157,33 @@ akibat
 rekomendasi
 tanggapan auditee
 rencana perbaikan
+
+Profile Edit
+
+User Tambah
+User Edit
+User Hapus
+
+Rencana Tambah
+Rencana Edit
+Rencana Hapus
+
+Kerja Desk Tambah
+Kerja Desk Edit
+Kerja Desk Hapus
+
+Desk Tambah
+Desk Edit
+Desk Hapus
+
+Konfirmasi Desk
+
+Kerja Visit Tambah
+Kerja Visit Edit
+Kerja Visit Hapus
+
+Visit Tambah
+Visit Edit
+Visit Hapus
+
+Konfirmasi Visit

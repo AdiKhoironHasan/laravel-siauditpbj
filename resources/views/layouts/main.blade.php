@@ -34,9 +34,10 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-        <div class="preloader flex-column justify-content-center align-items-center">
+        {{-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-        </div>
+        </div> --}}
+        @include('sweetalert::alert')
 
         @include('partials/navbar')
 
@@ -61,7 +62,8 @@
 
             <section class="content">
 
-                @if (session('success'))
+                {{-- Custom Alert Message --}}
+                {{-- @if (session('success'))
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
                     {{ session('success') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -75,7 +77,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                @endif
+                @endif --}}
+
                 @if (count($errors) > 0)
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{ $errors }}
@@ -164,10 +167,10 @@
             "responsive": true,
         });
     });
-/>
+</script>
 
 <script type="text/javascript">
-            $('#usernameTambah').keyup(function() {
+    $('#usernameTambah').keyup(function() {
             var uname = $('#usernameTambah').val();
             if (uname == 0) {
                 $('#hasilCekTambah').text('');
@@ -192,7 +195,7 @@
                 });
             }
         });
-    });
+
 
     $(document).ready(function() {
         $('#usernameEdit').keyup(function() {

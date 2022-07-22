@@ -13,7 +13,9 @@ use App\Http\Controllers\RencanaController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\KerjaDeskController;
 use App\Http\Controllers\KerjaVisitController;
+use App\Models\Desk;
 use App\Models\KerjaDesk;
+use App\Models\Visit;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -64,10 +66,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/rencana/timeline/desk/confirm/{id}', [TimelineController::class, 'confirmDesk']);
     Route::post('/rencana/timeline/visit/confirm/{id}', [TimelineController::class, 'confirmVisit']);
 
-    Route::middleware('auditee')->group(function () {
-        Route::resource('/barang', BarangController::class);
-        // Route::post('/rencana/timeline/confirm/{id}', [TimelineController::class, 'confirm']);
-    });
+    // Route::middleware('auditee')->group(function () {
+    // Route::resource('/barang', BarangController::class);
+    // Route::post('/rencana/timeline/confirm/{id}', [TimelineController::class, 'confirm']);
+    // });
+
+    Route::get('/rencana/timeline/kerjadesk/print/{id}', [KerjaDeskController::class, 'print']);
+    Route::get('/rencana/timeline/desk/print/{id}', [DeskController::class, 'print']);
+    Route::get('/rencana/timeline/kerjavisit/print/{id}', [KerjaVisitController::class, 'print']);
+    Route::get('/rencana/timeline/visit/print/{id}', [VisitController::class, 'print']);
 
     Route::resource('/rencana', RencanaController::class);
     Route::get('/rencana/timeline/{id}', [TimelineController::class, 'show']);

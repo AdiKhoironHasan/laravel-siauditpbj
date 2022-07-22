@@ -16,13 +16,13 @@ class Desk extends Model
         return $this->belongsTo(KerjaDesk::class);
     }
 
-    public function timeline()
-    {
-        return $this->hasOne(Timeline::class);
-    }
+    // public function timeline()
+    // {
+    //     return $this->hasOne(Timeline::class);
+    // }
 
-    public function visit()
-    {
-        return $this->hasOne(Visit::class);
-    }
+    // public function visit()
+    // {
+    //     return $this->hasOne(Visit::class);
+    // }
 }

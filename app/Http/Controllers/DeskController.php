@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use PDF;
+use Exception;
+use Carbon\Carbon;
 use App\Models\Desk;
-use App\Models\KerjaDesk;
 use App\Models\User;
 use App\Models\Rencana;
 use App\Models\Timeline;
-use Carbon\Carbon;
+use App\Models\KerjaDesk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -108,7 +109,19 @@ class DeskController extends Controller
     public function edit(Desk $desk)
     {
         return view('desk.edit', [
-            'title' => 'Data Desk',
+            'title' => 'Kertas Data Desk',
+            'rencana' => Rencana::where('id', $desk->kerja_desk->rencana_id)->first(),
+            'desk' => $desk,
+            'ketua' => User::firstWhere('level', 'Ketua SPI')
+        ]);
+    }
+
+    public function print($id)
+    {
+        $desk = Desk::Where('id', $id)->first();
+
+        return view('desk.print', [
+            'title' => 'Print KDA Desk',
             'rencana' => Rencana::where('id', $desk->kerja_desk->rencana_id)->first(),
             'desk' => $desk,
             'ketua' => User::firstWhere('level', 'Ketua SPI')
@@ -129,9 +142,9 @@ class DeskController extends Controller
     {
         $rules = [
             'tipe_monitoring' => 'required',
-            'masa_monitoring_awal' => 'required',
-            'masa_monitoring_akhir' => 'required',
-            'tanggal_monitoring' => 'required',
+            // 'masa_monitoring_awal' => 'required',
+            // 'masa_monitoring_akhir' => 'required',
+            // 'tanggal_monitoring' => 'required',
             'kontrak_1' => 'required',
             'kontrak_2' => 'required',
             'kontrak_3' => 'required',
@@ -147,21 +160,25 @@ class DeskController extends Controller
             'uji_coba_barang' => 'required',
             'serah_terima_barang_1' => 'required',
             'serah_terima_barang_2' => 'required',
-            'catatan' => 'required',
-            'kriteria' => 'required',
-            'akar_penyebab' => 'required',
-            'akibat' => 'required',
-            'rekomendasi' => 'required',
+            // 'catatan' => 'required',
+            // 'kriteria' => 'required',
+            // 'akar_penyebab' => 'required',
+            // 'akibat' => 'required',
+            // 'rekomendasi' => 'required',
         ];
 
         $validatedData = $request->validate($rules);
 
-        Desk::where('id', $desk->id)->update($validatedData);
-        Timeline::where('rencana_id', $desk->kerja_desk->rencana_id)->update([
-            'desk_id' => $desk->id,
-        ]);
+        try {
+            Desk::where('id', $desk->id)->update($validatedData);
+            Timeline::where('rencana_id', $desk->kerja_desk->rencana_id)->update([
+                'desk_id' => $desk->id,
+            ]);
+        } catch (Exception $e) {
+            return back()->with('error', 'Kertas Data Desk Gagal!');
+        }
 
-        return redirect('/rencana/timeline/' . $request->rencana_id)->with('success', 'Data Desk berhasil diubah!');
+        return redirect('/rencana/timeline/' . $request->rencana_id)->with('success', 'Kertas Data Desk Berhasil Ditambah!');
     }
 
     /**
@@ -184,32 +201,32 @@ class DeskController extends Controller
         return redirect('/rencana/timeline/' . $rencana)->with('success', 'Data Desk berhasil dihapus!');
     }
 
-    public function print($id)
-    {
+    // public function print($id)
+    // {
 
-        $desk = Desk::where('id', $id)->first();
-        $rencana = Rencana::where('id', $desk->rencana_id)->first();
+    //     $desk = Desk::where('id', $id)->first();
+    //     $rencana = Rencana::where('id', $desk->rencana_id)->first();
 
-        return view('desk.print', [
-            'title' => 'Data Desk',
-            'rencana' => $rencana,
-            'desk' => $desk,
-            'ketua' => User::where('level', 'Ketua SPI')->first()
-        ]);
+    //     return view('desk.print', [
+    //         'title' => 'Data Desk',
+    //         'rencana' => $rencana,
+    //         'desk' => $desk,
+    //         'ketua' => User::where('level', 'Ketua SPI')->first()
+    //     ]);
 
-        $paper_orientation = 'landscape';
-        $customPaper = array(0, 0, 950, 950);
+    //     $paper_orientation = 'landscape';
+    //     $customPaper = array(0, 0, 950, 950);
 
-        $pdf = PDF::loadview('desk.print', [
-            'title' => 'Data Desk',
-            'rencana' => $rencana,
-            'desk' => $desk
-        ])
-            ->setOptions(['defaultFont' => 'sans-serif'])
-            ->setpaper($customPaper, $paper_orientation);
+    //     $pdf = PDF::loadview('desk.print', [
+    //         'title' => 'Data Desk',
+    //         'rencana' => $rencana,
+    //         'desk' => $desk
+    //     ])
+    //         ->setOptions(['defaultFont' => 'sans-serif'])
+    //         ->setpaper($customPaper, $paper_orientation);
 
-        return $pdf->stream('contohprint.pdf');
-    }
+    //     return $pdf->stream('contohprint.pdf');
+    // }
 
     public function generate($id)
     {
@@ -241,16 +258,16 @@ class DeskController extends Controller
         }
 
         if (
-            $kerja_desk->substansi_kontrak_1 != 0 ||
+            // $kerja_desk->substansi_kontrak_1 != 0 ||
             $kerja_desk->substansi_kontrak_2 != 0 ||
             $kerja_desk->substansi_kontrak_3 != 0 ||
             $kerja_desk->substansi_kontrak_4 != 0
         ) {
             $data_desk['kontrak_2'] = '';
             // dd('mun');
-            if ($kerja_desk->substansi_kontrak_1 != 0) {
-                $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'BAHASA DAN REDAKSI TIDAK SESUAI, ';
-            }
+            // if ($kerja_desk->substansi_kontrak_1 != 0) {
+            //     $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'BAHASA DAN REDAKSI TIDAK SESUAI, ';
+            // }
             if ($kerja_desk->substansi_kontrak_2 != 0) {
                 $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'ANGKA DAN HURUF TIDAK SESUAI, ';
             }
@@ -319,13 +336,16 @@ class DeskController extends Controller
         if ($kerja_desk->pemeriksaan_bersama_1 != 1) {
             $data_desk['pemeriksaan_bersama'] = 'TIDAK DILAKUKAN  ATAU TIDAK ADA BERITA ACARA';
         }
-
-        if ((($kerja_desk->jaminan_uang_muka / $kerja_desk->uang_muka) * 100) < 5) {
-            $data_desk['pembayaran_uang_muka_1'] = 'BESARAN UANG MUKA TIDAK SESUAI';
+        if ($kerja_desk->jaminan_uang_muka > 0) {
+            if ((($kerja_desk->jaminan_uang_muka / $kerja_desk->uang_muka) * 100) < 5) {
+                $data_desk['pembayaran_uang_muka_1'] = 'BESARAN UANG MUKA TIDAK SESUAI';
+            }
         }
 
-        if ($kerja_desk->keterangan_jaminan_uang_muka) {
-            $data_desk['pembayaran_uang_muka_2'] = 'BESARAN JAMINAN UANG MUKA TIDAK SESUAI';
+        if ($kerja_desk->keterangan_jaminan_uang_muka != null) {
+            if ($kerja_desk->keterangan_jaminan_uang_muka == 'Tidak Sesuai') {
+                $data_desk['pembayaran_uang_muka_2'] = 'BESARAN JAMINAN UANG MUKA TIDAK SESUAI';
+            }
         }
 
         if ($kerja_desk->uji_coba_barang_1 != 1) {
@@ -350,7 +370,7 @@ class DeskController extends Controller
         // ]);
 
         return view('desk.generate', [
-            'title' => 'Data Desk',
+            'title' => 'Kertas Data Desk',
             'rencana' => Rencana::where('id', $desk->kerja_desk->rencana_id)->first(),
             'ketua' => User::firstWhere('level', 'Ketua SPI'),
             'desk' => $desk,

@@ -195,9 +195,9 @@
         padding-left: 20px;
     }
 </style>
-<div class="card card-primary">
-    <div class="card-header">
-        <h3 class="card-title">Daftar Data Desk</h3>
+<div class="card card-orange">
+    <div class="card-header" style="color: white; border-color:transparent">
+        <h3 class="card-title">Edit Kertas Kerja Desk</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                 <i class="fas fa-minus"></i>
@@ -263,7 +263,7 @@
                 <tr>
                     <td style="width: 40%;text-align:left">NILAI KONTRAK</td>
                     <td class="align-bottom">
-                        <input style="width: 80%" type="text" id="nilai_kontrak" name="nilai_kontrak"
+                        <input style="width: 80%" type="integer" id="nilai_kontrak" name="nilai_kontrak"
                             value="{{ $kerja_desk->nilai_kontrak }}" required>
                     </td>
                 </tr>
@@ -333,7 +333,7 @@
                     <td style="width: 40%;text-align:left">JAMINAN PELAKSANAAN</td>
                     <td class="align-bottom">
                         <input style="width: 80%" type="text" id="jaminan_pelaksanaan" name="jaminan_pelaksanaan"
-                            value="{{ $kerja_desk->jaminan_pelaksanaan }}" required>
+                            value="{{ $kerja_desk->jaminan_pelaksanaan }}">
                     </td>
                 </tr>
             </table>
@@ -355,13 +355,13 @@
 
                     <td class="align-bottom d-flex justify-content-end">
                         <input type="text" id="masa_jaminan_1" name="masa_jaminan_1" placeholder=""
-                            value="{{ $kerja_desk->masa_jaminan_1 }}" onfocus="(this.type='date')" required>
+                            value="{{ $kerja_desk->masa_jaminan_1 }}" onfocus="(this.type='date')">
                     </td>
                     <td>SD</td>
 
                     <td class="align-bottom d-flex justify-content-start">
                         <input type="text" id="masa_jaminan_2" name="masa_jaminan_2" placeholder=""
-                            value="{{ $kerja_desk->masa_jaminan_2 }}" onfocus="(this.type='date')" required>
+                            value="{{ $kerja_desk->masa_jaminan_2 }}" onfocus="(this.type='date')">
                     </td>
                 </tr>
             </table>
@@ -399,33 +399,33 @@
                 </tr>
             </table>
             <table class="table table-borderless">
-                <tr>
+                {{-- <tr>
                     <td style="width: 10%">
                         <input type="checkbox" name="substansi_kontrak_1" id="substansi_kontrak_1" value="1" {{
                             $kerja_desk->substansi_kontrak_1 != 0 ? 'checked':'' }}>
                     </td>
                     <td style="text-align: left">BAHASA DAN REDAKSIONAL</td>
-                </tr>
+                </tr> --}}
                 <tr>
                     <td style="width: 10%">
                         <input type="checkbox" name="substansi_kontrak_2" id="substansi_kontrak_2" value="1" {{
                             $kerja_desk->substansi_kontrak_2 != 0 ? 'checked':'' }}>
                     </td>
-                    <td style="text-align: left">ANGKA DAN HURUF</td>
+                    <td style="text-align: left">ANGKA DAN HURUF SESUAI</td>
                 </tr>
                 <tr>
                     <td style="width: 10%">
                         <input type="checkbox" name="substansi_kontrak_3" id="substansi_kontrak_3" value="1" {{
                             $kerja_desk->substansi_kontrak_3 != 0 ? 'checked':'' }}>
                     </td>
-                    <td style="text-align: left">PARAF PADA SETIAP LEMBAR DOKUMEN KONTRAK</td>
+                    <td style="text-align: left">TERDAPAT PARAF PADA SETIAP LEMBAR DOKUMEN KONTRAK</td>
                 </tr>
                 <tr>
                     <td style="width: 10%">
                         <input type="checkbox" name="substansi_kontrak_4" id="substansi_kontrak_4" value="1" {{
                             $kerja_desk->substansi_kontrak_4 != 0 ? 'checked':'' }}>
                     </td>
-                    <td style="text-align: left">MATERAI</td>
+                    <td style="text-align: left">ADA MATERAI</td>
                 </tr>
             </table>
 
@@ -754,15 +754,14 @@
                     <td style="width: 40%;text-align:left">JAMINAN UANG MUKA (Rp)</td>
                     <td class="align-bottom">
                         <input style="width: 80%" type="text" id="jaminan_uang_muka" name="jaminan_uang_muka"
-                            value="{{ $kerja_desk->jaminan_uang_muka }}" required>
+                            value="{{ $kerja_desk->jaminan_uang_muka }}">
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 40%;text-align:left">PENERBIT JAMINAN UANG MUKA</td>
                     <td class="align-bottom">
                         <select style="-webkit-appearance: none;width:80%" name="penerbit_jaminan_uang_muka"
-                            id="penerbit_jaminan_uang_muka" value="{{ $kerja_desk->penerbit_jaminan_uang_muka }}"
-                            required>
+                            id="penerbit_jaminan_uang_muka" value="{{ $kerja_desk->penerbit_jaminan_uang_muka }}">
                             <option class="text-center" value="Bank Umum">Bank Umum</option>
                             <option class="text-center" value="Perusahaan Penjaminan">Perusahaan Penjaminan</option>
                             <option class="text-center" value="Perusahaan Asuransi">Perusahaan Asuransi</option>
@@ -773,7 +772,7 @@
                     <td style="width: 40%;text-align:left">KRITERIA</td>
                     <td class="align-bottom">
                         <select style="-webkit-appearance: none;width:80%" name="kriteria" id="kriteria"
-                            value="{{ $kerja_desk->kriteria }}" required>
+                            value="{{ $kerja_desk->kriteria }}">
                             <option class="text-center" value="Usaha Kecil">Usaha Kecil</option>
                             <option class="text-center" value="Usaha Non Kecil">Usaha Non Kecil</option>
                             <option class="text-center" value="Kontrak Tahun Jamak">Kontrak Tahun Jamak</option>
@@ -784,8 +783,7 @@
                     <td style="width: 40%;text-align:left">KETERANGAN JAMINAN UANG MUKA</td>
                     <td class="align-bottom">
                         <select style="-webkit-appearance: none;width:80%" name="keterangan_jaminan_uang_muka"
-                            id="keterangan_jaminan_uang_muka" required
-                            value="{{ $kerja_desk->keterangan_jaminan_uang_muka }}">
+                            id="keterangan_jaminan_uang_muka" value="{{ $kerja_desk->keterangan_jaminan_uang_muka }}">
                             <option class="text-center" value="Sesuai">Sesuai</option>
                             <option class="text-center" value="Tidak Sesuai">Tidak Sesuai</option>
                         </select>
@@ -795,7 +793,7 @@
                     <td style="width: 40%;text-align:left">NAMA BANK PENERBIT</td>
                     <td class="align-bottom">
                         <input style="width: 80%" type="text" id="nama_bank_penerbit" name="nama_bank_penerbit"
-                            value="{{ $kerja_desk->nama_bank_penerbit }}" required>
+                            value="{{ $kerja_desk->nama_bank_penerbit }}">
                     </td>
                 </tr>
                 {{-- <tr>
@@ -1308,7 +1306,7 @@
             </table>
             <div class="row justify-content-center mt-3 rounded-sm mx-1" style="background-color: #ADD8E6;">
                 <div class="col-md-8 text-center d-grid gap-2 my-2">
-                    <a href="/rencana/timeline/" class="btn btn-primary btn-lg mx-2">Kembali</a>
+                    <a href="/rencana/timeline/{{ $rencana->id }}" class="btn btn-primary btn-lg mx-2">Kembali</a>
                     <input type="submit" class="btn btn-success btn-lg mx-2" value="Submit">
                 </div>
             </div>
@@ -1318,15 +1316,15 @@
 </div>
 
 <script>
-    $(document).ready(function(){
-    $('#substansi_kontrak_6').change(function () {
-        if ($(this).attr("checked")) {
-            $('#substansi_kontrak_6_1').attr('disabled', true);
-        } else {
-            $('#substansi_kontrak_6_1').attr('disabled', false);
-        }
-    });
-});
+    //     $(document).ready(function(){
+//     $('#substansi_kontrak_6').change(function () {
+//         if ($(this).attr("checked")) {
+//             $('#substansi_kontrak_6_1').attr('disabled', true);
+//         } else {
+//             $('#substansi_kontrak_6_1').attr('disabled', false);
+//         }
+//     });
+// });
 </script>
 
 @endsection

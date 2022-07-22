@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-3">
 
-            <div class="card card-primary card-outline">
+            <div class="card card-orange card-outline">
                 <div class="card-body box-profile">
                     <img class="card-img-top" {{--
                         src="https://img5.goodfon.com/wallpaper/nbig/c/5c/by-oretsuu-liod-i-plamia-liod-ogon-paren-boku-no-hero-academ.jpg"
@@ -34,8 +34,8 @@
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="active tab-pane" id="Biodata">
-                            <div class="card card-primary">
-                                <div class="card-header">
+                            <div class="card card-orange">
+                                    <div class="card-header" style="color: white; border-color:transparent">
                                     <h3 class="card-title">Edit Profil</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"
@@ -98,8 +98,8 @@
 
                         </div>
                         <div class="tab-pane" id="Profil">
-                            <div class="card card-primary">
-                                <div class="card-header">
+                            <div class="card card-orange">
+                                    <div class="card-header" style="color: white; border-color:transparent">
                                     <h3 class="card-title">Edit Foto Profil</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"
@@ -139,8 +139,8 @@
                                 </div>
                             </div>
 
-                            <div class="card card-primary">
-                                <div class="card-header">
+                            <div class="card card-orange">
+                                    <div class="card-header" style="color: white; border-color:transparent">
                                     <h3 class="card-title">Edit Tanda Tangan</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"
@@ -183,8 +183,8 @@
                         </div>
 
                         <div class="tab-pane" id="Keamanan">
-                            <div class="card card-primary">
-                                <div class="card-header">
+                            <div class="card card-orange">
+                                    <div class="card-header" style="color: white; border-color:transparent">
                                     <h3 class="card-title">Edit Password</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"

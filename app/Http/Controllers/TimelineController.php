@@ -48,7 +48,7 @@ class TimelineController extends Controller
     public function kerjaDesk($id)
     {
         return view('kerja_desk.index', [
-            'title' => 'KKA Desk',
+            'title' => 'Kertas Kerja Desk',
             'rencana' => Rencana::where('id', $id)->first(),
         ]);
     }
@@ -56,7 +56,7 @@ class TimelineController extends Controller
     public function kerjaVisit($id)
     {
         return view('kerja_visit.index', [
-            'title' => 'KKA Visit',
+            'title' => 'Kertas Kerja Visit',
             'rencana' => Rencana::where('id', $id)->first(),
         ]);
     }
@@ -64,7 +64,7 @@ class TimelineController extends Controller
     public function desk($id)
     {
         return view('desk.index', [
-            'title' => 'Data Desk',
+            'title' => 'Kertas Data Desk',
             'rencana' => Rencana::where('id', $id)->first(),
             'ketua' => User::where('level', 'Ketua SPI')->first()
         ]);
@@ -73,7 +73,7 @@ class TimelineController extends Controller
     public function visit($id)
     {
         return view('visit.index', [
-            'title' => 'Data Visit',
+            'title' => 'Kertas Data Visit',
             'rencana' => Rencana::where('id', $id)->first(),
             'ketua' => User::where('level', 'Ketua SPI')->first()
         ]);
@@ -84,8 +84,8 @@ class TimelineController extends Controller
         $rules = [
             'desk_id' => 'required',
             // 'status' => 'required',
-            'rencana_perbaikan' => 'required',
-            'tanggapan_auditee' => 'required'
+            // 'rencana_perbaikan' => 'required',
+            // 'tanggapan_auditee' => 'required'
         ];
         // Arr::except($array, ['price']);
 
@@ -107,8 +107,8 @@ class TimelineController extends Controller
         $rules = [
             'visit_id' => 'required',
             'status' => 'required',
-            'rencana_perbaikan' => 'required',
-            'tanggapan_auditee' => 'required'
+            // 'rencana_perbaikan' => 'required',
+            // 'tanggapan_auditee' => 'required'
         ];
         // Arr::except($array, ['price']);
 
@@ -134,25 +134,25 @@ class TimelineController extends Controller
         return redirect('/rencana/timeline/' . $id)->with('success', 'Data Audit berhasil dikonfirmasi!');
     }
 
-    public function confirm($id, Request $request)
-    {
-        return ($request->visit_id);
+    // public function confirm($id, Request $request)
+    // {
+    //     return ($request->visit_id);
 
-        $rules = [
-            'visit_id' => 'required',
-            'status' => 'required',
-        ];
+    //     $rules = [
+    //         'visit_id' => 'required',
+    //         'status' => 'required',
+    //     ];
 
-        $validatedData = $request->validate($rules);
+    //     $validatedData = $request->validate($rules);
 
-        $validatedData['tanggal'] = Carbon::now('Asia/Jakarta');
+    //     $validatedData['tanggal'] = Carbon::now('Asia/Jakarta');
 
-        DB::beginTransaction();
-        $berita = Berita::create($validatedData);
-        Rencana::findOrFail($id)->update(['status' => 'Terlaksana']);
-        Timeline::where('rencana_id', $id)->update(['berita_id' => $berita->id]);
-        DB::commit();
+    //     DB::beginTransaction();
+    //     $berita = Berita::create($validatedData);
+    //     Rencana::findOrFail($id)->update(['status' => 'Terlaksana']);
+    //     Timeline::where('rencana_id', $id)->update(['berita_id' => $berita->id]);
+    //     DB::commit();
 
-        return redirect('/rencana/timeline/' . $id)->with('success', 'Data Audit berhasil dikonfirmasi!');
-    }
+    //     return redirect('/rencana/timeline/' . $id)->with('success', 'Data Audit berhasil dikonfirmasi!');
+    // }
 }

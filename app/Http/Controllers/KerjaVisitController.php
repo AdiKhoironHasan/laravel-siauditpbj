@@ -43,7 +43,7 @@ class KerjaVisitController extends Controller
         Timeline::where('rencana_id', $request->rencana_id)->update([
             'kerja_visit_id' => $kerja_visit->id,
         ]);
-        return redirect('/rencana/timeline/' . $request->rencana_id)->with('success', 'Data  KKA Visit berhasil diupdate!');
+        return redirect('/rencana/timeline/' . $request->rencana_id)->with('success', 'Data  KKA Visit berhasil ditambah!');
     }
 
     /**
@@ -65,7 +65,7 @@ class KerjaVisitController extends Controller
      */
     public function edit($id)
     {
-        $title = 'KKA Visit';
+        $title = 'Kertas Kerja Visit';
         $ketua = User::firstWhere('level', 'Ketua SPI');
         $kerja_visit = KerjaVisit::where('id', $id)->first();
         $rencana = Rencana::where('id', $kerja_visit->kerja_desk->rencana_id)->first();
@@ -191,5 +191,92 @@ class KerjaVisitController extends Controller
         DB::commit();
 
         return redirect('/rencana/timeline/' . $rencana)->with('success', 'Data KKA Visit berhasil dihapus!');
+    }
+
+    public function print($id)
+    {
+        $title = 'Print KKA Visit';
+        $ketua = User::firstWhere('level', 'Ketua SPI');
+        $kerja_visit = KerjaVisit::where('id', $id)->first();
+        $rencana = Rencana::where('id', $kerja_visit->kerja_desk->rencana_id)->first();
+
+        $penyusunan_mutu_4 = false;
+        $penyusunan_mutu_6 = false;
+        $pemeriksaan_bersama_1 = false;
+        $pemeriksaan_bersama_3 = false;
+        $perubahan_kegiatan_1 = false;
+        $uji_coba_1 = false;
+        $uji_coba_2 = false;
+        $uji_coba_3 = false;
+        $denda_1 = false;
+        $asuransi_1 = false;
+        $pengiriman_3 = false;
+        $pengiriman_4 = false;
+        $serah_terima_3 = false;
+        $perpanjangan_1 = false;
+
+        if ($kerja_visit->penyusunan_mutu_4 != 0) {
+            $penyusunan_mutu_4 = true;
+        }
+        if ($kerja_visit->penyusunan_mutu_6 != 0) {
+            $penyusunan_mutu_6 = true;
+        }
+        if ($kerja_visit->pemeriksaan_bersama_1 != 0) {
+            $pemeriksaan_bersama_1 = true;
+        }
+        if ($kerja_visit->pemeriksaan_bersama_3 != 0) {
+            $pemeriksaan_bersama_3 = true;
+        }
+        if ($kerja_visit->perubahan_kegiatan_1 != 0) {
+            $perubahan_kegiatan_1 = true;
+        }
+        if ($kerja_visit->uji_coba_1 != 0) {
+            $uji_coba_1 = true;
+        }
+        if ($kerja_visit->uji_coba_2 != 0) {
+            $uji_coba_2 = true;
+        }
+        if ($kerja_visit->uji_coba_3 != 0) {
+            $uji_coba_3 = true;
+        }
+        if ($kerja_visit->denda_1 != 0) {
+            $denda_1 = true;
+        }
+        if ($kerja_visit->asuransi_1 != 0) {
+            $asuransi_1 = true;
+        }
+        if ($kerja_visit->pengiriman_3 != 0) {
+            $pengiriman_3 = true;
+        }
+        if ($kerja_visit->pengiriman_4 != 0) {
+            $pengiriman_4 = true;
+        }
+        if ($kerja_visit->serah_terima_3 != 0) {
+            $serah_terima_3 = true;
+        }
+        if ($kerja_visit->perpanjangan_1 != 0) {
+            $perpanjangan_1 = true;
+        }
+
+        return view('kerja_visit.print', compact([
+            'title',
+            'rencana',
+            'ketua',
+            'kerja_visit',
+            'penyusunan_mutu_4',
+            'penyusunan_mutu_6',
+            'pemeriksaan_bersama_1',
+            'pemeriksaan_bersama_3',
+            'perubahan_kegiatan_1',
+            'uji_coba_1',
+            'uji_coba_2',
+            'uji_coba_3',
+            'denda_1',
+            'asuransi_1',
+            'pengiriman_3',
+            'pengiriman_4',
+            'serah_terima_3',
+            'perpanjangan_1',
+        ]));
     }
 }

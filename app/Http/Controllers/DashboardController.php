@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rencana;
 use Exception;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -23,10 +24,14 @@ class DashboardController extends Controller
             $dashboard = 'direktur-dashboard';
         }
 
-        return view($dashboard, [
-            'title' => 'Dashboard',
-            'part' => 'Rencana Kerja Audit'
-        ]);
+        $totalRKA = Rencana::count();
+        $totalRKATerlaksana = Rencana::where('status', 'Terlaksana')->count();
+        $totalRKABelum = Rencana::where('status', 'Belum Terlaksana')->count();
+        $totalUser = User::where('status', 'Aktif')->count();
+        $title = 'Dashboard';
+        $part = 'Rencana Kerja Audit';
+
+        return view('dashboard', compact('totalRKA', 'totalRKATerlaksana', 'totalRKABelum', 'totalUser', 'title', 'part' ));
     }
 
     public function profile()

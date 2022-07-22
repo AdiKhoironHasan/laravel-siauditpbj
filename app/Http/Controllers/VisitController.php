@@ -42,44 +42,46 @@ class VisitController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'rencana_id' => 'required',
-            'desk_id' => 'required',
-            'tipe_monitoring' => 'required',
-            'masa_monitoring_awal' => 'required',
-            'masa_monitoring_akhir' => 'required',
-            'tanggal_monitoring' => 'required',
-            'penyusunan_mutu_1' => 'required',
-            'penyusunan_mutu_2' => 'required',
-            'pemeriksaan_1' => 'required',
-            'pemeriksaan_2' => 'required',
-            'perubahan_kegiatan' => 'required',
-            'asuransi_1' => 'required',
-            'asuransi_2' => 'required',
-            'pengiriman' => 'required',
-            'uji_coba' => 'required',
-            'serah_terima' => 'required',
-            'denda' => 'required',
-            'perpanjangan' => 'required',
-            'laporan' => 'required',
-            'catatan' => 'required',
-            'kriteria' => 'required',
-            'akar_penyebab' => 'required',
-            'akibat' => 'required',
-            'rekomendasi' => 'required',
-            'tanggapan_auditee' => 'required',
-            'rencana_perbaikan' => 'required',
-        ];
+        return abort(403);
 
-        $validatedData = $request->validate($rules);
+        // $rules = [
+        //     'rencana_id' => 'required',
+        //     'desk_id' => 'required',
+        //     'tipe_monitoring' => 'required',
+        //     // 'masa_monitoring_awal' => 'required',
+        //     // 'masa_monitoring_akhir' => 'required',
+        //     // 'tanggal_monitoring' => 'required',
+        //     'penyusunan_mutu_1' => 'required',
+        //     'penyusunan_mutu_2' => 'required',
+        //     'pemeriksaan_1' => 'required',
+        //     'pemeriksaan_2' => 'required',
+        //     'perubahan_kegiatan' => 'required',
+        //     'asuransi_1' => 'required',
+        //     'asuransi_2' => 'required',
+        //     'pengiriman' => 'required',
+        //     'uji_coba' => 'required',
+        //     'serah_terima' => 'required',
+        //     'denda' => 'required',
+        //     'perpanjangan' => 'required',
+        //     'laporan' => 'required',
+        //     'catatan' => 'required',
+        //     'kriteria' => 'required',
+        //     'akar_penyebab' => 'required',
+        //     'akibat' => 'required',
+        //     'rekomendasi' => 'required',
+        //     'tanggapan_auditee' => 'required',
+        //     'rencana_perbaikan' => 'required',
+        // ];
 
-        DB::beginTransaction();
-        $visit = Visit::create($validatedData);
-        $validatedDataTimeline = ['visit_id' => $visit->id];
-        Timeline::where('rencana_id', $validatedData['rencana_id'])->update($validatedDataTimeline);
-        DB::commit();
+        // $validatedData = $request->validate($rules);
 
-        return redirect('/rencana/timeline/' . $validatedData['rencana_id'])->with('success', 'Data Visit berhasil ditambahkan!');
+        // DB::beginTransaction();
+        // $visit = Visit::create($validatedData);
+        // $validatedDataTimeline = ['visit_id' => $visit->id];
+        // Timeline::where('rencana_id', $validatedData['rencana_id'])->update($validatedDataTimeline);
+        // DB::commit();
+
+        // return redirect('/rencana/timeline/' . $validatedData['rencana_id'])->with('success', 'Data Visit berhasil ditambahkan!');
     }
 
     /**
@@ -109,6 +111,17 @@ class VisitController extends Controller
         ]);
     }
 
+    public function print($id)
+    {
+        $visit = Visit::where('id', $id)->first();
+        return view('visit.print', [
+            'title' => 'Print KDA Visit',
+            'visit' => $visit,
+            'rencana' => Rencana::where('id', $visit->kerja_visit->kerja_desk->rencana_id)->first(),
+            'ketua' => User::where('level', 'Ketua SPI')->first()
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -120,9 +133,9 @@ class VisitController extends Controller
     {
         $rules = [
             'tipe_monitoring' => 'required',
-            'masa_monitoring_awal' => 'required',
-            'masa_monitoring_akhir' => 'required',
-            'tanggal_monitoring' => 'required',
+            // 'masa_monitoring_awal' => 'required',
+            // 'masa_monitoring_akhir' => 'required',
+            // 'tanggal_monitoring' => 'required',
             'penyusunan_mutu_1' => 'required',
             'penyusunan_mutu_2' => 'required',
             'pemeriksaan_1' => 'required',
@@ -136,11 +149,11 @@ class VisitController extends Controller
             'denda' => 'required',
             'perpanjangan' => 'required',
             'laporan' => 'required',
-            'catatan' => 'required',
-            'kriteria' => 'required',
-            'akar_penyebab' => 'required',
-            'akibat' => 'required',
-            'rekomendasi' => 'required',
+            //     'catatan' => 'required',
+            //     'kriteria' => 'required',
+            //     'akar_penyebab' => 'required',
+            //     'akibat' => 'required',
+            //     'rekomendasi' => 'required',
         ];
 
         $validatedData = $request->validate($rules);
@@ -149,7 +162,7 @@ class VisitController extends Controller
             'visit_id' => $visit->id,
         ]);
 
-        return redirect('/rencana/timeline/' . $visit->kerja_visit->kerja_desk->rencana_id)->with('success', 'Data Visit berhasil diubah!');
+        return redirect('/rencana/timeline/' . $visit->kerja_visit->kerja_desk->rencana_id)->with('success', 'Data Visit berhasil ditambah!');
     }
 
     /**
@@ -175,18 +188,18 @@ class VisitController extends Controller
         return redirect('/rencana/timeline/' . $rencana)->with('success', 'Data Visit berhasil dihapus!');
     }
 
-    public function print($id)
-    {
-        $visit = Visit::where('id', $id)->first();
-        $rencana = Rencana::where('id', $visit->desk->rencana_id)->first();
+    // public function print($id)
+    // {
+    //     $visit = Visit::where('id', $id)->first();
+    //     $rencana = Rencana::where('id', $visit->desk->rencana_id)->first();
 
-        return view('visit.print', [
-            'title' => 'Data Visit',
-            'rencana' => $rencana,
-            'visit' => $visit,
-            'ketua' => User::where('level', 'Ketua SPI')->first()
-        ]);
-    }
+    //     return view('visit.print', [
+    //         'title' => 'Data Visit',
+    //         'rencana' => $rencana,
+    //         'visit' => $visit,
+    //         'ketua' => User::where('level', 'Ketua SPI')->first()
+    //     ]);
+    // }
 
 
     public function generate($id)
@@ -218,7 +231,7 @@ class VisitController extends Controller
         }
 
         return view('visit.generate', [
-            'title' => 'Data Desk',
+            'title' => 'Kertas Data Visit',
             'rencana' => Rencana::where('id', $visit->kerja_visit->kerja_desk->rencana_id)->first(),
             'ketua' => User::firstWhere('level', 'Ketua SPI'),
             'visit' => $visit,

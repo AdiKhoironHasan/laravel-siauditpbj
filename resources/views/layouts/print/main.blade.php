@@ -23,6 +23,16 @@
 
 <body>
     <div class="container my-5">
+        <div class="d-flex justify-content-between">
+            <div class="mb-2">
+                <small><strong>Copyright &copy; 2021-2022 <a href="#">SPI Politeknik Negeri Cilacap</a>.</strong> All
+                    rights
+                    reserved.</small>
+            </div>
+            <div class="mb-2">
+                <small>{{ date('d F Y (H:i:s)') }}</small>
+            </div>
+        </div>
         @yield('content')
     </div>
 </body>

@@ -9,7 +9,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('login/index', [
+        return view('login.index', [
             'title' => 'Login'
         ]);
     }
@@ -25,7 +25,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');
         } else {
-            return redirect()->intended('/');
+            return redirect()->intended('/')->with('error', 'Gagal Login!');
         }
     }
 

@@ -190,9 +190,9 @@
 @endpush
 
 @section('content')
-<div class="card card-primary">
-    <div class="card-header">
-        <h3 class="card-title">Daftar Data Desk</h3>
+<div class="card card-orange">
+    <div class="card-header" style="color: white; border-color:transparent">
+        <h3 class="card-title">Tambah {{ $title }}</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                 <i class="fas fa-minus"></i>
@@ -253,7 +253,7 @@
                 <tr>
                     <td style="width: 40%;text-align:left">NILAI KONTRAK</td>
                     <td class="align-bottom">
-                        <input style="width: 80%" type="text" id="nilai_kontrak" name="nilai_kontrak" required>
+                        <input style="width: 80%" type="number" id="nilai_kontrak" name="nilai_kontrak" required>
                     </td>
                 </tr>
                 <tr>
@@ -290,26 +290,58 @@
                 <tr>
                     <td style="width: 40%;text-align:left">METODE PENILAIAN KUALIFIKASI</td>
                     <td class="align-bottom">
-                        <input style="width: 80%" type="text" id="metode_penilaian" name="metode_penilaian" required>
+                        {{-- <input style="width: 80%" type="text" id="metode_penilaian" name="metode_penilaian"
+                            required> --}}
+                        <select style="-webkit-appearance: none;width:80%" name="metode_penilaian" id="metode_penilaian"
+                            required>
+                            <option value="" disabled selected hidden></option>
+                            <option class="text-center" value="Pra Kualifikasi">Pra Kualifikasi</option>
+                            <option class="text-center" value="Pasca Kualifikasi">Pacsa Kualifikasi</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 40%;text-align:left">METODE PEMILIHAN PENGADAAN BARANG</td>
                     <td class="align-bottom">
-                        <input style="width: 80%" type="text" id="metode_pemilihan" name="metode_pemilihan" required>
+                        {{-- <input style="width: 80%" type="text" id="metode_pemilihan" name="metode_pemilihan"
+                            required> --}}
+                        <select style="-webkit-appearance: none;width:80%" name="metode_pemilihan" id="metode_pemilihan"
+                            required>
+                            <option value="" disabled selected hidden></option>
+                            <option class="text-center" value="E-Purchasing">E-Purchasing</option>
+                            <option class="text-center" value="Pengadaan Langsung">Pengadaan Langsung</option>
+                            <option class="text-center" value="Penunjukan Langsung">Penunjukan Langsung</option>
+                            <option class="text-center" value="Harga Terendah">Harga Terendah</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 40%;text-align:left">METODE PENYAMPAIAN DOKUMEN</td>
                     <td class="align-bottom">
-                        <input style="width: 80%" type="text" id="metode_penyampaian" name="metode_penyampaian"
-                            required>
+                        {{-- <input style="width: 80%" type="text" id="metode_penyampaian" name="metode_penyampaian"
+                            required> --}}
+                        <select style="-webkit-appearance: none;width:80%" name="metode_penyampaian"
+                            id="metode_penyampaian" required>
+                            <option value="" disabled selected hidden></option>
+                            <option class="text-center" value="1 File">1 File</option>
+                            <option class="text-center" value="2 File">2 File</option>
+                            <option class="text-center" value="2 Tahap">2 Tahap</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 40%;text-align:left">METODE EVALUASI PENAWARAN</td>
                     <td class="align-bottom">
-                        <input style="width: 80%" type="text" id="metode_evaluasi" name="metode_evaluasi" required>
+                        {{-- <input style="width: 80%" type="text" id="metode_evaluasi" name="metode_evaluasi" required>
+                        --}}
+                        <select style="-webkit-appearance: none;width:80%" name="metode_evaluasi" id="metode_evaluasi"
+                            required>
+                            <option value="" disabled selected hidden></option>
+                            <option class="text-center" value="Sistem Nilai">Sistem Nilai</option>
+                            <option class="text-center" value="Penilaian Biaya Menurut Umur Ekonomis">Penilaian Biaya
+                                Menurut Umur Ekonomis</option>
+                            <option class="text-center" value="Harga Terendah">Harga Terendah</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -338,13 +370,13 @@
 
                     <td class="align-bottom d-flex justify-content-end">
                         <input type="text" id="masa_jaminan_1" name="masa_jaminan_1" placeholder=""
-                            onfocus="(this.type='date')" required>
+                            onfocus="(this.type='date')">
                     </td>
                     <td>SD</td>
 
                     <td class="align-bottom d-flex justify-content-start">
                         <input type="text" id="masa_jaminan_2" name="masa_jaminan_2" placeholder=""
-                            onfocus="(this.type='date')" required>
+                            onfocus="(this.type='date')">
                     </td>
                 </tr>
             </table>
@@ -380,29 +412,29 @@
                 </tr>
             </table>
             <table class="table table-borderless">
-                <tr>
+                {{-- <tr>
                     <td style="width: 10%">
                         <input type="checkbox" name="substansi_kontrak_1" id="substansi_kontrak_1" value="1">
                     </td>
                     <td style="text-align: left">BAHASA DAN REDAKSIONAL</td>
-                </tr>
+                </tr> --}}
                 <tr>
                     <td style="width: 10%">
                         <input type="checkbox" name="substansi_kontrak_2" id="substansi_kontrak_2" value="1">
                     </td>
-                    <td style="text-align: left">ANGKA DAN HURUF</td>
+                    <td style="text-align: left">ANGKA DAN HURUF SESUAI</td>
                 </tr>
                 <tr>
                     <td style="width: 10%">
                         <input type="checkbox" name="substansi_kontrak_3" id="substansi_kontrak_3" value="1">
                     </td>
-                    <td style="text-align: left">PARAF PADA SETIAP LEMBAR DOKUMEN KONTRAK</td>
+                    <td style="text-align: left">TERDAPAT PARAF PADA SETIAP LEMBAR DOKUMEN KONTRAK</td>
                 </tr>
                 <tr>
                     <td style="width: 10%">
                         <input type="checkbox" name="substansi_kontrak_4" id="substansi_kontrak_4" value="1">
                     </td>
-                    <td style="text-align: left">MATERAI</td>
+                    <td style="text-align: left">ADA MATERAI</td>
                 </tr>
             </table>
 
@@ -632,15 +664,14 @@
                 <tr>
                     <td style="width: 40%;text-align:left">JAMINAN UANG MUKA (Rp)</td>
                     <td class="align-bottom">
-                        <input type="number" style="width: 80%" id="jaminan_uang_muka" name="jaminan_uang_muka"
-                            required>
+                        <input type="number" style="width: 80%" id="jaminan_uang_muka" name="jaminan_uang_muka">
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 40%;text-align:left">PENERBIT JAMINAN UANG MUKA</td>
                     <td class="align-bottom">
                         <select style="-webkit-appearance: none;width:80%" name="penerbit_jaminan_uang_muka"
-                            id="penerbit_jaminan_uang_muka" required>
+                            id="penerbit_jaminan_uang_muka">
                             <option value="" disabled selected hidden></option>
                             <option class="text-center" value="Bank Umum">Bank Umum</option>
                             <option class="text-center" value="Perusahaan Penjaminan">Perusahaan Penjaminan</option>
@@ -651,7 +682,7 @@
                 <tr>
                     <td style="width: 40%;text-align:left">KRITERIA</td>
                     <td class="align-bottom">
-                        <select style="-webkit-appearance: none;width:80%" name="kriteria" id="kriteria" required>
+                        <select style="-webkit-appearance: none;width:80%" name="kriteria" id="kriteria">
                             <option value="" disabled selected hidden></option>
                             <option class="text-center" value="Usaha Kecil">Usaha Kecil</option>
                             <option class="text-center" value="Usaha Non Kecil">Usaha Non Kecil</option>
@@ -663,7 +694,7 @@
                     <td style="width: 40%;text-align:left">KETERANGAN JAMINAN UANG MUKA</td>
                     <td class="align-bottom">
                         <select style="-webkit-appearance: none;width:80%" name="keterangan_jaminan_uang_muka"
-                            id="keterangan_jaminan_uang_muka" required>
+                            id="keterangan_jaminan_uang_muka">
                             <option value="" disabled selected hidden></option>
                             <option class="text-center" value="Sesuai">Sesuai</option>
                             <option class="text-center" value="Tidak Sesuai">Tidak Sesuai</option>
@@ -673,8 +704,7 @@
                 <tr>
                     <td style="width: 40%;text-align:left">NAMA BANK PENERBIT</td>
                     <td class="align-bottom">
-                        <input style="width: 80%" type="text" id="nama_bank_penerbit" name="nama_bank_penerbit"
-                            required>
+                        <input style="width: 80%" type="text" id="nama_bank_penerbit" name="nama_bank_penerbit">
                     </td>
                 </tr>
                 {{-- <tr>
@@ -1020,7 +1050,7 @@
             </table>
             <div class="row justify-content-center mt-3 rounded-sm mx-1" style="background-color: #ADD8E6;">
                 <div class="col-md-8 text-center d-grid gap-2 my-2">
-                    <a href="/rencana/timeline/" class="btn btn-primary btn-lg mx-2">Kembali</a>
+                    <a href="/rencana/timeline/{{ $rencana->id }}" class="btn btn-primary btn-lg mx-2">Kembali</a>
                     <input type="submit" class="btn btn-success btn-lg mx-2" value="Submit">
                 </div>
             </div>

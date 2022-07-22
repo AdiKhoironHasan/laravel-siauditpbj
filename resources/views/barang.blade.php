@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">
+            <div class="card-header" style="color: white; border-color:transparent">
             <h3 class="card-title">Tabel {{ $title }}</h3>
 
             <div class="card-tools">

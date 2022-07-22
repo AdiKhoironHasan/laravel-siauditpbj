@@ -28,10 +28,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return abort(403);
-    }
+    // public function create()
+    // {
+    //     return abort(403);
+    // }
 
     /**
      * Store a newly created resource in storage.

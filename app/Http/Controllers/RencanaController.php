@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 
 class RencanaController extends Controller
 {
@@ -32,7 +33,7 @@ class RencanaController extends Controller
         //             ->whereColumn('rencanas.barang_id', '=', 'barangs.id');
         //     })
         //     ->get();
-        $rencana = Rencana::all();
+        $rencana = Rencana::all()->sortBy("created_at");
         // } else {
         // $barang = DB::table('barangs')
         //     ->whereNotExists(function ($query) {
