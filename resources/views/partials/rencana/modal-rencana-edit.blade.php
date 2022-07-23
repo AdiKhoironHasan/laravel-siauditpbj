@@ -12,7 +12,13 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Auditor 1</label>
+                        <label>Nomor Surat</label>
+                        <input type="text" name="nomor_surat" id="nomor_surat" class="form-control" required
+                            value="{{ $rencana->nomor_surat }}" placeholder="Nomor Surat" minlength="3" maxlength="10">
+                        <div id="hasilCekEdit"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Ketua Auditor</label>
                         <select type="text" name="auditor1_id" id="auditor1_id" class="form-control" required>
                             <option hidden selected value="{{ $rencana->auditor1_id }}">
                                 {{ $rencana->auditor1->name }}</option>
@@ -22,7 +28,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Auditor 2</label>
+                        <label>Anggota 1</label>
                         <select type="text" name="auditor2_id" id="auditor2_id" class="form-control" required>\
                             <option hidden selected value="{{ $rencana->auditor2_id }}">
                                 {{ $rencana->auditor2->name }}</option>
@@ -32,7 +38,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Auditor 3</label>
+                        <label>Anggota 2</label>
                         <select type="text" name="auditor3_id" id="auditor3_id" class="form-control" required>
                             <option hidden selected value="{{ $rencana->auditor3_id }}">
                                 {{ $rencana->auditor3->name }}</option>

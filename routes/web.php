@@ -1,5 +1,13 @@
 <?php
 
+use Carbon\Carbon;
+use App\Models\Desk;
+use App\Models\Visit;
+use App\Models\Rencana;
+use App\Mail\RencanaMail;
+use App\Models\KerjaDesk;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeskController;
 use App\Http\Controllers\UnitController;
@@ -8,15 +16,13 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\VisitController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BeritaController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RencanaController;
 use App\Http\Controllers\TimelineController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KerjaDeskController;
 use App\Http\Controllers\KerjaVisitController;
-use App\Models\Desk;
-use App\Models\KerjaDesk;
-use App\Models\Visit;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\URL;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -94,6 +100,46 @@ Route::middleware('auth')->group(function () {
 });
 
 // Route::get('/rencana/timeline/kerjadesk/create', function () {
+
+Route::get('/cobamail', function () {
+    // $user = User::first();
+
+    return Mail::to('adieron97@gmail.com')->send(new RencanaMail('adieron97@gmail.com', 'message'));
+});
+
+Route::get('/cobarencana', function () {
+    $rencanas = Rencana::where('status', 'Belum Terlaksana')->get();
+    // dd($rencanas->first());
+    // $loop = 1;
+    $users = User::where('status', 'Aktif')->get();
+
+    foreach ($rencanas as $rencana) {
+        foreach ($users as $user) {
+            // echo ($loop . ' ==> ');
+            // echo ($rencana->monitoring_awal . '<br>');
+            $date = Carbon::parse(date('Y-m-d', strtotime(Carbon::now())))
+                ->diffInDays(Carbon::parse(date('Y-m-d', strtotime($rencana->monitoring_awal))));
+            if ($date <= 7) {
+                // echo ($rencana->monitoring_awal . ' ==> ');
+                // echo ($date);
+                if ($date == 0) {
+                    echo ('Hii, ' . $user->name . '. Audit akan dilaksanakan hari ini <br>');
+                } else if ($date == 1) {
+                    echo ('Hii, ' . $user->name . '. Audit akan dilaksanakan besok <br>');
+                } else {
+                    echo ('Hii, ' . $user->name . '. Audit akan dilaksanakan ' . $date . ' hari lagi <br>');
+                }
+            }
+            // $loop++;
+        }
+        echo ('<br>');
+    }
+    // dd('ok');
+});
+
+Route::get('/getURL', function () {
+    return   URL::current('localhost:800/cobarencana');
+});
 
 // });
 

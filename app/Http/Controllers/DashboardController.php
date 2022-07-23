@@ -31,7 +31,7 @@ class DashboardController extends Controller
         $title = 'Dashboard';
         $part = 'Rencana Kerja Audit';
 
-        return view('dashboard', compact('totalRKA', 'totalRKATerlaksana', 'totalRKABelum', 'totalUser', 'title', 'part' ));
+        return view('dashboard', compact('totalRKA', 'totalRKATerlaksana', 'totalRKABelum', 'totalUser', 'title', 'part'));
     }
 
     public function profile()

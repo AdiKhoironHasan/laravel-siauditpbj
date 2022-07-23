@@ -15,6 +15,7 @@ class CreateKerjaDesksTable extends Migration
     {
         Schema::create('kerja_desks', function (Blueprint $table) {
             $table->id();
+            // $table->foreignId('rencana_id');
             $table->foreignId('rencana_id')->unique()->constrained()->cascadeOnDelete();
             $table->string('unit_kerja');
             $table->string('nama_paket');

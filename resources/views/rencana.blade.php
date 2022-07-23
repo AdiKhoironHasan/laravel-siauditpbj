@@ -25,6 +25,7 @@
             <thead>
                 <tr>
                     <th>No</th>
+                    <th>No. Surat</th>
                     <th>Ketua Auditor</th>
                     <th>Tanggal Desk</th>
                     <th>Tanggal Visit</th>
@@ -37,12 +38,13 @@
                 @foreach ($rencanas as $rencana)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
+                    <td>{{ $rencana->nomor_surat }}</td>
                     <td>{{$rencana->auditor1->name }}</td>
                     <td>{{ \Carbon\Carbon::parse($rencana->tanggal_desk)->format('d F Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($rencana->tanggal_visit)->format('d F Y')}}</td>
                     <td>{{ $rencana->status }}</td>
                     <td>{{ $rencana->tahun }}</td>
-                    <td style="width: 20%">
+                    <td style="width: 10%">
                         {{-- <div class="d-flex justify-content-around">
                             {{-- <a href="#"><i class="fas fa-info-circle" style="color: deepskyblue;"></i></a> --}}
                             {{-- <a href="/rencana/timeline/{{ $rencana->id }}" class="btn btn-primary btn-sm"><i

@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Rencana::create([
+            'nomor_surat' => 'ST/2022/PNC/120622/SPI',
             'auditor1_id' => 2,
             'auditor2_id' => 3,
             'auditor3_id' => 4,

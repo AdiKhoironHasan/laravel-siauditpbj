@@ -10,9 +10,14 @@
             <form action="/rencana" method="POST">
                 @csrf
                 <div class="modal-body">
-
                     <div class="form-group">
-                        <label>Auditor 1</label>
+                        <label>Nomor Surat</label>
+                        <input type="text" name="nomor_surat" id="nomor_surat" class="form-control" required
+                            minlength="3" maxlength="10" placeholder="Nomor Surat">
+                        <div id="hasilCekEdit"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Ketua Auditor</label>
                         <select type="text" name="auditor1_id" id="auditor1_id" class="form-control" required>
                             <option hidden selected value="">--Pilih Auditor 1--</option>
                             @foreach ($auditors as $auditor)
@@ -21,7 +26,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Auditor 2</label>
+                        <label>Anggota 1</label>
                         <select type="text" name="auditor2_id" id="auditor2_id" class="form-control" required>\
                             <option hidden selected value="">--Pilih Auditor 2--</option>
                             @foreach ($auditors as $auditor)
@@ -29,7 +34,7 @@
                             @endforeach
                         </select>
                         <div class="form-group">
-                            <label>Auditor 3</label>
+                            <label>Anggota 2</label>
                             <select type="text" name="auditor3_id" id="auditor3_id" class="form-control" required>
                                 <option hidden selected value="">--Pilih Auditor 3--</option>
                                 @foreach ($auditors as $auditor)
