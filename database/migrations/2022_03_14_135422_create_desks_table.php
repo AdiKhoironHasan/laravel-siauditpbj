@@ -17,9 +17,9 @@ class CreateDesksTable extends Migration
             $table->id();
             $table->foreignId('kerja_desk_id')->unique()->constrained()->cascadeOnDelete();
             $table->string('tipe_monitoring')->nullable();
-            $table->date('masa_monitoring_awal');
-            $table->date('masa_monitoring_akhir');
-            $table->date('tanggal_monitoring');
+            // $table->date('masa_monitoring_awal');
+            // $table->date('masa_monitoring_akhir');
+            // $table->date('tanggal_monitoring');
             $table->string('kontrak_1');
             $table->string('kontrak_2');
             $table->string('kontrak_3');

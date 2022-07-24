@@ -18,9 +18,9 @@ class CreateVisitsTable extends Migration
             $table->foreignId('kerja_visit_id')->unique()->constrained()->cascadeOnDelete();
             // $table->foreignId('kerja_desk_id')->unique()->constrained()->cascadeOnDelete();
             $table->string('tipe_monitoring')->nullable();;
-            $table->date('masa_monitoring_awal');
-            $table->date('masa_monitoring_akhir');
-            $table->date('tanggal_monitoring');
+            // $table->date('masa_monitoring_awal');
+            // $table->date('masa_monitoring_akhir');
+            // $table->date('tanggal_monitoring');
             $table->string('penyusunan_mutu_1');
             $table->string('penyusunan_mutu_2');
             $table->string('pemeriksaan_1');

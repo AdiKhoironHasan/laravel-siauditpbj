@@ -22,11 +22,13 @@
     </div>
     <div class="card-body">
 
-        <form action="/rencana/timeline/desk/{{ $desk->id }}" method="POST">
-            @method('PUT')
+        <form action="/rencana/timeline/desk" method="POST">
+            {{-- @method('PUT') --}}
             @csrf
             {{-- @dd($rencana) --}}
             <input type="hidden" name="rencana_id" id="rencana_id" value="{{ $rencana->id }}">
+            <input type="hidden" name="kerja_desk_id" id="kerja_desk_id" value="{{ $rencana->kerja_desk->id }}">
+            <input type="hidden" name="generate" value="1">
             <table style="width: 100%;">
                 <tr>
                     <td style="width: 20%" rowspan="3" class="bdr bdr-none-bot" style="padding-top: 30px"><img
@@ -64,7 +66,7 @@
                     <td style="background-color: lightblue;">
                         <input type="text" name="tipe_monitoring"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->tipe_monitoring }}" required>
+                            placeholder="ketik di sini" required>
                     </td>
                     <td class="text-uppercase">{{ $rencana->kerja_desk->nama_paket }}</td>
                 </tr>
@@ -77,12 +79,12 @@
                     <td>
                         <input type="text" name="masa_monitoring_awal"
                             class="forn-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->masa_monitoring_awal }}" readonly>
+                            value="{{ date('d F Y', strtotime($rencana->monitoring_awal)) }}" readonly>
                     </td>
                     <td rowspan="3">
                         <input type="text" name="tanggal_monitoring"
                             class="forn-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->tanggal_monitoring }}" readonly>
+                            value="{{ date('d F Y', strtotime($rencana->tanggal_desk))  }}" readonly>
                     </td>
                     <td class="bdr txt-lft-50">1. {{ $rencana->auditor1->name }}</td>
                 </tr>
@@ -94,7 +96,7 @@
                     <td>
                         <input type="text" name="masa_monitoring_akhir"
                             class="forn-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->masa_monitoring_akhir }}" readonly>
+                            value="{{ date('d F Y', strtotime($rencana->monitoring_akhir)) }}" readonly>
                     </td>
                     <td class="bdr txt-lft-50">3. {{ $rencana->auditor3->name }}</td>
                 </tr>
@@ -120,7 +122,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="kontrak_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->kontrak_1 }}">
+                            placeholder="ketik di sini" value="{{ $desk['kontrak_1'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -130,7 +132,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="kontrak_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->kontrak_2 }}">
+                            placeholder="ketik di sini" value="{{ $desk['kontrak_2'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -140,7 +142,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="kontrak_3"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->kontrak_3 }}">
+                            placeholder="ketik di sini" value="{{ $desk['kontrak_3'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -150,7 +152,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="kontrak_4"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->kontrak_4 }}">
+                            placeholder="ketik di sini" value="{{ $desk['kontrak_4'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -170,7 +172,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="surat_pesanan_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->surat_pesanan_1 }}">
+                            placeholder="ketik di sini" value="{{ $desk['surat_pesanan_1'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -180,7 +182,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="surat_pesanan_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->surat_pesanan_2 }}">
+                            placeholder="ketik di sini" value="{{ $desk['surat_pesanan_2'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -190,7 +192,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="surat_pesanan_3"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->surat_pesanan_3 }}">
+                            placeholder="ketik di sini" value="{{ $desk['surat_pesanan_3'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -200,7 +202,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="surat_pesanan_4"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->surat_pesanan_4 }}">
+                            placeholder="ketik di sini" value="{{ $desk['surat_pesanan_4'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -217,7 +219,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="penyusunan_program_mutu"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->penyusunan_program_mutu }}">
+                            placeholder="ketik di sini" value="{{ $desk['penyusunan_program_mutu'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -234,7 +236,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="pemeriksaan_bersama"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->pemeriksaan_bersama }}">
+                            placeholder="ketik di sini" value="{{ $desk['pemeriksaan_bersama'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -252,7 +254,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="pembayaran_uang_muka_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->pembayaran_uang_muka_1 }}">
+                            placeholder="ketik di sini" value="{{ $desk['pembayaran_uang_muka_1'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -262,7 +264,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="pembayaran_uang_muka_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->pembayaran_uang_muka_2 }}">
+                            placeholder="ketik di sini" value="{{ $desk['pembayaran_uang_muka_2'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -280,7 +282,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="uji_coba_barang"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->uji_coba_barang }}">
+                            placeholder="ketik di sini" value="{{ $desk['uji_coba_barang'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -298,7 +300,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="serah_terima_barang_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->serah_terima_barang_1 }}">
+                            placeholder="ketik di sini" value="{{ $desk['serah_terima_barang_1'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -308,7 +310,7 @@
                     <td class="txt-up" style="background-color: lightblue;">
                         <input type="text" name="serah_terima_barang_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $desk->serah_terima_barang_2 }}">
+                            placeholder="ketik di sini" value="{{ $desk['serah_terima_barang_2'] }}">
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -322,7 +324,7 @@
                     <td colspan="4" style="height: 100px; background-color: lightblue;">
                         <textarea name="catatan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $desk->catatan }}</textarea>
+                            placeholder="ketik di sini"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -332,7 +334,7 @@
                     <td colspan="4" style="height: 100px; background-color: lightblue;">
                         <textarea name="kriteria"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $desk->kriteria }}</textarea>
+                            placeholder="ketik di sini"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -342,7 +344,7 @@
                     <td colspan="4" style="height: 100px; background-color: lightblue;">
                         <textarea name="akar_penyebab"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $desk->akar_penyebab }}</textarea>
+                            placeholder="ketik di sini"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -351,7 +353,7 @@
                 <tr>
                     <td colspan="4" style="height: 100px; background-color: lightblue;">
                         <textarea name="akibat" class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $desk->akibat }}</textarea>
+                            placeholder="ketik di sini"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -361,7 +363,7 @@
                     <td colspan="4" style="height: 100px; background-color: lightblue;">
                         <textarea name="rekomendasi"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $desk->rekomendasi }}</textarea>
+                            placeholder="ketik di sini"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -371,7 +373,7 @@
                     <td colspan="4" style="height: 100px; background-color: lightblue;">
                         <textarea name="tanggapan_auditee"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $desk->tanggapan_auditee }}</textarea>
+                            placeholder="ketik di sini"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -381,7 +383,7 @@
                     <td colspan="4" style="height: 100px; background-color: lightblue;">
                         <textarea name="rencana_perbaikan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $desk->rencana_perbaikan }}</textarea>
+                            placeholder="ketik di sini"></textarea>
                     </td>
                 </tr>
             </table>

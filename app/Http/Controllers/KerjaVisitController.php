@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Rencana;
 use App\Models\Timeline;
 use App\Models\KerjaVisit;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -159,13 +160,73 @@ class KerjaVisitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
+        $reset = [
+            "penyusunan_mutu_1" => 0,
+            "penyusunan_mutu_2" => 0,
+            "penyusunan_mutu_3" => 0,
+            "penyusunan_mutu_4" => 0,
+            "penyusunan_mutu_4_1" => 0,
+            "penyusunan_mutu_4_2" => 0,
+            "penyusunan_mutu_6" => 0,
+            "penyusunan_mutu_6_1" => 0,
+            "pemeriksaan_bersama_1" => 0,
+            "pemeriksaan_bersama_1_1" => 0,
+            "pemeriksaan_bersama_3" => 0,
+            "pemeriksaan_bersama_3_1" => 0,
+            "perubahan_kegiatan_1" => 0,
+            "perubahan_kegiatan_1_1" => 0,
+            "perubahan_kegiatan_1_2" => 0,
+            // "perubahan_kegiatan_3" => "Odit cum est neque s",
+            "asuransi_1" => 0,
+            "asuransi_1_1" => 0,
+            // "asuransi_2" => "Quibusdam aliquam fu",
+            "asuransi_3" => 0,
+            // "asuransi_4" => "Excepteur obcaecati",
+            "pengiriman_1" => 0,
+            "pengiriman_2" => 0,
+            "pengiriman_3" => 0,
+            "pengiriman_3_1" => 0,
+            "pengiriman_4" => 0,
+            "pengiriman_4_1" => 0,
+            // "pengiriman_5" => "Et optio voluptates",
+            "uji_coba_1" => 0,
+            "uji_coba_1_1" => 0,
+            "uji_coba_1_2" => 0,
+            "uji_coba_2" => 0,
+            "uji_coba_2_1" => 0,
+            "uji_coba_2_2" => 0,
+            "uji_coba_3" => 0,
+            "uji_coba_3_1" => 0,
+            "uji_coba_3_2" => 0,
+            // "uji_coba_4" => "Odit quos proident",
+            "serah_terima_1" => 0,
+            "serah_terima_2" => 0,
+            "serah_terima_3" => 0,
+            "serah_terima_3_1" => 0,
+            // "serah_terima_4" => "Et dolorum eveniet",
+            "denda_1" => 0,
+            "denda_1_1" => 0,
+            "denda_1_2" => 0,
+            // "denda_3" => "Tempore totam natus",
+            "perpanjangan_1" => 0,
+            "perpanjangan_1_1" => 0,
+            // "perpanjangan_2" => "Sint nostrud repell",
+            "laporan_1" => 0,
+            "laporan_2" => 0,
+            // "laporan_3" => "Sint exercitation es",
+        ];
 
-        $kerja_visit = KerjaVisit::where('id', $id)->first();
-        $rencana = $request->rencana_id;
-        // dd($rencana);
-        $kerja_visit->update($request->except(['rencana_id', '_token', '_method', 'kerja_desk_id']));
+        try {
+            DB::beginTransaction();
+            $kerja_visit = KerjaVisit::where('id', $id)->first();
+            $rencana = $request->rencana_id;
+            $kerja_visit->update($reset);
+            $kerja_visit->update($request->except(['rencana_id', '_token', '_method', 'kerja_desk_id']));
+            DB::commit();
+        } catch (Exception $e) {
 
+            return redirect('/rencana/timeline/' . $rencana)->with('success', 'Data  KKA Visit gagal diupdate!');
+        }
         return redirect('/rencana/timeline/' . $rencana)->with('success', 'Data  KKA Visit berhasil diupdate!');
     }
 

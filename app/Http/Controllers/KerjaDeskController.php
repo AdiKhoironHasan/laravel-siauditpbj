@@ -41,10 +41,12 @@ class KerjaDeskController extends Controller
     public function store(Request $request)
     {
         try {
+            DB::beginTransaction();
             $kerja_desk = KerjaDesk::create($request->except(['_token']));
             Timeline::where('rencana_id', $request->rencana_id)->update([
                 'kerja_desk_id' => $kerja_desk->id,
             ]);
+            DB::commit();
         } catch (Exception $e) {
             return back()->with('error', 'Pengisian Kertas Kerja Desk Gagal!');
         }
@@ -143,7 +145,8 @@ class KerjaDeskController extends Controller
         return view('kerja_desk.edit', compact([
             'title',
             'rencana',
-            'ketua', 'kerja_desk',
+            'ketua',
+            'kerja_desk',
             'substansi_kontrak_5',
             'substansi_kontrak_6',
             'substansi_kontrak_6_1',
@@ -171,12 +174,88 @@ class KerjaDeskController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        // dd($request->all());
+
+        $reset = [
+            "substansi_kontrak_2" => 0,
+            "substansi_kontrak_3" => 0,
+            "substansi_kontrak_4" => 0,
+            "substansi_kontrak_5" => 0,
+            "substansi_kontrak_5_1" => 0,
+            "substansi_kontrak_6" => 0,
+            "substansi_kontrak_6_1" => 0,
+            "substansi_kontrak_6_1_1" => 0,
+            "substansi_kontrak_6_1_2" => 0,
+            "substansi_kontrak_6_1_3" => 0,
+            "substansi_kontrak_6_1_4" => 0,
+            "substansi_kontrak_6_1_5" => 0,
+            "substansi_kontrak_6_1_6" => 0,
+            "substansi_kontrak_6_1_7" => 0,
+            "surat_pesanan_1" => 0,
+            "surat_pesanan_2" => 0,
+            "penyusunan_program_mutu_1" => 0,
+            "penyusunan_program_mutu_2" => 0,
+            "penyusunan_program_mutu_3" => 0,
+            "penyusunan_program_mutu_4" => 0,
+            "penyusunan_program_mutu_5" => 0,
+            "penyusunan_program_mutu_6" => 0,
+            "penyusunan_program_mutu_7" => 0,
+            "pemeriksaan_bersama_1" => 0,
+            "pemeriksaan_bersama_2" => 0,
+            "pemeriksaan_bersama_2_1" => 0,
+            "pembayaran_uang_muka_1" => 0,
+            "pembayaran_uang_muka_2" => 0,
+            "perubahan_kegiatan_1" => 0,
+            "perubahan_kegiatan_1_1" => 0,
+            "perubahan_kegiatan_1_2" => 0,
+            "perubahan_kegiatan_1_3" => 0,
+            "perubahan_kegiatan_1_4" => 0,
+            "asuransi_1" => 0,
+            "asuransi_2" => 0,
+            "pengiriman_1" => 0,
+            "pengiriman_2" => 0,
+            "pengiriman_3" => 0,
+            "pengiriman_4" => 0,
+            "pengiriman_4_1" => 0,
+            "uji_coba_barang_1" => 0,
+            "uji_coba_barang_1_1" => 0,
+            "uji_coba_barang_1_2" => 0,
+            "uji_coba_barang_2" => 0,
+            "uji_coba_barang_2_1" => 0,
+            "uji_coba_barang_2_2" => 0,
+            "uji_coba_barang_3" => 0,
+            "uji_coba_barang_3_1" => 0,
+            "uji_coba_barang_3_2" => 0,
+            "serah_terima_barang_1" => 0,
+            "serah_terima_barang_1_1" => 0,
+            "serah_terima_barang_2" => 0,
+            "serah_terima_barang_2_1" => 0,
+            "serah_terima_barang_3" => 0,
+            "pembayaran_1" => 0,
+            "pembayaran_2" => 0,
+            "pembayaran_3" => 0,
+            "pembayaran_3_1" => 0,
+            "denda_1" => 0,
+            "denda_1_1" => 0,
+            "penyesuaian_harga_1" => 0,
+            "penyesuaian_harga_1_1" => 0,
+            "perpanjangan_waktu_1" => 0,
+            "perpanjangan_waktu_1_1" => 0,
+            "laporan_hasil_1" => 0,
+            "laporan_hasil_2" => 0,
+        ];
+
         try {
+            DB::beginTransaction();
             $kerja_desk = KerjaDesk::where('id', $id)->first();
             $rencana = $kerja_desk->rencana->id;
             // dd($rencana);
+            $kerja_desk->update($reset);
             $kerja_desk->update($request->except(['rencana_id', '_token', '_method']));
+            DB::commit();
         } catch (Exception $e) {
+            // dd($e->getMessage());
             return redirect('/rencana/timeline/' . $rencana)->with('error', 'Perubahan Kertas Kerja Desk Gagal!');
         }
 

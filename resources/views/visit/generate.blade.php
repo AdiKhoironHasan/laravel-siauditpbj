@@ -14,9 +14,14 @@
         </div>
     </div>
     <div class="card-body">
-        <form action="/rencana/timeline/visit/{{ $visit->id }}" method="POST">
-            @method('PUT')
+        <form action="/rencana/timeline/visit/" method="POST">
+            {{-- @method('PUT') --}}
             @csrf
+
+            <input type="hidden" name="rencana_id" id="rencana_id" value="{{ $rencana->id }}">
+            <input type="hidden" name="kerja_visit_id" id="kerja_visit_id"
+                value="{{ $rencana->kerja_desk->kerja_visit->id }}">
+            <input type="hidden" name="generate" value="1">
             <table style="width: 100%;">
                 <tr>
                     <td style="width: 20%" rowspan="3" class="bdr bdr-none-bot" style="padding-top: 30px"><img
@@ -54,7 +59,7 @@
                     <td style="background-color: lightblue;">
                         <input type=" text" name="tipe_monitoring"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik disini" value="{{ $visit->tipe_monitoring }}" required>
+                            placeholder="ketik disini" required>
                     </td>
                     <td class="text-uppercase">{{ $rencana->kerja_desk->nama_paket }}</td>
                 </tr>
@@ -67,12 +72,12 @@
                     <td>
                         <input type="text" name="masa_monitoring_awal"
                             class="forn-control form-control-lg border-0 text-center bg-transparent"
-                            value="{{ $visit->masa_monitoring_awal }}" readonly>
+                            value="{{ date('d F Y', strtotime($rencana->monitoring_awal)) }}" readonly>
                     </td>
                     <td rowspan="3">
                         <input type="text" name="tanggal_monitoring"
                             class="forn-control form-control-lg border-0 text-center bg-transparent"
-                            value="{{ $visit->tanggal_monitoring }}" readonly>
+                            value="{{ date('d F Y', strtotime($rencana->tanggal_visit)) }}" readonly>
                     </td>
                     <td class="bdr txt-lft-50">1. {{ $rencana->auditor1->name }}</td>
                 </tr>
@@ -84,7 +89,7 @@
                     <td>
                         <input type="text" name="masa_monitoring_akhir"
                             class="forn-control form-control-lg border-0 text-center bg-transparent"
-                            value="{{ $visit->masa_monitoring_akhir }}" readonly>
+                            value="{{ date('d F Y', strtotime($rencana->monitoring_akhir))}}" readonly>
                     </td>
                     <td class="bdr txt-lft-50">3. {{ $rencana->auditor3->name }}</td>
                 </tr>
@@ -102,7 +107,7 @@
                     <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue; ">
                         <input type="text" name="penyusunan_mutu_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->penyusunan_mutu_1 }}">
+                            placeholder="ketik di sini" value="{{ $visit['penyusunan_mutu_1'] }}">
                     </td>
                 </tr>
                 <tr>
@@ -113,7 +118,7 @@
                     <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
                         <input type="text" name="penyusunan_mutu_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->penyusunan_mutu_2 }}">
+                            placeholder="ketik di sini" value="{{ $visit['penyusunan_mutu_2'] }}">
                     </td>
                 </tr>
                 <tr>
@@ -129,7 +134,7 @@
                     <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
                         <input type="text" name="pemeriksaan_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->pemeriksaan_1 }}">
+                            placeholder="ketik di sini" value="{{ $visit['pemeriksaan_1'] }}">
                     </td>
                 </tr>
                 <tr>
@@ -140,7 +145,7 @@
                     <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
                         <input type="text" name="pemeriksaan_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->pemeriksaan_2 }}">
+                            placeholder="ketik di sini" value="{{ $visit['pemeriksaan_2'] }}">
                     </td>
                 </tr>
                 <tr>
@@ -154,7 +159,7 @@
                     <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
                         <input type="text" name="perubahan_kegiatan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->perubahan_kegiatan }}">
+                            placeholder="ketik di sini" value="{{ $visit['perubahan_kegiatan'] }}">
                     </td>
                 </tr>
                 <tr>
@@ -168,7 +173,7 @@
                     <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
                         <input type="text" name="asuransi_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->asuransi_1 }}">
+                            placeholder="ketik di sini" value="{{ $visit['asuransi_1'] }}">
                     </td>
                 </tr>
                 <tr>
@@ -179,7 +184,7 @@
                     <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
                         <input type="text" name="asuransi_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->asuransi_2 }}">
+                            placeholder="ketik di sini" value="{{ $visit['asuransi_2'] }}">
                     </td>
                 </tr>
                 <tr>
@@ -193,7 +198,7 @@
                     <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
                         <input type="text" name="pengiriman"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->pengiriman }}">
+                            placeholder="ketik di sini" value="{{ $visit['pengiriman'] }}">
                     </td>
                 </tr>
                 <tr>
@@ -207,7 +212,7 @@
                     <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
                         <input type="text" name="uji_coba"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->uji_coba }}">
+                            placeholder="ketik di sini" value="{{ $visit['uji_coba'] }}">
                     </td>
                 </tr>
                 <tr>
@@ -221,7 +226,7 @@
                     <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
                         <input type="text" name="serah_terima"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->serah_terima }}">
+                            placeholder="ketik di sini" value="{{ $visit['serah_terima'] }}">
                     </td>
                 </tr>
                 <tr>
@@ -235,7 +240,7 @@
                     <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
                         <input type="text" name="denda"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->denda }}">
+                            placeholder="ketik di sini" value="{{ $visit['denda'] }}">
                     </td>
                 </tr>
                 <tr>
@@ -249,7 +254,7 @@
                     <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
                         <input type="text" name="perpanjangan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->perpanjangan }}">
+                            placeholder="ketik di sini" value="{{ $visit['perpanjangan'] }}">
                     </td>
                 </tr>
                 <tr>
@@ -263,7 +268,7 @@
                     <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
                         <input type="text" name="laporan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->laporan }}">
+                            placeholder="ketik di sini" value="{{ $visit['laporan'] }}">
                     </td>
                 </tr>
                 <tr>
@@ -273,7 +278,7 @@
                     <td colspan="4" style="height: 100px; background-color: lightblue;">
                         <textarea name="catatan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $visit->catatan }}</textarea>
+                            placeholder="ketik di sini"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -283,7 +288,7 @@
                     <td colspan="4" style="height: 100px; background-color: lightblue;">
                         <textarea name="kriteria"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $visit->kriteria }}</textarea>
+                            placeholder="ketik di sini"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -293,7 +298,7 @@
                     <td colspan="4" style="height: 100px; background-color: lightblue;">
                         <textarea name="akar_penyebab"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $visit->akar_penyebab }}</textarea>
+                            placeholder="ketik di sini"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -302,7 +307,7 @@
                 <tr>
                     <td colspan="4" style="height: 100px; background-color: lightblue;">
                         <textarea name="akibat" class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $visit->akibat }}</textarea>
+                            placeholder="ketik di sini"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -312,7 +317,7 @@
                     <td colspan="4" style="height: 100px; background-color: lightblue;">
                         <textarea name="rekomendasi"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $visit->rekomendasi }}</textarea>
+                            placeholder="ketik di sini"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -322,7 +327,7 @@
                     <td colspan="4" style="height: 100px; background-color: lightblue;">
                         <textarea name="tanggapan_auditee"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $visit->tanggapan_auditee }}</textarea>
+                            placeholder="ketik di sini"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -332,7 +337,7 @@
                     <td colspan="4" style="height: 100px; background-color: lightblue;">
                         <textarea name="rencana_perbaikan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $visit->rencana_perbaikan }}</textarea>
+                            placeholder="ketik di sini"></textarea>
                     </td>
                 </tr>
             </table>

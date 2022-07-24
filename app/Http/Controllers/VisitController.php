@@ -9,6 +9,7 @@ use App\Models\Berita;
 use App\Models\KerjaVisit;
 use App\Models\Rencana;
 use App\Models\Timeline;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -42,46 +43,56 @@ class VisitController extends Controller
      */
     public function store(Request $request)
     {
-        return abort(403);
+        // dd($request->all());
+        // return abort(403);
+        try {
+            $rules = [
+                'rencana_id' => 'required',
+                'kerja_visit_id' => 'required',
+                'tipe_monitoring' => 'required',
+                'penyusunan_mutu_1' => 'required',
+                'penyusunan_mutu_2' => 'required',
+                'pemeriksaan_1' => 'required',
+                'pemeriksaan_2' => 'required',
+                'perubahan_kegiatan' => 'required',
+                'asuransi_1' => 'required',
+                'asuransi_2' => 'required',
+                'pengiriman' => 'required',
+                'uji_coba' => 'required',
+                'serah_terima' => 'required',
+                'denda' => 'required',
+                'perpanjangan' => 'required',
+                'laporan' => 'required',
+                'catatan' => 'required',
+                'kriteria' => 'required',
+                'akar_penyebab' => 'required',
+                'akibat' => 'required',
+                'rekomendasi' => 'required',
+                // 'tanggapan_auditee' => 'required',
+                // 'rencana_perbaikan' => 'required',
+            ];
+            $validatedData = $request->validate($rules);
 
-        // $rules = [
-        //     'rencana_id' => 'required',
-        //     'desk_id' => 'required',
-        //     'tipe_monitoring' => 'required',
-        //     // 'masa_monitoring_awal' => 'required',
-        //     // 'masa_monitoring_akhir' => 'required',
-        //     // 'tanggal_monitoring' => 'required',
-        //     'penyusunan_mutu_1' => 'required',
-        //     'penyusunan_mutu_2' => 'required',
-        //     'pemeriksaan_1' => 'required',
-        //     'pemeriksaan_2' => 'required',
-        //     'perubahan_kegiatan' => 'required',
-        //     'asuransi_1' => 'required',
-        //     'asuransi_2' => 'required',
-        //     'pengiriman' => 'required',
-        //     'uji_coba' => 'required',
-        //     'serah_terima' => 'required',
-        //     'denda' => 'required',
-        //     'perpanjangan' => 'required',
-        //     'laporan' => 'required',
-        //     'catatan' => 'required',
-        //     'kriteria' => 'required',
-        //     'akar_penyebab' => 'required',
-        //     'akibat' => 'required',
-        //     'rekomendasi' => 'required',
-        //     'tanggapan_auditee' => 'required',
-        //     'rencana_perbaikan' => 'required',
-        // ];
+            if ($request->has('tanggapan_auditee')) {
+                $validatedData['tanggapan_auditee'] = $request->tanggapan_auditee;
+            }
 
-        // $validatedData = $request->validate($rules);
+            if ($request->has('rencana_perbaikan')) {
+                $validatedData['rencana_perbaikan'] = $request->rencana_perbaikan;
+            }
 
-        // DB::beginTransaction();
-        // $visit = Visit::create($validatedData);
-        // $validatedDataTimeline = ['visit_id' => $visit->id];
-        // Timeline::where('rencana_id', $validatedData['rencana_id'])->update($validatedDataTimeline);
-        // DB::commit();
-
-        // return redirect('/rencana/timeline/' . $validatedData['rencana_id'])->with('success', 'Data Visit berhasil ditambahkan!');
+            // dd($validatedData);
+            DB::beginTransaction();
+            $visit = Visit::create($validatedData);
+            $validatedDataTimeline = ['visit_id' => $visit->id];
+            Timeline::where('rencana_id', $validatedData['rencana_id'])->update($validatedDataTimeline);
+            DB::commit();
+        } catch (Exception $e) {
+            // dd($e->getMessage());
+            return redirect('/rencana/timeline/' . $request->rencana_id)->with('error', 'Data Visit gagal ditambahkan!');
+        }
+        // dd($validatedData['rencana_id']);
+        return redirect('/rencana/timeline/' . $validatedData['rencana_id'])->with('success', 'Data Visit berhasil ditambahkan!');
     }
 
     /**
@@ -103,6 +114,7 @@ class VisitController extends Controller
      */
     public function edit(Visit $visit)
     {
+        // dd($visit);
         return view('visit.edit', [
             'title' => 'Data Visit',
             'visit' => $visit,
@@ -131,38 +143,46 @@ class VisitController extends Controller
      */
     public function update(Request $request, Visit $visit)
     {
-        $rules = [
-            'tipe_monitoring' => 'required',
-            // 'masa_monitoring_awal' => 'required',
-            // 'masa_monitoring_akhir' => 'required',
-            // 'tanggal_monitoring' => 'required',
-            'penyusunan_mutu_1' => 'required',
-            'penyusunan_mutu_2' => 'required',
-            'pemeriksaan_1' => 'required',
-            'pemeriksaan_2' => 'required',
-            'perubahan_kegiatan' => 'required',
-            'asuransi_1' => 'required',
-            'asuransi_2' => 'required',
-            'pengiriman' => 'required',
-            'uji_coba' => 'required',
-            'serah_terima' => 'required',
-            'denda' => 'required',
-            'perpanjangan' => 'required',
-            'laporan' => 'required',
-            //     'catatan' => 'required',
-            //     'kriteria' => 'required',
-            //     'akar_penyebab' => 'required',
-            //     'akibat' => 'required',
-            //     'rekomendasi' => 'required',
-        ];
+        $message = 'diupdate!';
+        if ($request->has('generate')) {
+            $message = 'ditambah!';
+        }
 
-        $validatedData = $request->validate($rules);
-        Visit::where('id', $visit->id)->update($validatedData);
-        Timeline::where('rencana_id', $visit->kerja_visit->kerja_desk->rencana_id)->update([
-            'visit_id' => $visit->id,
-        ]);
+        try {
+            $rules = [
+                'tipe_monitoring' => 'required',
+                // 'masa_monitoring_awal' => 'required',
+                // 'masa_monitoring_akhir' => 'required',
+                // 'tanggal_monitoring' => 'required',
+                'penyusunan_mutu_1' => 'required',
+                'penyusunan_mutu_2' => 'required',
+                'pemeriksaan_1' => 'required',
+                'pemeriksaan_2' => 'required',
+                'perubahan_kegiatan' => 'required',
+                'asuransi_1' => 'required',
+                'asuransi_2' => 'required',
+                'pengiriman' => 'required',
+                'uji_coba' => 'required',
+                'serah_terima' => 'required',
+                'denda' => 'required',
+                'perpanjangan' => 'required',
+                'laporan' => 'required',
+                //     'catatan' => 'required',
+                //     'kriteria' => 'required',
+                //     'akar_penyebab' => 'required',
+                //     'akibat' => 'required',
+                //     'rekomendasi' => 'required',
+            ];
+            $validatedData = $request->validate($rules);
+            Visit::where('id', $visit->id)->update($validatedData);
+            Timeline::where('rencana_id', $visit->kerja_visit->kerja_desk->rencana_id)->update([
+                'visit_id' => $visit->id,
+            ]);
+        } catch (Exception $e) {
+            return redirect('/rencana/timeline/' . $visit->kerja_visit->kerja_desk->rencana_id)->with('error', 'Data Visit gagal ' . $message);
+        }
 
-        return redirect('/rencana/timeline/' . $visit->kerja_visit->kerja_desk->rencana_id)->with('success', 'Data Visit berhasil ditambah!');
+        return redirect('/rencana/timeline/' . $visit->kerja_visit->kerja_desk->rencana_id)->with('success', 'Data Visit berhasil ' . $message);
     }
 
     /**
@@ -174,16 +194,19 @@ class VisitController extends Controller
     public function destroy(Visit $visit)
     {
         $rencana = $visit->kerja_visit->kerja_desk->rencana_id;
-
-        DB::beginTransaction();
-        Visit::destroy($visit->id);
-        Timeline::where('visit_id', $visit->id)->update([
-            'visit_id' => NULL,
-            'konfirmasi_visit' => 0,
-            'berita_id' => NULL
-        ]);
-        Berita::destroy('kerja_visit_id', $visit->kerja_visit_id);
-        DB::commit();
+        try {
+            DB::beginTransaction();
+            Visit::destroy($visit->id);
+            Timeline::where('visit_id', $visit->id)->update([
+                'visit_id' => NULL,
+                'konfirmasi_visit' => 0,
+                'berita_id' => NULL
+            ]);
+            Berita::destroy('kerja_visit_id', $visit->kerja_visit_id);
+            DB::commit();
+        } catch (Exception $e) {
+            return redirect('/rencana/timeline/' . $rencana)->with('error', 'Data Visit gagal dihapus!');
+        }
 
         return redirect('/rencana/timeline/' . $rencana)->with('success', 'Data Visit berhasil dihapus!');
     }
@@ -225,16 +248,16 @@ class VisitController extends Controller
         $data_visit['perpanjangan'] = $kerja_visit->perpanjangan_2;
         $data_visit['laporan'] = $kerja_visit->laporan_3;
 
-        $visit = Visit::where('kerja_visit_id', $id)->first();
-        if ($visit == null) {
-            $visit = Visit::create($data_visit);
-        }
+        // $visit = Visit::where('kerja_visit_id', $id)->first();
+        // if ($visit == null) {
+        //     $visit = Visit::create($data_visit);
+        // }
 
         return view('visit.generate', [
             'title' => 'Kertas Data Visit',
-            'rencana' => Rencana::where('id', $visit->kerja_visit->kerja_desk->rencana_id)->first(),
+            'rencana' => Rencana::where('id', $kerja_visit->kerja_desk->rencana_id)->first(),
             'ketua' => User::firstWhere('level', 'Ketua SPI'),
-            'visit' => $visit,
+            'visit' => $data_visit,
         ]);
     }
 }

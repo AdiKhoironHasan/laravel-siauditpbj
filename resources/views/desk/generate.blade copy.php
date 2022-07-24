@@ -1,9 +1,16 @@
 @extends('layouts.main')
 
 @section('content')
+<style>
+    /* input[type=text] {
+        word-wrap: break-word;
+        word-break: break-all;
+        height: 80px;
+    } */
+</style>
 <div class="card card-orange">
     <div class="card-header" style="color: white; border-color:transparent">
-        <h3 class="card-title">Edit Data Desk</h3>
+        <h3 class="card-title">Tambah {{ $title }}</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                 <i class="fas fa-minus"></i>
@@ -55,7 +62,7 @@
                 <tr>
                     <td class="text-uppercase">{{ $rencana->kerja_desk->unit_kerja }}</td>
                     <td style="background-color: lightblue;">
-                        <input type=" text" name="tipe_monitoring"
+                        <input type="text" name="tipe_monitoring"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->tipe_monitoring }}" required>
                     </td>
@@ -70,14 +77,12 @@
                     <td>
                         <input type="text" name="masa_monitoring_awal"
                             class="forn-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" readonly
-                            value="{{ date('d F Y', strtotime($rencana->monitoring_awal)) }}">
+                            placeholder="ketik di sini" value="{{ $desk->masa_monitoring_awal }}" readonly>
                     </td>
                     <td rowspan="3">
                         <input type="text" name="tanggal_monitoring"
                             class="forn-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" readonly
-                            value="{{ date('d F Y', strtotime($rencana->tanggal_desk)) }}">
+                            placeholder="ketik di sini" value="{{ $desk->tanggal_monitoring }}" readonly>
                     </td>
                     <td class="bdr txt-lft-50">1. {{ $rencana->auditor1->name }}</td>
                 </tr>
@@ -89,8 +94,7 @@
                     <td>
                         <input type="text" name="masa_monitoring_akhir"
                             class="forn-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" readonly
-                            value="{{ date('d F Y', strtotime($rencana->monitoring_akhir)) }}">
+                            placeholder="ketik di sini" value="{{ $desk->masa_monitoring_akhir }}" readonly>
                     </td>
                     <td class="bdr txt-lft-50">3. {{ $rencana->auditor3->name }}</td>
                 </tr>
@@ -100,7 +104,7 @@
                 <tr>
                     <th style="width: 5%;">NO</th>
                     <th style="width: 35%;">ITEM</th>
-                    <th style="width: 45%;">URAIAN</th>
+                    <th style="width: 45%;" colspan="2">URAIAN</th>
                     {{-- <th style="width: 15%;">KODE TEMUAN</th> --}}
                 </tr>
                 <tr>

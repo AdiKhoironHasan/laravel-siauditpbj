@@ -263,7 +263,7 @@
                 <tr>
                     <td style="width: 40%;text-align:left">NILAI KONTRAK</td>
                     <td class="align-bottom">
-                        <input style="width: 80%" type="integer" id="nilai_kontrak" name="nilai_kontrak"
+                        <input style="width: 80%" type="number" id="nilai_kontrak" name="nilai_kontrak"
                             value="{{ $kerja_desk->nilai_kontrak }}" required>
                     </td>
                 </tr>
@@ -613,9 +613,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 40%;text-align:left">DURASI PENERIMAAN BARANG</td>
+                    <td style="width: 40%;text-align:left">DURASI PENERIMAAN BARANG (HARI)</td>
                     <td>
-                        <input style="width: 80%" type="text" id="durasi_penerimaan" name="durasi_penerimaan"
+                        <input style="width: 80%" type="number" id="durasi_penerimaan" name="durasi_penerimaan"
                             value="{{ $kerja_desk->durasi_penerimaan }}" required>
                     </td>
                 </tr>
@@ -746,14 +746,14 @@
                 <tr>
                     <td style="width: 40%;text-align:left">UANG MUKA (Rp)</td>
                     <td class="align-bottom">
-                        <input style="width: 80%" type="text" id="uang_muka" name="uang_muka"
+                        <input style="width: 80%" type="number" id="uang_muka" name="uang_muka"
                             value="{{ $kerja_desk->uang_muka }}" required>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 40%;text-align:left">JAMINAN UANG MUKA (Rp)</td>
                     <td class="align-bottom">
-                        <input style="width: 80%" type="text" id="jaminan_uang_muka" name="jaminan_uang_muka"
+                        <input style="width: 80%" type="number" id="jaminan_uang_muka" name="jaminan_uang_muka"
                             value="{{ $kerja_desk->jaminan_uang_muka }}">
                     </td>
                 </tr>

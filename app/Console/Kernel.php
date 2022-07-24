@@ -25,9 +25,14 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function () {
             $rencanas = Rencana::where('status', 'Belum Terlaksana')->get();
-            $users = User::where('status', 'Aktif')->get();
+            $users = collect([User::where('level', 'Ketua SPI')->first()]);
 
             foreach ($rencanas as $rencana) {
+                $users->push($rencana->auditor1);
+                $users->push($rencana->auditor2);
+                $users->push($rencana->auditor3);
+                $users->push($rencana->auditee);
+
                 foreach ($users as $user) {
                     $date = Carbon::parse(date('Y-m-d', strtotime(Carbon::now())))
                         ->diffInDays(Carbon::parse(date('Y-m-d', strtotime($rencana->monitoring_awal))));
@@ -40,11 +45,25 @@ class Kernel extends ConsoleKernel
                         } else {
                             $message = 'Hii, ' . $user->name . '. Audit akan dilaksanakan ' . $date . ' hari lagi <br>';
                         }
-                        Mail::to($user->email)->send(new RencanaMail($user->email, $message));
+                        Mail::to($user->email)->send(new RencanaMail($user->name, $message));
                     }
                 }
             }
-        })->everyTwoMinutes();
+
+            $rencanas = Rencana::where('status', 'Belum Terlaksana')->get();
+            foreach ($rencanas as $rencana) {
+                $late = (Carbon::now()->toDateString() > $rencana->monitoring_akhir); //sudah terlewat?
+
+                if ($late == true) {
+                    Rencana::where('id', $rencana->id)->update([
+                        'status' => 'Tidak Terlaksana'
+                    ]);
+
+                    Mail::to($user[0]->email)->send(new RencanaMail($user[0]->name, $message));
+                }
+            }
+        })
+            ->everyMinute();
     }
 
     /**

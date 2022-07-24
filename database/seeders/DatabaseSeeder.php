@@ -84,7 +84,6 @@ class DatabaseSeeder extends Seeder
         //     "tanggal_sp2d" => "1982-02-14",
         //     "no_adendum" => "Minima enim nostrud",
         //     "tanggal_sppbj" => "2022-08-15",
-        //     "substansi_kontrak_1" => 1,
         //     "substansi_kontrak_2" => 1,
         //     "substansi_kontrak_3" => 1,
         //     "substansi_kontrak_4" => 1,

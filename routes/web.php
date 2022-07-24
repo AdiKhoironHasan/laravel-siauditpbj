@@ -54,8 +54,6 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('admin')->group(function () {
         Route::resource('/user', UserController::class);
-        // Route::get('/rencana/timeline/desk/create/{id}', [TimelineController::class, 'desk']);
-        // Route::get('/rencana/timeline/visit/create/{id}', [TimelineController::class, 'visit']);
     });
 
     Route::resource('/unit', UnitController::class);
@@ -66,16 +64,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/rencana/timeline/kerjavisit/create/{id}', [TimelineController::class, 'kerjaVisit']);
         Route::post('/rencana/timeline/desk/create/{id}', [DeskController::class, 'generate']);
         Route::post('/rencana/timeline/visit/create/{id}', [VisitController::class, 'generate']);
-        // Route::get('/rencana/timeline/visit/create/{id}', [TimelineController::class, 'visit']);
     });
 
     Route::post('/rencana/timeline/desk/confirm/{id}', [TimelineController::class, 'confirmDesk']);
     Route::post('/rencana/timeline/visit/confirm/{id}', [TimelineController::class, 'confirmVisit']);
-
-    // Route::middleware('auditee')->group(function () {
-    // Route::resource('/barang', BarangController::class);
-    // Route::post('/rencana/timeline/confirm/{id}', [TimelineController::class, 'confirm']);
-    // });
 
     Route::get('/rencana/timeline/kerjadesk/print/{id}', [KerjaDeskController::class, 'print']);
     Route::get('/rencana/timeline/desk/print/{id}', [DeskController::class, 'print']);
@@ -99,12 +91,19 @@ Route::middleware('auth')->group(function () {
     // hanya auditee
 });
 
-// Route::get('/rencana/timeline/kerjadesk/create', function () {
 
 Route::get('/cobamail', function () {
-    // $user = User::first();
+    $rencanas = Rencana::where('status', 'Belum Terlaksana')->get();
+    $users = collect([User::where('level', 'Ketua SPI')->first()]);
 
-    return Mail::to('adieron97@gmail.com')->send(new RencanaMail('adieron97@gmail.com', 'message'));
+    foreach ($rencanas as $rencana) {
+        $users->push($rencana->auditor1);
+        $users->push($rencana->auditor2);
+        $users->push($rencana->auditor3);
+        $users->push($rencana->auditee);
+    }
+
+    dd($users[0]->email);
 });
 
 Route::get('/cobarencana', function () {

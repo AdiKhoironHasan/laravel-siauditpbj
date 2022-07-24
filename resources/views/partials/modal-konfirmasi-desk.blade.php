@@ -22,12 +22,14 @@
                     <div class="form-group">
                         <label>Tanggapan</label>
                         <textarea class="form-control" name="tanggapan_auditee" id="tanggapan_auditee" rows="3"
-                            placeholder="Ketik disini ..."></textarea>
+                            placeholder="Ketik disini ...">{{
+                            $timeline->desk_id != null ? $desk->tanggapan_auditee : '' }}</textarea>
                     </div>
                     <div class="form-group">
                         <label>Rencana Perbaikan</label>
                         <textarea class="form-control" name="rencana_perbaikan" id="rencana_perbaikan" rows="3"
-                            placeholder="Ketik disini ..."></textarea>
+                            placeholder="Ketik disini ...">{{
+                            $timeline->desk_id != null ? $desk->rencana_perbaikan : '' }}</textarea>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">

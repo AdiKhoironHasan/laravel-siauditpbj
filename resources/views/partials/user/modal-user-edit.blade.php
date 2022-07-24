@@ -29,7 +29,7 @@
                             <option hidden selected>{{ $user->status }}</option>
                             <option>Aktif</option>
                             <option>Tidak Aktif</option>
-                            <option>Mendaftar</option>
+                            {{-- <option>Mendaftar</option> --}}
                         </select>
                     </div>
                     <div class="form-group">

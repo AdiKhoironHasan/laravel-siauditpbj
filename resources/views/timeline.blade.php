@@ -32,7 +32,7 @@
                                         class="fas fa-check-circle text-success"></i></h3>
                                 <div class="timeline-body">
                                     Rencana Kerja Audit dibuat pada
-                                    <strong>{{ date('d F Y', strtotime($timeline->rencana->tanggal)) }}</strong>
+                                    {{ date('d F Y', strtotime($timeline->rencana->tanggal)) }}
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                                             @csrf
                                             <input type="submit"
                                                 onclick="return confirm('Anda yakin mau menghapus data desk ini ?')"
-                                                class="btn btn-danger rounded-0 btn-sm {{ $timeline->kerja_desk_id != null ? '' : 'disabled' }}"
+                                                class="btn btn-danger rounded-0 btn-sm {{ ($timeline->berita_id == null && $timeline->kerja_desk_id != null) ? '' : 'disabled' }}"
                                                 value="Hapus">
                                         </form>
                                         @endcanany
@@ -145,7 +145,8 @@
                                 </div>
                                 @else
                                 <div class="timeline-body">
-                                    {{$timeline->konfirmasi_desk != null ? 'Data sudah dikonfirmasi' : 'Data belum
+                                    {{$timeline->konfirmasi_desk != null ? 'Data sudah dikonfirmasi pada '.date('d F Y',
+                                    strtotime($desk->updated_at)) : 'Data belum
                                     dikonfirmasi'}}
                                 </div>
                                 @endif
@@ -179,7 +180,7 @@
                                             @csrf
                                             <input type="submit"
                                                 onclick="return confirm('Anda yakin mau menghapus data desk ini ?')"
-                                                class="btn btn-danger rounded-0 btn-sm {{ $timeline->kerja_visit_id != null ? '' : 'disabled' }}"
+                                                class="btn btn-danger rounded-0 btn-sm {{ ($timeline->berita_id == null && $timeline->kerja_visit_id != null) ? '' : 'disabled' }}"
                                                 value="Hapus">
                                         </form>
                                         @endcanany
@@ -242,7 +243,8 @@
                             <div class="timeline-item">
                                 <h3 class="timeline-header"><b>Konfirmasi Data Audit Visit</b> <i class="fas"></i>
                                 </h3>
-                                @if (Auth::user()->level == "Ketua SPI" || Auth::user()->level == "Auditor" )
+                                @if (Auth::user()->level == "Ketua SPI" || Auth::user()->level == "Auditor"
+                                ||Auth::user()->level == "Auditee")
                                 <div class="timeline-body">
                                     {{-- <form action="/rencana/timeline/confirm/{{ $timeline->rencana->id }}"
                                         method="POST">
@@ -262,10 +264,13 @@
                                             $timeline->visit_id == null) ? 'disabled' : '' }}>Konfirmasi</button>
                                         {{--
                                     </form> --}}
+
                                 </div>
                                 @else
                                 <div class="timeline-body">
-                                    {{$timeline->konfirmasi_visit != null ? 'Data sudah dikonfirmasi' : 'Data belum
+                                    {{$timeline->konfirmasi_visit != null ? 'Data sudah dikonfirmasi pada '.date('d F
+                                    Y',
+                                    strtotime($visit->updated_at)) : 'Data belum
                                     dikonfirmasi'}}
                                 </div>
                                 @endif
@@ -308,7 +313,11 @@
                             <div class="timeline-item">
                                 <h3 class="timeline-header"><b>Berita Acara</b> <i class="fas"></i></h3>
                                 <div class="timeline-body">
-                                    berita status</div>
+                                    {{$timeline->berita_id != null ? 'Berita acara dibuat secara otomatis pada '.date('d
+                                    F
+                                    Y',
+                                    strtotime($berita->updated_at)) : 'Berita acara belum ada'}}
+                                </div>
                                 <div class="timeline-footer">
                                     <a href="/rencana/timeline/berita/{{ $timeline->berita_id != null ? $timeline->berita_id : '' }}"
                                         class="btn btn-success btn-sm {{ $timeline->berita_id != null ? '' : 'disabled' }}">Lihat</a>
@@ -316,7 +325,8 @@
                             </div>
                         </div>
                         {{-- DATA DARI BOT TELE --}}
-                        {{-- <div>
+                        {{-- @if ()
+                        <div>
                             <i class="fas fa-clock bg-danger"></i>
                             <div class="timeline-item">
                                 <h3 class="timeline-header"><b>Rencana Audit Tidak Terlaksana</b> <i
@@ -325,7 +335,8 @@
                                     Data tidak di isi dampai waktu tenggang
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
+                        @endif --}}
                         <div class="time-label">
                             @if ($timeline->berita_id != null)
                             <span class="bg-danger">{{ date('d F Y', strtotime($berita->tanggal)) }}</span>

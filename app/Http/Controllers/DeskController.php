@@ -43,45 +43,56 @@ class DeskController extends Controller
      */
     public function store(Request $request)
     {
-        return abort(403);
-        // $validatedData = $request->validate([
-        //     'rencana_id' => 'required',
-        //     'tipe_monitoring' => 'required',
-        //     'masa_monitoring_awal' => 'required',
-        //     'masa_monitoring_akhir' => 'required',
-        //     'tanggal_monitoring' => 'required',
-        //     'kontrak_1' => 'required',
-        //     'kontrak_2' => 'required',
-        //     'kontrak_3' => 'required',
-        //     'kontrak_4' => 'required',
-        //     'surat_pesanan_1' => 'required',
-        //     'surat_pesanan_2' => 'required',
-        //     'surat_pesanan_3' => 'required',
-        //     'surat_pesanan_4' => 'required',
-        //     'penyusunan_program_mutu' => 'required',
-        //     'pemeriksaan_bersama' => 'required',
-        //     'pembayaran_uang_muka_1' => 'required',
-        //     'pembayaran_uang_muka_2' => 'required',
-        //     'uji_coba_barang' => 'required',
-        //     'serah_terima_barang_1' => 'required',
-        //     'serah_terima_barang_2' => 'required',
-        //     'catatan' => 'required',
-        //     'kriteria' => 'required',
-        //     'akar_penyebab' => 'required',
-        //     'akibat' => 'required',
-        //     'rekomendasi' => 'required',
-        //     'tanggapan_auditee' => 'required',
-        //     'rencana_perbaikan' => 'required',
+        // return abort(403);
+        try {
 
-        // ]);
+            $validatedData = $request->validate([
+                'rencana_id' => 'required',
+                'kerja_desk_id' => 'required',
+                'tipe_monitoring' => 'required',
+                // 'masa_monitoring_awal' => 'required',
+                // 'masa_monitoring_akhir' => 'required',
+                // 'tanggal_monitoring' => 'required',
+                'kontrak_1' => 'required',
+                'kontrak_2' => 'required',
+                'kontrak_3' => 'required',
+                'kontrak_4' => 'required',
+                'surat_pesanan_1' => 'required',
+                'surat_pesanan_2' => 'required',
+                'surat_pesanan_3' => 'required',
+                'surat_pesanan_4' => 'required',
+                'penyusunan_program_mutu' => 'required',
+                'pemeriksaan_bersama' => 'required',
+                'pembayaran_uang_muka_1' => 'required',
+                'pembayaran_uang_muka_2' => 'required',
+                'uji_coba_barang' => 'required',
+                'serah_terima_barang_1' => 'required',
+                'serah_terima_barang_2' => 'required',
+                'catatan' => 'required',
+                'kriteria' => 'required',
+                'akar_penyebab' => 'required',
+                'akibat' => 'required',
+                'rekomendasi' => 'required',
+                // 'tanggapan_auditee' => 'required',
+                // 'rencana_perbaikan' => 'required',
+            ]);
+            if ($request->has('tanggapan_auditee')) {
+                $validatedData['tanggapan_auditee'] = $request->tanggapan_auditee;
+            }
 
-        // DB::beginTransaction();
-        // $desk = Desk::create($validatedData);
-        // $validatedDataTimeline = ['desk_id' => $desk->id];
-        // Timeline::where('rencana_id', $validatedData['rencana_id'])->update($validatedDataTimeline);
-        // DB::commit();
+            if ($request->has('rencana_perbaikan')) {
+                $validatedData['rencana_perbaikan'] = $request->rencana_perbaikan;
+            }
+            DB::beginTransaction();
+            $desk = Desk::create($validatedData);
+            $validatedDataTimeline = ['desk_id' => $desk->id];
+            Timeline::where('rencana_id', $validatedData['rencana_id'])->update($validatedDataTimeline);
+            DB::commit();
+        } catch (Exception $e) {
+            return redirect('/rencana/timeline/' . $request->rencana_id)->with('error', 'Data Desk gagal ditambahkan!');
+        }
 
-        // return redirect('/rencana/timeline/' . $validatedData['rencana_id'])->with('success', 'Data Desk berhasil ditambahkan!');
+        return redirect('/rencana/timeline/' . $validatedData['rencana_id'])->with('success', 'Data Desk berhasil ditambahkan!');
     }
 
     /**
@@ -140,45 +151,54 @@ class DeskController extends Controller
     //request adalah form data baru
 
     {
-        $rules = [
-            'tipe_monitoring' => 'required',
-            // 'masa_monitoring_awal' => 'required',
-            // 'masa_monitoring_akhir' => 'required',
-            // 'tanggal_monitoring' => 'required',
-            'kontrak_1' => 'required',
-            'kontrak_2' => 'required',
-            'kontrak_3' => 'required',
-            'kontrak_4' => 'required',
-            'surat_pesanan_1' => 'required',
-            'surat_pesanan_2' => 'required',
-            'surat_pesanan_3' => 'required',
-            'surat_pesanan_4' => 'required',
-            'penyusunan_program_mutu' => 'required',
-            'pemeriksaan_bersama' => 'required',
-            'pembayaran_uang_muka_1' => 'required',
-            'pembayaran_uang_muka_2' => 'required',
-            'uji_coba_barang' => 'required',
-            'serah_terima_barang_1' => 'required',
-            'serah_terima_barang_2' => 'required',
-            // 'catatan' => 'required',
-            // 'kriteria' => 'required',
-            // 'akar_penyebab' => 'required',
-            // 'akibat' => 'required',
-            // 'rekomendasi' => 'required',
-        ];
-
-        $validatedData = $request->validate($rules);
-
         try {
-            Desk::where('id', $desk->id)->update($validatedData);
-            Timeline::where('rencana_id', $desk->kerja_desk->rencana_id)->update([
-                'desk_id' => $desk->id,
-            ]);
+            $message = 'diupdate!';
+            if ($request->has('generate')) {
+                $message = 'ditambah!';
+            }
+
+            $rules = [
+                'tipe_monitoring' => 'required',
+                // 'masa_monitoring_awal' => 'required',
+                // 'masa_monitoring_akhir' => 'required',
+                // 'tanggal_monitoring' => 'required',
+                'kontrak_1' => 'required',
+                'kontrak_2' => 'required',
+                'kontrak_3' => 'required',
+                'kontrak_4' => 'required',
+                'surat_pesanan_1' => 'required',
+                'surat_pesanan_2' => 'required',
+                'surat_pesanan_3' => 'required',
+                'surat_pesanan_4' => 'required',
+                'penyusunan_program_mutu' => 'required',
+                'pemeriksaan_bersama' => 'required',
+                'pembayaran_uang_muka_1' => 'required',
+                'pembayaran_uang_muka_2' => 'required',
+                'uji_coba_barang' => 'required',
+                'serah_terima_barang_1' => 'required',
+                'serah_terima_barang_2' => 'required',
+                // 'catatan' => 'required',
+                // 'kriteria' => 'required',
+                // 'akar_penyebab' => 'required',
+                // 'akibat' => 'required',
+                // 'rekomendasi' => 'required',
+            ];
+
+            $validatedData = $request->validate($rules);
+
+            try {
+                Desk::where('id', $desk->id)->update($validatedData);
+                Timeline::where('rencana_id', $desk->kerja_desk->rencana_id)->update([
+                    'desk_id' => $desk->id,
+                ]);
+            } catch (Exception $e) {
+                return back()->with('error', 'Kertas Data Desk Gagal!');
+            }
         } catch (Exception $e) {
-            return back()->with('error', 'Kertas Data Desk Gagal!');
+            return redirect('/rencana/timeline/' . $request->rencana_id)->with('success', 'Kertas Data Desk gagal ' . $message);
         }
 
-        return redirect('/rencana/timeline/' . $request->rencana_id)->with('success', 'Kertas Data Desk Berhasil Ditambah!');
+        return redirect('/rencana/timeline/' . $request->rencana_id)->with('success', 'Kertas Data Desk Berhasil ' . $message);
     }
 
     /**
@@ -361,20 +381,22 @@ class DeskController extends Controller
             $data_desk['serah_terima_barang_2'] = 'WAKTU PENERIMAAN BARAG MELEBIHI WAKTU YANG TERTERA DI KONTRAK';
         }
 
-        $desk = Desk::where('kerja_desk_id', $id)->first();
+        // $desk = Desk::where('kerja_desk_id', $id)->first();
 
-        if ($desk == null) {
-            $desk = Desk::create($data_desk);
-        }
+        // if ($desk == null) {
+        //     $desk = Desk::create($data_desk);
+        // }
+
+
         // Timeline::where('kerja_desk_id', $id)->update([
         //     'desk_id' => $desk->id,
         // ]);
 
         return view('desk.generate', [
             'title' => 'Kertas Data Desk',
-            'rencana' => Rencana::where('id', $desk->kerja_desk->rencana_id)->first(),
+            'rencana' => Rencana::where('id', $kerja_desk->rencana_id)->first(),
             'ketua' => User::firstWhere('level', 'Ketua SPI'),
-            'desk' => $desk,
+            'desk' => $data_desk,
         ]);
     }
 }
