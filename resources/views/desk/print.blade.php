@@ -19,7 +19,7 @@
             @method('PUT')
             @csrf --}}
             {{-- @dd($rencana) --}}
-            {{-- <input type="hidden" name="rencana_id" id="rencana_id" value="{{ $rencana->id }}"> --}}
+            {{-- <input readonly type="hidden" name="rencana_id" id="rencana_id" value="{{ $rencana->id }}"> --}}
             <table style="width: 100%;">
                 <tr>
                     <td style="width: 20%" rowspan="3" class="bdr bdr-none-bot" style="padding-top: 30px"><img
@@ -54,8 +54,8 @@
                 </tr>
                 <tr>
                     <td class="text-uppercase">{{ $rencana->kerja_desk->unit_kerja }}</td>
-                    <td style="background-color: lightblue;">
-                        <input type=" text" name="tipe_monitoring"
+                    <td style="">
+                        <input readonly type=" text" name="tipe_monitoring"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->tipe_monitoring }}" required>
                     </td>
@@ -68,12 +68,12 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="masa_monitoring_awal"
+                        <input readonly type="text" name="masa_monitoring_awal"
                             class="forn-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             readonly value="{{ $desk->masa_monitoring_awal }}">
                     </td>
                     <td rowspan="3">
-                        <input type="text" name="tanggal_monitoring"
+                        <input readonly type="text" name="tanggal_monitoring"
                             class="forn-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             readonly value="{{ $desk->tanggal_monitoring }}">
                     </td>
@@ -85,7 +85,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="masa_monitoring_akhir"
+                        <input readonly type="text" name="masa_monitoring_akhir"
                             class="forn-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             readonly value="{{ $desk->masa_monitoring_akhir }}">
                     </td>
@@ -110,8 +110,8 @@
                 <tr>
                     <td>a</td>
                     <td class="txt-lft-20">TGL SPPBJ</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="kontrak_1"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="kontrak_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->kontrak_1 }}">
                     </td>
@@ -120,8 +120,8 @@
                 <tr>
                     <td>b</td>
                     <td class="txt-lft-20">SUBSTANSI KONTRAK</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="kontrak_2"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="kontrak_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->kontrak_2 }}">
                     </td>
@@ -130,8 +130,8 @@
                 <tr>
                     <td>c</td>
                     <td class="txt-lft-20">TTD KONTRAK OLEH PENYEDIA</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="kontrak_3"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="kontrak_3"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->kontrak_3 }}">
                     </td>
@@ -140,8 +140,8 @@
                 <tr>
                     <td>d</td>
                     <td class="txt-lft-20">PERTENTANGAN</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="kontrak_4"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="kontrak_4"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->kontrak_4 }}">
                     </td>
@@ -160,8 +160,8 @@
                 <tr>
                     <td>a</td>
                     <td class="txt-lft-20">TGL SURAT PESANAN</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="surat_pesanan_1"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="surat_pesanan_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->surat_pesanan_1 }}">
                     </td>
@@ -170,8 +170,8 @@
                 <tr>
                     <td>b</td>
                     <td class="txt-lft-20">TTD PENYEDIA</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="surat_pesanan_2"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="surat_pesanan_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->surat_pesanan_2 }}">
                     </td>
@@ -180,8 +180,8 @@
                 <tr>
                     <td>c</td>
                     <td class="txt-lft-20">MATERAI 6000</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="surat_pesanan_3"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="surat_pesanan_3"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->surat_pesanan_3 }}">
                     </td>
@@ -190,8 +190,8 @@
                 <tr>
                     <td>d</td>
                     <td class="txt-lft-20">TANGGAL DISETUJUI</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="surat_pesanan_4"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="surat_pesanan_4"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->surat_pesanan_4 }}">
                     </td>
@@ -207,8 +207,8 @@
                 <tr>
                     <td>a</td>
                     <td class="txt-lft-20">INFORMASI PENGADAAN BARANG</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="penyusunan_program_mutu"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="penyusunan_program_mutu"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->penyusunan_program_mutu }}">
                     </td>
@@ -224,8 +224,8 @@
                 <tr>
                     <td></td>
                     <td class="txt-lft-20">PEMERIKSAAN KONDISI LAPANGAN PADA TAHAP AWAL PELAKSANAAN KONTRAK</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="pemeriksaan_bersama"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="pemeriksaan_bersama"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->pemeriksaan_bersama }}">
                     </td>
@@ -242,8 +242,8 @@
                 <tr>
                     <td>a</td>
                     <td class="txt-lft-20">BESARAN UANG MUKA</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="pembayaran_uang_muka_1"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="pembayaran_uang_muka_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->pembayaran_uang_muka_1 }}">
                     </td>
@@ -252,8 +252,8 @@
                 <tr>
                     <td>b</td>
                     <td class="txt-lft-20">JAMINAN UANG MUKA</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="pembayaran_uang_muka_2"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="pembayaran_uang_muka_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->pembayaran_uang_muka_2 }}">
                     </td>
@@ -270,8 +270,8 @@
                 <tr>
                     <td>a</td>
                     <td class="txt-lft-20">UJI COBA YANG DILAKUKAN OLEH PENYEDIA</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="uji_coba_barang"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="uji_coba_barang"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->uji_coba_barang }}">
                     </td>
@@ -288,8 +288,8 @@
                 <tr>
                     <td>a</td>
                     <td class="txt-lft-20">BERITA ACARA SERAH</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="serah_terima_barang_1"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="serah_terima_barang_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->serah_terima_barang_1 }}">
                     </td>
@@ -298,8 +298,8 @@
                 <tr>
                     <td>b</td>
                     <td class="txt-lft-20">WAKTU PENERIMAAN</td>
-                    <td class="txt-up" style="background-color: lightblue;">
-                        <input type="text" name="serah_terima_barang_2"
+                    <td class="txt-up" style="">
+                        <input readonly type="text" name="serah_terima_barang_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $desk->serah_terima_barang_2 }}">
                     </td>
@@ -312,8 +312,8 @@
                     <td colspan="4"><b>CATATAN</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
-                        <textarea name="catatan"
+                    <td colspan="4" style="height: 100px; ">
+                        <textarea readonly name="catatan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="">{{ $desk->catatan }}</textarea>
                     </td>
@@ -322,8 +322,8 @@
                     <td colspan="4"><b>KRITERIA / PERSYARATAN</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
-                        <textarea name="kriteria"
+                    <td colspan="4" style="height: 100px; ">
+                        <textarea readonly name="kriteria"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="">{{ $desk->kriteria }}</textarea>
                     </td>
@@ -332,8 +332,8 @@
                     <td colspan="4"><b>AKAR PENYEAB</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
-                        <textarea name="akar_penyebab"
+                    <td colspan="4" style="height: 100px; ">
+                        <textarea readonly name="akar_penyebab"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="">{{ $desk->akar_penyebab }}</textarea>
                     </td>
@@ -342,8 +342,9 @@
                     <td colspan="4"><b>AKIBAT</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
-                        <textarea name="akibat" class="form-control form-control-lg border-0 text-center bg-transparent"
+                    <td colspan="4" style="height: 100px; ">
+                        <textarea readonly name="akibat"
+                            class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="">{{ $desk->akibat }}</textarea>
                     </td>
                 </tr>
@@ -351,8 +352,8 @@
                     <td colspan="4"><b>REKOMENDASI</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
-                        <textarea name="rekomendasi"
+                    <td colspan="4" style="height: 100px; ">
+                        <textarea readonly name="rekomendasi"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="">{{ $desk->rekomendasi }}</textarea>
                     </td>
@@ -361,8 +362,8 @@
                     <td colspan="4"><b>TANGGAPAN AUDITEE</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
-                        <textarea name="tanggapan_auditee"
+                    <td colspan="4" style="height: 100px; ">
+                        <textarea readonly name="tanggapan_auditee"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="">{{ $desk->tanggapan_auditee }}</textarea>
                     </td>
@@ -371,8 +372,8 @@
                     <td colspan="4"><b>RENCANA PERBAIKAN</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
-                        <textarea name="rencana_perbaikan"
+                    <td colspan="4" style="height: 100px; ">
+                        <textarea readonly name="rencana_perbaikan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="">{{ $desk->rencana_perbaikan }}</textarea>
                     </td>
@@ -414,7 +415,7 @@
             {{-- <div class="row justify-content-center mt-3 rounded-sm mx-1" style="background-color: #ADD8E6;">
                 <div class="col-md-8 text-center d-grid gap-2 my-2">
                     <a href="/rencana/timeline/{{ $rencana->id }}" class="btn btn-primary btn-lg mx-2">Kembali</a>
-                    <input type="submit" class="btn btn-success btn-lg mx-2" value="Submit">
+                    <input readonly type="submit" class="btn btn-success btn-lg mx-2" value="Submit">
                 </div>
             </div> --}}
             {{--

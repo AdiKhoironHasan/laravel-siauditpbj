@@ -194,7 +194,8 @@ class DeskController extends Controller
         DB::beginTransaction();
         Desk::destroy($desk->id);
         Timeline::where('desk_id', $desk->id)->update([
-            'desk_id' => NULL
+            'desk_id' => NULL,
+            'konfirmasi_desk' => 0
         ]);
         DB::commit();
 
@@ -268,13 +269,13 @@ class DeskController extends Controller
             // if ($kerja_desk->substansi_kontrak_1 != 0) {
             //     $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'BAHASA DAN REDAKSI TIDAK SESUAI, ';
             // }
-            if ($kerja_desk->substansi_kontrak_2 != 0) {
+            if ($kerja_desk->substansi_kontrak_2 == 0) {
                 $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'ANGKA DAN HURUF TIDAK SESUAI, ';
             }
-            if ($kerja_desk->substansi_kontrak_3 != 0) {
+            if ($kerja_desk->substansi_kontrak_3 == 0) {
                 $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'TIDAK ADA PARAF SETIAP LEMBAR DOKUMEN KONTRAK, ';
             }
-            if ($kerja_desk->substansi_kontrak_4 != 0) {
+            if ($kerja_desk->substansi_kontrak_4 == 0) {
                 $data_desk['kontrak_2'] = $data_desk['kontrak_2'] . 'TIDAK ADA MATERAI ';
             }
         }

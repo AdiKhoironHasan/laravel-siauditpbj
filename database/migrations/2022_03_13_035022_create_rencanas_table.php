@@ -16,7 +16,6 @@ class CreateRencanasTable extends Migration
         Schema::create('rencanas', function (Blueprint $table) {
             $table->id();
             // $table->tinyIncrements('id');
-
             $table->foreignId('auditor1_id');
             $table->foreignId('auditor2_id');
             $table->foreignId('auditor3_id');

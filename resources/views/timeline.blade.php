@@ -20,8 +20,10 @@
                 <div class="col-md-8">
                     <div class="timeline">
                         <div class="time-label">
-                            <span class="bg-primary">{{ date('d F Y',
-                                strtotime($timeline->rencana->tanggal)) }}</span>
+                            {{-- <span class="bg-primary">{{ date('d F Y',
+                                strtotime($timeline->rencana->tanggal)) }}</span> --}}
+                            <span class="bg-primary">{{
+                                Carbon\Carbon::parse($timeline->rencana->tanggal)->isoFormat('D MMMM Y') }}</span>
                         </div>
                         <div>
                             <i class="fas fa-bookmark bg-success"></i>
@@ -41,7 +43,8 @@
                                 <h3 class="timeline-header"><b>Pengisian Kertas Kerja Audit Desk</b> <i class="fas"></i>
                                 </h3>
                                 <div class="timeline-body">
-                                    {{ $timeline->kerja_desk_id != null ? 'Kertas Kerja Audit Desk sudah diisi' :
+                                    {{ $timeline->kerja_desk_id != null ? 'Kertas Kerja Audit Desk sudah diisi
+                                    pada '. date('d F Y', strtotime($kerja_desk->updated_at)) :
                                     'Kertas Kerja Audit Desk belum diisi' }}
                                 </div>
                                 <div class="timeline-footer ">
@@ -75,7 +78,8 @@
                                 <h3 class="timeline-header"><b>Pengisian Kertas Data Audit Desk</b> <i class="fas"></i>
                                 </h3>
                                 <div class="timeline-body">
-                                    {{ $timeline->desk_id != null ? 'Kertas Data Audit Desk sudah diisi' :
+                                    {{ $timeline->desk_id != null ? 'Kertas Data Audit Desk sudah diisi pada
+                                    '.date('d F Y', strtotime($desk->updated_at)) :
                                     'Kertas Data Audit Desk belum diisi' }}
                                 </div>
                                 <div class="timeline-footer ">
@@ -96,14 +100,14 @@
                                             class=" btn btn-primary btn-sm {{ $timeline->desk_id != null ? 'disabled' : '' }}">Tambah</a>
                                         --}}
                                         <a href="/rencana/timeline/desk/{{ $desk != null ? $desk->id : '' }}/edit"
-                                            class="btn btn-info btn-sm {{ ($timeline->desk_id != null) ? '' : 'disabled' }}">Ubah</a>
+                                            class="btn btn-info btn-sm {{ ($timeline->konfirmasi_desk == 0 && $timeline->desk_id != null) ? '' : 'disabled' }}">Ubah</a>
                                         <form action="/rencana/timeline/desk/{{ $desk != null ? $desk->id : '' }}"
                                             method="POST">
                                             @method('DELETE')
                                             @csrf
                                             <input type="submit"
                                                 onclick="return confirm('Anda yakin mau menghapus data desk ini ?')"
-                                                class="btn btn-danger rounded-0 btn-sm {{ $timeline->desk_id != null ? '' : 'disabled' }}"
+                                                class="btn btn-danger rounded-0 btn-sm {{$timeline->konfirmasi_desk == 0 && $timeline->desk_id != null ? '' : 'disabled' }}"
                                                 value="Hapus">
                                         </form>
                                         @endcanany
@@ -155,9 +159,9 @@
                                         class="fas"></i>
                                 </h3>
                                 <div class="timeline-body">
-                                    {{ $timeline->kerja_visit_id != null ? 'Kertas Kerja Audit Visit sudah diisi sudah
-                                    diisi' : 'Kertas Kerja Audit Visit sudah diisi belum
-                                    diisi' }}
+                                    {{ $timeline->kerja_visit_id != null ? 'Kertas Kerja Audit Visit sudah diisi pada
+                                    '.date('d F Y', strtotime($kerja_visit->updated_at)) :
+                                    'Kertas Kerja Audit Visit belum diisi' }}
                                 </div>
                                 <div class="timeline-footer">
                                     <div class="btn-group" role="group" aria-label="Basic example">
@@ -192,8 +196,9 @@
                                 <h3 class="timeline-header"><b>Pengisian Kertas Data Audit Visit</b> <i class="fas"></i>
                                 </h3>
                                 <div class="timeline-body">
-                                    {{ $timeline->visit_id != null ? 'Kertas Data Audit Visit sudah diisi sudah diisi' :
-                                    'Kertas Data Audit Visit sudah diisi belum diisi'
+                                    {{ $timeline->visit_id != null ? 'Kertas Data Audit Visit sudah diisi '.date('d F
+                                    Y', strtotime($visit->updated_at)) :
+                                    'Kertas Data Audit Visit belum diisi'
                                     }}
                                 </div>
                                 <div class="timeline-footer">
@@ -214,14 +219,14 @@
                                             class=" btn btn-primary btn-sm {{ $timeline->visit_id != null ? 'disabled' : '' }}">Tambah</a>
                                         --}}
                                         <a href="/rencana/timeline/visit/{{ $visit != null ? $visit->id : '' }}/edit"
-                                            class="btn btn-info btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}">Ubah</a>
+                                            class="btn btn-info btn-sm {{($timeline->konfirmasi_visit == 0 && $timeline->visit_id != null) ? '' : 'disabled' }}">Ubah</a>
                                         <form action="/rencana/timeline/visit/{{ $visit != null ? $visit->id : '' }}"
                                             method="POST">
                                             @method('DELETE')
                                             @csrf
                                             <input type="submit"
                                                 onclick="return confirm('Anda yakin mau menghapus data visit ini ?')"
-                                                class="btn btn-danger rounded-0 btn-sm {{ $timeline->visit_id != null ? '' : 'disabled' }}"
+                                                class="btn btn-danger rounded-0 btn-sm {{ ($timeline->konfirmasi_visit == 0 && $timeline->visit_id) != null ? '' : 'disabled' }}"
                                                 value="Hapus">
                                         </form>
                                         @endcanany

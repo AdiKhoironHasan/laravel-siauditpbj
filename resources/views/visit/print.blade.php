@@ -51,8 +51,8 @@
                 </tr>
                 <tr>
                     <td class="text-uppercase">{{ $rencana->kerja_desk->unit_kerja }}</td>
-                    <td style="background-color: lightblue;">
-                        <input type=" text" name="tipe_monitoring"
+                    <td style="">
+                        <input readonly type=" text" name="tipe_monitoring"
                             class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
                             value="{{ $visit->tipe_monitoring }}" required>
                     </td>
@@ -65,12 +65,12 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="masa_monitoring_awal"
+                        <input readonly type="text" name="masa_monitoring_awal"
                             class="forn-control form-control-lg border-0 text-center bg-transparent"
                             value="{{ $visit->masa_monitoring_awal }}" readonly>
                     </td>
                     <td rowspan="3">
-                        <input type="text" name="tanggal_monitoring"
+                        <input readonly type="text" name="tanggal_monitoring"
                             class="forn-control form-control-lg border-0 text-center bg-transparent"
                             value="{{ $visit->tanggal_monitoring }}" readonly>
                     </td>
@@ -82,7 +82,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="masa_monitoring_akhir"
+                        <input readonly type="text" name="masa_monitoring_akhir"
                             class="forn-control form-control-lg border-0 text-center bg-transparent"
                             value="{{ $visit->masa_monitoring_akhir }}" readonly>
                     </td>
@@ -99,10 +99,10 @@
                     <td colspan="3" class="txt-lft-20">KETERLIBATAN UNIT KERJA DALAM PENYUSUNAN MUTU</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue; ">
-                        <input type="text" name="penyusunan_mutu_1"
-                            class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->penyusunan_mutu_1 }}">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px;  ">
+                        <input readonly type="text" name="penyusunan_mutu_1"
+                            class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
+                            value="{{ $visit->penyusunan_mutu_1 }}">
                     </td>
                 </tr>
                 <tr>
@@ -110,10 +110,10 @@
                     <td colspan="3" class="txt-lft-20">REVISI PROGRAM MUTU</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
-                        <input type="text" name="penyusunan_mutu_2"
-                            class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->penyusunan_mutu_2 }}">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; ">
+                        <input readonly type="text" name="penyusunan_mutu_2"
+                            class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
+                            value="{{ $visit->penyusunan_mutu_2 }}">
                     </td>
                 </tr>
                 <tr>
@@ -126,10 +126,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
-                        <input type="text" name="pemeriksaan_1"
-                            class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->pemeriksaan_1 }}">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; ">
+                        <input readonly type="text" name="pemeriksaan_1"
+                            class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
+                            value="{{ $visit->pemeriksaan_1 }}">
                     </td>
                 </tr>
                 <tr>
@@ -137,10 +137,10 @@
                     <td colspan="3" class="txt-lft-20">PEMERIKSAAN BERSAMA MENGAKIBATKAN PERUBAHAN KONTRAK</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
-                        <input type="text" name="pemeriksaan_2"
-                            class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->pemeriksaan_2 }}">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; ">
+                        <input readonly type="text" name="pemeriksaan_2"
+                            class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
+                            value="{{ $visit->pemeriksaan_2 }}">
                     </td>
                 </tr>
                 <tr>
@@ -151,10 +151,10 @@
                     <td colspan="3" class="txt-lft-20">PERUBAHAN KEGIATAN</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
-                        <input type="text" name="perubahan_kegiatan"
-                            class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->perubahan_kegiatan }}">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; ">
+                        <input readonly type="text" name="perubahan_kegiatan"
+                            class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
+                            value="{{ $visit->perubahan_kegiatan }}">
                     </td>
                 </tr>
                 <tr>
@@ -165,10 +165,10 @@
                     <td colspan="3" class="txt-lft-20">UNIT KERJA MEMERIKSA BARANG YANG DIKIRIM OLEH PENYEDIA</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
-                        <input type="text" name="asuransi_1"
-                            class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->asuransi_1 }}">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; ">
+                        <input readonly type="text" name="asuransi_1"
+                            class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
+                            value="{{ $visit->asuransi_1 }}">
                     </td>
                 </tr>
                 <tr>
@@ -176,10 +176,10 @@
                     <td colspan="3" class="txt-lft-20">PENJELASAN MANFAAT SUDAH DI JELASKAN DI DALAM KONTRAK</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
-                        <input type="text" name="asuransi_2"
-                            class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->asuransi_2 }}">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; ">
+                        <input readonly type="text" name="asuransi_2"
+                            class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
+                            value="{{ $visit->asuransi_2 }}">
                     </td>
                 </tr>
                 <tr>
@@ -190,10 +190,10 @@
                     <td colspan="3" class="txt-lft-20">PENGIRIMAN BARANG OLEH PENYEDIA</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
-                        <input type="text" name="pengiriman"
-                            class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->pengiriman }}">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; ">
+                        <input readonly type="text" name="pengiriman"
+                            class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
+                            value="{{ $visit->pengiriman }}">
                     </td>
                 </tr>
                 <tr>
@@ -204,10 +204,10 @@
                     <td colspan="3" class="txt-lft-20">UJI COBA SETELAH DIKIRIM</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
-                        <input type="text" name="uji_coba"
-                            class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->uji_coba }}">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; ">
+                        <input readonly type="text" name="uji_coba"
+                            class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
+                            value="{{ $visit->uji_coba }}">
                     </td>
                 </tr>
                 <tr>
@@ -218,10 +218,10 @@
                     <td colspan="3" class="txt-lft-20">SERAH TERIMA BARANG</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
-                        <input type="text" name="serah_terima"
-                            class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->serah_terima }}">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; ">
+                        <input readonly type="text" name="serah_terima"
+                            class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
+                            value="{{ $visit->serah_terima }}">
                     </td>
                 </tr>
                 <tr>
@@ -232,10 +232,10 @@
                     <td colspan="3" class="txt-lft-20">DENDA DAN GANTI RUGI</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
-                        <input type="text" name="denda"
-                            class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->denda }}">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; ">
+                        <input readonly type="text" name="denda"
+                            class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
+                            value="{{ $visit->denda }}">
                     </td>
                 </tr>
                 <tr>
@@ -246,10 +246,10 @@
                     <td colspan="3" class="txt-lft-20">PERPANJANGAN WAKTU PELAKANAAN PEKERJAAN</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
-                        <input type="text" name="perpanjangan"
-                            class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->perpanjangan }}">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; ">
+                        <input readonly type="text" name="perpanjangan"
+                            class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
+                            value="{{ $visit->perpanjangan }}">
                     </td>
                 </tr>
                 <tr>
@@ -260,79 +260,80 @@
                     <td colspan="3" class="txt-lft-20">LAPORAN HASIL KEGIATAN</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
-                        <input type="text" name="laporan"
-                            class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini" value="{{ $visit->laporan }}">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; ">
+                        <input readonly type="text" name="laporan"
+                            class="form-control form-control-lg border-0 text-center bg-transparent" placeholder=""
+                            value="{{ $visit->laporan }}">
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4"><b>CATATAN</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
-                        <textarea name="catatan"
+                    <td colspan="4" style="height: 100px; ">
+                        <textarea readonly name="catatan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $visit->catatan }}</textarea>
+                            placeholder="">{{ $visit->catatan }}</textarea>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4"><b>KRITERIA / PERSYARATAN</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
-                        <textarea name="kriteria"
+                    <td colspan="4" style="height: 100px; ">
+                        <textarea readonly name="kriteria"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $visit->kriteria }}</textarea>
+                            placeholder="">{{ $visit->kriteria }}</textarea>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4"><b>AKAR PENYEAB</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
-                        <textarea name="akar_penyebab"
+                    <td colspan="4" style="height: 100px; ">
+                        <textarea readonly name="akar_penyebab"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $visit->akar_penyebab }}</textarea>
+                            placeholder="">{{ $visit->akar_penyebab }}</textarea>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4"><b>AKIBAT</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
-                        <textarea name="akibat" class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $visit->akibat }}</textarea>
+                    <td colspan="4" style="height: 100px; ">
+                        <textarea readonly name="akibat"
+                            class="form-control form-control-lg border-0 text-center bg-transparent"
+                            placeholder="">{{ $visit->akibat }}</textarea>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4"><b>REKOMENDASI</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
-                        <textarea name="rekomendasi"
+                    <td colspan="4" style="height: 100px; ">
+                        <textarea readonly name="rekomendasi"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $visit->rekomendasi }}</textarea>
+                            placeholder="">{{ $visit->rekomendasi }}</textarea>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4"><b>TANGGAPAN AUDITEE</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
-                        <textarea name="tanggapan_auditee"
+                    <td colspan="4" style="height: 100px; ">
+                        <textarea readonly name="tanggapan_auditee"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $visit->tanggapan_auditee }}</textarea>
+                            placeholder="">{{ $visit->tanggapan_auditee }}</textarea>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4"><b>RENCANA PERBAIKAN</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
-                        <textarea name="rencana_perbaikan"
+                    <td colspan="4" style="height: 100px; ">
+                        <textarea readonly name="rencana_perbaikan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
-                            placeholder="ketik di sini">{{ $visit->rencana_perbaikan }}</textarea>
+                            placeholder="">{{ $visit->rencana_perbaikan }}</textarea>
                     </td>
                 </tr>
             </table>
@@ -372,7 +373,7 @@
             {{-- <div class="row justify-content-center mt-3 rounded-sm mx-1" style="background-color: #ADD8E6;">
                 <div class="col-md-8 text-center d-grid gap-2 my-2">
                     <a href="/timeline/{{ $rencana->id }}" class="btn btn-primary btn-lg mx-2">Kembali</a>
-                    <input type="submit" class="btn btn-success btn-lg mx-2" value="Submit">
+                    <input readonly type="submit" class="btn btn-success btn-lg mx-2" value="Submit">
                 </div>
             </div>
         </form>

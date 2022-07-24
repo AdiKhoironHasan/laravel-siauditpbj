@@ -33,7 +33,7 @@ class RencanaController extends Controller
         //             ->whereColumn('rencanas.barang_id', '=', 'barangs.id');
         //     })
         //     ->get();
-        $rencana = Rencana::all()->sortBy("created_at");
+        $rencana = Rencana::orderBy('monitoring_awal')->get();
         // } else {
         // $barang = DB::table('barangs')
         //     ->whereNotExists(function ($query) {
@@ -77,6 +77,7 @@ class RencanaController extends Controller
         $this->authorize('admin');
 
         $validatedData = $request->validate([
+            'nomor_surat' => 'required',
             'auditor1_id' => 'required',
             'auditor2_id' => 'required',
             'auditor3_id' => 'required',
@@ -133,6 +134,7 @@ class RencanaController extends Controller
         if (Gate::any(['admin', 'auditor'])) {
 
             $rules = [
+                'nomor_surat' => 'required',
                 'auditor1_id' => 'required',
                 'auditor2_id' => 'required',
                 'auditor3_id' => 'required',

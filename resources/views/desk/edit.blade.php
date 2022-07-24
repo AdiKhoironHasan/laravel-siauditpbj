@@ -98,7 +98,7 @@
                     <th style="width: 5%;">NO</th>
                     <th style="width: 35%;">ITEM</th>
                     <th style="width: 45%;">URAIAN</th>
-                    <th style="width: 15%;">KODE TEMUAN</th>
+                    {{-- <th style="width: 15%;">KODE TEMUAN</th> --}}
                 </tr>
                 <tr>
                     <td colspan="4"><b>PENDANDATANGANAN KONTRAK</b></td>
@@ -115,7 +115,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->kontrak_1 }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td>b</td>
@@ -125,7 +125,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->kontrak_2 }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td>c</td>
@@ -135,7 +135,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->kontrak_3 }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td>d</td>
@@ -145,7 +145,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->kontrak_4 }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td colspan="4" style="height: 50px;"></td>
@@ -165,7 +165,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->surat_pesanan_1 }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td>b</td>
@@ -175,7 +175,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->surat_pesanan_2 }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td>c</td>
@@ -185,7 +185,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->surat_pesanan_3 }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td>d</td>
@@ -195,7 +195,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->surat_pesanan_4 }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td colspan="4" style="height: 30px;"></td>
@@ -212,7 +212,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->penyusunan_program_mutu }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td colspan="4" style="height: 30px;"></td>
@@ -229,7 +229,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->pemeriksaan_bersama }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td colspan="4" style="height: 30px;"></td>
@@ -247,7 +247,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->pembayaran_uang_muka_1 }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td>b</td>
@@ -257,7 +257,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->pembayaran_uang_muka_2 }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td colspan="4" style="height: 30px;"></td>
@@ -275,7 +275,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->uji_coba_barang }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td colspan="4" style="height: 30px;"></td>
@@ -293,7 +293,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->serah_terima_barang_1 }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td>b</td>
@@ -303,7 +303,7 @@
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk->serah_terima_barang_2 }}">
                     </td>
-                    <td></td>
+                    {{-- <td></td> --}}
                 </tr>
                 <tr>
                     <td colspan="4" style="height: 30px;"></td>
