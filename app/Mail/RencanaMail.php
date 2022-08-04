@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class RencanaMail extends Mailable
+class RencanaMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -33,7 +33,7 @@ class RencanaMail extends Mailable
     public function build()
     {
         return $this
-            ->subject('Thank you for subscribing to our newsletter')
+            ->subject('Pemberitahuan Sistem Audit PBJ')
             ->markdown('emails.rencana');
     }
 }

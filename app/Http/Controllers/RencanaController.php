@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Barang;
 use App\Models\Rencana;
 use App\Models\Timeline;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,7 @@ class RencanaController extends Controller
         //             ->whereColumn('rencanas.barang_id', '=', 'barangs.id');
         //     })
         //     ->get();
-        $rencana = Rencana::orderBy('monitoring_awal')->get();
+        $rencana = Rencana::orderBy('id', 'DESC')->get();
         // } else {
         // $barang = DB::table('barangs')
         //     ->whereNotExists(function ($query) {
@@ -74,29 +75,34 @@ class RencanaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('admin');
+        try {
 
-        $validatedData = $request->validate([
-            'nomor_surat' => 'required',
-            'auditor1_id' => 'required',
-            'auditor2_id' => 'required',
-            'auditor3_id' => 'required',
-            'auditee_id' => 'required',
-            'monitoring_awal' => 'required',
-            'monitoring_akhir' => 'required',
-            'tanggal_desk' => 'required',
-            'tanggal_visit' => 'required',
-            'tahun' => 'required',
-        ]);
+            $this->authorize('admin');
 
-        $validatedData['status'] = 'Belum Terlaksana';
+            $validatedData = $request->validate([
+                'nomor_surat' => 'required',
+                'auditor1_id' => 'required',
+                'auditor2_id' => 'required',
+                'auditor3_id' => 'required',
+                'auditee_id' => 'required',
+                'monitoring_awal' => 'required|after:now',
+                'monitoring_akhir' => 'required|after:now',
+                'tanggal_desk' => 'required|after:now',
+                'tanggal_visit' => 'required|after:now',
+                'tahun' => 'required',
+            ]);
 
-        DB::beginTransaction();
-        $rencana = Rencana::create($validatedData);
-        Timeline::create([
-            'rencana_id' => $rencana->id,
-        ]);
-        DB::commit();
+            $validatedData['status'] = 'Belum Terlaksana';
+
+            DB::beginTransaction();
+            $rencana = Rencana::create($validatedData);
+            Timeline::create([
+                'rencana_id' => $rencana->id,
+            ]);
+            DB::commit();
+        } catch (Exception $e) {
+            return redirect('/rencana')->with('error', 'Rencana Kerja Audit gagal ditambahkan!');
+        }
         return redirect('/rencana')->with('success', 'Rencana Kerja Audit berhasil ditambahkan!');
     }
 
@@ -135,6 +141,7 @@ class RencanaController extends Controller
 
             $rules = [
                 'nomor_surat' => 'required',
+                'status' => 'required',
                 'auditor1_id' => 'required',
                 'auditor2_id' => 'required',
                 'auditor3_id' => 'required',

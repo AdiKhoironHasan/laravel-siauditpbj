@@ -23,6 +23,7 @@
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
+                    <th>Hak Akses</th>
                     <th>Jabatan</th>
                     <th>Status</th>
                     <th>Aksi</th>
@@ -34,7 +35,12 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->level }}</td>
-                    <td>{{ $user->status }}</td>
+                    <td>{{ $user->jabatan }}</td>
+                    @if ($user->status == 'Aktif')
+                    <td><span class="badge badge-success">{{ $user->status }}</span></td>
+                    @else
+                    <td><span class="badge badge-aktif">{{ $user->status }}</span></td>
+                    @endif
                     <td>
                         <div class="row">
                             <div class="col">

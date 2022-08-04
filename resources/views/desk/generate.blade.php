@@ -63,7 +63,7 @@
                 </tr>
                 <tr>
                     <td class="text-uppercase">{{ $rencana->kerja_desk->unit_kerja }}</td>
-                    <td style="background-color: lightblue;">
+                    <td style="background-color: #D3E0EA;">
                         <input type="text" name="tipe_monitoring"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" required>
@@ -119,7 +119,7 @@
                 <tr>
                     <td>a</td>
                     <td class="txt-lft-20">TGL SPPBJ</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="kontrak_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['kontrak_1'] }}">
@@ -129,7 +129,7 @@
                 <tr>
                     <td>b</td>
                     <td class="txt-lft-20">SUBSTANSI KONTRAK</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="kontrak_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['kontrak_2'] }}">
@@ -139,7 +139,7 @@
                 <tr>
                     <td>c</td>
                     <td class="txt-lft-20">TTD KONTRAK OLEH PENYEDIA</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="kontrak_3"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['kontrak_3'] }}">
@@ -149,7 +149,7 @@
                 <tr>
                     <td>d</td>
                     <td class="txt-lft-20">PERTENTANGAN</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="kontrak_4"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['kontrak_4'] }}">
@@ -169,7 +169,7 @@
                 <tr>
                     <td>a</td>
                     <td class="txt-lft-20">TGL SURAT PESANAN</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="surat_pesanan_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['surat_pesanan_1'] }}">
@@ -179,7 +179,7 @@
                 <tr>
                     <td>b</td>
                     <td class="txt-lft-20">TTD PENYEDIA</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="surat_pesanan_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['surat_pesanan_2'] }}">
@@ -189,7 +189,7 @@
                 <tr>
                     <td>c</td>
                     <td class="txt-lft-20">MATERAI 6000</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="surat_pesanan_3"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['surat_pesanan_3'] }}">
@@ -199,7 +199,7 @@
                 <tr>
                     <td>d</td>
                     <td class="txt-lft-20">TANGGAL DISETUJUI</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="surat_pesanan_4"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['surat_pesanan_4'] }}">
@@ -216,7 +216,7 @@
                 <tr>
                     <td>a</td>
                     <td class="txt-lft-20">INFORMASI PENGADAAN BARANG</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="penyusunan_program_mutu"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['penyusunan_program_mutu'] }}">
@@ -233,7 +233,7 @@
                 <tr>
                     <td></td>
                     <td class="txt-lft-20">PEMERIKSAAN KONDISI LAPANGAN PADA TAHAP AWAL PELAKSANAAN KONTRAK</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="pemeriksaan_bersama"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['pemeriksaan_bersama'] }}">
@@ -251,7 +251,7 @@
                 <tr>
                     <td>a</td>
                     <td class="txt-lft-20">BESARAN UANG MUKA</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="pembayaran_uang_muka_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['pembayaran_uang_muka_1'] }}">
@@ -261,7 +261,7 @@
                 <tr>
                     <td>b</td>
                     <td class="txt-lft-20">JAMINAN UANG MUKA</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="pembayaran_uang_muka_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['pembayaran_uang_muka_2'] }}">
@@ -279,7 +279,7 @@
                 <tr>
                     <td>a</td>
                     <td class="txt-lft-20">UJI COBA YANG DILAKUKAN OLEH PENYEDIA</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="uji_coba_barang"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['uji_coba_barang'] }}">
@@ -297,7 +297,7 @@
                 <tr>
                     <td>a</td>
                     <td class="txt-lft-20">BERITA ACARA SERAH</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="serah_terima_barang_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['serah_terima_barang_1'] }}">
@@ -307,7 +307,7 @@
                 <tr>
                     <td>b</td>
                     <td class="txt-lft-20">WAKTU PENERIMAAN</td>
-                    <td class="txt-up" style="background-color: lightblue;">
+                    <td class="txt-up" style="background-color: #D3E0EA">
                         <input type="text" name="serah_terima_barang_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $desk['serah_terima_barang_2'] }}">
@@ -321,7 +321,7 @@
                     <td colspan="4"><b>CATATAN</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
+                    <td colspan="4" style="height: 100px; background-color: #D3E0EA">
                         <textarea name="catatan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini"></textarea>
@@ -331,7 +331,7 @@
                     <td colspan="4"><b>KRITERIA / PERSYARATAN</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
+                    <td colspan="4" style="height: 100px; background-color: #D3E0EA">
                         <textarea name="kriteria"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini"></textarea>
@@ -341,7 +341,7 @@
                     <td colspan="4"><b>AKAR PENYEAB</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
+                    <td colspan="4" style="height: 100px; background-color: #D3E0EA">
                         <textarea name="akar_penyebab"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini"></textarea>
@@ -351,7 +351,7 @@
                     <td colspan="4"><b>AKIBAT</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
+                    <td colspan="4" style="height: 100px; background-color: #D3E0EA">
                         <textarea name="akibat" class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini"></textarea>
                     </td>
@@ -360,7 +360,7 @@
                     <td colspan="4"><b>REKOMENDASI</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
+                    <td colspan="4" style="height: 100px; background-color: #D3E0EA">
                         <textarea name="rekomendasi"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini"></textarea>
@@ -370,7 +370,7 @@
                     <td colspan="4"><b>TANGGAPAN AUDITEE</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
+                    <td colspan="4" style="height: 100px; background-color: #D3E0EA">
                         <textarea name="tanggapan_auditee"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini"></textarea>
@@ -380,7 +380,7 @@
                     <td colspan="4"><b>RENCANA PERBAIKAN</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
+                    <td colspan="4" style="height: 100px; background-color: #D3E0EA">
                         <textarea name="rencana_perbaikan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini"></textarea>

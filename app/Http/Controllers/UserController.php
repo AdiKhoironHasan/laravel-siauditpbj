@@ -48,6 +48,7 @@ class UserController extends Controller
                 'username' => 'required',
                 'email' => 'required|email',
                 'level' => 'required',
+                'jabatan' => 'required',
                 'password1' => 'required_with:password2|same:password2',
                 'password2' => 'required'
             ]);
@@ -57,6 +58,7 @@ class UserController extends Controller
                 'username' => $request->username,
                 'email' => $request->email,
                 'level' => $request->level,
+                'jabatan' => $request->jabatan,
                 'password' => $request->password1,
                 'foto' => 'default/empty-foto.png',
                 'ttd' => 'default/empty-ttd.png'
@@ -104,6 +106,7 @@ class UserController extends Controller
             $rules = [
                 'username' => 'required',
                 'status' => 'required',
+                'jabatan' => 'required',
                 'level' => 'required',
             ];
 

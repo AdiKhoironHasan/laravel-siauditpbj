@@ -56,7 +56,7 @@
                 </tr>
                 <tr>
                     <td class="text-uppercase">{{ $rencana->kerja_desk->unit_kerja }}</td>
-                    <td style="background-color: lightblue;">
+                    <td style="background-color: #D3E0EA">
                         <input type=" text" name="tipe_monitoring"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik disini" required>
@@ -104,7 +104,7 @@
                     <td colspan="3" class="txt-lft-20">KETERLIBATAN UNIT KERJA DALAM PENYUSUNAN MUTU</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue; ">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: #D3E0EA ">
                         <input type="text" name="penyusunan_mutu_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $visit['penyusunan_mutu_1'] }}">
@@ -115,7 +115,7 @@
                     <td colspan="3" class="txt-lft-20">REVISI PROGRAM MUTU</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: #D3E0EA">
                         <input type="text" name="penyusunan_mutu_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $visit['penyusunan_mutu_2'] }}">
@@ -131,7 +131,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: #D3E0EA">
                         <input type="text" name="pemeriksaan_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $visit['pemeriksaan_1'] }}">
@@ -142,7 +142,7 @@
                     <td colspan="3" class="txt-lft-20">PEMERIKSAAN BERSAMA MENGAKIBATKAN PERUBAHAN KONTRAK</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: #D3E0EA">
                         <input type="text" name="pemeriksaan_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $visit['pemeriksaan_2'] }}">
@@ -156,7 +156,7 @@
                     <td colspan="3" class="txt-lft-20">PERUBAHAN KEGIATAN</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: #D3E0EA">
                         <input type="text" name="perubahan_kegiatan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $visit['perubahan_kegiatan'] }}">
@@ -170,7 +170,7 @@
                     <td colspan="3" class="txt-lft-20">UNIT KERJA MEMERIKSA BARANG YANG DIKIRIM OLEH PENYEDIA</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: #D3E0EA">
                         <input type="text" name="asuransi_1"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $visit['asuransi_1'] }}">
@@ -181,7 +181,7 @@
                     <td colspan="3" class="txt-lft-20">PENJELASAN MANFAAT SUDAH DI JELASKAN DI DALAM KONTRAK</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: #D3E0EA">
                         <input type="text" name="asuransi_2"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $visit['asuransi_2'] }}">
@@ -195,7 +195,7 @@
                     <td colspan="3" class="txt-lft-20">PENGIRIMAN BARANG OLEH PENYEDIA</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: #D3E0EA">
                         <input type="text" name="pengiriman"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $visit['pengiriman'] }}">
@@ -209,7 +209,7 @@
                     <td colspan="3" class="txt-lft-20">UJI COBA SETELAH DIKIRIM</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: #D3E0EA">
                         <input type="text" name="uji_coba"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $visit['uji_coba'] }}">
@@ -223,7 +223,7 @@
                     <td colspan="3" class="txt-lft-20">SERAH TERIMA BARANG</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: #D3E0EA">
                         <input type="text" name="serah_terima"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $visit['serah_terima'] }}">
@@ -237,7 +237,7 @@
                     <td colspan="3" class="txt-lft-20">DENDA DAN GANTI RUGI</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: #D3E0EA">
                         <input type="text" name="denda"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $visit['denda'] }}">
@@ -251,7 +251,7 @@
                     <td colspan="3" class="txt-lft-20">PERPANJANGAN WAKTU PELAKANAAN PEKERJAAN</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: #D3E0EA">
                         <input type="text" name="perpanjangan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $visit['perpanjangan'] }}">
@@ -265,7 +265,7 @@
                     <td colspan="3" class="txt-lft-20">LAPORAN HASIL KEGIATAN</td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: lightblue;">
+                    <td colspan="3" class="txt-lft-20" style="height: 50px; background-color: #D3E0EA">
                         <input type="text" name="laporan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini" value="{{ $visit['laporan'] }}">
@@ -275,7 +275,7 @@
                     <td colspan="4"><b>CATATAN</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
+                    <td colspan="4" style="height: 100px; background-color: #D3E0EA">
                         <textarea name="catatan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini"></textarea>
@@ -285,7 +285,7 @@
                     <td colspan="4"><b>KRITERIA / PERSYARATAN</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
+                    <td colspan="4" style="height: 100px; background-color: #D3E0EA">
                         <textarea name="kriteria"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini"></textarea>
@@ -295,7 +295,7 @@
                     <td colspan="4"><b>AKAR PENYEAB</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
+                    <td colspan="4" style="height: 100px; background-color: #D3E0EA">
                         <textarea name="akar_penyebab"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini"></textarea>
@@ -305,7 +305,7 @@
                     <td colspan="4"><b>AKIBAT</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
+                    <td colspan="4" style="height: 100px; background-color: #D3E0EA">
                         <textarea name="akibat" class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini"></textarea>
                     </td>
@@ -314,7 +314,7 @@
                     <td colspan="4"><b>REKOMENDASI</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
+                    <td colspan="4" style="height: 100px; background-color: #D3E0EA">
                         <textarea name="rekomendasi"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini"></textarea>
@@ -324,7 +324,7 @@
                     <td colspan="4"><b>TANGGAPAN AUDITEE</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
+                    <td colspan="4" style="height: 100px; background-color: #D3E0EA">
                         <textarea name="tanggapan_auditee"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini"></textarea>
@@ -334,7 +334,7 @@
                     <td colspan="4"><b>RENCANA PERBAIKAN</b></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="height: 100px; background-color: lightblue;">
+                    <td colspan="4" style="height: 100px; background-color: #D3E0EA">
                         <textarea name="rencana_perbaikan"
                             class="form-control form-control-lg border-0 text-center bg-transparent"
                             placeholder="ketik di sini"></textarea>

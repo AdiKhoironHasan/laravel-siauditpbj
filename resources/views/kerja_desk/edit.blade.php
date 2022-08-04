@@ -411,21 +411,21 @@
                         <input type="checkbox" name="substansi_kontrak_2" id="substansi_kontrak_2" value="1" {{
                             $kerja_desk->substansi_kontrak_2 != 0 ? 'checked':'' }}>
                     </td>
-                    <td style="text-align: left">ANGKA DAN HURUF SESUAI</td>
+                    <td style="text-align: left">ANGKA DAN HURUF TIDAK SESUAI</td>
                 </tr>
                 <tr>
                     <td style="width: 10%">
                         <input type="checkbox" name="substansi_kontrak_3" id="substansi_kontrak_3" value="1" {{
                             $kerja_desk->substansi_kontrak_3 != 0 ? 'checked':'' }}>
                     </td>
-                    <td style="text-align: left">TERDAPAT PARAF PADA SETIAP LEMBAR DOKUMEN KONTRAK</td>
+                    <td style="text-align: left">TIDAK TERDAPAT PARAF PADA SETIAP LEMBAR DOKUMEN KONTRAK</td>
                 </tr>
                 <tr>
                     <td style="width: 10%">
                         <input type="checkbox" name="substansi_kontrak_4" id="substansi_kontrak_4" value="1" {{
                             $kerja_desk->substansi_kontrak_4 != 0 ? 'checked':'' }}>
                     </td>
-                    <td style="text-align: left">ADA MATERAI</td>
+                    <td style="text-align: left">TIDAK ADA MATERAI</td>
                 </tr>
             </table>
 

@@ -13,13 +13,13 @@
                     <div class="form-group">
                         <label>Nomor Surat</label>
                         <input type="text" name="nomor_surat" id="nomor_surat" class="form-control" required
-                            minlength="3" maxlength="10" placeholder="Nomor Surat">
+                            minlength="3" placeholder="Nomor Surat">
                         <div id="hasilCekEdit"></div>
                     </div>
                     <div class="form-group">
                         <label>Ketua Auditor</label>
                         <select type="text" name="auditor1_id" id="auditor1_id" class="form-control" required>
-                            <option hidden selected value="">--Pilih Auditor 1--</option>
+                            <option hidden selected value="">--Pilih Ketua Auditor--</option>
                             @foreach ($auditors as $auditor)
                             <option value="{{ $auditor->id }}">{{ $auditor->name }}</option>
                             @endforeach
@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <label>Anggota 1</label>
                         <select type="text" name="auditor2_id" id="auditor2_id" class="form-control" required>\
-                            <option hidden selected value="">--Pilih Auditor 2--</option>
+                            <option hidden selected value="">--Pilih Anggota 1--</option>
                             @foreach ($auditors as $auditor)
                             <option value="{{ $auditor->id }}">{{ $auditor->name }}</option>
                             @endforeach
@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label>Anggota 2</label>
                             <select type="text" name="auditor3_id" id="auditor3_id" class="form-control" required>
-                                <option hidden selected value="">--Pilih Auditor 3--</option>
+                                <option hidden selected value="">--Pilih Anggota 2--</option>
                                 @foreach ($auditors as $auditor)
                                 <option value="{{ $auditor->id }}">{{ $auditor->name }}</option>
                                 @endforeach
@@ -48,7 +48,8 @@
                         <select type="text" name="auditee_id" id="auditee_id" class="form-control" required>\
                             <option hidden selected value="">--Pilih Auditee--</option>
                             @foreach ($auditees as $auditee)
-                            <option value="{{ $auditee->id }}">{{ $auditee->name }}</option>
+                            <option value="{{ $auditee->id }}">{{$auditee->jabatan.' ( '. $auditee->name.' )' }}
+                            </option>
                             @endforeach
                         </select>
                     </div>

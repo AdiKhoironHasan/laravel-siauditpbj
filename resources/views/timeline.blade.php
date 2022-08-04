@@ -51,7 +51,7 @@
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @canany(['admin', 'auditor'])
                                         <a href="/rencana/timeline/kerjadesk/create/{{ $timeline->rencana->id }}"
-                                            class=" btn btn-primary btn-sm {{ $timeline->kerja_desk_id != null ? 'disabled' : '' }}">Tambah</a>
+                                            class=" btn btn-primary btn-sm {{($timeline->rencana->status == 'Tidak Terlaksana' || $timeline->kerja_desk_id != null) ? 'disabled' : '' }}">Tambah</a>
                                         <a href="/rencana/timeline/kerjadesk/{{ $kerja_desk != null ? $kerja_desk->id : '' }}/edit"
                                             class="btn btn-info btn-sm {{($timeline->desk_id == null && $timeline->kerja_desk_id != null) ? '' : 'disabled' }}">Ubah</a>
                                         <form
@@ -123,7 +123,7 @@
                             <div class="timeline-item">
                                 <h3 class="timeline-header"><b>Konfirmasi Data Audit Desk</b> <i class="fas"></i>
                                 </h3>
-                                @if (Auth::user()->level == "Auditee" )
+                                @if (Auth::user()->id == $timeline->rencana->auditee_id )
                                 <div class="timeline-body">
                                     {{-- <form action="/rencana/timeline/confirm/{{ $timeline->rencana->id }}"
                                         method="POST">
@@ -239,12 +239,12 @@
                         </div>
                         <div>
                             <i
-                                class="fas fa-check-double {{ $timeline->rencana->status === 'Belum Terlaksana' ? 'bg-danger' : 'bg-success' }}"></i>
+                                class="fas fa-check-double {{ $timeline->konfirmasi_visit == 0 ? 'bg-danger' : 'bg-success' }}"></i>
                             <div class="timeline-item">
                                 <h3 class="timeline-header"><b>Konfirmasi Data Audit Visit</b> <i class="fas"></i>
                                 </h3>
                                 @if (Auth::user()->level == "Ketua SPI" || Auth::user()->level == "Auditor"
-                                ||Auth::user()->level == "Auditee")
+                                ||Auth::user()->id == $timeline->rencana->auditee_id )
                                 <div class="timeline-body">
                                     {{-- <form action="/rencana/timeline/confirm/{{ $timeline->rencana->id }}"
                                         method="POST">
@@ -325,18 +325,18 @@
                             </div>
                         </div>
                         {{-- DATA DARI BOT TELE --}}
-                        {{-- @if ()
+                        @if ($timeline->rencana->status == 'Tidak Terlaksana')
                         <div>
                             <i class="fas fa-clock bg-danger"></i>
                             <div class="timeline-item">
                                 <h3 class="timeline-header"><b>Rencana Audit Tidak Terlaksana</b> <i
                                         class="fas fa-times-circle  text-danger"></i></h3>
                                 <div class="timeline-body">
-                                    Data tidak di isi dampai waktu tenggang
+                                    Data Audit tidak di isi dampai waktu tenggang
                                 </div>
                             </div>
                         </div>
-                        @endif --}}
+                        @endif
                         <div class="time-label">
                             @if ($timeline->berita_id != null)
                             <span class="bg-danger">{{ date('d F Y', strtotime($berita->tanggal)) }}</span>

@@ -1,12 +1,12 @@
 @component('mail::message')
-# Introduction
+{{-- # Introduction --}}
 
-Hii {{ $email }}
+{{-- Hii {{ $email }} --}}
 
 {{ $message }}
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => 'http://127.0.0.1:8000/rencana'])
+Website
 @endcomponent
 
 Thanks,<br>

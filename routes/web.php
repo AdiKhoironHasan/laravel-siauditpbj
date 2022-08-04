@@ -93,17 +93,39 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/cobamail', function () {
-    $rencanas = Rencana::where('status', 'Belum Terlaksana')->get();
-    $users = collect([User::where('level', 'Ketua SPI')->first()]);
+    try {
+        $rencanas = Rencana::where('status', 'Belum Terlaksana')->get();
+        $users = collect([User::where('level', 'Ketua SPI')->first()]);
 
-    foreach ($rencanas as $rencana) {
-        $users->push($rencana->auditor1);
-        $users->push($rencana->auditor2);
-        $users->push($rencana->auditor3);
-        $users->push($rencana->auditee);
+        foreach ($rencanas as $rencana) {
+            // $users->push($rencana->auditor1);
+            // $users->push($rencana->auditor2);
+            // $users->push($rencana->auditor3);
+            // $users->push($rencana->auditee);
+
+            foreach ($users as $user) {
+                $hariH = Carbon::parse(date('Y-m-d', strtotime($rencana->monitoring_awal)));
+                $date = Carbon::parse(date('Y-m-d', strtotime(Carbon::now())))
+                    ->diffInDays($hariH);
+                if ($date <= 7) {
+                    $message = 'No Message';
+                    if ($date == 0) {
+                        $message = 'Hii, ' . $user->name . '. Ada Jadwal Audit pengadaan barang dan jasa yang akan dilaksanakan hari ini.';
+                    } else if ($date == 1) {
+                        $message = 'Hii, ' . $user->name . '. Ada Jadwal Audit pengadaan barang dan jasa yang akan dilaksanakan besok.';
+                    } else {
+                        $message = 'Hii, ' . $user->name . '. Ada Jadwal Audit pengadaan barang dan jasa yang akan dilaksanakan ' . $date . ' hari lagi pada ' . date('Y-m-d', strtotime($rencana->monitoring_awal)) . '.';
+                    }
+                    Mail::to('adieron97@gmail.com')->send(new RencanaMail($user->name, $message));
+                    // Mail::to($user->email)->send(new RencanaMail($user->name, $message));
+                }
+            }
+        }
+    } catch (Exception $e) {
+        dd($e->getMessage());
     }
 
-    dd($users[0]->email);
+    return 'succes';
 });
 
 Route::get('/cobarencana', function () {

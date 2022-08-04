@@ -21,6 +21,9 @@
 
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
+                            <b>Jabatan</b> <a class="float-right">{{ $user->jabatan }}</a>
+                        </li>
+                        <li class="list-group-item">
                             <b>Username</b> <a class="float-right">{{ $user->username }}</a>
                         </li>
                         <li class="list-group-item">

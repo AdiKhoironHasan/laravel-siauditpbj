@@ -23,28 +23,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(Userseeder::class);
-        // $this->call(Unitseeder::class);
-
-        // Unit::factory(5)->create();
-
-        // Barang::factory(20)->create();
-
-        // Barang::create([
-        //     'unit_id' => mt_rand(1, 2),
-        //     'name' => $this->faker->colorName(),
-        //     'no_kontrak' => $this->faker->numerify($this->faker->colorName() . '-#####'),
-        //     'tgl_kontrak' => $this->faker->date(),
-        //     'nilai_kontrak' => $this->faker->randomNumber(6, true),
-        //     'tahun_anggaran' => $this->faker->year(),
-        // ]);
 
         Rencana::create([
             'nomor_surat' => 'ST/2022/PNC/120622/SPI',
             'auditor1_id' => 2,
             'auditor2_id' => 3,
             'auditor3_id' => 4,
-            'auditee_id' => 5,
-            'monitoring_awal' => '2020-03-13',
+            'auditee_id' => 6,
+            'monitoring_awal' => '2023-03-13',
             'monitoring_akhir' => '2020-03-13',
             'tanggal_desk' => '2020-03-13',
             'tanggal_visit' => '2020-03-13',

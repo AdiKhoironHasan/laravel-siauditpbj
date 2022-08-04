@@ -12,9 +12,19 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select type="text" name="status" id="status" class="form-control" required>
+                                <option hidden selected value="{{ $rencana->status }}">
+                                    {{ $rencana->status}}</option>
+                                <option>Terlaksana</option>
+                                <option>Belum Terlaksana</option>
+                                <option>Tidak Terlaksana</option>
+                            </select>
+                        </div>
                         <label>Nomor Surat</label>
                         <input type="text" name="nomor_surat" id="nomor_surat" class="form-control" required
-                            value="{{ $rencana->nomor_surat }}" placeholder="Nomor Surat" minlength="3" maxlength="10">
+                            value="{{ $rencana->nomor_surat }}" placeholder="Nomor Surat" minlength="3">
                         <div id="hasilCekEdit"></div>
                     </div>
                     <div class="form-group">
@@ -50,10 +60,12 @@
                     <div class="form-group">
                         <label>Auditee</label>
                         <select type="text" name="auditee_id" id="auditee_id" class="form-control" required>
-                            <option hidden selected value="{{ $rencana->auditee_id }}">{{$rencana->auditee->name}}
+                            <option hidden selected value="{{ $rencana->auditee_id }}">{{$rencana->auditee->jabatan.' (
+                                '. $rencana->auditee->name.' )' }}
                             </option>
                             @foreach ($auditees as $auditee)
-                            <option value="{{ $auditee->id }}">{{ $auditee->name }}</option>
+                            <option value="{{ $auditee->id }}">{{$auditee->jabatan.' ( '. $auditee->name.' )' }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
@@ -92,8 +104,12 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+                    @if ($rencana->status == 'Belum Terlaksana')
                     <input type="submit" class="btn btn-primary" value="Simpan">
+                    @else
+                    <input type="submit" class="btn btn-primary" value="Simpan" disabled>
+                    @endif
                 </div>
             </form>
         </div>
