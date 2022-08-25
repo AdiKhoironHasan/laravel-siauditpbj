@@ -20,8 +20,8 @@
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control" name="password"
-                            value="{{ Str::substr($user->password, 0, 8) }}">
+                        <input type="password" class="form-control" name="password" placeholder="********">
+                        {{-- value="{{ Str::substr($user->password, 0, 8) }}"> --}}
                     </div>
                     <div class="form-group">
                         <label>Status User</label>
@@ -29,11 +29,11 @@
                             <option hidden selected>{{ $user->status }}</option>
                             <option>Aktif</option>
                             <option>Tidak Aktif</option>
-                            <option>Mendaftar</option>
+                            {{-- <option>Mendaftar</option> --}}
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Jabatan</label>
+                        <label>Hak Akses</label>
                         <select type="text" name="level" class="form-control">
                             <option hidden selected>{{ $user->level }}</option>
                             <option value="Auditor">Auditor</option>
@@ -41,10 +41,15 @@
                             <option value="Direktur">Direktur</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label>Jabatan</label>
+                        <input type="text" name="jabatan" id="jabatan" class="form-control" value="{{ $user->jabatan }}"
+                            required minlength="3" maxlength="10">
+                    </div>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" id="edit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" id="edit" class="btn btn-secondary">Simpan</button>
                 </div>
             </form>
         </div>

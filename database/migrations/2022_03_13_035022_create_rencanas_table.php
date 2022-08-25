@@ -15,14 +15,21 @@ class CreateRencanasTable extends Migration
     {
         Schema::create('rencanas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('barang_id')->unique()->unique()->constrained()->cascadeOnDelete();
+            // $table->tinyIncrements('id');
             $table->foreignId('auditor1_id');
             $table->foreignId('auditor2_id');
             $table->foreignId('auditor3_id');
-            $table->enum('status', ['Terlaksana', 'Belum Terlaksana', 'Tidak Terlaksana']);
+            $table->foreignId('auditee_id');
+            $table->string('nomor_surat', 60);
+            $table->date('monitoring_awal');
+            $table->date('monitoring_akhir');
+            $table->date('tanggal_desk');
+            $table->date('tanggal_visit');
             $table->year('tahun');
-            $table->date('tanggal');
+            $table->enum('status', ['Terlaksana', 'Belum Terlaksana', 'Tidak Terlaksana']);
             $table->timestamps();
+            // $table->foreignId('barang_id')->unique()->unique()->constrained()->cascadeOnDelete();
+            // $table->date('tanggal');
         });
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rencana;
 use Exception;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -23,10 +24,14 @@ class DashboardController extends Controller
             $dashboard = 'direktur-dashboard';
         }
 
-        return view($dashboard, [
-            'title' => 'Dashboard',
-            'part' => 'Rencana Kerja Audit'
-        ]);
+        $totalRKA = Rencana::count();
+        $totalRKATerlaksana = Rencana::where('status', 'Terlaksana')->count();
+        $totalRKABelum = Rencana::where('status', 'Belum Terlaksana')->count();
+        $totalUser = User::where('status', 'Aktif')->count();
+        $title = 'Dashboard';
+        $part = 'Rencana Kerja Audit';
+
+        return view('dashboard', compact('totalRKA', 'totalRKATerlaksana', 'totalRKABelum', 'totalUser', 'title', 'part'));
     }
 
     public function profile()
@@ -51,70 +56,85 @@ class DashboardController extends Controller
         ];
 
         $validatedData = $request->validate($rules);
-
-        User::where('id', $id)->update($validatedData);
-
+        try {
+            User::where('id', $id)->update($validatedData);
+        } catch (Exception $e) {
+            return back()->with('error', 'User gagal diupdate!');
+        }
 
         return back()->with('success', 'User berhasil diupdate!');
     }
 
     public function passwordUpdate($id, Request $request)
     {
-        $user = User::findOrFail($id);
+        try {
 
-        $rules = [
-            'passwordLama' => 'required',
-            'password1' => 'required_with:password2|same:password2',
-            'password2' => 'required',
-        ];
+            $user = User::findOrFail($id);
 
-        $validatedData = $request->validate($rules);
+            $rules = [
+                'passwordLama' => 'required',
+                'password1' => 'required_with:password2|same:password2',
+                'password2' => 'required',
+            ];
 
-        if (Hash::check($validatedData['passwordLama'], $user->password)) {
-            $user->fill([
-                'password' => Hash::make($validatedData['password1'])
-            ])->save();
+            $validatedData = $request->validate($rules);
 
-            return back()->with('success', 'change password successfully');
-        } else {
-            return back()->with('success', 'old password is wrong');
+            if (Hash::check($validatedData['passwordLama'], $user->password)) {
+                $user->fill([
+                    'password' => Hash::make($validatedData['password1'])
+                ])->save();
+
+                return back()->with('success', 'cUpdate password berhasil!');
+            } else {
+                return back()->with('error', 'Update password gagal!');
+            }
+        } catch (Exception $e) {
+            return back()->with('error', 'Update password gagal!');
         }
     }
 
     public function photoUpdate($id, Request $request)
     {
-        $request->validate([
-            'foto' => 'required|image',
-        ]);
-
-        $path = $request->file('foto')->storePublicly('foto', 'public_upload');
-        $user = User::findOrFail($id);
-        $default = Str::substr($user->foto, 0, 7);
-        if (!($default === 'default')) {
-            Storage::disk('public_upload')->delete($user->ttd);
+        try {
+            $request->validate([
+                'foto' => 'required|image',
+            ]);
+            $path = $request->file('foto')->storePublicly('foto', 'public_upload');
+            $user = User::findOrFail($id);
+            $default = Str::substr($user->foto, 0, 7);
+            if (!($default === 'default')) {
+                Storage::disk('public_upload')->delete($user->ttd);
+            }
+            $user->update([
+                'foto' => $path
+            ]);
+        } catch (Exception $e) {
+            return back()->with('error', 'update foto gagal!');
         }
-        $user->update([
-            'foto' => $path
-        ]);
 
         return back()->with('success', 'update foto berhasil!');
     }
 
     public function ttdUpdate($id, Request $request)
     {
-        $request->validate([
-            'ttd' => 'required|image',
-        ]);
+        try {
 
-        $path = $request->file('ttd')->storePublicly('ttd', 'public_upload');
-        $user = User::findOrFail($id);
-        $default = Str::substr($user->ttd, 0, 7);
-        if (!($default === 'default')) {
-            Storage::disk('public_upload')->delete($user->ttd);
+            $request->validate([
+                'ttd' => 'required|image',
+            ]);
+
+            $path = $request->file('ttd')->storePublicly('ttd', 'public_upload');
+            $user = User::findOrFail($id);
+            $default = Str::substr($user->ttd, 0, 7);
+            if (!($default === 'default')) {
+                Storage::disk('public_upload')->delete($user->ttd);
+            }
+            $user->update([
+                'ttd' => $path
+            ]);
+        } catch (Exception $e) {
+            return back()->with('error', 'update tanda tangan gagal!');
         }
-        $user->update([
-            'ttd' => $path
-        ]);
 
         return back()->with('success', 'update tanda tangan berhasil!');
     }

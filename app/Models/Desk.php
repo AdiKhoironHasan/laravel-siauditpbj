@@ -11,15 +11,18 @@ class Desk extends Model
 
     protected $guarded = ['id'];
 
-    public function rencana(){
-        return $this->belongsTo(Rencana::class);
+    public function kerja_desk()
+    {
+        return $this->belongsTo(KerjaDesk::class);
     }
 
-    public function timeline(){
-        return $this->hasOne(Timeline::class);
-    }
+    // public function timeline()
+    // {
+    //     return $this->hasOne(Timeline::class);
+    // }
 
-    public function visit(){
-        return $this->hasOne(Visit::class);
-    }
+    // public function visit()
+    // {
+    //     return $this->hasOne(Visit::class);
+    // }
 }

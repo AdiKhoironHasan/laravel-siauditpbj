@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<h2 class="text-center">Welcome Back, <b>{{ auth()->user()->name }}</b></h2>
+{{-- <h2 class="text-center">Welcome Back, <b>{{ auth()->user()->name }}</b></h2> --}}
 <div class="row">
     <div class="col-lg-3 col-6">
         <!-- small box -->

@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
-
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
     {{--
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     --}}
@@ -32,9 +34,10 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-        <div class="preloader flex-column justify-content-center align-items-center">
+        {{-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-        </div>
+        </div> --}}
+        @include('sweetalert::alert')
 
         @include('partials/navbar')
 
@@ -59,7 +62,8 @@
 
             <section class="content">
 
-                @if (session('success'))
+                {{-- Custom Alert Message --}}
+                {{-- @if (session('success'))
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
                     {{ session('success') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -73,15 +77,16 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                @endif
-                @if (count($errors) > 0)
+                @endif --}}
+
+                {{-- @if (count($errors) > 0)
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{ $errors }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                @endif
+                @endif --}}
 
                 @yield('content')
 
@@ -116,7 +121,7 @@
 <script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="/plugins/jquery-chained/jquery.chained.min.js"></script>
 <script src="/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-
+@stack('script')
 {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -150,7 +155,7 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,
@@ -165,8 +170,7 @@
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#usernameTambah').keyup(function() {
+    $('#usernameTambah').keyup(function() {
             var uname = $('#usernameTambah').val();
             if (uname == 0) {
                 $('#hasilCekTambah').text('');
@@ -191,7 +195,7 @@
                 });
             }
         });
-    });
+
 
     $(document).ready(function() {
         $('#usernameEdit').keyup(function() {

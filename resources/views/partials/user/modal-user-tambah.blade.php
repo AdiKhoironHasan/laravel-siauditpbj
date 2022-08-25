@@ -34,13 +34,25 @@
                             required>
                     </div>
                     <div class="form-group">
-                        <label>Jabatan</label>
+                        <label>Hak Akses</label>
                         <select type="text" name="level" class="form-control" required>
                             <option hidden selected value="">--Pilih Jabatan--</option>
                             <option value="Auditor">Auditor</option>
                             <option value="Auditee">Auditee</option>
                             <option value="Direktur">Direktur</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Jabatan</label>
+                        {{-- <input list="jabatanList" name="jabatan" id="jabatan" class="form-control" required>
+                        <datalist id="jabatanList">
+                            <option value="Anggota SPI">
+                            <option value="Anggota SPI">
+                            <option value="Anggota SPI">
+                            <option value="Anggota SPI">
+                        </datalist> --}}
+                        <input type="text" name="jabatan" id="jabatan" class="form-control" required
+                            placeholder="Jabatan">
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">

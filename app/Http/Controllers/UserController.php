@@ -28,10 +28,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return abort(403);
-    }
+    // public function create()
+    // {
+    //     return abort(403);
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -41,26 +41,32 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'username' => 'required',
-            'email' => 'required|email',
-            'level' => 'required',
-            'password1' => 'required_with:password2|same:password2',
-            'password2' => 'required'
-        ]);
+        try {
 
-        $validatedData = [
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'level' => $request->level,
-            'password' => $request->password1,
-            'foto' => 'default/empty-foto.png',
-            'ttd' => 'default/empty-ttd.png'
-        ];
+            $request->validate([
+                'name' => 'required',
+                'username' => 'required',
+                'email' => 'required|email',
+                'level' => 'required',
+                'jabatan' => 'required',
+                'password1' => 'required_with:password2|same:password2',
+                'password2' => 'required'
+            ]);
 
-        User::firstOrCreate($validatedData);
+            $validatedData = [
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'level' => $request->level,
+                'jabatan' => $request->jabatan,
+                'password' => $request->password1,
+                'foto' => 'default/empty-foto.png',
+                'ttd' => 'default/empty-ttd.png'
+            ];
+            User::firstOrCreate($validatedData);
+        } catch (Exception $e) {
+            return back()->with('error', 'User gagal ditambah!');
+        }
 
         return back()->with('success', 'User berhasil ditambah!');
     }
@@ -96,15 +102,20 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $rules = [
-            'username' => 'required',
-            'status' => 'required',
-            'level' => 'required',
-        ];
+        try {
+            $rules = [
+                'username' => 'required',
+                'status' => 'required',
+                'jabatan' => 'required',
+                'level' => 'required',
+            ];
 
-        $validatedData = $request->validate($rules);
+            $validatedData = $request->validate($rules);
 
-        $user->update($validatedData);
+            $user->update($validatedData);
+        } catch (Exception $e) {
+            return redirect('/user')->with('error', 'User gagal diupdate!');
+        }
 
         return redirect('/user')->with('success', 'User berhasil diupdate!');
     }
@@ -120,7 +131,8 @@ class UserController extends Controller
         try {
             $user->delete();
         } catch (\Throwable $th) {
-            return 'gagal' . $th;
+            // return 'gagal hapus user' . $th;
+            redirect('/user')->with('success', 'User gagal dihapus!');
         }
 
         return redirect('/user')->with('success', 'User berhasil dihapus!');

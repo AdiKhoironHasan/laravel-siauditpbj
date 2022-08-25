@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('npak')->nullable();
             $table->enum('level', ['Ketua SPI', 'Auditor', 'Auditee', 'Direktur']);
+            $table->string('jabatan')->nullable();
             $table->string('nohp')->nullable();
             $table->string('foto')->nullable();
             $table->string('ttd')->nullable();

@@ -15,11 +15,12 @@ class CreateVisitsTable extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('desk_id')->unique()->constrained()->cascadeOnDelete();
-            $table->string('tipe_monitoring');
-            $table->date('masa_monitoring_awal');
-            $table->date('masa_monitoring_akhir');
-            $table->date('tanggal_monitoring');
+            $table->foreignId('kerja_visit_id')->unique()->constrained()->cascadeOnDelete();
+            // $table->foreignId('kerja_desk_id')->unique()->constrained()->cascadeOnDelete();
+            $table->string('tipe_monitoring')->nullable();;
+            // $table->date('masa_monitoring_awal');
+            // $table->date('masa_monitoring_akhir');
+            // $table->date('tanggal_monitoring');
             $table->string('penyusunan_mutu_1');
             $table->string('penyusunan_mutu_2');
             $table->string('pemeriksaan_1');
@@ -33,13 +34,13 @@ class CreateVisitsTable extends Migration
             $table->string('denda');
             $table->string('perpanjangan');
             $table->string('laporan');
-            $table->string('catatan');
-            $table->string('kriteria');
-            $table->string('akar_penyebab');
-            $table->string('akibat');
-            $table->string('rekomendasi');
-            $table->string('tanggapan_auditee');
-            $table->string('rencana_perbaikan');
+            $table->string('catatan')->nullable();;
+            $table->string('kriteria')->nullable();;
+            $table->string('akar_penyebab')->nullable();;
+            $table->string('akibat')->nullable();;
+            $table->string('rekomendasi')->nullable();;
+            $table->string('tanggapan_auditee')->nullable();;
+            $table->string('rencana_perbaikan')->nullable();;
             $table->timestamps();
         });
     }
